@@ -1,0 +1,29 @@
+/* Class = "UILabel"; text = "English"; ObjectID = "XeK-1F-EoY"; */
+"XeK-1F-EoY.text" = "英语";
+
+/* Class = "UIButton"; normalTitle = "Swap"; ObjectID = "8av-bj-S03"; */
+"8av-bj-S03.normalTitle" = "⬆⬇";
+
+/* Class = "UIButton"; normalTitle = "Speech Recognition"; ObjectID = "XVa-2b-sIO"; */
+"XVa-2b-sIO.normalTitle" = "语音识别";
+
+/* Class = "UIButton"; normalTitle = "Korean"; ObjectID = "cwK-Aq-t5k"; */
+"cwK-Aq-t5k.normalTitle" = "韩语";
+
+/* Class = "UITextView"; text = "Translated Message will appear  here"; ObjectID = "eoq-qB-f4C"; */
+"eoq-qB-f4C.text" = "翻译的消息将出现在这里";
+
+/* Class = "UILabel"; text = "Translated Language:"; ObjectID = "fZV-5d-WK3"; */
+"fZV-5d-WK3.text" = "翻译语言：";
+
+/* Class = "UITextView"; text = "Please input your message to be translated as English"; ObjectID = "lXA-q7-XdU"; */
+"lXA-q7-XdU.text" = "请输入您的消息以翻译成英语";
+
+/* Class = "UILabel"; text = "Native Language:"; ObjectID = "p7r-Pn-qe7"; */
+"p7r-Pn-qe7.text" = "母语：";
+
+/* Class = "UIButton"; normalTitle = "Translate"; ObjectID = "rr9-ln-kbF"; */
+"rr9-ln-kbF.normalTitle" = "翻译";
+
+/* Class = "UIButton"; normalTitle = "Swap"; ObjectID = "xBz-DK-gxu"; */
+"xBz-DK-gxu.normalTitle" = "⬆⬇";

@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  talktrans
+
+  Created by 영준 이 on 2016. 12. 11..
+  Copyright © 2016년 leesam. All rights reserved.
+*/
+
+Korean="เกาหลี";
+English="อังกฤษ";
+Chinese="ชาวจีน";
+Japanese="ญี่ปุ่น";
+Taiwanese="ชาวไต้หวัน";
+Spanish="สเปน";
+Vietnamese="เวียตนาม";
+Thai="ไทย";
+Indonesian="ชาวอินโดนีเซีย";
+French="ฝรั่งเศส";
+Cancel="ยกเลิก";
+OK="ตกลง";
+Done="เสร็จสิ้น";
+Error="ความผิดพลาด";
+"Please allow Recording"="โปรดอนุญาตให้บันทึก";
+"Enable Microphone to input your sentence from your voice"="เปิดใช้งานไมโครโฟนเพื่อป้อนประโยคของคุณจากเสียงของคุณ";
+Settings="การตั้งค่า";
+Translate="แปลความ";
+"Recognizing..."="ตระหนักถึง...";
+"Please say sentence to be recognized"="โปรดพูดประโยคเพื่อให้เป็นที่รู้จัก";
+"Turn on cellular data or use Wi-Fi to access data"="เปิดใช้ข้อมูลมือถือหรือใช้ Wi-Fi เพื่อเข้าถึงข้อมูล";
+"It is not supported to translate %@ to %@"="ไม่สนับสนุนการแปล %@ เป็น %@";
+"Could not connect to Siri"="ไม่สามารถเชื่อมต่อกับ Siri";
+"Could not connect to Translator"="ไม่สามารถเชื่อมต่อกับนักแปล";
+"Select Native Language"="เลือกภาษาพื้นเมือง";
+"Current: %@"="ปัจจุบัน: %@";
+"Select Language to Translate"="เลือกภาษาเพื่อแปล";
+"Please input your message to be translated as %@"="กรุณาใส่ข้อความของคุณเพื่อแปลว่า %@";
+"Translated message will appear here"="ข้อความที่แปลจะปรากฏที่นี่";
+"App rating and recommendation"="คะแนน App และข้อเสนอแนะ";
+"Review '%@'"="ตรวจสอบ '%@'";
+"Recommend '%@'"="แนะนำ '%@'";
+"Please rate '%@' or recommend it to your friends."="โปรดให้คะแนน '%@' หรือแนะนำให้เพื่อนของคุณ";
+
+

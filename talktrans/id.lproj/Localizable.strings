@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  talktrans
+
+  Created by 영준 이 on 2016. 12. 11..
+  Copyright © 2016년 leesam. All rights reserved.
+*/
+
+Korean="Korea";
+English="Inggris";
+Chinese="Cina";
+Japanese="Jepang";
+Taiwanese="Orang Taiwan";
+Spanish="Spanyol";
+Vietnamese="Vietnam";
+Thai="Thai";
+Indonesian="bahasa Indonesia";
+French="Perancis";
+Cancel="Membatalkan";
+OK="baik";
+Done="Selesai";
+Error="Kesalahan";
+"Please allow Recording"="Harap izinkan Perekaman";
+"Enable Microphone to input your sentence from your voice"="Aktifkan Mikrofon untuk memasukkan kalimat Anda dari suara Anda";
+Settings="Pengaturan";
+Translate="Menterjemahkan";
+"Recognizing..."="Mengenali...";
+"Please say sentence to be recognized"="Tolong katakan kalimat untuk diakui";
+"Turn on cellular data or use Wi-Fi to access data"="Aktifkan data seluler atau gunakan Wi-Fi untuk mengakses data";
+"It is not supported to translate %@ to %@"="Tidak didukung untuk menerjemahkan %@ ke %@";
+"Could not connect to Siri"="Tidak dapat terhubung ke Siri";
+"Could not connect to Translator"="Tidak dapat terhubung ke Penerjemah";
+"Select Native Language"="Pilih Bahasa Asli";
+"Current: %@"="Sekarang: %@";
+"Select Language to Translate"="Pilih Bahasa untuk Diterjemahkan";
+"Please input your message to be translated as %@"="Silakan masukkan pesan Anda untuk diterjemahkan sebagai %@";
+"Translated message will appear here"="Pesan yang diterjemahkan akan muncul di sini";
+"App rating and recommendation"="Rating dan rekomendasi aplikasi";
+"Review '%@'"="Tinjau '%@'";
+"Recommend '%@'"="Rekomendasikan '%@'";
+"Please rate '%@' or recommend it to your friends."="Silakan beri nilai '%@' atau merekomendasikannya kepada teman-teman Anda.";
+
+

@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  talktrans
+
+  Created by 영준 이 on 2016. 12. 11..
+  Copyright © 2016년 leesam. All rights reserved.
+*/
+
+Korean="한국어";
+English="영어";
+Chinese="중국어";
+Japanese="일본어";
+Taiwanese="대만어";
+Spanish="스페인어";
+Vietnamese="베트남어";
+Thai="태국어";
+Indonesian="인도네시아어";
+French="프랑스어";
+Cancel="취소";
+OK="확인";
+Done="완료";
+Error="오류";
+"Please allow Recording"="녹음을 허용해 주세요";
+"Enable Microphone to input your sentence from your voice"="음성 인식을 위해 마이크를 활성화 해야됩니다";
+Settings="Settings";
+Translate="번역";
+"Recognizing..."="음성인식 중...";
+"Please say sentence to be recognized"="인식할 문장을 말씀해주세요";
+"Turn on cellular data or use Wi-Fi to access data"="인터넷에 접속하기 위해 셀룰러 데이터를 키거나 와이파이를 사용해주세요";
+"It is not supported to translate %@ to %@"="%@에서 %@로의 번역은 지원하지 않습니다";
+"Could not connect to Siri"="Siri에 연결할 수 없습니다";
+"Could not connect to Translator"="번역기에 접속할 수 없습니다";
+"Select Native Language"="원문 언어 선택";
+"Current: %@"="현재 선택된 언어: %@";
+"Select Language to Translate"="번역할 언어 선택";
+"Please input your message to be translated as %@"="%@로 번역될 문장을 입력하세요";
+"Translated message will appear here"="번역된 문장이 표시됩니다";
+"App rating and recommendation"="앱 평가 및 추천";
+"Review '%@'"="'%@' 평가";
+"Recommend '%@'"="'%@' 추천";
+"Please rate '%@' or recommend it to your friends."="'%@'을(를) 평가하거나 친구들에게 추천해주세요.";

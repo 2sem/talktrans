@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  talktrans
+
+  Created by 영준 이 on 2016. 12. 11..
+  Copyright © 2016년 leesam. All rights reserved.
+*/
+
+Korean="Hàn Quốc";
+English="Anh";
+Chinese="Trung Quốc";
+Japanese="tiếng Nhật";
+Taiwanese="Người Đài Loan";
+Spanish="người Tây Ban Nha";
+Vietnamese="Tiếng Việt";
+Thai="Tiếng Thái";
+Indonesian="Người Indonesia";
+French="người Pháp";
+Cancel="Hủy";
+OK="được";
+Done="Làm xong";
+Error="lỗi";
+"Please allow Recording"="Xin cho phép ghi âm";
+"Enable Microphone to input your sentence from your voice"="Bật micrô để nhập câu nói của bạn từ giọng nói của bạn";
+Settings="Cài đặt";
+Translate="Dịch";
+"Recognizing..."="Công nhận...";
+"Please say sentence to be recognized"="Xin hãy nói câu để được công nhận";
+"Turn on cellular data or use Wi-Fi to access data"="Bật dữ liệu di động hoặc sử dụng Wi-Fi để truy cập dữ liệu";
+"It is not supported to translate %@ to %@"="Nó không được hỗ trợ để dịch từ %@ đến %@";
+"Could not connect to Siri"="Không thể kết nối với Siri";
+"Could not connect to Translator"="Không thể kết nối với Người dịch";
+"Select Native Language"="Chọn ngôn ngữ bản địa";
+"Current: %@"="Hiện hành: %@";
+"Select Language to Translate"="Chọn Ngôn ngữ để Dịch";
+"Please input your message to be translated as %@"="Vui lòng nhập tin nhắn của bạn để được dịch là %@";
+"Translated message will appear here"="Thông báo đã dịch sẽ xuất hiện ở đây";
+"App rating and recommendation"="Xếp hạng ứng dụng và đề xuất";
+"Review '%@'"="Ôn tập '%@'";
+"Recommend '%@'"="Giới thiệu '%@'";
+"Please rate '%@' or recommend it to your friends."="Hãy đánh giá '%@' hoặc giới thiệu nó cho bạn bè của bạn.";
+
+

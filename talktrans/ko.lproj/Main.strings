@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "English"; ObjectID = "XeK-1F-EoY"; */
+"XeK-1F-EoY.text" = "영어";
+
+/* Class = "UIButton"; normalTitle = "Swap"; ObjectID = "8av-bj-S03"; */
+"8av-bj-S03.normalTitle" = "⬆⬇";
+
+/* Class = "UIButton"; normalTitle = "Speech Recognition"; ObjectID = "XVa-2b-sIO"; */
+"XVa-2b-sIO.normalTitle" = "음성 인식";
+
+/* Class = "UIButton"; normalTitle = "Korean"; ObjectID = "cwK-Aq-t5k"; */
+"cwK-Aq-t5k.normalTitle" = "한국어";
+
+/* Class = "UITextView"; text = "Translated Message will appear here"; ObjectID = "eoq-qB-f4C"; */
+"eoq-qB-f4C.text" = "번역된 문장이 표시됩니다";
+
+/* Class = "UILabel"; text = "Translated Language:"; ObjectID = "fZV-5d-WK3"; */
+"fZV-5d-WK3.text" = "번역 언어:";
+
+/* Class = "UITextView"; text = "Please input your message to be translated as English"; ObjectID = "lXA-q7-XdU"; */
+"lXA-q7-XdU.text" = "영어로 번역될 문장을 입력하세요";
+
+/* Class = "UILabel"; text = "Native Language:"; ObjectID = "p7r-Pn-qe7"; */
+"p7r-Pn-qe7.text" = "원문 언어:";
+
+/* Class = "UIButton"; normalTitle = "Translate"; ObjectID = "rr9-ln-kbF"; */
+"rr9-ln-kbF.normalTitle" = "번역";
+
+/* Class = "UIButton"; normalTitle = "Swap"; ObjectID = "xBz-DK-gxu"; */
+"xBz-DK-gxu.normalTitle" = "⬆⬇";

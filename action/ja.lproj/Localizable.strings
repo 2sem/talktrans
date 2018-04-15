@@ -1,0 +1,35 @@
+/*
+ Localizable.strings
+ talktrans
+ 
+ Created by 영준 이 on 2016. 12. 11..
+ Copyright © 2016년 leesam. All rights reserved.
+ */
+
+Korean="韓国語";
+English="英語";
+Chinese="中国語";
+Japanese="日本語";
+Taiwanese="台湾語";
+Cancel="キャンセル";
+OK="確認";
+Done="完了";
+Error="エラー";
+"Please allow Recording"="録音を許可してください";
+"Enable Microphone to input your sentence from your voice"="あなたの声からあなたの文章を入力するためにマイクを有効にする";
+Settings="設定";
+"Recognizing..."="認識しています...";
+"Please say sentence to be recognized"="認識される文章を言ってください";
+"Turn on cellular data or use Wi-Fi to access data"="携帯端末のデータを有効にするか、Wi-Fiを使用してデータにアクセスする";
+"It is not supported to translate %@ to %@"="％@から％@への変換はサポートされていません";
+"Could not connect to Siri"="％@から％@への変換はサポートされていません";
+"Could not connect to Translator"="翻訳者に接続できませんでした";
+"Select Native Language"="ネイティブ言語を選択";
+"Current: %@"="現在：％@";
+"Select Language to Translate"="翻訳する言語を選択";
+"Please input your message to be translated as %@"="翻訳するメッセージを%@として入力してください";
+"Translated message will appear here"="翻訳されたメッセージがここに表示されます";
+"App rating and recommendation"="アプリレビューとおすすめ";
+"Review '%@'"="レビュー '%@'";
+"Recommend '%@'"="'%@'をおすすめ";
+"Please rate '%@' or recommend it to your friends."="'％@'を評価するか、お友達に推薦してください.";

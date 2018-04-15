@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Licenses</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Key</key>
+			<string>Icon8</string>
+			<key>Title</key>
+			<string>Icon8</string>
+			<key>File</key>
+			<string>Icon8</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Key</key>
+			<string>Material</string>
+			<key>Title</key>
+			<string>Material</string>
+			<key>File</key>
+			<string>Material</string>
+		</dict>
+	</array>
+</dict>
+</plist>
