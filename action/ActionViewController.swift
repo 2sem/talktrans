@@ -25,7 +25,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     var needFix = true;
     var nativeLocale = Locale.current{
         didSet{
-            var lang = self.supportedLangs[self.nativeLocale.identifier];
+            let lang = self.supportedLangs[self.nativeLocale.identifier];
             //            self.selectNativeLangButton.setTitle(lang?.localized(), for: .normal);
             self.nativeLabel.text = "";
             self.nativeLabel.layoutIfNeeded();
@@ -38,7 +38,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     var transLocale = Locale(identifier: "en"){
         didSet{
-            var lang = self.supportedLangs[self.transLocale.identifier];
+            let lang = self.supportedLangs[self.transLocale.identifier];
             //            self.selectTransLangButton.setTitle(lang?.localized(), for: .normal);
             self.transLabel.text = "";
             self.transLabel.layoutIfNeeded();
@@ -60,10 +60,8 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        print("load admob in \(Bundle.main.bundleIdentifier)");
-        
 //        var interstitial = GADInterstitial(adUnitID: self.bottomBannerView.adUnitID ?? "");
-        var req = GADRequest();
+        let req = GADRequest();
         req.testDevices = ["5fb1f297b8eafe217348a756bdb2de56"];
 //        self.bottomBannerView.delegate = self;
 //        self.bottomBannerView.load(req);
@@ -90,10 +88,10 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
                         
                         self.nativeText = text as? String ?? "";
                         print("load from host app - \(self.nativeText)")
-                        var current = self.supportedLangs.first { (key: String, value: String) -> Bool in
+                        let current = self.supportedLangs.first { (key: String, value: String) -> Bool in
                             return self.nativeLocale.identifier.hasPrefix(key);
                         }
-                        var lang = self.supportedLangs[self.transLocale.identifier];
+                        let lang = self.supportedLangs[self.transLocale.identifier];
                         
                         DispatchQueue.main.sync {
                             self.transLabel.text = lang?.localized();
@@ -135,7 +133,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
             return;
         }
         
-        var target = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        let target = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.nativeLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
         }
         self.transLocale = Locale(identifier: target?.key ?? "en");
@@ -147,7 +145,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
             return;
         }
 
-        var source = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        let source = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.transLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
         }
         self.nativeLocale = Locale(identifier: source?.key ?? "ko");
@@ -166,7 +164,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
                 return;
             }
             
-            print("translate result - \(result)");
+            print("translate result - \(result ?? "")");
             OperationQueue.main.addOperation {
                 self.resultTextView.text = result;
                 //                    self.returnResult(result: result ?? "");
@@ -180,8 +178,8 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func returnResult(result : String){
-        var item = NSExtensionItem();
-        var provider = NSItemProvider(item: result as NSSecureCoding?, typeIdentifier: kUTTypeText as String);
+        let item = NSExtensionItem();
+        let provider = NSItemProvider(item: result as NSSecureCoding?, typeIdentifier: kUTTypeText as String);
         item.attachments = [provider];
         
         //        result.attributedContentText = NSAttributedString(string: "dlkqweljqw");
@@ -199,7 +197,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
         var langs = self.supportedLangs;
         
         print("except \(self.nativeLocale.identifier) from lang list");
-        var current = langs.first { (key: String, value: String) -> Bool in
+        let current = langs.first { (key: String, value: String) -> Bool in
             return self.nativeLocale.identifier.hasPrefix(key);
         }
         langs.removeValue(forKey: current?.key ?? "");
@@ -219,7 +217,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     @IBAction func onTransLang(_ button: UIButton) {
         var acts : [UIAlertAction] = [];
         var langs = self.supportedLangs;
-        var current = langs.first { (key: String, value: String) -> Bool in
+        let current = langs.first { (key: String, value: String) -> Bool in
             return self.transLocale.identifier.hasPrefix(key);
         }
         langs.removeValue(forKey: current?.key ?? "");
@@ -257,7 +255,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func share(_ activityItems: [Any], applicationActivities: [UIActivity]? = nil, completion: (() -> Void)? = nil){
-        var controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: applicationActivities);
+        let controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: applicationActivities);
         controller.popoverPresentationController?.sourceView = self.view;
         //        controller.excludedActivityTypes = [.mail, .message, .postToFacebook, .postToTwitter];
         controller.excludedActivityTypes = [UIActivityType(rawValue: "com.credif.talktrans.action"),
@@ -266,6 +264,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
         self.present(controller, animated: true, completion: completion);
     }
     
+    @discardableResult
     func showAlert(title: String, msg: String, actions : [UIAlertAction], style: UIAlertControllerStyle, sourceView: UIView? = nil, sourceRect: CGRect? = nil, completion: (() -> Void)? = nil) -> UIAlertController{
         let alert = UIAlertController(title: title, message: msg, preferredStyle: style);
         for act in actions{

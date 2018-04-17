@@ -87,7 +87,7 @@ class NVAPIManager : NSObject{
     
     static func canSupportTranslate(source : Locale, target : Locale) -> Bool{
         return ((source.languageCode == "ko"
-            || target.languageCode == "ko")) && (source.identifier != target.identifier);
+            || target.languageCode == "ko")) && (source.languageCode != target.languageCode);
     }
     
     func requestTranslateByNMT(text : String, source : Locale, target : Locale, completionHandler: TranslateCompletionHandler?){

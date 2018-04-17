@@ -85,8 +85,8 @@ class ReviewManager : NSObject{
             return;
         }
         
-        var name : String = UIApplication.shared.displayName ?? "";
-        var acts = [UIAlertAction(title: String(format: "'%@' 평가".localized(), name), style: .default) { (act) in
+        let name : String = UIApplication.shared.displayName ?? "";
+        let acts = [UIAlertAction(title: String(format: "'%@' 평가".localized(), name), style: .default) { (act) in
             
                 UIApplication.shared.openReview();
             }, UIAlertAction(title: String(format: "'%@' 추천".localized(), name), style: .default) { (act) in

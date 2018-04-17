@@ -38,7 +38,7 @@ extension UIApplication{
     }
     
     func openReview(_ appId : String = "1186147362", completion: ((Bool) -> Void)? = nil){
-        var rateUrl = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appId)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8");
+        let rateUrl = URL(string: "https://itunes.apple.com/app/myapp/id\(appId)?mt=8&action=write-review");
         
         self.open(rateUrl!, options: [:], completionHandler: completion);
     }

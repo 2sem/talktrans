@@ -34,6 +34,7 @@ extension UIViewController {
         }
     }
     
+    @discardableResult
     func showAlert(title: String, msg: String, actions : [UIAlertAction], style: UIAlertControllerStyle, sourceView: UIView? = nil, sourceRect: CGRect? = nil, popoverDelegate: UIPopoverPresentationControllerDelegate? = nil, completion: (() -> Void)? = nil) -> UIAlertController{
         let alert = UIAlertController(title: title, message: msg, preferredStyle: style);
         for act in actions{
@@ -70,6 +71,7 @@ extension UIViewController {
         return alert;
     }
     
+    @discardableResult
     func showPasscode(title: String?, msg: String, buttonTitle: String? = "OK", request: ((String) -> Bool)? = nil, completion: (() -> Void)? = nil) -> UIAlertController{
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert);
         
@@ -128,7 +130,7 @@ extension UIViewController {
         if inView is UIPopoverPresentationControllerDelegate{
             pop?.delegate = inView as? UIPopoverPresentationControllerDelegate;
         }
-        print("pop delegate \(pop!.delegate)");
+        print("pop delegate \(pop?.delegate?.description ?? "")");
         
         inView.present(self, animated: animated, completion: nil);
 
@@ -173,7 +175,7 @@ extension UIViewController {
         if inView is UIPopoverPresentationControllerDelegate{
             pop?.delegate = inView as? UIPopoverPresentationControllerDelegate;
         }
-        print("pop delegate \(pop!.delegate)");
+        print("pop delegate \(pop?.delegate?.description ?? "")");
         
         inView.present(self, animated: true, completion: completion);
         
@@ -237,8 +239,8 @@ extension UIViewController {
     }
     
     func openSettings(completionHandler completion: ((Bool) -> Swift.Void)? = nil){
-        var url_settings = URL(string:UIApplicationOpenSettingsURLString);
-        print("open settings - \(url_settings)");
+        let url_settings = URL(string:UIApplicationOpenSettingsURLString);
+        print("open settings - \(url_settings?.description ?? "")");
         UIApplication.shared.open(url_settings!, options: [:], completionHandler: { (result) in
             
         })
@@ -248,7 +250,7 @@ extension UIViewController {
         let acts = [UIAlertAction(title: titleForSettings, style: .default, handler: { (act) in
             self.openSettings();
         }), UIAlertAction(title: titleForOK, style: .default, handler: nil)];
-        self.showAlert(title: title ?? "", msg: msg ?? "", actions: acts, style: style);
+        self.showAlert(title: title, msg: msg, actions: acts, style: style);
     }
     
     func showCellularAlert(title: String, okHandler : ((UIAlertAction) -> Void)? = nil, cancelHandler : ((UIAlertAction) -> Void)? = nil){
@@ -256,15 +258,15 @@ extension UIViewController {
     }
     
     func share(_ activityItems: [Any], applicationActivities: [UIActivity]? = nil, completion: (() -> Void)? = nil){
-        var controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: applicationActivities);
+        let controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: applicationActivities);
         controller.popoverPresentationController?.sourceView = self.view;
         //        controller.excludedActivityTypes = [.mail, .message, .postToFacebook, .postToTwitter];
         self.present(controller, animated: true, completion: completion);
     }
     
     func shareOrReview(cancelation: ((UIAlertAction) -> Void)? = nil){
-        var name : String = self.nibBundle?.localizedInfoDictionary?["CFBundleDisplayName"] as? String ?? "";
-        var acts = [UIAlertAction(title: String(format: "Review '%@'".localized(), name), style: .default) { (act) in
+        let name : String = self.nibBundle?.localizedInfoDictionary?["CFBundleDisplayName"] as? String ?? "";
+        let acts = [UIAlertAction(title: String(format: "Review '%@'".localized(), name), style: .default) { (act) in
             
             UIApplication.shared.openReview();
             },

@@ -28,7 +28,7 @@ extension String{
         if bundlePath == nil{
             value = NSLocalizedString(defaultText ?? self, comment: "");
         }else{
-            var bundle = Bundle(path: bundlePath!)!;
+            let bundle = Bundle(path: bundlePath!)!;
 //            value = bundle.localizedString(forKey: self, value: defaultText ?? self, table: nil);
             
             value = bundle.localizedString(forKey: self, value: defaultText ?? self, table: nil);

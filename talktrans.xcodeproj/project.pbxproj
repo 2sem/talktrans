@@ -12,6 +12,14 @@
 		2C07221C1DF90CD800558777 /* NSError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221B1DF90CD800558777 /* NSError+.swift */; };
 		2C07221E1DF9181200558777 /* NVAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221D1DF9181200558777 /* NVAPIManager.swift */; };
 		2C0722201DF9444900558777 /* LS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221F1DF9444900558777 /* LS.swift */; };
+		2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
+		2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
+		2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
+		2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
+		2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
+		2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
+		2C0F9D3D2084AB9B00DFA455 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3C2084AB9B00DFA455 /* langs */; };
+		2C0F9D3E2084AB9B00DFA455 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3C2084AB9B00DFA455 /* langs */; };
 		2C119CD41F83DCFF007A383F /* Pods_talktrans_action.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE25005DB87C0FFF611000F7 /* Pods_talktrans_action.framework */; };
 		2C140A312081D24700BD6A76 /* NaverPapagoSMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */; };
 		2C140A322081E36400BD6A76 /* NaverPapagoSMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */; };
@@ -54,10 +62,6 @@
 		2C7662911DF1003500A2C38C /* talktransTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662901DF1003500A2C38C /* talktransTests.swift */; };
 		2C76629C1DF1003500A2C38C /* talktransUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76629B1DF1003500A2C38C /* talktransUITests.swift */; };
 		2C7662AA1DF1041C00A2C38C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7662A91DF1041C00A2C38C /* GoogleService-Info.plist */; };
-		2C88F50A2023006E009A66C4 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88F5092023006E009A66C4 /* Step1ViewController.swift */; };
-		2C88F50C202300C2009A66C4 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88F50B202300C2009A66C4 /* Step2ViewController.swift */; };
-		2C88F50E202300EF009A66C4 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88F50D202300EF009A66C4 /* Step3ViewController.swift */; };
-		2C88F5102023010E009A66C4 /* Step4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88F50F2023010E009A66C4 /* Step4ViewController.swift */; };
 		2CB5937A1FCC3B9D00300643 /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
 		2CE8DE7B1F84B2A7000F6D15 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8DE7A1F84B2A7000F6D15 /* UIApplication+.swift */; };
@@ -127,6 +131,10 @@
 		2C07221B1DF90CD800558777 /* NSError+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+.swift"; sourceTree = "<group>"; };
 		2C07221D1DF9181200558777 /* NVAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVAPIManager.swift; sourceTree = "<group>"; };
 		2C07221F1DF9444900558777 /* LS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LS.swift; sourceTree = "<group>"; };
+		2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePicker.swift; sourceTree = "<group>"; };
+		2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerCell.swift; sourceTree = "<group>"; };
+		2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerButton.swift; sourceTree = "<group>"; };
+		2C0F9D3C2084AB9B00DFA455 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = langs; path = ../../../../../../../Downloads/langs; sourceTree = "<group>"; };
 		2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoSMTRequest.swift; sourceTree = "<group>"; };
 		2C140A342081FB0F00BD6A76 /* NaverSMTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSMTResponse.swift; sourceTree = "<group>"; };
 		2C140A382082097800BD6A76 /* NaverPapagoSMTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoSMTError.swift; sourceTree = "<group>"; };
@@ -192,10 +200,6 @@
 		2C76629B1DF1003500A2C38C /* talktransUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talktransUITests.swift; sourceTree = "<group>"; };
 		2C76629D1DF1003500A2C38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C7662A91DF1041C00A2C38C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2C88F5092023006E009A66C4 /* Step1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1ViewController.swift; sourceTree = "<group>"; };
-		2C88F50B202300C2009A66C4 /* Step2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2ViewController.swift; sourceTree = "<group>"; };
-		2C88F50D202300EF009A66C4 /* Step3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewController.swift; sourceTree = "<group>"; };
-		2C88F50F2023010E009A66C4 /* Step4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewController.swift; sourceTree = "<group>"; };
 		2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 		2CD074561E9FAE7A0032CFCD /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
 		2CD5BA541DFD975C00AA0E16 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -282,6 +286,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0F9D3120847A6300DFA455 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */,
+				2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */,
+				2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
 		2C140A2F2081D20B00BD6A76 /* NaverAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +353,7 @@
 		2C646FF31DF1348C0075DC04 /* leesam */ = {
 			isa = PBXGroup;
 			children = (
+				2C0F9D3120847A6300DFA455 /* Control */,
 				2C140A3B2082188D00BD6A76 /* Alamofire */,
 				2C140A2F2081D20B00BD6A76 /* NaverAPI */,
 				2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */,
@@ -392,10 +407,6 @@
 				2CFB6D6D1E25183400AA2285 /* image */,
 				2C7662781DF1003500A2C38C /* AppDelegate.swift */,
 				2C76627A1DF1003500A2C38C /* MainViewController.swift */,
-				2C88F5092023006E009A66C4 /* Step1ViewController.swift */,
-				2C88F50B202300C2009A66C4 /* Step2ViewController.swift */,
-				2C88F50D202300EF009A66C4 /* Step3ViewController.swift */,
-				2C88F50F2023010E009A66C4 /* Step4ViewController.swift */,
 				2C76627C1DF1003500A2C38C /* Main.storyboard */,
 				2C7662821DF1003500A2C38C /* Assets.xcassets */,
 				2C7662841DF1003500A2C38C /* LaunchScreen.storyboard */,
@@ -430,6 +441,7 @@
 		2CFB6D6D1E25183400AA2285 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				2C0F9D3C2084AB9B00DFA455 /* langs */,
 				2CFB6D6E1E25185D00AA2285 /* icon */,
 				2CD074561E9FAE7A0032CFCD /* Y2K.PNG */,
 				2C4445421E25C4FF005C9EE4 /* credif.png */,
@@ -593,7 +605,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = leesam;
 				TargetAttributes = {
 					2C7662741DF1003500A2C38C = {
@@ -659,6 +671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0F9D3D2084AB9B00DFA455 /* langs in Resources */,
 				2C4445451E25C518005C9EE4 /* icons8.png in Resources */,
 				2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */,
 				2CF31DFB1E6421CF00992A7A /* fix_off_white@x32.png in Resources */,
@@ -701,6 +714,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0F9D3E2084AB9B00DFA455 /* langs in Resources */,
 				2C17939A2083822C00E7725F /* Localizable.strings in Resources */,
 				2C54C9E71F83C930005AFFE3 /* InfoPlist.strings in Resources */,
 				2CFF0C3A1E35F709004F9EF4 /* Assets.xcassets in Resources */,
@@ -815,26 +829,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
 				2C646FF51DF134E90075DC04 /* UIView+.swift in Sources */,
 				2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */,
+				2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
 				2C7662811DF1003500A2C38C /* talktrans.xcdatamodeld in Sources */,
 				2C0722201DF9444900558777 /* LS.swift in Sources */,
 				2C1425D91F7A564300BDF794 /* GADInterstialManager.swift in Sources */,
 				2C07221C1DF90CD800558777 /* NSError+.swift in Sources */,
+				2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
 				2C646FF71DF149840075DC04 /* UIViewController+.swift in Sources */,
-				2C88F50C202300C2009A66C4 /* Step2ViewController.swift in Sources */,
 				2C155FA31F839F7E008AAD3F /* TTDefaults.swift in Sources */,
 				2C140A312081D24700BD6A76 /* NaverPapagoSMTRequest.swift in Sources */,
-				2C88F50A2023006E009A66C4 /* Step1ViewController.swift in Sources */,
 				2C155FA51F83A66E008AAD3F /* UIApplication+KakaoLink.swift in Sources */,
 				2C1932751E9E595E0056262C /* GADInterstitial+.swift in Sources */,
 				2C140A4420822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */,
-				2C88F50E202300EF009A66C4 /* Step3ViewController.swift in Sources */,
 				2C140A412082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */,
 				2C140A352081FB0F00BD6A76 /* NaverSMTResponse.swift in Sources */,
 				2C646FF91DF1518E0075DC04 /* LSAlertController.swift in Sources */,
 				2C5836611DFD14BF004B28FF /* String+.swift in Sources */,
-				2C88F5102023010E009A66C4 /* Step4ViewController.swift in Sources */,
 				2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */,
 				2CB5937A1FCC3B9D00300643 /* DispatchQueue+.swift in Sources */,
 				2C140A392082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */,
@@ -871,12 +884,15 @@
 				2C140A3E208218B900BD6A76 /* DataRequest+.swift in Sources */,
 				2C140A3A2082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */,
 				2C140A422082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */,
+				2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
 				2CFF0C491E363028004F9EF4 /* NVAPIManager.swift in Sources */,
 				2C140A4820822EA100BD6A76 /* NaverPapagoNMTError.swift in Sources */,
 				2C140A322081E36400BD6A76 /* NaverPapagoSMTRequest.swift in Sources */,
 				2CFEDF8E1E36F07E009470A4 /* String+.swift in Sources */,
 				2CFF0C2E1E35F160004F9EF4 /* ActionViewController.swift in Sources */,
 				2C140A4520822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */,
+				2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
+				2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
 				2C140A372082021D00BD6A76 /* NaverSMTResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1020,15 +1036,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1071,15 +1095,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1121,7 +1153,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1143,7 +1175,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1160,7 +1192,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leesam.talktransTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/talktrans.app/talktrans";
 			};
@@ -1177,7 +1209,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leesam.talktransTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/talktrans.app/talktrans";
 			};
@@ -1193,7 +1225,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leesam.talktransUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = talktrans;
 			};
@@ -1209,7 +1241,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leesam.talktransUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = talktrans;
 			};
@@ -1310,7 +1342,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1409,7 +1441,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,8 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="GADBannerView">
-                                <rect key="frame" x="4" y="-50" width="760" height="50"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69A-Ey-gSr">
+                                <rect key="frame" x="158" y="353" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="GADBannerView">
+                                <rect key="frame" x="4" y="-30" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NAo-4X-n5Q"/>
@@ -66,27 +73,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-90-agl" userLabel="Trans Stack View">
                                                         <rect key="frame" x="8" y="0.0" width="358" height="44"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Translated Language:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fZV-5d-WK3">
-                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="234" height="20.333333333333329"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translated Language:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fZV-5d-WK3">
+                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="214" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="English" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeK-1F-EoY">
-                                                                <rect key="frame" x="234" y="11.999999999999998" width="60" height="20.333333333333329"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-io-7RS">
-                                                                <rect key="frame" x="294" y="11.999999999999998" width="20" height="20.333333333333329"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-E4-MHX" customClass="LSLanguagePickerButton" customModule="talktrans" customModuleProvider="target">
+                                                                <rect key="frame" x="214" y="0.0" width="100" height="44"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="20" id="a1P-mG-GFz"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="PIa-Mo-cN4"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="titleEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                                                <state key="normal" title="▼" image="korea.png"/>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBz-DK-gxu" userLabel="Fix Button">
                                                                 <rect key="frame" x="314" y="9.6666666666666679" width="44" height="25.000000000000004"/>
                                                                 <constraints>
@@ -165,27 +166,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bH5-IE-IIg" userLabel="Native Stack View">
                                                         <rect key="frame" x="8" y="10" width="358" height="44"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Native Language:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p7r-Pn-qe7">
-                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="236.33333333333334" height="20.333333333333329"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native Language:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p7r-Pn-qe7">
+                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="214" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Korean" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb3-WQ-4el" userLabel="Native Label">
-                                                                <rect key="frame" x="236.33333333333329" y="11.999999999999998" width="57.666666666666657" height="20.333333333333329"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="L7b-L8-M4E">
-                                                                <rect key="frame" x="294" y="11.999999999999998" width="20" height="20.333333333333329"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce6-OW-F1W" customClass="LSLanguagePickerButton" customModule="talktrans" customModuleProvider="target">
+                                                                <rect key="frame" x="214" y="0.0" width="100" height="44"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="20" id="XFU-kf-8z7"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="DbY-lv-wTD"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="titleEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                                                <state key="normal" title="▼" image="korea.png"/>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8av-bj-S03" userLabel="Swap Button">
                                                                 <rect key="frame" x="314" y="9.6666666666666856" width="44" height="25"/>
                                                                 <constraints>
@@ -304,9 +299,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="XVa-2b-sIO" firstAttribute="bottom" secondItem="EL4-Xt-YXj" secondAttribute="bottom" id="LKg-QB-wpy"/>
                                             <constraint firstItem="rr9-ln-kbF" firstAttribute="top" secondItem="EL4-Xt-YXj" secondAttribute="top" constant="5" id="X3W-Ub-FC6"/>
-                                            <constraint firstItem="rr9-ln-kbF" firstAttribute="bottom" secondItem="EL4-Xt-YXj" secondAttribute="bottom" id="de0-U3-r5z"/>
                                             <constraint firstItem="XVa-2b-sIO" firstAttribute="leading" secondItem="rr9-ln-kbF" secondAttribute="trailing" id="l3F-cF-bP0"/>
                                             <constraint firstItem="XVa-2b-sIO" firstAttribute="top" secondItem="EL4-Xt-YXj" secondAttribute="top" constant="5" id="qKz-eG-W3m"/>
                                             <constraint firstAttribute="height" constant="50" id="udK-wR-QcX"/>
@@ -379,8 +372,11 @@
                     <connections>
                         <outlet property="actionButton" destination="gnn-lW-N5M" id="65X-fG-GIp"/>
                         <outlet property="bottomBannerView" destination="pKj-VY-D7J" id="2rA-Pq-gyj"/>
+                        <outlet property="constraint_bottomBanner_top" destination="c98-g3-mWz" id="LWk-9A-f87"/>
+                        <outlet property="constraint_topBanner_bottom" destination="xYV-VP-rbr" id="eeX-g6-Qqg"/>
                         <outlet property="fixButton" destination="xBz-DK-gxu" id="htZ-ai-4rU"/>
-                        <outlet property="nativeLabel" destination="Mb3-WQ-4el" id="Jb3-ui-B3G"/>
+                        <outlet property="langTextField" destination="69A-Ey-gSr" id="JTc-t9-ndU"/>
+                        <outlet property="nativeButton" destination="Ce6-OW-F1W" id="O5h-DS-dSp"/>
                         <outlet property="nativePlaceHolderLabel" destination="dqr-Fp-Nj8" id="3DL-G5-DlA"/>
                         <outlet property="nativeTextView" destination="lXA-q7-XdU" id="BPE-wp-oD2"/>
                         <outlet property="nativeView" destination="g15-TJ-syY" id="DLs-M0-UZ2"/>
@@ -388,7 +384,7 @@
                         <outlet property="selectNativeLangButton" destination="cwK-Aq-t5k" id="10S-tw-OAT"/>
                         <outlet property="selectTransLangButton" destination="4pa-e1-U9z" id="3GI-yb-Btv"/>
                         <outlet property="topBannerView" destination="fn0-30-AZe" id="EFC-KU-2VP"/>
-                        <outlet property="transLabel" destination="XeK-1F-EoY" id="COA-QK-HQ2"/>
+                        <outlet property="transButton" destination="j4p-E4-MHX" id="u7H-aW-VP7"/>
                         <outlet property="transPlaceHolderLabel" destination="Uxv-oK-Wrk" id="vlG-qR-eme"/>
                         <outlet property="transTextView" destination="eoq-qB-f4C" id="JGH-cY-GLh"/>
                         <outlet property="transView" destination="PyM-70-ONS" id="Ru9-HX-K9r"/>
@@ -400,386 +396,12 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="136.28185907046478"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="A3j-Rt-nga">
-            <objects>
-                <navigationController id="hiA-XB-dJv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0a3-cs-FlH">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="1uD-Ko-Xp1" kind="relationship" relationship="rootViewController" id="z3r-Ox-Y2J"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zCo-H0-eBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-586" y="871"/>
-        </scene>
-        <!--Step1 View Controller-->
-        <scene sceneID="hpf-ZI-5gE">
-            <objects>
-                <viewController id="1uD-Ko-Xp1" customClass="Step1ViewController" customModule="talktrans" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IQ6-Su-0jl"/>
-                        <viewControllerLayoutGuide type="bottom" id="As7-aQ-ucd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="H2K-kQ-GOr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lb0-tW-a8h">
-                                <rect key="frame" x="157" y="74" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="1WE-fZ-ZwN"/>
-                                    <constraint firstAttribute="width" secondItem="lb0-tW-a8h" secondAttribute="height" multiplier="23:15" id="VTf-Z7-oz9"/>
-                                </constraints>
-                                <state key="normal" title="PUSH 2"/>
-                                <connections>
-                                    <segue destination="jpT-qY-PtA" kind="show" id="Bii-BY-3J4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-77-y7s">
-                                <rect key="frame" x="157" y="184" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="wWt-77-y7s" secondAttribute="height" multiplier="23:15" id="5z4-Th-0yY"/>
-                                    <constraint firstAttribute="width" constant="100" id="SCK-44-JeL"/>
-                                </constraints>
-                                <state key="normal" title="POP"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qms-JN-hFp">
-                                <rect key="frame" x="157" y="264" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="pXj-9s-j89"/>
-                                    <constraint firstAttribute="width" secondItem="Qms-JN-hFp" secondAttribute="height" multiplier="23:15" id="rjV-3t-qsZ"/>
-                                </constraints>
-                                <state key="normal" title="POP ANIMATE"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbd-Ol-47o">
-                                <rect key="frame" x="147" y="335" width="120" height="78.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Cbd-Ol-47o" secondAttribute="height" multiplier="23:15" id="uLV-OE-Bb3"/>
-                                    <constraint firstAttribute="width" constant="120" id="x0Z-da-QU3"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zll-aw-nc7">
-                                <rect key="frame" x="132" y="414" width="150" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="7JQ-nr-3dM"/>
-                                    <constraint firstAttribute="width" secondItem="Zll-aw-nc7" secondAttribute="height" multiplier="23:15" id="cKT-l3-uqJ"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT ANIMATE"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Zll-aw-nc7" firstAttribute="width" secondItem="Zll-aw-nc7" secondAttribute="height" multiplier="23:15" id="5gs-gy-d5m"/>
-                            <constraint firstItem="Zll-aw-nc7" firstAttribute="width" secondItem="Zll-aw-nc7" secondAttribute="height" multiplier="23:15" id="6xG-Pu-tu2"/>
-                            <constraint firstItem="Cbd-Ol-47o" firstAttribute="width" secondItem="Cbd-Ol-47o" secondAttribute="height" multiplier="23:15" id="8cb-pX-3PH"/>
-                            <constraint firstItem="Qms-JN-hFp" firstAttribute="width" secondItem="Qms-JN-hFp" secondAttribute="height" multiplier="23:15" id="8mU-p5-srm"/>
-                            <constraint firstItem="wWt-77-y7s" firstAttribute="top" secondItem="IQ6-Su-0jl" secondAttribute="bottom" constant="120" id="9PL-Og-hkh"/>
-                            <constraint firstItem="Qms-JN-hFp" firstAttribute="centerX" secondItem="H2K-kQ-GOr" secondAttribute="centerX" id="PZ9-C2-tyz"/>
-                            <constraint firstItem="Cbd-Ol-47o" firstAttribute="top" secondItem="IQ6-Su-0jl" secondAttribute="bottom" constant="271" id="QqC-d6-pwJ"/>
-                            <constraint firstItem="wWt-77-y7s" firstAttribute="width" secondItem="wWt-77-y7s" secondAttribute="height" multiplier="23:15" id="RZc-Fw-8CY"/>
-                            <constraint firstItem="lb0-tW-a8h" firstAttribute="centerX" secondItem="H2K-kQ-GOr" secondAttribute="centerX" id="aC4-d3-KUs"/>
-                            <constraint firstItem="Qms-JN-hFp" firstAttribute="width" secondItem="Qms-JN-hFp" secondAttribute="height" multiplier="23:15" id="gPB-z5-eXX"/>
-                            <constraint firstItem="Zll-aw-nc7" firstAttribute="top" secondItem="IQ6-Su-0jl" secondAttribute="bottom" constant="350" id="hE7-80-N68"/>
-                            <constraint firstItem="lb0-tW-a8h" firstAttribute="top" secondItem="IQ6-Su-0jl" secondAttribute="bottom" constant="10" id="iO6-aV-6ID"/>
-                            <constraint firstItem="Qms-JN-hFp" firstAttribute="top" secondItem="IQ6-Su-0jl" secondAttribute="bottom" constant="200" id="jRC-G9-OFT"/>
-                            <constraint firstItem="Zll-aw-nc7" firstAttribute="centerX" secondItem="H2K-kQ-GOr" secondAttribute="centerX" id="lz4-jh-WFf"/>
-                            <constraint firstItem="wWt-77-y7s" firstAttribute="centerX" secondItem="H2K-kQ-GOr" secondAttribute="centerX" id="psy-81-PgP"/>
-                            <constraint firstItem="Zll-aw-nc7" firstAttribute="width" secondItem="Zll-aw-nc7" secondAttribute="height" multiplier="23:15" id="tCV-xq-EUg"/>
-                            <constraint firstItem="Cbd-Ol-47o" firstAttribute="centerX" secondItem="H2K-kQ-GOr" secondAttribute="centerX" id="xeS-9n-Vnf"/>
-                            <constraint firstItem="Cbd-Ol-47o" firstAttribute="width" secondItem="Cbd-Ol-47o" secondAttribute="height" multiplier="23:15" id="zmq-4I-34s"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="3Zv-CP-1r5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cxR-0Z-V8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="281" y="880"/>
-        </scene>
-        <!--Step2 View Controller-->
-        <scene sceneID="RZE-Wz-P9o">
-            <objects>
-                <viewController id="jpT-qY-PtA" customClass="Step2ViewController" customModule="talktrans" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iem-1K-koa"/>
-                        <viewControllerLayoutGuide type="bottom" id="Kwr-xS-Tud"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K3Q-jG-JpN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f0-In-w9p">
-                                <rect key="frame" x="157" y="74" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2f0-In-w9p" secondAttribute="height" multiplier="23:15" id="m0g-p8-vgU"/>
-                                    <constraint firstAttribute="width" constant="100" id="off-K8-7yZ"/>
-                                </constraints>
-                                <state key="normal" title="PUSH 3"/>
-                                <connections>
-                                    <segue destination="CAW-9A-C7K" kind="show" id="w0K-bE-rPu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNG-Ch-t1J">
-                                <rect key="frame" x="157" y="184" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="86Y-eg-sVy"/>
-                                    <constraint firstAttribute="width" secondItem="nNG-Ch-t1J" secondAttribute="height" multiplier="23:15" id="w1Z-rt-SNX"/>
-                                </constraints>
-                                <state key="normal" title="POP"/>
-                                <connections>
-                                    <action selector="onPop:" destination="jpT-qY-PtA" eventType="touchUpInside" id="aFU-x8-xPv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2j-Hq-Dse">
-                                <rect key="frame" x="157" y="264" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="y2j-Hq-Dse" secondAttribute="height" multiplier="23:15" id="0ox-2A-Gdw"/>
-                                    <constraint firstAttribute="width" constant="100" id="zPN-WY-Ja4"/>
-                                </constraints>
-                                <state key="normal" title="POP ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopAnimate:" destination="jpT-qY-PtA" eventType="touchUpInside" id="Iff-NL-EYR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-S0-R0u">
-                                <rect key="frame" x="147" y="335" width="120" height="78.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="hgh-S0-R0u" secondAttribute="height" multiplier="23:15" id="WK9-iw-1HK"/>
-                                    <constraint firstAttribute="width" constant="120" id="b7h-k0-lgw"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT"/>
-                                <connections>
-                                    <action selector="onPopRoot:" destination="jpT-qY-PtA" eventType="touchUpInside" id="Tx6-jo-hX4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vab-EM-Pmb">
-                                <rect key="frame" x="132" y="414" width="150" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Vab-EM-Pmb" secondAttribute="height" multiplier="23:15" id="5RA-px-aMg"/>
-                                    <constraint firstAttribute="width" constant="150" id="ACu-Gv-c9g"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopRootAnimate:" destination="jpT-qY-PtA" eventType="touchUpInside" id="pqo-HY-pmJ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.8980392157" green="0.6588235294" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="y2j-Hq-Dse" firstAttribute="width" secondItem="y2j-Hq-Dse" secondAttribute="height" multiplier="23:15" id="2wp-Ka-yaX"/>
-                            <constraint firstItem="hgh-S0-R0u" firstAttribute="centerX" secondItem="K3Q-jG-JpN" secondAttribute="centerX" id="4s3-FL-M5Y"/>
-                            <constraint firstItem="nNG-Ch-t1J" firstAttribute="centerX" secondItem="K3Q-jG-JpN" secondAttribute="centerX" id="AY1-wh-2kS"/>
-                            <constraint firstItem="2f0-In-w9p" firstAttribute="top" secondItem="iem-1K-koa" secondAttribute="bottom" constant="10" id="GHs-DY-2gX"/>
-                            <constraint firstItem="Vab-EM-Pmb" firstAttribute="top" secondItem="iem-1K-koa" secondAttribute="bottom" constant="350" id="GM1-TB-i1X"/>
-                            <constraint firstItem="Vab-EM-Pmb" firstAttribute="centerX" secondItem="K3Q-jG-JpN" secondAttribute="centerX" id="GPq-1h-Y3c"/>
-                            <constraint firstItem="nNG-Ch-t1J" firstAttribute="width" secondItem="nNG-Ch-t1J" secondAttribute="height" multiplier="23:15" id="MDQ-Mr-vTj"/>
-                            <constraint firstItem="y2j-Hq-Dse" firstAttribute="width" secondItem="y2j-Hq-Dse" secondAttribute="height" multiplier="23:15" id="Mc9-hr-2aW"/>
-                            <constraint firstItem="Vab-EM-Pmb" firstAttribute="width" secondItem="Vab-EM-Pmb" secondAttribute="height" multiplier="23:15" id="PuM-ro-Gd8"/>
-                            <constraint firstItem="nNG-Ch-t1J" firstAttribute="top" secondItem="iem-1K-koa" secondAttribute="bottom" constant="120" id="atc-18-xX3"/>
-                            <constraint firstItem="y2j-Hq-Dse" firstAttribute="top" secondItem="iem-1K-koa" secondAttribute="bottom" constant="200" id="dBZ-aF-9EK"/>
-                            <constraint firstItem="hgh-S0-R0u" firstAttribute="top" secondItem="iem-1K-koa" secondAttribute="bottom" constant="271" id="dxM-TH-YHw"/>
-                            <constraint firstItem="hgh-S0-R0u" firstAttribute="width" secondItem="hgh-S0-R0u" secondAttribute="height" multiplier="23:15" id="gDD-2p-kwB"/>
-                            <constraint firstItem="hgh-S0-R0u" firstAttribute="width" secondItem="hgh-S0-R0u" secondAttribute="height" multiplier="23:15" id="rlX-2G-Czc"/>
-                            <constraint firstItem="2f0-In-w9p" firstAttribute="centerX" secondItem="K3Q-jG-JpN" secondAttribute="centerX" id="rsn-C6-jV1"/>
-                            <constraint firstItem="y2j-Hq-Dse" firstAttribute="centerX" secondItem="K3Q-jG-JpN" secondAttribute="centerX" id="vqp-0p-ipm"/>
-                            <constraint firstItem="Vab-EM-Pmb" firstAttribute="width" secondItem="Vab-EM-Pmb" secondAttribute="height" multiplier="23:15" id="xE9-tu-Grm"/>
-                            <constraint firstItem="Vab-EM-Pmb" firstAttribute="width" secondItem="Vab-EM-Pmb" secondAttribute="height" multiplier="23:15" id="yDd-bJ-Rt0"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="W4o-9N-Htu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P8V-6S-D9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1070" y="880"/>
-        </scene>
-        <!--Step3 View Controller-->
-        <scene sceneID="18V-TL-fwt">
-            <objects>
-                <viewController id="CAW-9A-C7K" customClass="Step3ViewController" customModule="talktrans" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Gq-W4-aHe"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wxc-8v-rto"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tVw-dt-9Vn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufJ-KX-IoW">
-                                <rect key="frame" x="157" y="74" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="5lP-Sv-ej3"/>
-                                    <constraint firstAttribute="width" secondItem="ufJ-KX-IoW" secondAttribute="height" multiplier="23:15" id="ECE-ad-KbY"/>
-                                </constraints>
-                                <state key="normal" title="PUSH 4"/>
-                                <connections>
-                                    <segue destination="tEZ-bw-qlX" kind="show" id="l11-Mk-aR8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1M-FZ-7KA">
-                                <rect key="frame" x="157" y="184" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="w1M-FZ-7KA" secondAttribute="height" multiplier="23:15" id="41D-GD-xwD"/>
-                                    <constraint firstAttribute="width" constant="100" id="t32-Ju-uzS"/>
-                                </constraints>
-                                <state key="normal" title="POP"/>
-                                <connections>
-                                    <action selector="onPop:" destination="CAW-9A-C7K" eventType="touchUpInside" id="hNE-Z2-ePD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixv-i1-6p8">
-                                <rect key="frame" x="157" y="264" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ixv-i1-6p8" secondAttribute="height" multiplier="23:15" id="enc-R2-bV0"/>
-                                    <constraint firstAttribute="width" constant="100" id="xJ2-DT-lj9"/>
-                                </constraints>
-                                <state key="normal" title="POP ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopAnimate:" destination="CAW-9A-C7K" eventType="touchUpInside" id="H0h-bX-aij"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lu2-QC-nRe">
-                                <rect key="frame" x="147" y="335" width="120" height="78.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Lu2-QC-nRe" secondAttribute="height" multiplier="23:15" id="BVK-pl-2Hm"/>
-                                    <constraint firstAttribute="width" constant="120" id="ouk-66-rEl"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT"/>
-                                <connections>
-                                    <action selector="onPopRoot:" destination="CAW-9A-C7K" eventType="touchUpInside" id="rk7-8c-aIx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nvv-No-rH5">
-                                <rect key="frame" x="132" y="414" width="150" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Nvv-No-rH5" secondAttribute="height" multiplier="23:15" id="Nys-75-oLa"/>
-                                    <constraint firstAttribute="width" constant="150" id="U95-KZ-QVJ"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopRootAnimate:" destination="CAW-9A-C7K" eventType="touchUpInside" id="xKZ-Ze-rjr"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Lu2-QC-nRe" firstAttribute="width" secondItem="Lu2-QC-nRe" secondAttribute="height" multiplier="23:15" id="1jI-yC-3Rt"/>
-                            <constraint firstItem="w1M-FZ-7KA" firstAttribute="centerX" secondItem="tVw-dt-9Vn" secondAttribute="centerX" id="CY8-nC-2Xw"/>
-                            <constraint firstItem="Ixv-i1-6p8" firstAttribute="top" secondItem="5Gq-W4-aHe" secondAttribute="bottom" constant="200" id="CxA-Lg-bOV"/>
-                            <constraint firstItem="Lu2-QC-nRe" firstAttribute="top" secondItem="5Gq-W4-aHe" secondAttribute="bottom" constant="271" id="EHV-91-AFr"/>
-                            <constraint firstItem="ufJ-KX-IoW" firstAttribute="top" secondItem="5Gq-W4-aHe" secondAttribute="bottom" constant="10" id="IzU-BK-gPq"/>
-                            <constraint firstItem="Lu2-QC-nRe" firstAttribute="centerX" secondItem="tVw-dt-9Vn" secondAttribute="centerX" id="KVv-ak-yc4"/>
-                            <constraint firstItem="w1M-FZ-7KA" firstAttribute="top" secondItem="5Gq-W4-aHe" secondAttribute="bottom" constant="120" id="NnY-cE-xMx"/>
-                            <constraint firstItem="Ixv-i1-6p8" firstAttribute="centerX" secondItem="tVw-dt-9Vn" secondAttribute="centerX" id="USH-zL-4zM"/>
-                            <constraint firstItem="Nvv-No-rH5" firstAttribute="width" secondItem="Nvv-No-rH5" secondAttribute="height" multiplier="23:15" id="W5B-lk-dgT"/>
-                            <constraint firstItem="w1M-FZ-7KA" firstAttribute="width" secondItem="w1M-FZ-7KA" secondAttribute="height" multiplier="23:15" id="cSw-9X-nOZ"/>
-                            <constraint firstItem="ufJ-KX-IoW" firstAttribute="centerX" secondItem="tVw-dt-9Vn" secondAttribute="centerX" id="feN-6V-ygT"/>
-                            <constraint firstItem="Nvv-No-rH5" firstAttribute="top" secondItem="5Gq-W4-aHe" secondAttribute="bottom" constant="350" id="jLu-2K-cdn"/>
-                            <constraint firstItem="Ixv-i1-6p8" firstAttribute="width" secondItem="Ixv-i1-6p8" secondAttribute="height" multiplier="23:15" id="lOb-VV-Za3"/>
-                            <constraint firstItem="Nvv-No-rH5" firstAttribute="width" secondItem="Nvv-No-rH5" secondAttribute="height" multiplier="23:15" id="mmT-T9-N01"/>
-                            <constraint firstItem="Ixv-i1-6p8" firstAttribute="width" secondItem="Ixv-i1-6p8" secondAttribute="height" multiplier="23:15" id="nuG-eK-uRj"/>
-                            <constraint firstItem="Lu2-QC-nRe" firstAttribute="width" secondItem="Lu2-QC-nRe" secondAttribute="height" multiplier="23:15" id="ork-MH-r5w"/>
-                            <constraint firstItem="Nvv-No-rH5" firstAttribute="width" secondItem="Nvv-No-rH5" secondAttribute="height" multiplier="23:15" id="spi-7Z-YFZ"/>
-                            <constraint firstItem="Nvv-No-rH5" firstAttribute="centerX" secondItem="tVw-dt-9Vn" secondAttribute="centerX" id="uUP-CG-bWM"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="qao-B3-DCS"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sxD-Vl-wPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1859" y="880"/>
-        </scene>
-        <!--Step4 View Controller-->
-        <scene sceneID="TJu-Be-Fcg">
-            <objects>
-                <viewController id="tEZ-bw-qlX" customClass="Step4ViewController" customModule="talktrans" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WfV-k7-sjq"/>
-                        <viewControllerLayoutGuide type="bottom" id="utu-Re-pNK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pPj-6e-63q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnW-bj-lSo">
-                                <rect key="frame" x="157" y="184" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Bjv-Fn-TRE"/>
-                                    <constraint firstAttribute="width" secondItem="XnW-bj-lSo" secondAttribute="height" multiplier="23:15" id="bfB-Ng-6p0"/>
-                                </constraints>
-                                <state key="normal" title="POP"/>
-                                <connections>
-                                    <action selector="onPop:" destination="tEZ-bw-qlX" eventType="touchUpInside" id="gHd-cP-hP4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqL-Ky-Rvw">
-                                <rect key="frame" x="157" y="264" width="100" height="65.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Pik-Sl-dSF"/>
-                                    <constraint firstAttribute="width" secondItem="JqL-Ky-Rvw" secondAttribute="height" multiplier="23:15" id="p7h-aZ-TYB"/>
-                                </constraints>
-                                <state key="normal" title="POP ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopAnimate:" destination="tEZ-bw-qlX" eventType="touchUpInside" id="AD3-XY-szk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-g9-yXm">
-                                <rect key="frame" x="147" y="335" width="120" height="78.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2aB-g9-yXm" secondAttribute="height" multiplier="23:15" id="GY1-nd-NWz"/>
-                                    <constraint firstAttribute="width" constant="120" id="TV2-gu-ba9"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT"/>
-                                <connections>
-                                    <action selector="onPopRoot:" destination="tEZ-bw-qlX" eventType="touchUpInside" id="pXB-7g-pam"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ky-lB-Vv8">
-                                <rect key="frame" x="132" y="414" width="150" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="ESo-ho-P3t"/>
-                                    <constraint firstAttribute="width" secondItem="8Ky-lB-Vv8" secondAttribute="height" multiplier="23:15" id="QQt-le-dRM"/>
-                                </constraints>
-                                <state key="normal" title="POP TO ROOT ANIMATE"/>
-                                <connections>
-                                    <action selector="onPopRootAnimate:" destination="tEZ-bw-qlX" eventType="touchUpInside" id="vR2-Kl-gdf"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="XnW-bj-lSo" firstAttribute="centerX" secondItem="pPj-6e-63q" secondAttribute="centerX" id="2nP-SO-aoc"/>
-                            <constraint firstItem="XnW-bj-lSo" firstAttribute="width" secondItem="XnW-bj-lSo" secondAttribute="height" multiplier="23:15" id="CkW-cl-uZD"/>
-                            <constraint firstItem="2aB-g9-yXm" firstAttribute="top" secondItem="WfV-k7-sjq" secondAttribute="bottom" constant="271" id="DIP-hM-Q4g"/>
-                            <constraint firstItem="8Ky-lB-Vv8" firstAttribute="width" secondItem="8Ky-lB-Vv8" secondAttribute="height" multiplier="23:15" id="HaF-k4-AVK"/>
-                            <constraint firstItem="2aB-g9-yXm" firstAttribute="width" secondItem="2aB-g9-yXm" secondAttribute="height" multiplier="23:15" id="L6f-Zn-SEV"/>
-                            <constraint firstItem="2aB-g9-yXm" firstAttribute="centerX" secondItem="pPj-6e-63q" secondAttribute="centerX" id="aZG-3p-eNs"/>
-                            <constraint firstItem="8Ky-lB-Vv8" firstAttribute="centerX" secondItem="pPj-6e-63q" secondAttribute="centerX" id="amb-r9-qRS"/>
-                            <constraint firstItem="JqL-Ky-Rvw" firstAttribute="top" secondItem="WfV-k7-sjq" secondAttribute="bottom" constant="200" id="bQ7-Ng-oRQ"/>
-                            <constraint firstItem="JqL-Ky-Rvw" firstAttribute="width" secondItem="JqL-Ky-Rvw" secondAttribute="height" multiplier="23:15" id="cK9-y2-K1y"/>
-                            <constraint firstItem="JqL-Ky-Rvw" firstAttribute="width" secondItem="JqL-Ky-Rvw" secondAttribute="height" multiplier="23:15" id="f9y-8E-Gq5"/>
-                            <constraint firstItem="8Ky-lB-Vv8" firstAttribute="width" secondItem="8Ky-lB-Vv8" secondAttribute="height" multiplier="23:15" id="hHF-Km-lpY"/>
-                            <constraint firstItem="2aB-g9-yXm" firstAttribute="width" secondItem="2aB-g9-yXm" secondAttribute="height" multiplier="23:15" id="phi-6x-xUN"/>
-                            <constraint firstItem="XnW-bj-lSo" firstAttribute="top" secondItem="WfV-k7-sjq" secondAttribute="bottom" constant="120" id="pog-um-fwg"/>
-                            <constraint firstItem="JqL-Ky-Rvw" firstAttribute="centerX" secondItem="pPj-6e-63q" secondAttribute="centerX" id="tvj-Pg-0w0"/>
-                            <constraint firstItem="8Ky-lB-Vv8" firstAttribute="top" secondItem="WfV-k7-sjq" secondAttribute="bottom" constant="350" id="zGj-xG-rbp"/>
-                            <constraint firstItem="8Ky-lB-Vv8" firstAttribute="width" secondItem="8Ky-lB-Vv8" secondAttribute="height" multiplier="23:15" id="zOd-uk-NhG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="eU6-Ex-wBF"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tZq-PV-5qg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2642" y="880"/>
-        </scene>
     </scenes>
     <resources>
         <image name="action_white@x1.5.png" width="32" height="32"/>
         <image name="fix_off_white@x25.png" width="25" height="25"/>
         <image name="fix_on_white@x25.png" width="25" height="25"/>
+        <image name="korea.png" width="100" height="67"/>
         <image name="review_white_line@x1.5.png" width="32" height="32"/>
         <image name="swap.png" width="25" height="25"/>
     </resources>

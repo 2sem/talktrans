@@ -46,7 +46,7 @@ class TTDefaults{
     
     static var LastFullADShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastFullADShown);
+            let seconds = Defaults.double(forKey: Keys.LastFullADShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         
@@ -57,7 +57,7 @@ class TTDefaults{
     
     static var LastShareShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastShareShown);
+            let seconds = Defaults.double(forKey: Keys.LastShareShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         
@@ -68,7 +68,7 @@ class TTDefaults{
     
     static var LastRewardShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastRewardShown);
+            let seconds = Defaults.double(forKey: Keys.LastRewardShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         

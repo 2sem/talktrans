@@ -140,7 +140,7 @@ class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
             return;
         }
         
-        print("present full ad view[\(self.window.rootViewController)]");
+        print("present full ad on view[\(self.window.rootViewController?.description ?? "")]");
         self.rewarded = false;
         self.rewardAd?.present(fromRootViewController: self.window.rootViewController!);
         self.delegate?.GADRewardUpdate(showTime: Date());

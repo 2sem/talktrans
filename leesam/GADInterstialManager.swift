@@ -138,7 +138,7 @@ class GADInterstialManager : NSObject, GADInterstitialDelegate{
             return;
         }
         
-        print("present full ad view[\(self.window.rootViewController)]");
+        print("present full ad on view[\(self.window.rootViewController?.description ?? "")]");
         self.fullAd?.present(fromRootViewController: self.window.rootViewController!);
         self.delegate?.GADInterstialUpdate(showTime: Date());
         //RSDefaults.LastFullADShown = Date();

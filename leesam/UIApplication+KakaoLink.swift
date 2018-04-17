@@ -12,13 +12,13 @@ import KakaoMessageTemplate
 
 extension UIApplication{
     func shareByKakao(){
-        var kakaoLink = KMTLinkObject();
-        var kakaoContent = KMTContentObject(title: UIApplication.shared.displayName ?? "", imageURL: URL(string: "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/8d/f9/04/8df90400-4feb-c7ec-bb2e-b52261a7d5f1/mzl.hyjsxhof.png/150x150bb.jpg")!, link: kakaoLink);
+        let kakaoLink = KMTLinkObject();
+        let kakaoContent = KMTContentObject(title: UIApplication.shared.displayName ?? "", imageURL: URL(string: "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/8d/f9/04/8df90400-4feb-c7ec-bb2e-b52261a7d5f1/mzl.hyjsxhof.png/150x150bb.jpg")!, link: kakaoLink);
         kakaoContent.imageWidth = 120;
         kakaoContent.imageHeight = 120; //160
         kakaoContent.desc = "해외, 국내 여행시 외국인을 만나면 당황하셨나요?";
         
-        var kakaoTemplate = KMTFeedTemplate.init(builderBlock: { (kakaoBuilder) in
+        let kakaoTemplate = KMTFeedTemplate.init(builderBlock: { (kakaoBuilder) in
             kakaoBuilder.content = kakaoContent;
             //kakaoBuilder.buttons?.add(kakaoWebButton);
             //link can't have more than two buttons
@@ -61,25 +61,25 @@ extension UIApplication{
         })
         
         KLKTalkLinkCenter.shared().sendDefault(with: kakaoTemplate, success: { (warn, args) in
-            print("kakao warn[\(warn)] args[\(args)]")
+            print("kakao warn[\(warn?.description ?? "")] args[\(args?.description ?? "")]")
         }, failure: { (error) in
             print("kakao error[\(error)]")
         })
     }
     
     func _shareByKakao(){
-        var kakaoNews1 = KMTContentObject(title: "‘문자행동’ 어플 개발자 인터뷰···“민주주의 발전에 한손 보탤 수 있길”", imageURL: URL(string: "http://img.khan.co.kr/news/2017/06/23/l_2017062301003119000246131.jpg")!, link: KMTLinkObject(builderBlock: { (linkBuilder) in
+        let kakaoNews1 = KMTContentObject(title: "‘문자행동’ 어플 개발자 인터뷰···“민주주의 발전에 한손 보탤 수 있길”", imageURL: URL(string: "http://img.khan.co.kr/news/2017/06/23/l_2017062301003119000246131.jpg")!, link: KMTLinkObject(builderBlock: { (linkBuilder) in
             linkBuilder.webURL = URL(string: "http://news.khan.co.kr/kh_news/khan_art_view.html?artid=201706231651011&code=940100");
             //linkBuilder.webURL = URL(string: "http://www.daum.net");
             linkBuilder.mobileWebURL = linkBuilder.webURL;
         }));
         kakaoNews1.desc = "경향신문";
-        var kakaoNews2 = KMTContentObject(title: "국회의원 연락처 한 곳에…‘문자행동’ 어플까지 나왔네", imageURL: URL(string: "http://img.hani.co.kr/imgdb/resize/2017/0623/00501745_20170623.JPG")!, link: KMTLinkObject(builderBlock: { (linkBuilder) in
+        let kakaoNews2 = KMTContentObject(title: "국회의원 연락처 한 곳에…‘문자행동’ 어플까지 나왔네", imageURL: URL(string: "http://img.hani.co.kr/imgdb/resize/2017/0623/00501745_20170623.JPG")!, link: KMTLinkObject(builderBlock: { (linkBuilder) in
             linkBuilder.webURL = URL(string: "http://www.hani.co.kr/arti/society/society_general/799996.html");
             linkBuilder.mobileWebURL = linkBuilder.webURL;
         }));
         kakaoNews2.desc = "한겨례";
-        var kakaoNews3 = KMTContentObject(builderBlock: { (contentBuilder) in
+        let kakaoNews3 = KMTContentObject(builderBlock: { (contentBuilder) in
             contentBuilder.title = "\"문자 폭탄\" VS \"문자 행동\" 논란 속에…'의견 앱' 등장";
             contentBuilder.desc = "SBS";
             contentBuilder.imageURL = URL(string: "https://www.youtube.com/watch?v=0n0oQkLX_4s")!;
@@ -90,7 +90,7 @@ extension UIApplication{
         })
         //kakaoNews3.desc = "SBS";
         
-        var kakaoTemplate = KMTListTemplate(builderBlock: { (kakaoBuilder) in
+        let kakaoTemplate = KMTListTemplate(builderBlock: { (kakaoBuilder) in
             kakaoBuilder.headerTitle = "문자행동 - 내 손안의 민주주의";
             kakaoBuilder.headerLink = KMTLinkObject(builderBlock: { (linkBuilder) in
                 var searchUrl = URLComponents(string: "http://search.daum.net/search");
@@ -123,7 +123,7 @@ extension UIApplication{
         })
         
         KLKTalkLinkCenter.shared().sendDefault(with: kakaoTemplate, success: { (warn, args) in
-            print("kakao warn[\(warn)] args[\(args)]")
+            print("kakao warn[\(warn?.description ?? "")] args[\(args?.description ?? "")]")
         }, failure: { (error) in
             print("kakao error[\(error)]")
         })

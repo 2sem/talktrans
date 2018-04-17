@@ -75,7 +75,7 @@ public struct NaverPapagoSMTRequest{
         }
         
         set(value){
-            print("setting http header[\(field)] : \(value)");
+            //print("setting http header[\(field)] : \(value)");
             guard let value = value else{
                 self._urlRequest.setValue(nil, forHTTPHeaderField: field.rawValue);
                 return;

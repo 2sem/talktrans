@@ -12,30 +12,32 @@ import Speech
 import AVKit
 import Material
 
-class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDelegate, UIPopoverPresentationControllerDelegate {
+class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDelegate, UIPopoverPresentationControllerDelegate, LSLanguagePickerButtonDelegate {
+    
     static let MaxNativeTextLength = 100;
     class ConstraintID{
-        static let TopBanner_BOTTOM = "TopBanner_BOTTOM";
-        static let BottomBanner_TOP = "BottomBanner_TOP";
         static let ViewContainerBottom = "ViewContainerBottom";
     }
     
     var needFix = true;
     var nativeLocale = Locale.current{
         didSet{
-            var lang = self.supportedLangs[self.nativeLocale.identifier];
+            let lang = self.supportedLangs[self.nativeLocale.identifier];
 //            self.selectNativeLangButton.setTitle(lang?.localized(), for: .normal);
-            self.nativeLabel.text = lang?.localized();
+            //self.nativeLabel.text = lang?.localized();
+            self.nativeButton.language = lang;
             if self.needFix{
                 self.fixTransLang();
             }
         }
     }
-    var transLocale = Locale(identifier: "en"){
+    
+    //Locale(identifier: "en")
+    var transLocale = Locale.current{
         didSet{
-            var lang = self.supportedLangs[self.transLocale.identifier];
+            let lang = self.supportedLangs[self.transLocale.identifier];
 //            self.selectTransLangButton.setTitle(lang?.localized(), for: .normal);
-            self.transLabel.text = lang?.localized();
+            self.transButton.language = lang;
             self.updateNativeInputMessage();
             self.updateTransMessage();
             if self.needFix{
@@ -52,8 +54,8 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian"];
     
     var constraint_topBanner_top : NSLayoutConstraint!;
-    var constraint_topBanner_bottom : NSLayoutConstraint!;
-    var constraint_bottomBanner_top : NSLayoutConstraint!;
+    @IBOutlet var constraint_topBanner_bottom: NSLayoutConstraint!
+    @IBOutlet var constraint_bottomBanner_top : NSLayoutConstraint!;
     var constraint_bottomBanner_bottom : NSLayoutConstraint!;
 
 //    var constraint_viewContainer_bottom : NSLayoutConstraint!;
@@ -66,12 +68,14 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     @IBOutlet weak var transView: UIView!
     @IBOutlet weak var transTextView: UITextView!
     @IBOutlet weak var transPlaceHolderLabel: UILabel!
-    @IBOutlet weak var transLabel: UILabel!
+    @IBOutlet weak var transButton: LSLanguagePickerButton!
+    //@IBOutlet weak var transLabel: UILabel!
     
     @IBOutlet weak var nativeView: UIView!
     @IBOutlet weak var nativeTextView: UITextView!
     @IBOutlet weak var nativePlaceHolderLabel: UILabel!
-    @IBOutlet weak var nativeLabel: UILabel!
+    //@IBOutlet weak var nativeLabel: UILabel!
+    @IBOutlet var nativeButton: LSLanguagePickerButton!
     
     @IBOutlet weak var actionButton: UIButton!
     @IBAction func onAction(_ sender: UIButton) {
@@ -91,56 +95,19 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         TTDefaults.isRotateFixed = button.isSelected;
     }
     
+    var languagePicker: LSLanguagePicker!;
+    @IBOutlet weak var langTextField : UITextField!;
+    
     @IBOutlet weak var selectNativeLangButton: UIButton!
     @IBAction func onNativeLang(_ button: UIButton) {
-//        AppDelegate.test = .portraitUpsideDown;
-        var acts : [UIAlertAction] = [];
-        var langs = self.supportedLangs;
-        
-        print("except \(self.nativeLocale.identifier) from lang list");
-        var current = langs.first { (key: String, value: String) -> Bool in
-            return self.nativeLocale.identifier.hasPrefix(key);
-        }
-        langs.removeValue(forKey: current?.key ?? "");
-        for lang in langs{
-            acts.append(UIAlertAction(title: lang.value.localized(), style: .default, handler: {(act) -> Void in
-//                self.selectNativeLangButton.setTitle("\(lang.value)".localized(), for: .normal);
-                self.nativeLocale = Locale(identifier: lang.key);
-//                self.fixTransLang();
-            }));
-        }
-        acts.append(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: {(act) -> Void in
-        }));
-        self.showAlert(title: "Select Native Language".localized(), msg: String(format: "Current: %@".localized(), (self.supportedLangs[self.nativeLocale.languageCode ?? "ko"] ?? "Korean").localized()), actions: acts, style: .actionSheet, sourceView: button, sourceRect: button.bounds, popoverDelegate: self);
-        
-        /*
-         actions: [UIAlertAction(title: "Korean", style: .default, handler: {(act) -> Void in
-         }),UIAlertAction(title: "English", style: .default, handler: {(act) -> Void in
-         }),UIAlertAction(title: "Japanease", style: .default, handler: {(act) -> Void in
-         }),UIAlertAction(title: "Chinease", style: .default, handler: {(act) -> Void in
-         }),UIAlertAction(title: "Cancel", style: .cancel, handler: {(act) -> Void in
-         })]
-         */
+        self.nativeButton.languages = [String].init(self.supportedLangs.values);
+        self.nativeButton.showPicker();
     }
     
     @IBOutlet weak var selectTransLangButton: UIButton!
     @IBAction func onTransLang(_ button: UIButton) {
-        var acts : [UIAlertAction] = [];
-        var langs = self.supportedLangs;
-        var current = langs.first { (key: String, value: String) -> Bool in
-            return self.transLocale.identifier.hasPrefix(key);
-        }
-        langs.removeValue(forKey: current?.key ?? "");
-//        langs.removeValue(forKey: self.transLocale.languageCode!);
-        for lang in langs{
-            acts.append(UIAlertAction(title: lang.value.localized(), style: .default, handler: {(act) -> Void in
-//                self.selectTransLangButton.setTitle(lang.value.localized(), for: .normal);
-                self.transLocale = Locale(identifier: lang.key);
-            }));
-        }
-        acts.append(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: {(act) -> Void in
-        }));
-        self.showAlert(title: "Select Language to Translate".localized(), msg: String(format: "Current: %@".localized(), (self.supportedLangs[self.transLocale.languageCode ?? "en"] ?? "English").localized()), actions: acts, style: .actionSheet, sourceView: button, sourceRect: button.bounds, popoverDelegate: self);
+        self.transButton.languages = [String].init(self.supportedLangs.values);
+        self.transButton.showPicker();
     }
     
     var av : AVAudioEngine = AVAudioEngine();
@@ -204,7 +171,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                     }
 //                    self.av_req.shouldReportPartialResults = true;
                     self.av_task = recognizer?.recognitionTask(with: self.av_req, resultHandler: { (result, error) in
-                        print("recognition has been completed. result[\(result)] error[\(error)]");
+                        print("recognition has been completed. result[\(result?.description ?? "")] error[\(error.debugDescription)]");
                         
                         guard error == nil else{
                             self.av.inputNode.removeTap(onBus: 0);
@@ -212,7 +179,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                             self.av_req.endAudio();
                             self.av_req = SFSpeechAudioBufferRecognitionRequest();
                             print("recording and recognition has been stopped");
-                            var errorHandler = {(_ err : NSError) -> Void in
+                            let errorHandler = {(_ err : NSError) -> Void in
                                 //show settings for cellular
                                 if err.isSiriConnectionError(){
                                     self.showCellularAlert(title: "Could not connect to Siri".localized(), okHandler: { (act) in
@@ -224,7 +191,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                             };
                             if self.alert?.presentingViewController != nil{
                                 self.alert?.dismiss(animated: false, completion: {
-                                    errorHandler(error as! NSError);
+                                    errorHandler(error! as NSError);
                                 });
                                 return;
                             }
@@ -282,8 +249,8 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         
         self.nativeTextView.resignFirstResponder();
         guard NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
-                var nativeTitle = self.nativeLabel.text ?? "";
-                var transTitle = self.transLabel.text ?? "";
+                let nativeTitle = self.nativeButton.language ?? "";
+                let transTitle = self.transButton.language ?? "";
             self.showAlert(title: "Error".localized(), msg: String(format: "It is not supported to translate %@ to %@".localized(), nativeTitle, transTitle), actions: [UIAlertAction(title: "OK".localized(), style: .default, handler: nil)], style: .alert);
                 return;
         }
@@ -313,8 +280,8 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     
     @IBOutlet weak var reviewButton: IconButton!
     @IBAction func onReviewButton(_ sender: UIButton) {
-        var name : String = self.nibBundle?.localizedInfoDictionary?["CFBundleDisplayName"] as? String ?? "";
-        var acts = [UIAlertAction(title: String(format: "Review '%@'".localized(), name), style: .default) { (act) in
+        let name : String = self.nibBundle?.localizedInfoDictionary?["CFBundleDisplayName"] as? String ?? "";
+        let acts = [UIAlertAction(title: String(format: "Review '%@'".localized(), name), style: .default) { (act) in
             
                 UIApplication.shared.openReview();
             },
@@ -358,16 +325,16 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
          */
         
         UIApplication.shared.statusBarStyle = .lightContent;
-        print("current locale[\(self.nativeLocale.identifier)] lang[\(self.nativeLocale.languageCode)] region[\(self.nativeLocale.regionCode)]");
-        var current = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        print("current locale[\(self.nativeLocale.identifier)] lang[\(self.nativeLocale.languageCode?.description ?? "")] region[\(self.nativeLocale.regionCode?.description ?? "")]");
+        let current = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return self.nativeLocale.identifier.hasPrefix(key);
         }
+        self.nativeButton.delegate = self;
         self.nativeLocale = Locale(identifier: current?.key ?? "ko");
+        //self.transLocale = Locale(identifier: "en");
+        self.transButton.delegate = self;
         
         self.constraint_topBanner_top = self.topBannerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20);
-        self.constraint_topBanner_bottom = self.view.getConstraint(identifier: ConstraintID.TopBanner_BOTTOM);
-        
-        self.constraint_bottomBanner_top = self.view.getConstraint(identifier: ConstraintID.BottomBanner_TOP);
         self.constraint_bottomBanner_bottom = self.bottomBannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor);
                 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: .UIKeyboardWillShow, object: nil);
@@ -414,23 +381,35 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         // Dispose of any resources that can be recreated.
     }
     
+    func getLang(byLocale locale : Locale) -> (key: String, value: String)?{
+        return self.supportedLangs.first { (key: String, value: String) -> Bool in
+            return locale.identifier.hasPrefix(key);
+        }
+    }
+    
+    func getLang(byLangName lang : String) -> (key: String, value: String)?{
+        return self.supportedLangs.first { (key: String, value: String) -> Bool in
+            return lang == value;
+        }
+    }
+    
     @IBAction func onSwapLang(_ sender: UIButton) {
         print("swap lang");
         self.nativeTextView.resignFirstResponder();
-        var tempLocale = self.nativeLocale;
-        var tempText = self.nativeTextView.text;
-        var tempTitle = self.nativeLabel.text;
+        let tempLocale = self.nativeLocale;
+        let tempText = self.nativeTextView.text;
+        let tempTitle = self.nativeButton.language ?? "";
         
         self.needFix = false;
         self.nativeLocale = self.transLocale;
         self.nativeTextView.text = self.transTextView.text;
 //        self.selectNativeLangButton.setTitle(self.transLabel.text, for: .normal);
-        self.nativeLabel.text = self.transLabel.text;
+        self.nativeButton.language = self.transButton.language;
         
         self.transLocale = tempLocale;
         self.transTextView.text = tempText;
 //        self.selectTransLangButton.setTitle(tempTitle, for: .normal);
-        self.transLabel.text = tempTitle;
+        self.transButton.language = tempTitle;
         
         self.nativePlaceHolderLabel.isHidden = !self.nativeTextView.text.isEmpty;
         self.transPlaceHolderLabel.isHidden = !self.transTextView.text.isEmpty;
@@ -441,17 +420,17 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     /// MARK: keyboard notification
     var keyboardEnabled = false;
     @objc func keyboardWillShow(noti: Notification){
-        print("keyboard will show move view to upper -- \(noti.object)");
+        print("keyboard will show move view to upper -- \(noti.object.debugDescription)");
 //        if self.nativeTextView.isFirstResponder {
         if !keyboardEnabled {
             keyboardEnabled = true;
 //            self.viewContainer.frame.origin.y -= 180;
-            var frame = noti.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect;
+            let frame = noti.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect;
             
             // - self.bottomBannerView.frame.height
             if false && !self.isIPhone{
 //                var remainHeight = self.view.frame.height - (frame?.height ?? 0);
-                var remainHeight : CGFloat = 100.0;
+                let remainHeight : CGFloat = 100.0;
                 self.constraint_topBanner_top.constant = -remainHeight;
                 self.constraint_topBanner_bottom.constant = -remainHeight;
             }
@@ -473,7 +452,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     @objc func keyboardWillHide(noti: Notification){
-        print("keyboard will hide move view to lower  -- \(noti.object)");
+        print("keyboard will hide move view to lower  -- \(noti.object.debugDescription)");
 //        if self.nativeTextView.isFirstResponder{
         
 //        }
@@ -500,7 +479,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     func updateNativeInputMessage(){
-        self.nativePlaceHolderLabel.text = String(format: "Please input your message to be translated as %@".localized(), self.transLabel.text?.localized() ?? "English");
+        self.nativePlaceHolderLabel.text = String(format: "Please input your message to be translated as %@".localized(), self.transButton.language?.localized() ?? "English");
 //        print("set native input usage. format[\("Please input your message to be translated as %@".localized())] locale[\(self.transLabel.text?.localized() ?? "English")] ");
 //        print("chinese[\(String(format: "sibal moay? %@ sibal", "???"))]");
 //        print("chinese[\(String(format: "sibal moay? %@ sibal Please input your %@ message to be translated as ", "English"))]");
@@ -517,10 +496,11 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             return;
         }
         
-        var target = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        let target = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.nativeLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
         }
         self.transLocale = Locale(identifier: target?.key ?? "en");
+        print("fix translated locale. locale[\(self.transLocale)]");
     }
     
     func fixNativeLang(){
@@ -529,7 +509,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             return;
         }
         
-        var source = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        let source = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.transLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
         }
         self.nativeLocale = Locale(identifier: source?.key ?? "ko");
@@ -542,6 +522,17 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }else{
             constarintOff.isActive = !value;
             constraintOn.isActive = value;
+        }
+    }
+    
+    // MARK: LSLanguagePickerButtonDelegate
+    func languagePicker(_ picker: LSLanguagePickerButton, didFinishPickingLanguage language: String) {
+        let lang = self.getLang(byLangName: language);
+        
+        if picker === self.nativeButton{
+            self.nativeLocale = Locale(identifier: lang?.key ?? "");
+        }else{
+            self.transLocale = Locale(identifier: lang?.key ?? "");
         }
     }
     
@@ -569,9 +560,9 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     
     /// MARK: UITextViewDelegate
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        var textLength = textView.text.lengthOfBytes(using: .utf8);
+        let textLength = textView.text.lengthOfBytes(using: .utf8);
 //        var textLength = textView.text.lengthOfBytes(using: .utf8);
-        var textNewLength = text.lengthOfBytes(using: .utf8);
+        let textNewLength = text.lengthOfBytes(using: .utf8);
         
         return (textLength - range.length + textNewLength) <= MainViewController.MaxNativeTextLength
     }
