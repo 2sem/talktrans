@@ -248,7 +248,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
         
         self.nativeTextView.resignFirstResponder();
-        guard NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
                 let nativeTitle = self.nativeButton.language ?? "";
                 let transTitle = self.transButton.language ?? "";
             self.showAlert(title: "Error".localized(), msg: String(format: "It is not supported to translate %@ to %@".localized(), nativeTitle, transTitle), actions: [UIAlertAction(title: "OK".localized(), style: .default, handler: nil)], style: .alert);
@@ -256,7 +256,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
         
 //        NVAPIManager().requestTranslate(source: self.nativeTextView.text);
-        NVAPIManager().requestTranslateByNMT(text: self.nativeTextView.text,
+        NaverPapago().requestTranslateByNMT(text: self.nativeTextView.text,
                                         source: self.nativeLocale,
                                         target: self.transLocale,
                                         completionHandler: {(status, result, error) -> Void in
@@ -491,7 +491,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     func fixTransLang(){
-        guard !NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
             self.updateNativeInputMessage();
             return;
         }
@@ -504,7 +504,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     func fixNativeLang(){
-        guard !NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
 //            self.updateTransMessage();
             return;
         }

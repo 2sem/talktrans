@@ -48,7 +48,7 @@ public struct NaverPapagoSMTRequest{
     }
     
     private lazy var _urlRequest : URLRequest = {
-        var url = NVAPIManager.NaverAPIURLV1;
+        var url = NaverPapago.NaverAPIURLV1;
         url.appendPathComponent("language/translate");
         var req = URLRequest.init(url: url);
         req.httpMethod = "POST";

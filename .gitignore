@@ -85,5 +85,7 @@ fastlane/test_output
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+### NaverPapago Security File ###
+NaverPapago.plist
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods

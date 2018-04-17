@@ -129,7 +129,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
 
     func fixTransLang(){
-        guard !NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
             return;
         }
         
@@ -140,7 +140,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func fixNativeLang(){
-        guard !NVAPIManager.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
             //            self.updateTransMessage();
             return;
         }
@@ -152,7 +152,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func translate(_ text: String){
-        NVAPIManager().requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (status, result, error) in
+        NaverPapago().requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (status, result, error) in
             guard error == nil else {
                 if result == nil{
                     self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in

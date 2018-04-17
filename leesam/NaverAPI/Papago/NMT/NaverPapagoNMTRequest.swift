@@ -48,7 +48,7 @@ public struct NaverPapagoNMTRequest{
     }
     
     private lazy var _urlRequest : URLRequest = {
-        var url = NVAPIManager.NaverAPIURLV1;
+        var url = NaverPapago.NaverAPIURLV1;
         url.appendPathComponent("papago/n2mt");
         var req = URLRequest.init(url: url);
         req.httpMethod = "POST";

@@ -17,41 +17,40 @@ import Alamofire
  - 한국어(ko) <-> 영어 (en)
  - 한국어(ko) <-> 일어 (ja)
  */
-class NVAPIManager : NSObject{
+class NaverPapago : NSObject{
     static let NaverAPIURLV1 = URL(string: "https://openapi.naver.com/v1")!;
-    private var infos : [String : [String : String]]{
+    private var infos : [String : String]{
         get{
-            guard let value = Bundle.main.infoDictionary?["NaverAPI"] as? [String : [String : String]] else{
-                preconditionFailure("Please Add [String : [String : String]] Dictionary as 'NaverAPI' into Info.plist");
+            guard let plist = Bundle.main.path(forResource: "NaverPapago", ofType: "plist") else{
+                preconditionFailure("Please create plist file named of NaverPapago. file[NaverPapago.plist]");
             }
             
-            return value;
+            guard let dict = NSDictionary.init(contentsOfFile: plist) as? [String : String] else{
+                preconditionFailure("Please NaverPapago.plist is not Property List.");
+            }
+            
+            //as? [String : [String : String]]
+            
+            return dict;
         }
     };
     
     enum NaverAPI : String{
-        case Translator
-    }
-    
-    private func apiInfo(api : NaverAPI) -> [String : String]{
-        guard let value = self.infos[api.rawValue] else{
-            preconditionFailure("Please Add dictionary '\(api)' into Info.plist/NaverAPI");
-        }
-        
-        return value;
+        case NMT
+        case SMT
     }
     
     private func clientIDForAPI(api : NaverAPI) -> String{
-        guard let value = self.apiInfo(api: api)["ClientID"] else{
-            preconditionFailure("Please Add 'ClientID' into Info.plist/NaverAPI/\(api)");
+        guard let value = self.infos["ClientID"] else{
+            preconditionFailure("Please add 'ClientID' into NaverPapago.plist");
         }
         
         return value;
     }
     
     private func clientSecretForAPI(api : NaverAPI) -> String{
-        guard let value = self.apiInfo(api: api)["ClientSecret"] else{
-            preconditionFailure("Please Add 'ClientSecret' into Info.plist/NaverAPI/\(api)");
+        guard let value = self.infos["ClientSecret"] else{
+            preconditionFailure("Please add 'ClientSecret' into NaverPapago.plist");
         }
         
         return value;
@@ -91,10 +90,10 @@ class NVAPIManager : NSObject{
     }
     
     func requestTranslateByNMT(text : String, source : Locale, target : Locale, completionHandler: TranslateCompletionHandler?){
-        var naverReq = NaverPapagoNMTRequest(id: self.clientIDForAPI(api: .Translator),
-                                             secret: self.clientSecretForAPI(api: .Translator));
+        var naverReq = NaverPapagoNMTRequest(id: self.clientIDForAPI(api: .NMT),
+                                             secret: self.clientSecretForAPI(api: .NMT));
         
-        let sourceLang = type(of: self).NMTLang(source) ?? NVAPIManager.DefaultSourceLang;
+        let sourceLang = type(of: self).NMTLang(source) ?? NaverPapago.DefaultSourceLang;
         let targetLang = type(of: self).NMTLang(target) ?? "en";
         naverReq.data.source = sourceLang;
         naverReq.data.target = targetLang;
@@ -114,10 +113,10 @@ class NVAPIManager : NSObject{
     }
     
     func requestTranslateBySMT(text : String, source : Locale, target : Locale, completionHandler: TranslateCompletionHandler?){
-        var naverReq = NaverPapagoSMTRequest(id: self.clientIDForAPI(api: .Translator),
-                                       secret: self.clientSecretForAPI(api: .Translator));
+        var naverReq = NaverPapagoSMTRequest(id: self.clientIDForAPI(api: .NMT),
+                                       secret: self.clientSecretForAPI(api: .NMT));
         
-        let sourceLang = type(of: self).SMTLang(source) ?? NVAPIManager.DefaultSourceLang;
+        let sourceLang = type(of: self).SMTLang(source) ?? NaverPapago.DefaultSourceLang;
         let targetLang = type(of: self).SMTLang(target) ?? "en";
         naverReq.data.source = sourceLang;
         naverReq.data.target = targetLang;
