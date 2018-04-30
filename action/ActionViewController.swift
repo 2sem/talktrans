@@ -152,7 +152,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func translate(_ text: String){
-        NaverPapago().requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (status, result, error) in
+        NaverPapago.shared.requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (status, result, error) in
             guard error == nil else {
                 if result == nil{
                     self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in

@@ -19,14 +19,17 @@ import Alamofire
  */
 class NaverPapago : NSObject{
     static let NaverAPIURLV1 = URL(string: "https://openapi.naver.com/v1")!;
+    static let shared = NaverPapago();
+    
+    static let plistName = "NaverPapago";
     private var infos : [String : String]{
         get{
-            guard let plist = Bundle.main.path(forResource: "NaverPapago", ofType: "plist") else{
-                preconditionFailure("Please create plist file named of NaverPapago. file[NaverPapago.plist]");
+            guard let plist = Bundle.main.path(forResource: type(of: self).plistName, ofType: "plist") else{
+                preconditionFailure("Please create plist file named of \(type(of: self).plistName). file[NaverPapago.plist]");
             }
             
             guard let dict = NSDictionary.init(contentsOfFile: plist) as? [String : String] else{
-                preconditionFailure("Please NaverPapago.plist is not Property List.");
+                preconditionFailure("Please \(type(of: self).plistName).plist is not Property List.");
             }
             
             //as? [String : [String : String]]
@@ -42,7 +45,7 @@ class NaverPapago : NSObject{
     
     private func clientIDForAPI(api : NaverAPI) -> String{
         guard let value = self.infos["ClientID"] else{
-            preconditionFailure("Please add 'ClientID' into NaverPapago.plist");
+            preconditionFailure("Please add 'ClientID' into \(type(of: self).plistName).plist");
         }
         
         return value;
@@ -50,7 +53,7 @@ class NaverPapago : NSObject{
     
     private func clientSecretForAPI(api : NaverAPI) -> String{
         guard let value = self.infos["ClientSecret"] else{
-            preconditionFailure("Please add 'ClientSecret' into NaverPapago.plist");
+            preconditionFailure("Please add 'ClientSecret' into \(type(of: self).plistName).plist");
         }
         
         return value;

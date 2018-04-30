@@ -1,24 +1,24 @@
 PODS:
-  - Alamofire (4.7.1)
-  - Firebase/AdMob (4.12.0):
+  - Alamofire (4.7.2)
+  - Firebase/AdMob (4.13.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.30.0)
-  - Firebase/Core (4.12.0):
-    - FirebaseAnalytics (= 4.1.0)
-    - FirebaseCore (= 4.0.19)
-  - FirebaseAnalytics (4.1.0):
+  - Firebase/Core (4.13.0):
+    - FirebaseAnalytics (= 4.2.0)
+    - FirebaseCore (= 4.0.20)
+  - FirebaseAnalytics (4.2.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.19):
+  - FirebaseCore (4.0.20):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.10):
     - FirebaseCore (~> 4.0)
   - Google-Mobile-Ads-SDK (7.30.0)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
-    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
   - KakaoOpenSDK (1.7.0):
     - KakaoOpenSDK/KakaoCommon (= 1.7.0)
     - KakaoOpenSDK/KakaoLink (= 1.7.0)
@@ -35,6 +35,7 @@ PODS:
   - KakaoOpenSDK/KakaoOpenSDK (1.7.0)
   - KakaoOpenSDK/KakaoS2 (1.7.0):
     - KakaoOpenSDK/KakaoCommon
+  - LSExtensions (0.0.4)
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
@@ -43,13 +44,19 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
 
 DEPENDENCIES:
   - Alamofire
   - Firebase/AdMob
   - Firebase/Core
   - KakaoOpenSDK
+  - LSExtensions (from `~/Projects/leesam/pods/LSExtensions/src/LSExtensions`)
   - Material (~> 2.6.3)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -63,19 +70,28 @@ SPEC REPOS:
     - KakaoOpenSDK
     - Material
     - nanopb
+    - RxCocoa
+    - RxSwift
+
+EXTERNAL SOURCES:
+  LSExtensions:
+    :path: "~/Projects/leesam/pods/LSExtensions/src/LSExtensions"
 
 SPEC CHECKSUMS:
-  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
-  Firebase: d7fdf40e4d6c841849c52919f437fd3a0009ded0
-  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
-  FirebaseCore: ff49ebb37e0f63a570d78c4f1c1c0befe8659d5c
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
+  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
+  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
   FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
   Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   KakaoOpenSDK: 82e9c4d57c7d273360e4b49c2d8a0d8626216143
+  LSExtensions: f5efc4b7beb26d8db16bda5672ac87f9cd1d6334
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
 
-PODFILE CHECKSUM: 80ff19594eebc8cf7c5280a295bfb48ee8aaf234
+PODFILE CHECKSUM: 21ba964e2e3e0e1cd68e30ec4f3b67f43b5a82f4
 
 COCOAPODS: 1.5.0

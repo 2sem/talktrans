@@ -256,7 +256,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
         
 //        NVAPIManager().requestTranslate(source: self.nativeTextView.text);
-        NaverPapago().requestTranslateByNMT(text: self.nativeTextView.text,
+        NaverPapago.shared.requestTranslateByNMT(text: self.nativeTextView.text,
                                         source: self.nativeLocale,
                                         target: self.transLocale,
                                         completionHandler: {(status, result, error) -> Void in
