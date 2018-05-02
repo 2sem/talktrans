@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LSExtensions
 
 class LSLanguagePickerCell: UIControl {
 

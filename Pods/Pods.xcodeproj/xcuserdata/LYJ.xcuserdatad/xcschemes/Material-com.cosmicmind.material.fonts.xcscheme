@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A5897FCD2621886E495618AB901B1EF"
+               BlueprintIdentifier = "4E4A9B363151AE65FFFAFF14205541D4"
                BuildableName = "com.cosmicmind.material.fonts.bundle"
                BlueprintName = "Material-com.cosmicmind.material.fonts"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A5897FCD2621886E495618AB901B1EF"
+            BlueprintIdentifier = "4E4A9B363151AE65FFFAFF14205541D4"
             BuildableName = "com.cosmicmind.material.fonts.bundle"
             BlueprintName = "Material-com.cosmicmind.material.fonts"
             ReferencedContainer = "container:Pods.xcodeproj">

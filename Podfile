@@ -12,7 +12,8 @@ target 'talktrans' do
   
   pod 'KakaoOpenSDK'
   pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
-  pod 'Material', '~> 2.6.3'
+  pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
+  pod 'Material'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'Alamofire'
@@ -21,6 +22,9 @@ target 'talktrans' do
   target 'action' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
+    pod 'Material'#, '~> 2.6.3'
+    pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+    pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
 #    pod 'Material'
   end
   target 'talktransTests' do
@@ -41,6 +45,9 @@ target 'talktrans' do
         #find target name of "LSExtensions" from targets in Pods
         LSExtensions = installer.pods_project.targets.find{ |t| t.name == "LSExtensions" }
         #puts "capture #{LSExtensions}";
+        NaverPapago = installer.pods_project.targets.find{ |t| t.name == "NaverPapago" }
+        Motion = installer.pods_project.targets.find{ |t| t.name == "Motion" }
+        #puts "capture #{LSExtensions}";
         
         Material.build_configurations.each do |config|
             config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
@@ -50,6 +57,16 @@ target 'talktrans' do
         LSExtensions.build_configurations.each do |config|
             config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
             puts "off APPLICATION_EXTENSION_API_ONLY of #{LSExtensions}";
+        end
+        
+        NaverPapago.build_configurations.each do |config|
+            config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+            puts "off APPLICATION_EXTENSION_API_ONLY of #{NaverPapago}";
+        end
+        
+        Motion.build_configurations.each do |config|
+            config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+            puts "off APPLICATION_EXTENSION_API_ONLY of #{Motion}";
         end
     end
 end

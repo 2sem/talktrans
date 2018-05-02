@@ -10,6 +10,8 @@ import UIKit
 import MobileCoreServices
 import GoogleMobileAds
 import Material
+import LSExtensions
+import NaverPapago
 
 class ActionViewController: UIViewController, GADBannerViewDelegate {
 
@@ -242,7 +244,8 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction func onShare(_ sender: UIBarButtonItem) {
-        self.share([self.resultTextView.text]);
+        self.share([self.resultTextView.text], excludedActivities: [UIActivityType(rawValue: "com.credif.talktrans.action"),
+                                                                    UIActivityType(rawValue: "com.credif.talktrans")]);
     }
 
     // MARK: GADBannerViewDelegate
@@ -252,16 +255,6 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print("ad loading has been failed. error[\(error)]");
-    }
-    
-    func share(_ activityItems: [Any], applicationActivities: [UIActivity]? = nil, completion: (() -> Void)? = nil){
-        let controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: applicationActivities);
-        controller.popoverPresentationController?.sourceView = self.view;
-        //        controller.excludedActivityTypes = [.mail, .message, .postToFacebook, .postToTwitter];
-        controller.excludedActivityTypes = [UIActivityType(rawValue: "com.credif.talktrans.action"),
-            UIActivityType(rawValue: "com.credif.talktrans")];
-        
-        self.present(controller, animated: true, completion: completion);
     }
     
     @discardableResult
@@ -282,10 +275,6 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
         }
         self.present(alert, animated: false, completion: completion);
         return alert;
-    }
-    
-    func showCellularAlert(title: String, okHandler : ((UIAlertAction) -> Void)? = nil, cancelHandler : ((UIAlertAction) -> Void)? = nil){
-        self.showAlert(title: title, msg: "Turn on cellular data or use Wi-Fi to access data".localized(), actions: [UIAlertAction(title: "Cancel".localized(), style: .default, handler: cancelHandler), UIAlertAction(title: "OK".localized(), style: .default, handler: okHandler)], style: .alert);
     }
     
 //    func openSettings(completionHandler completion: ((Bool) -> Swift.Void)? = nil){

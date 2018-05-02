@@ -31,282 +31,125 @@
 import UIKit
 
 extension UIView {
-    /// A property that accesses the backing layer's masksToBounds.
-    @IBInspectable
-    open var masksToBounds: Bool {
-        get {
-            return layer.masksToBounds
-        }
-        set(value) {
-            layer.masksToBounds = value
-        }
+  /// A property that accesses the backing layer's shadow
+  @objc
+  open var shadowColor: UIColor? {
+    get {
+      guard let v = layer.shadowColor else {
+        return nil
+      }
+      
+      return UIColor(cgColor: v)
     }
-    
-    /// A property that accesses the backing layer's opacity.
-    @IBInspectable
-    open var opacity: Float {
-        get {
-            return layer.opacity
-        }
-        set(value) {
-            layer.opacity = value
-        }
+    set(value) {
+      layer.shadowColor = value?.cgColor
     }
-    
-    /// A property that accesses the backing layer's anchorPoint.
-    @IBInspectable
-    open var anchorPoint: CGPoint {
-        get {
-            return layer.anchorPoint
-        }
-        set(value) {
-            layer.anchorPoint = value
-        }
+  }
+  
+  /// A property that accesses the layer.borderColor property.
+  @objc
+  open var borderColor: UIColor? {
+    get {
+      guard let v = layer.borderColor else {
+        return nil
+      }
+      return UIColor(cgColor: v)
     }
-    
-    /// A property that accesses the frame.origin.x property.
-    @IBInspectable
-    open var x: CGFloat {
-        get {
-            return layer.x
-        }
-        set(value) {
-            layer.x = value
-        }
+    set(value) {
+      layer.borderColor = value?.cgColor
     }
-    
-    /// A property that accesses the frame.origin.y property.
-    @IBInspectable
-    open var y: CGFloat {
-        get {
-            return layer.y
-        }
-        set(value) {
-            layer.y = value
-        }
+  }
+  
+  /// HeightPreset value.
+  @objc
+  open var heightPreset: HeightPreset {
+    get {
+      return layer.heightPreset
     }
-    
-    /// A property that accesses the frame.size.width property.
-    @IBInspectable
-    open var width: CGFloat {
-        get {
-            return layer.width
-        }
-        set(value) {
-            layer.width = value
-        }
+    set(value) {
+      layer.heightPreset = value
     }
-    
-    /// A property that accesses the frame.size.height property.
-    @IBInspectable
-    open var height: CGFloat {
-        get {
-            return layer.height
-        }
-        set(value) {
-            layer.height = value
-        }
+  }
+  
+  /**
+   A property that manages the overall shape for the object. If either the
+   width or height property is set, the other will be automatically adjusted
+   to maintain the shape of the object.
+   */
+  @objc
+  open var shapePreset: ShapePreset {
+    get {
+      return layer.shapePreset
     }
-    
-    /// HeightPreset value.
-    open var heightPreset: HeightPreset {
-        get {
-            return layer.heightPreset
-        }
-        set(value) {
-            layer.heightPreset = value
-        }
+    set(value) {
+      layer.shapePreset = value
     }
-    
-    /**
-     A property that manages the overall shape for the object. If either the
-     width or height property is set, the other will be automatically adjusted
-     to maintain the shape of the object.
-     */
-    @objc open var shapePreset: ShapePreset {
-        get {
-            return layer.shapePreset
-        }
-        set(value) {
-            layer.shapePreset = value
-        }
+  }
+  
+  /// A preset value for Depth.
+  @objc
+  open var depthPreset: DepthPreset {
+    get {
+      return layer.depthPreset
     }
-    
-    /// A preset value for Depth.
-    open var depthPreset: DepthPreset {
-        get {
-            return layer.depthPreset
-        }
-        set(value) {
-            layer.depthPreset = value
-        }
+    set(value) {
+      layer.depthPreset = value
     }
-    
-    /// Depth reference.
-    open var depth: Depth {
-        get {
-            return layer.depth
-        }
-        set(value) {
-            layer.depth = value
-        }
+  }
+  
+  /// Depth reference.
+  open var depth: Depth {
+    get {
+      return layer.depth
     }
-    
-    /// A property that accesses the backing layer's shadow
-    @IBInspectable
-    open var shadowColor: UIColor? {
-        get {
-            guard let v = layer.shadowColor else {
-                return nil
-            }
-            
-            return UIColor(cgColor: v)
-        }
-        set(value) {
-            layer.shadowColor = value?.cgColor
-        }
+    set(value) {
+      layer.depth = value
     }
-    
-    /// A property that accesses the backing layer's shadowOffset.
-    @IBInspectable
-    open var shadowOffset: CGSize {
-        get {
-            return layer.shadowOffset
-        }
-        set(value) {
-            layer.shadowOffset = value
-        }
+  }
+  
+  /// Enables automatic shadowPath sizing.
+  @IBInspectable
+  @objc
+  open var isShadowPathAutoSizing: Bool {
+    get {
+      return layer.isShadowPathAutoSizing
     }
-    
-    /// A property that accesses the backing layer's shadowOpacity.
-    @IBInspectable
-    open var shadowOpacity: Float {
-        get {
-            return layer.shadowOpacity
-        }
-        set(value) {
-            layer.shadowOpacity = value
-        }
+    set(value) {
+      layer.isShadowPathAutoSizing = value
     }
-    
-    /// A property that accesses the backing layer's shadowRadius.
-    @IBInspectable
-    open var shadowRadius: CGFloat {
-        get {
-            return layer.shadowRadius
-        }
-        set(value) {
-            layer.shadowRadius = value
-        }
+  }
+  
+  /// A property that sets the cornerRadius of the backing layer.
+  @objc
+  open var cornerRadiusPreset: CornerRadiusPreset {
+    get {
+      return layer.cornerRadiusPreset
     }
-    
-    /// A property that accesses the backing layer's shadowPath.
-    @IBInspectable
-    open var shadowPath: CGPath? {
-        get {
-            return layer.shadowPath
-        }
-        set(value) {
-            layer.shadowPath = value
-        }
+    set(value) {
+      layer.cornerRadiusPreset = value
     }
-    
-    /// Enables automatic shadowPath sizing.
-    @IBInspectable
-    open var isShadowPathAutoSizing: Bool {
-        get {
-            return layer.isShadowPathAutoSizing
-        }
-        set(value) {
-            layer.isShadowPathAutoSizing = value
-        }
+  }
+  
+  /// A preset property to set the borderWidth.
+  @objc
+  open var borderWidthPreset: BorderWidthPreset {
+    get {
+      return layer.borderWidthPreset
     }
-    
-    /// A property that sets the cornerRadius of the backing layer.
-    @objc open var cornerRadiusPreset: CornerRadiusPreset {
-        get {
-            return layer.cornerRadiusPreset
-        }
-        set(value) {
-            layer.cornerRadiusPreset = value
-        }
+    set(value) {
+      layer.borderWidthPreset = value
     }
-    
-    /// A property that accesses the layer.cornerRadius.
-    @IBInspectable
-    open var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set(value) {
-            layer.cornerRadius = value
-        }
-    }
-    
-    /// A preset property to set the borderWidth.
-    open var borderWidthPreset: BorderWidthPreset {
-        get {
-            return layer.borderWidthPreset
-        }
-        set(value) {
-            layer.borderWidthPreset = value
-        }
-    }
-    
-    /// A property that accesses the layer.borderWith.
-    @IBInspectable
-    open var borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        set(value) {
-            layer.borderWidth = value
-        }
-    }
-    
-    /// A property that accesses the layer.borderColor property.
-    @IBInspectable
-    open var borderColor: UIColor? {
-        get {
-            guard let v = layer.borderColor else {
-                return nil
-            }
-            return UIColor(cgColor: v)
-        }
-        set(value) {
-            layer.borderColor = value?.cgColor
-        }
-    }
-    
-    /// A property that accesses the layer.position property.
-    @IBInspectable
-    open var position: CGPoint {
-        get {
-            return layer.position
-        }
-        set(value) {
-            layer.position = value
-        }
-    }
-    
-    /// A property that accesses the layer.zPosition property.
-    @IBInspectable
-    open var zPosition: CGFloat {
-        get {
-            return layer.zPosition
-        }
-        set(value) {
-            layer.zPosition = value
-        }
-    }
-    
-    /// Manages the layout for the shape of the view instance.
-    open func layoutShape() {
-        layer.layoutShape()
-    }
-    
-    /// Sets the shadow path.
-    open func layoutShadowPath() {
-        layer.layoutShadowPath()
-    }
+  }
+}
+
+internal extension UIView {
+  /// Manages the layout for the shape of the view instance.
+  func layoutShape() {
+    layer.layoutShape()
+  }
+  
+  /// Sets the shadow path.
+  func layoutShadowPath() {
+    layer.layoutShadowPath()
+  }
 }

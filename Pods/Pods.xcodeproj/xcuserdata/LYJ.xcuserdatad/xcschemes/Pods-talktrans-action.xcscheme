@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9194589B2B66F61C7A487233C70A35B0"
+               BlueprintIdentifier = "874C1931C06B7A6D118AA219A541BE9C"
                BuildableName = "Pods_talktrans_action.framework"
                BlueprintName = "Pods-talktrans-action"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9194589B2B66F61C7A487233C70A35B0"
+            BlueprintIdentifier = "874C1931C06B7A6D118AA219A541BE9C"
             BuildableName = "Pods_talktrans_action.framework"
             BlueprintName = "Pods-talktrans-action"
             ReferencedContainer = "container:Pods.xcodeproj">

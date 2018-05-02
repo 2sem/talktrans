@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C0065281E37577D00E404F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C0065271E37577C00E404F7 /* Settings.bundle */; };
 		2C059CE01E00CFF00089DD84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C76627C1DF1003500A2C38C /* Main.storyboard */; };
-		2C07221C1DF90CD800558777 /* NSError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221B1DF90CD800558777 /* NSError+.swift */; };
-		2C07221E1DF9181200558777 /* NaverPapago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221D1DF9181200558777 /* NaverPapago.swift */; };
-		2C0722201DF9444900558777 /* LS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221F1DF9444900558777 /* LS.swift */; };
 		2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
 		2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
 		2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
@@ -23,20 +20,6 @@
 		2C119CD41F83DCFF007A383F /* Pods_talktrans_action.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE25005DB87C0FFF611000F7 /* Pods_talktrans_action.framework */; };
 		2C1272352085C4C1009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
 		2C1272362085C4C3009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
-		2C140A312081D24700BD6A76 /* NaverPapagoSMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */; };
-		2C140A322081E36400BD6A76 /* NaverPapagoSMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */; };
-		2C140A352081FB0F00BD6A76 /* NaverSMTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A342081FB0F00BD6A76 /* NaverSMTResponse.swift */; };
-		2C140A372082021D00BD6A76 /* NaverSMTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A342081FB0F00BD6A76 /* NaverSMTResponse.swift */; };
-		2C140A392082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A382082097800BD6A76 /* NaverPapagoSMTError.swift */; };
-		2C140A3A2082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A382082097800BD6A76 /* NaverPapagoSMTError.swift */; };
-		2C140A3D208218B900BD6A76 /* DataRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A3C208218B900BD6A76 /* DataRequest+.swift */; };
-		2C140A3E208218B900BD6A76 /* DataRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A3C208218B900BD6A76 /* DataRequest+.swift */; };
-		2C140A412082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A402082295700BD6A76 /* NaverPapagoNMTRequest.swift */; };
-		2C140A422082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A402082295700BD6A76 /* NaverPapagoNMTRequest.swift */; };
-		2C140A4420822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A4320822E4F00BD6A76 /* NaverPapagoSMTResponse.swift */; };
-		2C140A4520822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A4320822E4F00BD6A76 /* NaverPapagoSMTResponse.swift */; };
-		2C140A4720822EA100BD6A76 /* NaverPapagoNMTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A4620822EA100BD6A76 /* NaverPapagoNMTError.swift */; };
-		2C140A4820822EA100BD6A76 /* NaverPapagoNMTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C140A4620822EA100BD6A76 /* NaverPapagoNMTError.swift */; };
 		2C1425D91F7A564300BDF794 /* GADInterstialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D61F7A564300BDF794 /* GADInterstialManager.swift */; };
 		2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D71F7A564300BDF794 /* GADRewardManager.swift */; };
 		2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D81F7A564300BDF794 /* ReviewManager.swift */; };
@@ -50,11 +33,7 @@
 		2C4445491E25E8E0005C9EE4 /* pin_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4445481E25E8E0005C9EE4 /* pin_on.png */; };
 		2C54C9E71F83C930005AFFE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C7289801E011361000553F6 /* InfoPlist.strings */; };
 		2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58365C1DFD0840004B28FF /* GADBannerView+.swift */; };
-		2C5836611DFD14BF004B28FF /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5836601DFD14BF004B28FF /* String+.swift */; };
 		2C5836621DFD1949004B28FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5836641DFD1949004B28FF /* Localizable.strings */; };
-		2C646FF51DF134E90075DC04 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C646FF41DF134E90075DC04 /* UIView+.swift */; };
-		2C646FF71DF149840075DC04 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C646FF61DF149840075DC04 /* UIViewController+.swift */; };
-		2C646FF91DF1518E0075DC04 /* LSAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C646FF81DF1518E0075DC04 /* LSAlertController.swift */; };
 		2C72897E1E011361000553F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C7289801E011361000553F6 /* InfoPlist.strings */; };
 		2C7662791DF1003500A2C38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662781DF1003500A2C38C /* AppDelegate.swift */; };
 		2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76627A1DF1003500A2C38C /* MainViewController.swift */; };
@@ -64,9 +43,7 @@
 		2C7662911DF1003500A2C38C /* talktransTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662901DF1003500A2C38C /* talktransTests.swift */; };
 		2C76629C1DF1003500A2C38C /* talktransUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76629B1DF1003500A2C38C /* talktransUITests.swift */; };
 		2C7662AA1DF1041C00A2C38C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7662A91DF1041C00A2C38C /* GoogleService-Info.plist */; };
-		2CB5937A1FCC3B9D00300643 /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
-		2CE8DE7B1F84B2A7000F6D15 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8DE7A1F84B2A7000F6D15 /* UIApplication+.swift */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
 		2CF31DF91E64219F00992A7A /* fix_on_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF81E64219F00992A7A /* fix_on_white@x32.png */; };
 		2CF31DFB1E6421CF00992A7A /* fix_off_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DFA1E6421CF00992A7A /* fix_off_white@x32.png */; };
@@ -76,13 +53,11 @@
 		2CFB6D741E2519BB00AA2285 /* swap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D731E2519BB00AA2285 /* swap.png */; };
 		2CFB6D761E251A2900AA2285 /* rotate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D751E251A2900AA2285 /* rotate_left.png */; };
 		2CFB6D781E251A5700AA2285 /* rotate_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D771E251A5700AA2285 /* rotate_right.png */; };
-		2CFEDF8E1E36F07E009470A4 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5836601DFD14BF004B28FF /* String+.swift */; };
 		2CFF0C2E1E35F160004F9EF4 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF0C2D1E35F160004F9EF4 /* ActionViewController.swift */; };
 		2CFF0C311E35F160004F9EF4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFF0C2F1E35F160004F9EF4 /* MainInterface.storyboard */; };
 		2CFF0C351E35F160004F9EF4 /* action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2CFF0C2B1E35F160004F9EF4 /* action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2CFF0C3A1E35F709004F9EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7662821DF1003500A2C38C /* Assets.xcassets */; };
 		2CFF0C481E3614CF004F9EF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CFF0C471E3614CF004F9EF4 /* GoogleService-Info.plist */; };
-		2CFF0C491E363028004F9EF4 /* NaverPapago.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C07221D1DF9181200558777 /* NaverPapago.swift */; };
 		4B6B4BB145D8F413E2FB32ED /* Pods_talktransUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423F5479DADB86CD598EA174 /* Pods_talktransUITests.framework */; };
 		573DC02BCBBC706CD4C44BE3 /* Pods_talktransTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F36ECC2531875754934AC3B /* Pods_talktransTests.framework */; };
 		D6D8E923F151110FE2432BD7 /* Pods_talktrans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D875879469B425320F124EF8 /* Pods_talktrans.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -130,21 +105,12 @@
 		2C0065271E37577C00E404F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C0264411DFF856300BB9F7D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C0264421DFF873A00BB9F7D /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		2C07221B1DF90CD800558777 /* NSError+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+.swift"; sourceTree = "<group>"; };
-		2C07221D1DF9181200558777 /* NaverPapago.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverPapago.swift; sourceTree = "<group>"; };
-		2C07221F1DF9444900558777 /* LS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LS.swift; sourceTree = "<group>"; };
 		2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePicker.swift; sourceTree = "<group>"; };
 		2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerCell.swift; sourceTree = "<group>"; };
 		2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerButton.swift; sourceTree = "<group>"; };
 		2C0F9D3C2084AB9B00DFA455 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = langs; path = ../../../../../../../Downloads/langs; sourceTree = "<group>"; };
 		2C1272332085BF06009AF35B /* NaverPapago.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NaverPapago.plist; sourceTree = "<group>"; };
-		2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoSMTRequest.swift; sourceTree = "<group>"; };
-		2C140A342081FB0F00BD6A76 /* NaverSMTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSMTResponse.swift; sourceTree = "<group>"; };
-		2C140A382082097800BD6A76 /* NaverPapagoSMTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoSMTError.swift; sourceTree = "<group>"; };
 		2C140A3C208218B900BD6A76 /* DataRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+.swift"; sourceTree = "<group>"; };
-		2C140A402082295700BD6A76 /* NaverPapagoNMTRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoNMTRequest.swift; sourceTree = "<group>"; };
-		2C140A4320822E4F00BD6A76 /* NaverPapagoSMTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoSMTResponse.swift; sourceTree = "<group>"; };
-		2C140A4620822EA100BD6A76 /* NaverPapagoNMTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverPapagoNMTError.swift; sourceTree = "<group>"; };
 		2C140A4920823C0C00BD6A76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C140A4B20823C0D00BD6A76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		2C140A4C20823C0D00BD6A76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -181,12 +147,8 @@
 		2C4445461E25E8D0005C9EE4 /* pin_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_off.png; sourceTree = "<group>"; };
 		2C4445481E25E8E0005C9EE4 /* pin_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_on.png; sourceTree = "<group>"; };
 		2C58365C1DFD0840004B28FF /* GADBannerView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADBannerView+.swift"; sourceTree = "<group>"; };
-		2C5836601DFD14BF004B28FF /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2C5836631DFD1949004B28FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C5836651DFD194E004B28FF /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2C646FF41DF134E90075DC04 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		2C646FF61DF149840075DC04 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		2C646FF81DF1518E0075DC04 /* LSAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LSAlertController.swift; path = leesam/LSAlertController.swift; sourceTree = SOURCE_ROOT; };
 		2C72897A1E011318000553F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C72897F1E011361000553F6 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C7662751DF1003500A2C38C /* talktrans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talktrans.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,10 +165,8 @@
 		2C76629B1DF1003500A2C38C /* talktransUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talktransUITests.swift; sourceTree = "<group>"; };
 		2C76629D1DF1003500A2C38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C7662A91DF1041C00A2C38C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 		2CD074561E9FAE7A0032CFCD /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
 		2CD5BA541DFD975C00AA0E16 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2CE8DE7A1F84B2A7000F6D15 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action_white@x1.5.png"; sourceTree = "<group>"; };
 		2CF31DF81E64219F00992A7A /* fix_on_white@x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fix_on_white@x32.png"; sourceTree = "<group>"; };
 		2CF31DFA1E6421CF00992A7A /* fix_off_white@x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fix_off_white@x32.png"; sourceTree = "<group>"; };
@@ -299,50 +259,12 @@
 			path = Control;
 			sourceTree = "<group>";
 		};
-		2C140A2F2081D20B00BD6A76 /* NaverAPI */ = {
-			isa = PBXGroup;
-			children = (
-				2C140A332081FA1A00BD6A76 /* Papago */,
-				2C07221D1DF9181200558777 /* NaverPapago.swift */,
-			);
-			path = NaverAPI;
-			sourceTree = "<group>";
-		};
-		2C140A332081FA1A00BD6A76 /* Papago */ = {
-			isa = PBXGroup;
-			children = (
-				2C140A3F2082294800BD6A76 /* NMT */,
-				2C140A362081FBBF00BD6A76 /* SMT */,
-			);
-			path = Papago;
-			sourceTree = "<group>";
-		};
-		2C140A362081FBBF00BD6A76 /* SMT */ = {
-			isa = PBXGroup;
-			children = (
-				2C140A302081D24700BD6A76 /* NaverPapagoSMTRequest.swift */,
-				2C140A342081FB0F00BD6A76 /* NaverSMTResponse.swift */,
-				2C140A382082097800BD6A76 /* NaverPapagoSMTError.swift */,
-			);
-			path = SMT;
-			sourceTree = "<group>";
-		};
 		2C140A3B2082188D00BD6A76 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
 				2C140A3C208218B900BD6A76 /* DataRequest+.swift */,
 			);
 			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		2C140A3F2082294800BD6A76 /* NMT */ = {
-			isa = PBXGroup;
-			children = (
-				2C140A402082295700BD6A76 /* NaverPapagoNMTRequest.swift */,
-				2C140A4320822E4F00BD6A76 /* NaverPapagoSMTResponse.swift */,
-				2C140A4620822EA100BD6A76 /* NaverPapagoNMTError.swift */,
-			);
-			path = NMT;
 			sourceTree = "<group>";
 		};
 		2C1932781E9E5A990056262C /* data */ = {
@@ -358,16 +280,7 @@
 			children = (
 				2C0F9D3120847A6300DFA455 /* Control */,
 				2C140A3B2082188D00BD6A76 /* Alamofire */,
-				2C140A2F2081D20B00BD6A76 /* NaverAPI */,
-				2CB593791FCC3B9D00300643 /* DispatchQueue+.swift */,
-				2C646FF41DF134E90075DC04 /* UIView+.swift */,
-				2C646FF61DF149840075DC04 /* UIViewController+.swift */,
-				2C646FF81DF1518E0075DC04 /* LSAlertController.swift */,
-				2C07221B1DF90CD800558777 /* NSError+.swift */,
-				2C07221F1DF9444900558777 /* LS.swift */,
 				2C58365C1DFD0840004B28FF /* GADBannerView+.swift */,
-				2C5836601DFD14BF004B28FF /* String+.swift */,
-				2CE8DE7A1F84B2A7000F6D15 /* UIApplication+.swift */,
 				2C155FA41F83A66E008AAD3F /* UIApplication+KakaoLink.swift */,
 				2C1932741E9E595E0056262C /* GADInterstitial+.swift */,
 				2C1425D61F7A564300BDF794 /* GADInterstialManager.swift */,
@@ -797,6 +710,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/LSExtensions/LSExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/NaverPapago/NaverPapago.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -807,6 +722,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LSExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NaverPapago.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -842,33 +759,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
-				2C646FF51DF134E90075DC04 /* UIView+.swift in Sources */,
 				2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */,
 				2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
 				2C7662811DF1003500A2C38C /* talktrans.xcdatamodeld in Sources */,
-				2C0722201DF9444900558777 /* LS.swift in Sources */,
 				2C1425D91F7A564300BDF794 /* GADInterstialManager.swift in Sources */,
-				2C07221C1DF90CD800558777 /* NSError+.swift in Sources */,
 				2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
-				2C646FF71DF149840075DC04 /* UIViewController+.swift in Sources */,
 				2C155FA31F839F7E008AAD3F /* TTDefaults.swift in Sources */,
-				2C140A312081D24700BD6A76 /* NaverPapagoSMTRequest.swift in Sources */,
 				2C155FA51F83A66E008AAD3F /* UIApplication+KakaoLink.swift in Sources */,
 				2C1932751E9E595E0056262C /* GADInterstitial+.swift in Sources */,
-				2C140A4420822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */,
-				2C140A412082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */,
-				2C140A352081FB0F00BD6A76 /* NaverSMTResponse.swift in Sources */,
-				2C646FF91DF1518E0075DC04 /* LSAlertController.swift in Sources */,
-				2C5836611DFD14BF004B28FF /* String+.swift in Sources */,
 				2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */,
-				2CB5937A1FCC3B9D00300643 /* DispatchQueue+.swift in Sources */,
-				2C140A392082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */,
 				2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */,
-				2C140A4720822EA100BD6A76 /* NaverPapagoNMTError.swift in Sources */,
-				2CE8DE7B1F84B2A7000F6D15 /* UIApplication+.swift in Sources */,
-				2C140A3D208218B900BD6A76 /* DataRequest+.swift in Sources */,
 				2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */,
-				2C07221E1DF9181200558777 /* NaverPapago.swift in Sources */,
 				2C7662791DF1003500A2C38C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -893,19 +794,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C140A3E208218B900BD6A76 /* DataRequest+.swift in Sources */,
-				2C140A3A2082097800BD6A76 /* NaverPapagoSMTError.swift in Sources */,
-				2C140A422082295700BD6A76 /* NaverPapagoNMTRequest.swift in Sources */,
 				2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
-				2CFF0C491E363028004F9EF4 /* NaverPapago.swift in Sources */,
-				2C140A4820822EA100BD6A76 /* NaverPapagoNMTError.swift in Sources */,
-				2C140A322081E36400BD6A76 /* NaverPapagoSMTRequest.swift in Sources */,
-				2CFEDF8E1E36F07E009470A4 /* String+.swift in Sources */,
 				2CFF0C2E1E35F160004F9EF4 /* ActionViewController.swift in Sources */,
-				2C140A4520822E4F00BD6A76 /* NaverPapagoSMTResponse.swift in Sources */,
 				2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
 				2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
-				2C140A372082021D00BD6A76 /* NaverSMTResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

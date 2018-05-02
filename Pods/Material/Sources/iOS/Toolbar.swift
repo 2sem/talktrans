@@ -33,136 +33,133 @@ import UIKit
 fileprivate var ToolbarContext: UInt8 = 0
 
 open class Toolbar: Bar {
-	/// A convenience property to set the titleLabel.text.
-	@IBInspectable
-    open var title: String? {
-		get {
-			return titleLabel.text
-		}
-		set(value) {
-			titleLabel.text = value
-			layoutSubviews()
-		}
-	}
-	
-	/// Title label.
-    @IBInspectable
-    open let titleLabel = UILabel()
-    
-	/// A convenience property to set the detailLabel.text.
-	@IBInspectable
-    open var detail: String? {
-		get {
-			return detailLabel.text
-		}
-		set(value) {
-			detailLabel.text = value
-			layoutSubviews()
-		}
-	}
-	
-	/// Detail label.
-    @IBInspectable
-    open let detailLabel = UILabel()
-	
-    deinit {
-        removeObserver(self, forKeyPath: "titleLabel.textAlignment")
+  /// A convenience property to set the titleLabel.text.
+  @IBInspectable
+  open var title: String? {
+    get {
+      return titleLabel.text
+    }
+    set(value) {
+      titleLabel.text = value
+      layoutSubviews()
+    }
+  }
+  
+  /// Title label.
+  @IBInspectable
+  open let titleLabel = UILabel()
+  
+  /// A convenience property to set the detailLabel.text.
+  @IBInspectable
+  open var detail: String? {
+    get {
+      return detailLabel.text
+    }
+    set(value) {
+      detailLabel.text = value
+      layoutSubviews()
+    }
+  }
+  
+  /// Detail label.
+  @IBInspectable
+  open let detailLabel = UILabel()
+  
+  deinit {
+    removeObserver(self, forKeyPath: #keyPath(titleLabel.textAlignment))
+  }
+  
+  /**
+   An initializer that initializes the object with a NSCoder object.
+   - Parameter aDecoder: A NSCoder instance.
+   */
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  /**
+   An initializer that initializes the object with a CGRect object.
+   If AutoLayout is used, it is better to initilize the instance
+   using the init() initializer.
+   - Parameter frame: A CGRect instance.
+   */
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  
+  open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    guard "titleLabel.textAlignment" == keyPath else {
+      super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+      return
     }
     
-	/**
-     An initializer that initializes the object with a NSCoder object.
-     - Parameter aDecoder: A NSCoder instance.
-     */
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-	
-	/**
-     An initializer that initializes the object with a CGRect object.
-     If AutoLayout is used, it is better to initilize the instance
-     using the init() initializer.
-     - Parameter frame: A CGRect instance.
-     */
-	public override init(frame: CGRect) {
-		super.init(frame: frame)
-	}
-	
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard "titleLabel.textAlignment" == keyPath else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        contentViewAlignment = .center == titleLabel.textAlignment ? .center : .full
+    contentViewAlignment = .center == titleLabel.textAlignment ? .center : .full
+  }
+  
+  open override func layoutSubviews() {
+    super.layoutSubviews()
+    guard willLayout else {
+      return
     }
     
-    /// Reloads the view.
-    open override func reload() {
-        super.reload()
+    if 0 < titleLabel.text?.utf16.count ?? 0 {
+      if nil == titleLabel.superview {
+        contentView.addSubview(titleLabel)
+      }
+      titleLabel.frame = contentView.bounds
+    } else {
+      titleLabel.removeFromSuperview()
+    }
+    
+    if 0 < detailLabel.text?.utf16.count ?? 0 {
+      if nil == detailLabel.superview {
+        contentView.addSubview(detailLabel)
+      }
+      
+      if nil == titleLabel.superview {
+        detailLabel.frame = contentView.bounds
+      } else {
+        titleLabel.sizeToFit()
+        detailLabel.sizeToFit()
         
-        if nil != title && "" != title {
-            if nil == titleLabel.superview {
-                contentView.addSubview(titleLabel)
-            }
-            titleLabel.frame = contentView.bounds
-        } else {
-            titleLabel.removeFromSuperview()
-        }
+        let diff: CGFloat = (contentView.bounds.height - titleLabel.bounds.height - detailLabel.bounds.height) / 2
         
-        if nil != detail && "" != detail {
-            if nil == detailLabel.superview {
-                contentView.addSubview(detailLabel)
-            }
-            
-            if nil == titleLabel.superview {
-                detailLabel.frame = contentView.bounds
-            } else {
-                titleLabel.sizeToFit()
-                detailLabel.sizeToFit()
-                
-                let diff: CGFloat = (contentView.height - titleLabel.height - detailLabel.height) / 2
-                
-                titleLabel.height += diff
-                titleLabel.width = contentView.width
-                
-                detailLabel.height += diff
-                detailLabel.width = contentView.width
-                detailLabel.y = titleLabel.height
-            }
-        } else {
-            detailLabel.removeFromSuperview()
-        }
+        titleLabel.frame.size.height += diff
+        titleLabel.frame.size.width = contentView.bounds.width
+        
+        detailLabel.frame.size.height += diff
+        detailLabel.frame.size.width = contentView.bounds.width
+        detailLabel.frame.origin.y = titleLabel.bounds.height
+      }
+    } else {
+      detailLabel.removeFromSuperview()
     }
-
-	/**
-     Prepares the view instance when intialized. When subclassing,
-     it is recommended to override the prepare method
-     to initialize property values and other setup operations.
-     The super.prepare method should always be called immediately
-     when subclassing.
-     */
-	open override func prepare() {
-		super.prepare()
-        contentViewAlignment = .center
-		prepareTitleLabel()
-		prepareDetailLabel()
-	}
+  }
+  
+  open override func prepare() {
+    super.prepare()
+    contentViewAlignment = .center
+    
+    prepareTitleLabel()
+    prepareDetailLabel()
+  }
 }
 
-extension Toolbar {
-    /// Prepares the titleLabel.
-    fileprivate func prepareTitleLabel() {
-        titleLabel.textAlignment = .center
-        titleLabel.contentScaleFactor = Screen.scale
-        titleLabel.font = RobotoFont.medium(with: 17)
-        titleLabel.textColor = Color.darkText.primary
-        addObserver(self, forKeyPath: "titleLabel.textAlignment", options: [], context: &ToolbarContext)
-    }
-    
-    /// Prepares the detailLabel.
-    fileprivate func prepareDetailLabel() {
-        detailLabel.textAlignment = .center
-        detailLabel.contentScaleFactor = Screen.scale
-        detailLabel.font = RobotoFont.regular(with: 12)
-        detailLabel.textColor = Color.darkText.secondary
-    }
+fileprivate extension Toolbar {
+  /// Prepares the titleLabel.
+  func prepareTitleLabel() {
+    titleLabel.textAlignment = .center
+    titleLabel.contentScaleFactor = Screen.scale
+    titleLabel.font = RobotoFont.medium(with: 17)
+    titleLabel.textColor = Color.darkText.primary
+    addObserver(self, forKeyPath: #keyPath(titleLabel.textAlignment), options: [], context: &ToolbarContext)
+  }
+  
+  /// Prepares the detailLabel.
+  func prepareDetailLabel() {
+    detailLabel.textAlignment = .center
+    detailLabel.contentScaleFactor = Screen.scale
+    detailLabel.font = RobotoFont.regular(with: 12)
+    detailLabel.textColor = Color.darkText.secondary
+  }
 }
