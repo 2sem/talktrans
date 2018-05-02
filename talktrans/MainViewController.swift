@@ -13,6 +13,8 @@ import AVKit
 import Material
 import LSExtensions
 import NaverPapago
+import RxCocoa
+import RxSwift
 
 class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDelegate, UIPopoverPresentationControllerDelegate, LSLanguagePickerButtonDelegate {
     
@@ -115,6 +117,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             return;
         }
         
+        //Hides Keyboard
         self.nativeTextView.resignFirstResponder();
         UIApplication.onNetworking();
         SFSpeechRecognizer.requestAuthorization { (status) in
@@ -129,6 +132,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                 str = "authorized";
                 
                 AVAudioSession.sharedInstance().requestRecordPermission({ (recording_enabled) in
+                    /// MARK: Recording voice
                     print("recording permission => \(recording_enabled)");
                     guard recording_enabled else{
                         self.openSettingsOrCancel(title: "Please allow Recording".localized(), msg: "Enable Microphone to input your sentence from your voice".localized(), style: .alert, titleForOK: "OK", titleForSettings: "Settings".localized());
@@ -158,7 +162,8 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                     }catch let error {
                         print("recording has been failed. error[\(error)]");
                     }
-//                    self.av_req.shouldReportPartialResults = true;
+
+                    /// MARK: Recognize sound of voice
                     self.av_task = recognizer.recognitionTask(with: self.av_req, resultHandler: { (result, error) in
                         print("recognition has been completed. result[\(result?.description ?? "")] error[\(error.debugDescription)]");
                         
@@ -190,7 +195,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                         }
                         
                         self.nativeTextView.text = result?.bestTranscription.formattedString;
-                        self.nativePlaceHolderLabel.isHidden = !self.nativeTextView.text.isEmpty;
 //                        result?.bestTranscription.formattedString
                     })
                 })
@@ -198,16 +202,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
 
             case .denied:
                 str = "denied";
-//                var url = URL(string: "prefs:root=\(Bundle.main.infoDictionary!["CFBundleName"]!)");
-                
-//                var acts = [UIAlertAction(title: "Settings", style: .default, handler: { (act) in
-//                    var url_settings = URL(string:UIApplicationOpenSettingsURLString);
-//                    print("open settings - \(url_settings)");
-//                    UIApplication.shared.open(url_settings!, options: [:], completionHandler: { (result) in
-//                        
-//                    })
-//                }), UIAlertAction(title: "OK", style: .default, handler: nil)];
-//                self.showAlert(title: "Please allow Speech Recognition", msg: "Turn on Speech Recognition to input your sentence from your voice", actions: acts, style: .alert);
                 self.openSettingsOrCancel(title: "Please allow Speech Recognition", msg: "Turn on Speech Recognition to input your sentence from your voice", style: .alert, titleForOK: "OK", titleForSettings: "Settings");
                 break;
             case .notDetermined:
@@ -256,7 +250,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                 case .success(let translated):
                     DispatchQueue.main.async {
                         self.transTextView.text = translated;
-                        self.transPlaceHolderLabel.isHidden = !self.transTextView.text.isEmpty;
                     }
                     break;
                 case .error:
@@ -300,6 +293,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
     }
     
+    var disposeBag = DisposeBag();
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -362,9 +356,19 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }else{
             TTDefaults.isUpsideDown = true;
         }
-        // Do any additional setup after loading the view, typically from a nib.
         
-//        self.reviewButton.image = Icon.cm.star;
+        /*let txtt = UITextField();
+        txtt.rx.text.flatMapLatest({ (txt) -> Bool in
+            return txt.any ?? true;
+        }).asDriver();*/
+        self.nativeTextView.rx.text.map{ $0?.any ?? false }.bind(to: self.nativePlaceHolderLabel.rx.isHidden)
+        .disposed(by: self.disposeBag);
+        
+        self.transTextView.rx.text.map{ $0?.any ?? false }.bind(to: self.transPlaceHolderLabel.rx.isHidden)
+            .disposed(by: self.disposeBag);
+        //self.nativePlaceHolderLabel.rx.isHidden
+        //self.nativePlaceHolderLabel.isHidden = self.nativeTextView.text.any;
+        //self.transPlaceHolderLabel.isHidden = self.transTextView.text.any;
     }
 
     override func didReceiveMemoryWarning() {
@@ -405,9 +409,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         self.transLocale = tempLocale;
         self.transTextView.text = tempText;
         self.transButton.language = tempTitle;
-        
-        self.nativePlaceHolderLabel.isHidden = self.nativeTextView.text.any;
-        self.transPlaceHolderLabel.isHidden = self.transTextView.text.any;
         
         //Releases preventing to fix language
         self.needFix = true;
