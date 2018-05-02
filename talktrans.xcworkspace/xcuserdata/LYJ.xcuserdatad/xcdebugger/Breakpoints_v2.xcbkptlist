@@ -1032,39 +1032,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.7728699"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "returnResult(result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773067"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "done()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773157"
+            timestampString = "546945873.249707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
@@ -1080,11 +1048,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773263"
+            timestampString = "546945873.249828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "done()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "action/ActionViewController.swift"
+            timestampString = "546945873.249915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "returnResult(result:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1096,11 +1080,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773345"
+            timestampString = "546945873.25"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "returnResult(result:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "action/ActionViewController.swift"
+            timestampString = "546945873.250084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "returnResult(result:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1112,7 +1112,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773429"
+            timestampString = "546945873.250167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -1128,7 +1128,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773512"
+            timestampString = "546945873.250252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -1144,7 +1144,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773596"
+            timestampString = "546945873.2503361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -1160,7 +1160,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773679"
+            timestampString = "546945873.250419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -1176,7 +1176,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773761"
+            timestampString = "546945873.2505029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -1192,7 +1192,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773841"
+            timestampString = "546945873.250585"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -1208,7 +1208,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.773922"
+            timestampString = "546945873.250669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
@@ -1224,11 +1224,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.774003"
+            timestampString = "546945873.250751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "onTransLang(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1240,11 +1240,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "action/ActionViewController.swift"
-            timestampString = "546928334.774085"
+            timestampString = "546945873.250834"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "onNativeLang(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1256,7 +1256,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774206"
+            timestampString = "546945873.250921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "191"
@@ -1272,7 +1272,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.7743"
+            timestampString = "546945873.251646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
@@ -1288,7 +1288,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774385"
+            timestampString = "546945873.252158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
@@ -1336,7 +1336,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774488"
+            timestampString = "546945873.252665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "410"
@@ -1352,7 +1352,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774572"
+            timestampString = "546945873.253177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -1368,7 +1368,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774654"
+            timestampString = "546945873.2536761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "406"
@@ -1464,7 +1464,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.774905"
+            timestampString = "546945873.254347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "371"
@@ -1480,13 +1480,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.77499"
+            timestampString = "546945873.254859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "376"
             endingLineNumber = "376"
-            landmarkName = "MainViewController"
-            landmarkType = "3">
+            landmarkName = "getLang(byLocale:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1608,7 +1608,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.775411"
+            timestampString = "546945873.255749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
@@ -1624,13 +1624,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.775496"
+            timestampString = "546945873.25626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "556"
             endingLineNumber = "556"
-            landmarkName = "MainViewController"
-            landmarkType = "3">
+            landmarkName = "popoverPresentationControllerDidDismissPopover(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1656,13 +1656,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.775714"
+            timestampString = "546945873.256828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "525"
             endingLineNumber = "525"
-            landmarkName = "MainViewController"
-            landmarkType = "3">
+            landmarkName = "adView(_:didFailToReceiveAdWithError:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1672,7 +1672,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.775797"
+            timestampString = "546945873.257346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
@@ -1688,7 +1688,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.77588"
+            timestampString = "546945873.2578599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -1704,7 +1704,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.775961"
+            timestampString = "546945873.258339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -1720,7 +1720,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.7760431"
+            timestampString = "546945873.258822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "522"
@@ -1768,7 +1768,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.776125"
+            timestampString = "546945873.259344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "517"
@@ -1800,7 +1800,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.77626"
+            timestampString = "546945873.2599109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -1816,7 +1816,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "talktrans/MainViewController.swift"
-            timestampString = "546928334.7763439"
+            timestampString = "546945873.260391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "558"

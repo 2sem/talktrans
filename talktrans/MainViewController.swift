@@ -251,21 +251,21 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         NaverPapago.shared.requestTranslateByNMT(text: self.nativeTextView.text,
                                         source: self.nativeLocale,
                                         target: self.transLocale,
-                                        completionHandler: {(status, result, error) -> Void in
-            guard error == nil else {
-                if result == nil{
+                                        completionHandler: {(result) -> Void in
+            switch result{
+                case .success(let translated):
+                    DispatchQueue.main.async {
+                        self.transTextView.text = translated;
+                        self.transPlaceHolderLabel.isHidden = !self.transTextView.text.isEmpty;
+                    }
+                    break;
+                case .error:
                     self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
                         self.onTranslate(self.translateButton);
                     }, cancelHandler: { (act) in
                         
                     })
-                }
-                return;
-            }
-            
-            DispatchQueue.main.async {
-                self.transTextView.text = result;
-                self.transPlaceHolderLabel.isHidden = !self.transTextView.text.isEmpty;
+                    break;
             }
         });
     }

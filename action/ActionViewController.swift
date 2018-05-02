@@ -154,28 +154,23 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func translate(_ text: String){
-        NaverPapago.shared.requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (status, result, error) in
-            guard error == nil else {
-                if result == nil{
-                    self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
-                        self.translate(text);
-                    }, cancelHandler: { (act) in
-                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil);
-                    })
+        NaverPapago.shared.requestTranslateByNMT(text: text, source: self.nativeLocale, target: self.transLocale, completionHandler: { (result) in
+            
+            switch result{
+            case .success(let translated):
+                print("translate result - \(translated)");
+                OperationQueue.main.addOperation {
+                    self.resultTextView.text = translated;
                 }
-                return;
+                break;
+            case .error:
+                self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
+                    self.translate(text);
+                }, cancelHandler: { (act) in
+                    self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil);
+                })
+                break;
             }
-            
-            print("translate result - \(result ?? "")");
-            OperationQueue.main.addOperation {
-                self.resultTextView.text = result;
-                //                    self.returnResult(result: result ?? "");
-            }
-            
-            //                DispatchQueue.main.async {
-            //                    self.transTextView.text = result;
-            //                    self.transPlaceHolderLabel.isHidden = !self.transTextView.text.isEmpty;
-            //                }
         });
     }
     
