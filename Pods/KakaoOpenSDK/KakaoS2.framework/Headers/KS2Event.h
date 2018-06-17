@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Kakao Corp.
+ * Copyright 2016-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 /*!
  @header KS2Event.h
- 클라이언트의 이벤트(로그)를 담고 있는 S2 이벤트 구조체.
+ @abstract 클라이언트의 이벤트(로그)를 담고 있는 S2 이벤트 구조체.
  */
 
 #import <Foundation/Foundation.h>
@@ -55,11 +55,11 @@
  @property props
  @abstract 위의 필드 외에 추가하고자 하는 metadata.
  */
-@property (strong, nonatomic) NSDictionary<NSString *, id<NSCoding>> *props;
+@property (strong, nonatomic) NSDictionary<NSString *, id> *props;
 
 @end
 
-@interface KS2Event (Creation)
+@interface KS2Event (Constructor)
 
 + (instancetype)eventWithAction:(NSString *)action from:(NSString *)from to:(NSString *)to;
 + (instancetype)eventWithAction:(NSString *)action from:(NSString *)from to:(NSString *)to props:(NSDictionary<NSString *, id<NSCoding>> *)props;

@@ -5,9 +5,6 @@
       location = "group:../../../pods/NaverPapago/src/NaverPapago/NaverPapago.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../../../pods/LSExtensions/src/LSExtensions/LSExtensions.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:talktrans.xcodeproj">
    </FileRef>
    <FileRef

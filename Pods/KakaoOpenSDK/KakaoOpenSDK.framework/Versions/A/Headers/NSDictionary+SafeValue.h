@@ -15,6 +15,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "KOSession.h"
 
 @interface NSDictionary (SafeValue)
 
@@ -23,5 +24,6 @@
 - (NSNumber *)safeNumberForKey:(NSString *)key;
 - (NSNumber *)safeNumberForKey:(NSString *)key floatingPoint:(BOOL)floatingPoint;
 - (NSDictionary *)safeValueDictionary;
+- (KOOptionalBoolean)optionalBooleanForKey:(NSString *)key;
 
 @end

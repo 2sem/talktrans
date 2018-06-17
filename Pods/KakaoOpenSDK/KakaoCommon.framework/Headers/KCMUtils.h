@@ -28,4 +28,6 @@
 
 + (UIViewController *)topViewController;
 
++ (NSString *)stringFromDate:(NSDate *)date;
+
 @end

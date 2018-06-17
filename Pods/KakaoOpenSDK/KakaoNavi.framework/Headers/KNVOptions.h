@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 
 /*!
- @abstract 좌표타입 (모든 좌표 속성은 이 좌표타입으로 취급한다.)
+ @abstract KNVCoordType 좌표타입 (모든 좌표 속성은 이 좌표타입으로 취급한다.)
  @constant KNVCoordTypeKATEC KATEC 좌표계.
  @constant KNVCoordTypeWGS84 WGS84 좌표계.
  */
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, KNVCoordType) {
 };
 
 /*!
- @abstract 차종(1~7)
+ @abstract KNVVehicleType 차종(1~7)
  @constant KNVVehicleTypeFirst 1종(승용차/소형승합차/소형화물화)
  @constant KNVVehicleTypeSecond 2종(중형승합차/중형화물차)
  @constant KNVVehicleTypeThird 3종(대형승합차/2축 대형화물차)
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, KNVVehicleType) {
 };
 
 /*!
- @abstract 경로옵션
+ @abstract KNVRpOption 경로옵션
  @constant KNVRpOptionFast 빠른길
  @constant KNVRpOptionFree 무료도로
  @constant KNVRpOptionShortest 최단거리

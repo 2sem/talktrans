@@ -28,5 +28,6 @@
 #import <KakaoOpenSDK/KOSessionTask+TokenAPI.h>
 #import <KakaoOpenSDK/KOSessionTask+FriendAPI.h>
 #import <KakaoOpenSDK/KOSessionTask+AgeAuthAPI.h>
+#import <KakaoOpenSDK/KOSessionTask+AppFriendAPI.h>
 
-#define KAKAO_SDK_IOS_VERSION_STRING @"1.7.0"
+#define KAKAO_SDK_IOS_VERSION_STRING @"1.8.2"

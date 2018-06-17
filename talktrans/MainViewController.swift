@@ -111,9 +111,10 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     var alert : UIAlertController?;
 
     @IBAction func onRegnizeSpeech(_ button: UIButton) {
-        
+        button.isUserInteractionEnabled = false;
         guard let recognizer = SFSpeechRecognizer(locale: self.nativeLocale) else{
             print("device/locale does not support speech");
+            button.isUserInteractionEnabled = true;
             return;
         }
         
@@ -123,6 +124,9 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         SFSpeechRecognizer.requestAuthorization { (status) in
             defer{
                 UIApplication.offNetworking();
+                DispatchQueue.main.async{
+                    button.isUserInteractionEnabled = true;
+                }
             }
             
             var str = "";
@@ -276,6 +280,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                         self.share(["\(UIApplication.shared.urlForItunes.absoluteString)"]);
             },
                 UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil)]
+        self.nativeTextView.endEditing(false);
         self.showAlert(title: "App rating and recommendation".localized(), msg: String(format: "Please rate '%@' or recommend it to your friends.".localized(), name), actions: acts, style: .alert);
     }
     

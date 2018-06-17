@@ -11,7 +11,7 @@ target 'talktrans' do
   pod 'Firebase/AdMob'
   
   pod 'KakaoOpenSDK'
-  pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material'
   pod 'RxSwift', '~> 4.0'
@@ -23,7 +23,7 @@ target 'talktrans' do
     pod 'Firebase/Core'
     pod 'Firebase/AdMob'
     pod 'Material'#, '~> 2.6.3'
-    pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+    pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
     pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
 #    pod 'Material'
   end
