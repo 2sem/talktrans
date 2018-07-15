@@ -47,7 +47,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
     }
     
-    var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian"];
+    var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian", "th" : "Thai"];
     
     // MARK: Layout Constraints to toggle Admob Banner
     var constraint_topBanner_top : NSLayoutConstraint!;
@@ -147,7 +147,9 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                         return;
                     }
                     
-                    self.av.inputNode.installTap(onBus: 0, bufferSize: 1024, format: self.av.inputNode.outputFormat(forBus: 0), block: { (buffer, time) in
+                    self.av.inputNode.removeTap(onBus: 0);
+                    let recordingFormat = self.av.inputNode.outputFormat(forBus: 0);
+                    self.av.inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat, block: { (buffer, time) in
                         self.av_req.append(buffer);
                     })
                     self.av.prepare();

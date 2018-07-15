@@ -15,11 +15,10 @@
 		2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
 		2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
 		2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
-		2C0F9D3D2084AB9B00DFA455 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3C2084AB9B00DFA455 /* langs */; };
-		2C0F9D3E2084AB9B00DFA455 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3C2084AB9B00DFA455 /* langs */; };
 		2C119CD41F83DCFF007A383F /* Pods_talktrans_action.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE25005DB87C0FFF611000F7 /* Pods_talktrans_action.framework */; };
 		2C1272352085C4C1009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
 		2C1272362085C4C3009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
+		2C13A14B20FB688200E6C0E6 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C13A14A20FB688100E6C0E6 /* langs */; };
 		2C1425D91F7A564300BDF794 /* GADInterstialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D61F7A564300BDF794 /* GADInterstialManager.swift */; };
 		2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D71F7A564300BDF794 /* GADRewardManager.swift */; };
 		2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D81F7A564300BDF794 /* ReviewManager.swift */; };
@@ -108,8 +107,8 @@
 		2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePicker.swift; sourceTree = "<group>"; };
 		2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerCell.swift; sourceTree = "<group>"; };
 		2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLanguagePickerButton.swift; sourceTree = "<group>"; };
-		2C0F9D3C2084AB9B00DFA455 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = langs; path = ../../../../../../../Downloads/langs; sourceTree = "<group>"; };
 		2C1272332085BF06009AF35B /* NaverPapago.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NaverPapago.plist; sourceTree = "<group>"; };
+		2C13A14A20FB688100E6C0E6 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = langs; sourceTree = "<group>"; };
 		2C140A3C208218B900BD6A76 /* DataRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+.swift"; sourceTree = "<group>"; };
 		2C140A4920823C0C00BD6A76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C140A4B20823C0D00BD6A76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -358,7 +357,7 @@
 		2CFB6D6D1E25183400AA2285 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				2C0F9D3C2084AB9B00DFA455 /* langs */,
+				2C13A14A20FB688100E6C0E6 /* langs */,
 				2CFB6D6E1E25185D00AA2285 /* icon */,
 				2CD074561E9FAE7A0032CFCD /* Y2K.PNG */,
 				2C4445421E25C4FF005C9EE4 /* credif.png */,
@@ -588,9 +587,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C0F9D3D2084AB9B00DFA455 /* langs in Resources */,
 				2C4445451E25C518005C9EE4 /* icons8.png in Resources */,
 				2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */,
+				2C13A14B20FB688200E6C0E6 /* langs in Resources */,
 				2CF31DFB1E6421CF00992A7A /* fix_off_white@x32.png in Resources */,
 				2C5836621DFD1949004B28FF /* Localizable.strings in Resources */,
 				2C72897E1E011361000553F6 /* InfoPlist.strings in Resources */,
@@ -633,7 +632,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1272362085C4C3009AF35B /* NaverPapago.plist in Resources */,
-				2C0F9D3E2084AB9B00DFA455 /* langs in Resources */,
 				2C17939A2083822C00E7725F /* Localizable.strings in Resources */,
 				2C54C9E71F83C930005AFFE3 /* InfoPlist.strings in Resources */,
 				2CFF0C3A1E35F709004F9EF4 /* Assets.xcassets in Resources */,

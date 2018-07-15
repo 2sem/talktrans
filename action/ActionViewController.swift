@@ -57,7 +57,7 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
             return !UIDevice.current.model.hasPrefix("iPad");
         }
     }
-    var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian"];
+    var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian", "Thai" : "th"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
