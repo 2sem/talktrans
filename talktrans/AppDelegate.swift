@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
         adManager.delegate = self;
         adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60.0 * 4);
         adManager.canShowFirstTime = true;
+        
+        LSDefaults.increaseLaunchCount();
 
         return true
     }

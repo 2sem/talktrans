@@ -345,7 +345,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         self.topBannerView.rootViewController = self;
         
         var req = GADRequest();
-        //self.topBannerView.load(req);
+        self.topBannerView.load(req);
         
         //self.topBannerView.rotate(180);
         //self.topBannerView.rotate(180, anchor: CGPoint.init(x: 0, y: 0));

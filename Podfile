@@ -10,6 +10,9 @@ target 'talktrans' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
   pod 'KakaoOpenSDK'
   pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'GADManager', :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
