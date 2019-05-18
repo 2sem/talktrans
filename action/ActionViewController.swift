@@ -8,15 +8,13 @@
 
 import UIKit
 import MobileCoreServices
-import GoogleMobileAds
 import Material
 import LSExtensions
 import NaverPapago
 
-class ActionViewController: UIViewController, GADBannerViewDelegate {
+class ActionViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var bottomBannerView: GADBannerView!
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var nativeLabel: UILabel!
     @IBOutlet weak var transLabel: UILabel!
@@ -62,14 +60,6 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-//        var interstitial = GADInterstitial(adUnitID: self.bottomBannerView.adUnitID ?? "");
-        let req = GADRequest();
-        req.testDevices = ["5fb1f297b8eafe217348a756bdb2de56"];
-//        self.bottomBannerView.delegate = self;
-//        self.bottomBannerView.load(req);
-//        interstitial.load(req);
-
-        
 //        self.present(interstitial, animated: true, completion: nil);
         
 //        self.extensionContext!.open(URL(string: "http://www.daum.net")!, completionHandler: { (result) in
@@ -241,15 +231,6 @@ class ActionViewController: UIViewController, GADBannerViewDelegate {
     @IBAction func onShare(_ sender: UIBarButtonItem) {
         self.share([self.resultTextView.text], excludedActivities: [UIActivityType(rawValue: "com.credif.talktrans.action"),
                                                                     UIActivityType(rawValue: "com.credif.talktrans")]);
-    }
-
-    // MARK: GADBannerViewDelegate
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("ad loading has been completed");
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("ad loading has been failed. error[\(error)]");
     }
     
     @discardableResult

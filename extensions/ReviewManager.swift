@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import StoreKit
 
 protocol ReviewManagerDelegate : NSObjectProtocol{
     func reviewGetLastShowTime() -> Date;
@@ -87,7 +88,11 @@ class ReviewManager : NSObject{
         
         let name : String = UIApplication.shared.displayName ?? "";
         let acts = [UIAlertAction(title: String(format: "'%@' 평가".localized(), name), style: .default) { (act) in
-            
+                if #available(iOS 10.3, *) {
+                    SKStoreReviewController.requestReview();
+                } else {
+                    UIApplication.shared.openReview();
+                };
                 UIApplication.shared.openReview();
             }, UIAlertAction(title: String(format: "'%@' 추천".localized(), name), style: .default) { (act) in
                         //self.window.rootViewController?.share(["\(UIApplication.shared.urlForItunes.absoluteString)"]);

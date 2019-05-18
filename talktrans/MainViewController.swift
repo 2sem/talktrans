@@ -87,7 +87,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
         
         //Stores state of rotation of translated view
-        TTDefaults.isRotateFixed = button.isSelected;
+        LSDefaults.isRotateFixed = button.isSelected;
     }
     
     var languagePicker: LSLanguagePicker!;
@@ -256,6 +256,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                 case .success(let translated):
                     DispatchQueue.main.async {
                         self.transTextView.text = translated;
+                        AppDelegate.sharedGADManager?.show(unit: .full);
                     }
                     break;
                 case .error:
@@ -296,7 +297,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                 self?.transView.rotate(self?.isUpSideDown ?? false ? angle : -angle);
             })
             
-            TTDefaults.isUpsideDown = self.isUpSideDown;
+            LSDefaults.isUpsideDown = self.isUpSideDown;
         }
     }
     
@@ -344,24 +345,32 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         self.topBannerView.rootViewController = self;
         
         var req = GADRequest();
-        self.topBannerView.load(req);
+        //self.topBannerView.load(req);
         
-        self.topBannerView.rotate(180);
-        self.transView.rotate(180);
+        //self.topBannerView.rotate(180);
+        //self.topBannerView.rotate(180, anchor: CGPoint.init(x: 0, y: 0));
+        //self.transView.rotate(90);
+        self.transView.rotate(180, anchor: CGPoint.init(x: 0.5, y: 0.5));
+        
+        //let anchor = CGPoint.init(x: 0.5, y: 0.5);
+        //let radian = 90 / 180.0 * CGFloat(Double.pi);
+        //self.transView.layer.anchorPoint = anchor; //CGPoint(x: anchor.x * self.transView.frame.width, y: anchor.y * self.transView.frame.height);
+        //self.transView.transform = self.transView.transform.translatedBy(x: -anchor.x, y: 0);
+        //self.transView.transform = self.transView.transform.rotated(by: radian);
         
         self.bottomBannerView.loadUnitId(name: "BottomBanner");
         self.bottomBannerView.rootViewController = self;
         req = GADRequest();
         self.bottomBannerView.load(req);
         
-        if TTDefaults.isRotateFixed ?? false{
-            if TTDefaults.isUpsideDown ?? false{
-                self.isUpSideDown = TTDefaults.isUpsideDown ?? true;
+        if LSDefaults.isRotateFixed ?? false{
+            if LSDefaults.isUpsideDown ?? false{
+                self.isUpSideDown = LSDefaults.isUpsideDown ?? true;
             }
             
-            self.fixButton.isSelected = TTDefaults.isRotateFixed ?? false;
+            self.fixButton.isSelected = LSDefaults.isRotateFixed ?? false;
         }else{
-            TTDefaults.isUpsideDown = true;
+            LSDefaults.isUpsideDown = true;
         }
         
         /*let txtt = UITextField();

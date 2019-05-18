@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +14,6 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="MainViewController" customModule="talktrans" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +118,7 @@
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eoq-qB-f4C" userLabel="Trans Text View">
                                                         <rect key="frame" x="0.0" y="44" width="374" height="289"/>
-                                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -216,7 +211,7 @@
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-q7-XdU" userLabel="Native Text View">
                                                         <rect key="frame" x="0.0" y="54" width="374" height="279"/>
-                                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
@@ -258,7 +253,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-ln-kbF" customClass="RaisedButton" customModule="Material">
                                                 <rect key="frame" x="0.0" y="5" width="187" height="40"/>
-                                                <color key="backgroundColor" red="0.21960784310000001" green="0.21960784310000001" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Translate">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,7 +278,7 @@
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Speech Recognition">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -348,7 +343,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.32549019607843138" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pKj-VY-D7J" firstAttribute="trailing" secondItem="Qp3-24-uY1" secondAttribute="leading" id="0Id-Kn-nCu"/>
                             <constraint firstItem="gnn-lW-N5M" firstAttribute="top" secondItem="fn0-30-AZe" secondAttribute="top" id="1mZ-Eq-TEQ"/>
@@ -358,15 +353,16 @@
                             <constraint firstItem="mZf-en-3to" firstAttribute="bottom" secondItem="pKj-VY-D7J" secondAttribute="top" id="XvS-M3-7GZ"/>
                             <constraint firstItem="gnn-lW-N5M" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="Yvc-qR-QxS"/>
                             <constraint firstItem="fn0-30-AZe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="b54-aV-AbZ"/>
-                            <constraint firstItem="pKj-VY-D7J" firstAttribute="top" secondItem="wfy-db-euE" secondAttribute="top" identifier="BottomBanner_TOP" id="c98-g3-mWz"/>
+                            <constraint firstItem="pKj-VY-D7J" firstAttribute="top" secondItem="zxY-2u-9li" secondAttribute="bottom" identifier="BottomBanner_TOP" id="c98-g3-mWz"/>
                             <constraint firstItem="Qp3-24-uY1" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="cg5-uY-OUe"/>
                             <constraint firstItem="Qp3-24-uY1" firstAttribute="height" secondItem="pKj-VY-D7J" secondAttribute="height" id="dXV-4d-0Qv"/>
                             <constraint firstItem="fn0-30-AZe" firstAttribute="trailing" secondItem="gnn-lW-N5M" secondAttribute="leading" id="gyK-nk-zEk"/>
                             <constraint firstItem="mZf-en-3to" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lUc-eI-Mea"/>
                             <constraint firstItem="mZf-en-3to" firstAttribute="top" secondItem="fn0-30-AZe" secondAttribute="bottom" id="n7j-hE-WN9"/>
-                            <constraint firstItem="fn0-30-AZe" firstAttribute="bottom" secondItem="y3c-jy-aDJ" secondAttribute="bottom" identifier="TopBanner_BOTTOM" id="xYV-VP-rbr"/>
+                            <constraint firstItem="fn0-30-AZe" firstAttribute="bottom" secondItem="zxY-2u-9li" secondAttribute="top" identifier="TopBanner_BOTTOM" id="xYV-VP-rbr"/>
                             <constraint firstItem="gnn-lW-N5M" firstAttribute="height" secondItem="fn0-30-AZe" secondAttribute="height" id="xkN-U3-dme"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="zxY-2u-9li"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>

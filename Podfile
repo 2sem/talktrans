@@ -11,21 +11,19 @@ target 'talktrans' do
   pod 'Firebase/AdMob'
   
   pod 'KakaoOpenSDK'
-  pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  pod 'GADManager', :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
   pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
-  pod 'Material'
+  pod 'Material', '~> 2.16.4'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'Alamofire'
   #, :xcconfig => { 'APPLICATION_EXTENSION_API_ONLY' => 'FALSE' }
 
   target 'action' do
-    pod 'Firebase/Core'
-    pod 'Firebase/AdMob'
-    pod 'Material'#, '~> 2.6.3'
-    pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+    pod 'Material', '~> 2.16.4'
+    pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
     pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
-#    pod 'Material'
   end
   target 'talktransTests' do
     inherit! :search_paths
@@ -44,6 +42,8 @@ target 'talktrans' do
         #puts "capture #{Material}";
         #find target name of "LSExtensions" from targets in Pods
         LSExtensions = installer.pods_project.targets.find{ |t| t.name == "LSExtensions" }
+        #find target name of "GADManager" from targets in Pods
+        GADManager = installer.pods_project.targets.find{ |t| t.name == "GADManager" }
         #puts "capture #{LSExtensions}";
         NaverPapago = installer.pods_project.targets.find{ |t| t.name == "NaverPapago" }
         Motion = installer.pods_project.targets.find{ |t| t.name == "Motion" }
@@ -67,6 +67,11 @@ target 'talktrans' do
         Motion.build_configurations.each do |config|
             config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
             puts "off APPLICATION_EXTENSION_API_ONLY of #{Motion}";
+        end
+        
+        GADManager.build_configurations.each do |config|
+            config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+            puts "off APPLICATION_EXTENSION_API_ONLY of #{GADManager}";
         end
     end
 end

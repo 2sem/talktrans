@@ -19,10 +19,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "LSLanguagePickerButton.languagePicker(_:numberOfRowsInPart:):LSLanguagePickerButton.swift">
+         contextName = "NSError.getSiriError() -&gt; NSError?:NSError+.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.languages">
+               value = "self.userInfo[&quot;NSUnderlyingError&quot;] as? NSError">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -31,6 +31,14 @@
          <PersistentStrings>
             <PersistentString
                value = "!textView.text.isEmpty">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.viewDidLoad():MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.transView.layer.anchorPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -52,10 +60,10 @@
          contextName = "ActionViewController.nativeLocale.didset:ActionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.nativeLocale.identifier">
+               value = "&quot;\(lang)&quot;">
             </PersistentString>
             <PersistentString
-               value = "&quot;\(lang)&quot;">
+               value = "self.nativeLocale.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -145,10 +153,10 @@
          contextName = "NVAPIManager.requestTranslate(text : String, source : Locale, target : Locale, completionHandler : (Int, String?, NSError?) -&gt; ()?) -&gt; ():NVAPIManager.swift">
          <PersistentStrings>
             <PersistentString
-               value = "target.identifier">
+               value = "source.identifier">
             </PersistentString>
             <PersistentString
-               value = "source.identifier">
+               value = "target.identifier">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -170,13 +178,13 @@
          contextName = "ViewController.(viewDidLoad() -&gt; ()).(closure #2):ViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self.nativeLocale.languageCode != &quot;ko&quot;">
+            </PersistentString>
+            <PersistentString
                value = "self.nativeLocale.identifier.hasPrefix(key)">
             </PersistentString>
             <PersistentString
                value = "key == &quot;ko-Kore&quot;">
-            </PersistentString>
-            <PersistentString
-               value = "self.nativeLocale.languageCode != &quot;ko&quot;">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -201,10 +209,10 @@
                value = "self.nativeLocale.variantCode">
             </PersistentString>
             <PersistentString
-               value = "self.nativeLocale.regionCode">
+               value = "self.nativeLocale.scriptCode">
             </PersistentString>
             <PersistentString
-               value = "self.nativeLocale.scriptCode">
+               value = "self.nativeLocale.regionCode">
             </PersistentString>
             <PersistentString
                value = "self.nativeLocale.languageCode">
@@ -262,10 +270,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NSError.getSiriError() -&gt; NSError?:NSError+.swift">
+         contextName = "LSLanguagePickerButton.languagePicker(_:numberOfRowsInPart:):LSLanguagePickerButton.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.userInfo[&quot;NSUnderlyingError&quot;] as? NSError">
+               value = "self.languages">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
