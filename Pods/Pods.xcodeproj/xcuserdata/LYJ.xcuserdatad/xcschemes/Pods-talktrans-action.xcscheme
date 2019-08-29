@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E1551618A526E87344EBCCEBF8DD329"
+               BlueprintIdentifier = "3D173EA88C516351DB1B5AEBEA5C35BE"
                BuildableName = "Pods_talktrans_action.framework"
                BlueprintName = "Pods-talktrans-action"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4E1551618A526E87344EBCCEBF8DD329"
+            BlueprintIdentifier = "3D173EA88C516351DB1B5AEBEA5C35BE"
             BuildableName = "Pods_talktrans_action.framework"
             BlueprintName = "Pods-talktrans-action"
             ReferencedContainer = "container:Pods.xcodeproj">

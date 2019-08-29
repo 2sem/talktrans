@@ -18,7 +18,7 @@ class LSLanguagePickerButton: UIButton, LSLanguagePickerDataSource, LSLanguagePi
     var languages : [String] = [];
     var language : String?{
         didSet{
-            let image = self.language != nil ? self.getImage(self.language!) : nil;
+            let image = self.getImage(self.language?.lowercased() ?? "");
             self.setImage(image, for: .normal);
         }
     }

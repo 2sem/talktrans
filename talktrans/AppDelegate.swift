@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
     static var sharedGADManager : GADManager<GADUnitName>?;
     var rewardAd : GADRewardManager?;
     var reviewManager : ReviewManager?;
-    let reviewInterval = 10;
+    let reviewInterval = 30;
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -39,7 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
         var adManager = GADManager<GADUnitName>.init(self.window!);
         AppDelegate.sharedGADManager = adManager;
         adManager.delegate = self;
-        adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60.0 * 4);
+        #if DEBUG
+        adManager.prepare(interstitialUnit: .full, interval: 60.0);
+        #else
+        adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60.0 * 6);
+        #endif
         adManager.canShowFirstTime = true;
         
         LSDefaults.increaseLaunchCount();
@@ -67,10 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
             return;
         }
         
-        guard self.reviewManager?.canShow ?? false else{
+        /*guard self.reviewManager?.canShow ?? false else{
             return;
         }
-        self.reviewManager?.show();
+        self.reviewManager?.show();*/
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -158,6 +162,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
 
 extension AppDelegate : GADManagerDelegate{
     func GAD<GADUnitName>(manager: GADManager<GADUnitName>, lastShownTimeForUnit unit: GADUnitName) -> Date{
+        let now = Date();
+        if LSDefaults.LastFullADShown > now{
+            LSDefaults.LastFullADShown = now;
+        }
+        
         return LSDefaults.LastFullADShown;
         //Calendar.current.component(<#T##component: Calendar.Component##Calendar.Component#>, from: <#T##Date#>)
     }

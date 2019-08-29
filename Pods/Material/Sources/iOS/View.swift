@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -154,11 +154,6 @@ open class View: UIView {
     contentsGravityPreset = .resizeAspectFill
     super.init(frame: frame)
     prepare()
-  }
-  
-  /// Convenience initializer.
-  public convenience init() {
-    self.init(frame: .zero)
   }
   
   open override func layoutSubviews() {

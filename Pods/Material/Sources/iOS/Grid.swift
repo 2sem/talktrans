@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -187,6 +187,16 @@ public struct Grid {
   public mutating func commit() {
     isDeferred = false
     reload()
+  }
+  
+  /**
+   Update grid in a deferred block.
+   - Parameter _ block: An update code block.
+   */
+  public mutating func update(_ block: (Grid) -> Void) {
+    begin()
+    block(self)
+    commit()
   }
   
   /// Reload the button layout.

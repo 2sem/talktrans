@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,26 +32,40 @@ import UIKit
 
 @objc(ColorPalette)
 public protocol ColorPalette {
+  /// Material color code: 50
   static var lighten5: UIColor { get }
+  /// Material color code: 100
   static var lighten4: UIColor { get }
+  /// Material color code: 200
   static var lighten3: UIColor { get }
+  /// Material color code: 300
   static var lighten2: UIColor { get }
+  /// Material color code: 400
   static var lighten1: UIColor { get }
+  /// Material color code: 500
   static var base: UIColor { get }
+  /// Material color code: 600
   static var darken1: UIColor { get }
+  /// Material color code: 700
   static var darken2: UIColor { get }
+  /// Material color code: 800
   static var darken3: UIColor { get }
+  /// Material color code: 900
   static var darken4: UIColor { get }
   
+  /// Material color code: A100
   @objc
   optional static var accent1: UIColor { get }
   
+  /// Material color code: A200
   @objc
   optional static var accent2: UIColor { get }
   
+  /// Material color code: A400
   @objc
   optional static var accent3: UIColor { get }
   
+  /// Material color code: A700
   @objc
   optional static var accent4: UIColor { get }
 }

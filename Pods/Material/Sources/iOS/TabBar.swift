@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -183,13 +183,13 @@ public protocol TabBarDelegate {
 @objc(_TabBarDelegate)
 internal protocol _TabBarDelegate {
   /**
-   A delegation method that is executed when the tabItem will trigger the
-   animation to the next tab.
+   A delegation method that is executed to determine if the TabBar should
+   transition to the next tab.
    - Parameter tabBar: A TabBar.
    - Parameter tabItem: A TabItem.
+   - Returns: A Boolean.
    */
-  @objc
-  optional func _tabBar(tabBar: TabBar, willSelect tabItem: TabItem)
+  func _tabBar(tabBar: TabBar, shouldSelect tabItem: TabItem) -> Bool
 }
 
 @objc(TabBarStyle)
@@ -197,6 +197,18 @@ public enum TabBarStyle: Int {
   case auto
   case nonScrollable
   case scrollable
+}
+
+public enum TabBarCenteringStyle {
+  case never
+  case auto
+  case always
+}
+
+public enum TabBarLineStyle {
+  case auto
+  case fixed(CGFloat)
+  case custom((TabItem) -> CGFloat)
 }
 
 open class TabBar: Bar {
@@ -229,6 +241,20 @@ open class TabBar: Bar {
       layoutSubviews()
     }
   }
+
+  /// An enum that determines the tab bar centering style.
+  open var tabBarCenteringStyle = TabBarCenteringStyle.always {
+    didSet {
+      layoutSubviews()
+    }
+  }
+  
+  /// An enum that determines the tab bar items style.
+  open var tabBarLineStyle = TabBarLineStyle.auto {
+    didSet {
+      layoutSubviews()
+    }
+  }
   
   /// A reference to the scroll view when the tab bar style is scrollable.
   open let scrollView = UIScrollView()
@@ -249,10 +275,8 @@ open class TabBar: Bar {
   
   /// The currently selected tabItem.
   open internal(set) var selectedTabItem: TabItem? {
-    willSet {
-      selectedTabItem?.isSelected = false
-    }
     didSet {
+      oldValue?.isSelected = false
       selectedTabItem?.isSelected = true
     }
   }
@@ -475,15 +499,37 @@ fileprivate extension TabBar {
     }
     
     guard shouldNotAnimateLineView else {
+      let f = lineFrame(for: v, forMotion: true)
       line.animate(.duration(0),
-                   .size(width: v.bounds.width, height: lineHeight),
-                   .position(x: v.center.x, y: .bottom == lineAlignment ? scrollView.bounds.height - lineHeight / 2 : lineHeight / 2))
+                   .size(f.size),
+                   .position(f.origin))
       return
     }
     
-    line.frame = CGRect(x: v.frame.origin.x, y: .bottom == lineAlignment ? scrollView.bounds.height - lineHeight : 0, width: v.bounds.width, height: lineHeight)
+    line.frame = lineFrame(for: v)
     
     shouldNotAnimateLineView = false
+  }
+  
+  func lineFrame(for tabItem: TabItem, forMotion: Bool = false) -> CGRect {
+    let y = .bottom == lineAlignment ? scrollView.bounds.height - (forMotion ? lineHeight / 2 : lineHeight) : (forMotion ? lineHeight / 2 : 0)
+    
+    let w: CGFloat = {
+      switch tabBarLineStyle {
+      case .auto:
+        return tabItem.bounds.width
+        
+      case .fixed(let w):
+        return w
+        
+      case .custom(let closure):
+        return closure(tabItem)
+      }
+    }()
+    
+    let x = forMotion ? tabItem.center.x : (tabItem.frame.origin.x + (tabItem.bounds.width - w) / 2)
+    
+    return CGRect(x: x, y: y, width: w, height: lineHeight)
   }
 }
 
@@ -546,6 +592,10 @@ fileprivate extension TabBar {
       return
     }
     
+    guard !(false == _delegate?._tabBar(tabBar: self, shouldSelect: tabItem)) else {
+      return
+    }
+    
     animate(to: tabItem, isTriggeredByUserInteraction: true)
   }
 }
@@ -592,25 +642,26 @@ fileprivate extension TabBar {
    */
   func animate(to tabItem: TabItem, isTriggeredByUserInteraction: Bool, completion: ((TabItem) -> Void)? = nil) {
     if isTriggeredByUserInteraction {
-      _delegate?._tabBar?(tabBar: self, willSelect: tabItem)
       delegate?.tabBar?(tabBar: self, willSelect: tabItem)
     }
     
     selectedTabItem = tabItem
     
+    let f = lineFrame(for: tabItem, forMotion: true)
+    
     line.animate(.duration(0.25),
-                 .size(width: tabItem.bounds.width, height: lineHeight),
-                 .position(x: tabItem.center.x, y: .bottom == lineAlignment ? scrollView.bounds.height - lineHeight / 2 : lineHeight / 2),
+                 .size(f.size),
+                 .position(f.origin),
                  .completion({ [weak self, isTriggeredByUserInteraction = isTriggeredByUserInteraction, tabItem = tabItem, completion = completion] in
-                  guard let s = self else {
-                    return
-                  }
+                    guard let `self` = self else {
+                      return
+                    }
                   
-                  if isTriggeredByUserInteraction {
-                    s.delegate?.tabBar?(tabBar: s, didSelect: tabItem)
-                  }
-                  
-                  completion?(tabItem)
+                    if isTriggeredByUserInteraction {
+                      self.delegate?.tabBar?(tabBar: self, didSelect: tabItem)
+                    }
+    
+                    completion?(tabItem)
                  }))
     
     updateScrollView()
@@ -624,9 +675,31 @@ fileprivate extension TabBar {
       return
     }
     
-    if !scrollView.bounds.contains(v.frame) {
-      let contentOffsetX = (v.frame.origin.x < scrollView.bounds.minX) ? v.frame.origin.x : v.frame.maxX - scrollView.bounds.width
-      let normalizedOffsetX = min(max(contentOffsetX, 0), scrollView.contentSize.width - scrollView.bounds.width)
+    let contentOffsetX: CGFloat? = {
+      let shouldScroll = !scrollView.bounds.contains(v.frame)
+      
+      switch tabBarCenteringStyle {
+      case .auto:
+        guard shouldScroll else {
+          return nil
+        }
+        
+        fallthrough
+        
+      case .always:
+        return v.center.x - bounds.width / 2
+      
+      case .never:
+        guard shouldScroll else {
+          return nil
+        }
+      
+        return v.frame.origin.x < scrollView.bounds.minX ? v.frame.origin.x : v.frame.maxX - scrollView.bounds.width
+      }
+    }()
+    
+    if let x = contentOffsetX {
+      let normalizedOffsetX = min(max(x, 0), scrollView.contentSize.width - scrollView.bounds.width)
       scrollView.setContentOffset(CGPoint(x: normalizedOffsetX, y: 0), animated: true)
     }
   }

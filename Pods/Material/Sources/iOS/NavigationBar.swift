@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -118,11 +118,6 @@ open class NavigationBar: UINavigationBar {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     prepare()
-  }
-  
-  /// A convenience initializer.
-  public convenience init() {
-    self.init(frame: .zero)
   }
   
   open override func sizeThatFits(_ size: CGSize) -> CGSize {

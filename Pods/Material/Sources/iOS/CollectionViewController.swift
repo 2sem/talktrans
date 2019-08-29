@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,38 +51,19 @@ extension UIViewController {
   }
 }
 
-open class CollectionViewController: UIViewController {
+open class CollectionViewController: ViewController {
   /// A reference to a Reminder.
   open let collectionView = CollectionView()
   
   open var dataSourceItems = [DataSourceItem]()
   
-  open override func viewDidLoad() {
-    super.viewDidLoad()
-    prepare()
-  }
-  
-  open override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    layoutSubviews()
-  }
-  
-  /**
-   Prepares the view instance when intialized. When subclassing,
-   it is recommended to override the prepareView method
-   to initialize property values and other setup operations.
-   The super.prepareView method should always be called immediately
-   when subclassing.
-   */
-  open func prepare() {
-    view.clipsToBounds = true
-    view.backgroundColor = .white
-    view.contentScaleFactor = Screen.scale
+  open override func prepare() {
+    super.prepare()
     prepareCollectionView()
   }
   
-  /// Calls the layout functions for the view heirarchy.
-  open func layoutSubviews() {
+  open override func layoutSubviews() {
+    super.layoutSubviews()
     layoutCollectionView()
   }
 }

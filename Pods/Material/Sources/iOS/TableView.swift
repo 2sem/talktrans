@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,11 +51,6 @@ open class TableView: UITableView {
    */
   public convenience init(frame: CGRect) {
     self.init(frame: frame, style: .plain)
-  }
-  
-  /// A convenience initializer that initializes the object.
-  public convenience init() {
-    self.init(frame: .zero)
   }
   
   /**

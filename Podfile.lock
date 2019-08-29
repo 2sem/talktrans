@@ -1,68 +1,117 @@
 PODS:
-  - Alamofire (4.7.2)
-  - Firebase/AdMob (5.2.0):
-    - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.31.0)
-  - Firebase/Core (5.2.0):
+  - Alamofire (4.7.3)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
+  - Firebase/AdMob (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.2.0):
-    - FirebaseCore (= 5.0.3)
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - Google-Mobile-Ads-SDK (~> 7.48)
+  - Firebase/Core (6.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.1.1)
+  - Firebase/CoreOnly (6.7.0):
+    - FirebaseCore (= 6.2.1)
+  - FirebaseAnalytics (6.1.1):
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.3):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.1.0):
-    - FirebaseCore (~> 5.0)
-  - Google-Mobile-Ads-SDK (7.31.0)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - KakaoOpenSDK (1.8.2):
-    - KakaoOpenSDK/KakaoCommon (= 1.8.2)
-    - KakaoOpenSDK/KakaoLink (= 1.8.2)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.8.2)
-    - KakaoOpenSDK/KakaoNavi (= 1.8.2)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.8.2)
-    - KakaoOpenSDK/KakaoS2 (= 1.8.2)
-  - KakaoOpenSDK/KakaoCommon (1.8.2)
-  - KakaoOpenSDK/KakaoLink (1.8.2):
+  - FirebaseCore (6.2.1):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - GADManager (1.0.2):
+    - Firebase/AdMob
+  - Google-Mobile-Ads-SDK (7.49.0):
+    - GoogleAppMeasurement (~> 6.0)
+  - GoogleAppMeasurement (6.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleDataTransport (1.1.2)
+  - GoogleDataTransportCCTSupport (1.0.2):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.5):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.5):
+    - GoogleUtilities/Logger
+  - KakaoOpenSDK (1.14.1):
+    - KakaoOpenSDK/KakaoCommon (= 1.14.1)
+    - KakaoOpenSDK/KakaoLink (= 1.14.1)
+    - KakaoOpenSDK/KakaoMessageTemplate (= 1.14.1)
+    - KakaoOpenSDK/KakaoNavi (= 1.14.1)
+    - KakaoOpenSDK/KakaoOpenSDK (= 1.14.1)
+    - KakaoOpenSDK/KakaoS2 (= 1.14.1)
+  - KakaoOpenSDK/KakaoCommon (1.14.1)
+  - KakaoOpenSDK/KakaoLink (1.14.1):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.8.2)
-  - KakaoOpenSDK/KakaoNavi (1.8.2):
+  - KakaoOpenSDK/KakaoMessageTemplate (1.14.1)
+  - KakaoOpenSDK/KakaoNavi (1.14.1):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.8.2)
-  - KakaoOpenSDK/KakaoS2 (1.8.2):
+  - KakaoOpenSDK/KakaoOpenSDK (1.14.1)
+  - KakaoOpenSDK/KakaoS2 (1.14.1):
     - KakaoOpenSDK/KakaoCommon
-  - LSExtensions (0.0.7)
-  - Material (2.15.0):
-    - Material/Core (= 2.15.0)
-  - Material/Core (2.15.0):
-    - Motion (~> 1.3.0)
-  - Motion (1.3.5):
-    - Motion/Core (= 1.3.5)
-  - Motion/Core (1.3.5)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
+  - LSExtensions (0.1.8)
+  - Material (2.16.4):
+    - Material/Core (= 2.16.4)
+  - Material/Core (2.16.4):
+    - Motion (~> 1.4.3)
+  - Motion (1.4.3):
+    - Motion/Core (= 1.4.3)
+  - Motion/Core (1.4.3)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
   - NaverPapago (0.0.1):
     - Alamofire (~> 4.7.2)
-  - RxCocoa (4.2.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.2.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Crashlytics
+  - Fabric
   - Firebase/AdMob
   - Firebase/Core
+  - GADManager (from `~/Projects/leesam/pods/GADManager/src/GADManager`)
   - KakaoOpenSDK
-  - LSExtensions
-  - Material
+  - LSExtensions (from `~/Projects/leesam/pods/LSExtensions/src/LSExtensions`)
+  - Material (~> 2.16.4)
   - NaverPapago (from `~/Projects/leesam/pods/NaverPapago/src/NaverPapago`)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
@@ -70,14 +119,20 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - Google-Mobile-Ads-SDK
-    - GoogleToolboxForMac
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
     - KakaoOpenSDK
-    - LSExtensions
     - Material
     - Motion
     - nanopb
@@ -85,26 +140,38 @@ SPEC REPOS:
     - RxSwift
 
 EXTERNAL SOURCES:
+  GADManager:
+    :path: "~/Projects/leesam/pods/GADManager/src/GADManager"
+  LSExtensions:
+    :path: "~/Projects/leesam/pods/LSExtensions/src/LSExtensions"
   NaverPapago:
     :path: "~/Projects/leesam/pods/NaverPapago/src/NaverPapago"
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  Firebase: 25ed0412036d7d008568d1fb4d2e9d81ea8a0a2c
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: a3c87242451633fff8490183898075ce77d168d2
-  FirebaseInstanceID: 05d779cbb97bd5bd5c51a38a903fc9cfe1b2454a
-  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  KakaoOpenSDK: c09b1291ef293e2ef3faced8ca14b1d1c077bd96
-  LSExtensions: 06c2c8489dfd399f860241a693448a5322840fb5
-  Material: 00e32bb5e61b3f749044897b2d93acd8bf33faa4
-  Motion: 9f74d115d7f72bb5380a8e3cde2f8a1fc898ac36
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  NaverPapago: bfa6bd15cca712f8f8c367d692302b691a16d835
-  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
+  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
+  FirebaseCore: 32b48f41c84a56fbde73b35ed01a830b3b6dc048
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  GADManager: e95c4847d9b19f03f39b316d896dbe02112c3d04
+  Google-Mobile-Ads-SDK: df315e371b29cf935f7ea872e7bdec39462a100e
+  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
+  GoogleDataTransport: 9c3d63ed82f882a9a74d4be67dd7ad01bf046102
+  GoogleDataTransportCCTSupport: 6b545f7149111180763dc18c6f372c963de4a310
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  KakaoOpenSDK: 8f26484fee731781441561b7bb7e8a5739188b95
+  LSExtensions: 9f3ee7a569c941bae71f0c055877cd2d890ca488
+  Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
+  Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NaverPapago: c8853fb6c90304482f4ea2729e7b0819c9e48556
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
 
-PODFILE CHECKSUM: c6431f76fe77a0871a7ec9ab4048224704237b1b
+PODFILE CHECKSUM: 9876192990bd20d91807c014833413f3d29a7eb7
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.7.5

@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../../pods/GADManager/src/GADManager/GADManager.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../../../pods/NaverPapago/src/NaverPapago/NaverPapago.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:talktrans.xcodeproj">
    </FileRef>
    <FileRef

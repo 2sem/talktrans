@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  talktrans
+
+  Created by 영준 이 on 2016. 12. 11..
+  Copyright © 2016년 leesam. All rights reserved.
+*/
+
+Korean="Koreanisch";
+English="Englisch";
+Chinese="Chinesisch";
+Japanese="japanisch";
+Taiwanese="Taiwanese";
+Spanish="Spanisch";
+Vietnamese="Vietnamesisch";
+Thai="Thai";
+Indonesian="Indonesisch";
+French="Französisch";
+German="Deutsche";
+Russian="Russisch";
+Italian="Italienisch";
+Cancel="Stornieren";
+OK="OK";
+Done="Erledigt";
+Error="Error";
+"Please allow Recording"="Bitte erlauben Sie die Aufnahme";
+"Enable Microphone to input your sentence from your voice"="Aktivieren Sie Mikrofon, um Ihren Satz von Ihrer Stimme einzugeben";
+Settings="die Einstellungen";
+Translate="Übersetzen";
+"Recognizing..."="Erkennen ...";
+"Please say sentence to be recognized"="Bitte sagen Sie den anzuerkennenden Satz";
+"Turn on cellular data or use Wi-Fi to access data"="Schalten Sie Mobilfunkdaten ein oder verwenden Sie Wi-Fi, um auf Daten zuzugreifen";
+"It is not supported to translate %@ to %@"="Die Übersetzung von %@ nach %@ wird nicht unterstützt.";
+"Could not connect to Siri"="Verbindung zu Siri konnte nicht hergestellt werden";
+"Could not connect to Translator"="Verbindung zum Übersetzer konnte nicht hergestellt werden";
+"Select Native Language"="Wählen Sie Muttersprache";
+"Current: %@"="Strom: %@";
+"Select Language to Translate"="Wählen Sie die zu übersetzende Sprache";
+"Please input your message to be translated as %@"="Bitte geben Sie Ihre Nachricht ein, die als %@ übersetzt werden soll.";
+"Translated message will appear here"="Die übersetzte Nachricht wird hier angezeigt";
+"App rating and recommendation"="App Bewertung und Empfehlung";
+"Review '%@'"="Rezension '%@'";
+"Recommend '%@'"="'%@' Empfehlen";
+"Please rate '%@' or recommend it to your friends."="Bitte bewerten Sie '%@' oder empfehlen Sie es Ihren Freunden.";
+
+

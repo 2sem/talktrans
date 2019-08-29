@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - 2017, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
+ * Copyright (C) 2015 - 2018, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -140,6 +140,13 @@ extension FABMenuItem {
 @objc(FABMenuDelegate)
 public protocol FABMenuDelegate {
   /**
+   A delegation method that is executed to determine whether fabMenu should open.
+   - Parameter fabMenu: A FABMenu.
+   */
+  @objc
+  optional func fabMenuShouldOpen(fabMenu: FABMenu) -> Bool
+  
+  /**
    A delegation method that is execited when the fabMenu will open.
    - Parameter fabMenu: A FABMenu.
    */
@@ -152,6 +159,13 @@ public protocol FABMenuDelegate {
    */
   @objc
   optional func fabMenuDidOpen(fabMenu: FABMenu)
+  
+  /**
+   A delegation method that is executed to determine whether fabMenu should close.
+   - Parameter fabMenu: A FABMenu.
+   */
+  @objc
+  optional func fabMenuShouldClose(fabMenu: FABMenu) -> Bool
   
   /**
    A delegation method that is execited when the fabMenu will close.
@@ -186,7 +200,7 @@ open class FABMenu: View {
   
   
   /// A reference to the SpringAnimation object.
-  internal let spring = SpringAnimation()
+  let spring = SpringAnimation()
   
   open var fabMenuDirection: FABMenuDirection {
     get {
@@ -358,6 +372,11 @@ extension FABMenu {
    - Parameter completion: A completion block to execute on each view's animation.
    */
   open func open(isTriggeredByUserInteraction: Bool, duration: TimeInterval = 0.15, delay: TimeInterval = 0, usingSpringWithDamping: CGFloat = 0.5, initialSpringVelocity: CGFloat = 0, options: UIViewAnimationOptions = [], animations: ((UIView) -> Void)? = nil, completion: ((UIView) -> Void)? = nil) {
+    
+    if isTriggeredByUserInteraction && false == delegate?.fabMenuShouldOpen?(fabMenu: self) {
+      return
+    }
+    
     handleOpenCallback?()
     
     if isTriggeredByUserInteraction {
@@ -407,6 +426,11 @@ extension FABMenu {
    - Parameter completion: A completion block to execute on each view's animation.
    */
   open func close(isTriggeredByUserInteraction: Bool, duration: TimeInterval = 0.15, delay: TimeInterval = 0, usingSpringWithDamping: CGFloat = 0.5, initialSpringVelocity: CGFloat = 0, options: UIViewAnimationOptions = [], animations: ((UIView) -> Void)? = nil, completion: ((UIView) -> Void)? = nil) {
+    
+    if isTriggeredByUserInteraction && false == delegate?.fabMenuShouldClose?(fabMenu: self) {
+      return
+    }
+    
     handleCloseCallback?()
     
     if isTriggeredByUserInteraction {

@@ -47,7 +47,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
     }
     
-    var supportedLangs = ["ko-Kore" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "es" : "Spanish", "fr" : "French", "vi" : "Vietnamese", "id" : "Indonesian", "th" : "Thai"];
+    var supportedLangs = ["ko" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "vi" : "Vietnamese", "id" : "Indonesian", "th" : "Thai", "de" : "German", "ru" : "Russian", "es" : "Spanish", "it" : "Italian", "fr" : "French"];
     
     // MARK: Layout Constraints to toggle Admob Banner
     var constraint_topBanner_top : NSLayoutConstraint!;
@@ -101,8 +101,11 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     
     @IBOutlet weak var selectTransLangButton: UIButton!
     @IBAction func onTransLang(_ button: UIButton) {
-        self.transButton.languages = [String].init(self.supportedLangs.values);
-        self.transButton.showPicker();
+        
+        //self.transButton.languages = [String].init(self.supportedLangs.values);
+        self.transButton?.languages = NaverPapago.supportedTargetLangs(source: self.nativeLocale)
+            .compactMap{ self.supportedLangs[$0.rawValue] }
+        self.transButton?.showPicker();
     }
     
     var av : AVAudioEngine = AVAudioEngine();
@@ -256,7 +259,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                 case .success(let translated):
                     DispatchQueue.main.async {
                         self.transTextView.text = translated;
-                        AppDelegate.sharedGADManager?.show(unit: .full);
                     }
                     break;
                 case .error:
@@ -480,6 +482,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     func fixTransLang(){
+        self.needFix = false;
         guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
             self.updateNativeInputMessage();
             return;
@@ -493,6 +496,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     }
     
     func fixNativeLang(){
+        self.needFix = false;
         guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
 //            self.updateTransMessage();
             return;
@@ -521,11 +525,14 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
     func languagePicker(_ picker: LSLanguagePickerButton, didFinishPickingLanguage language: String) {
         let lang = self.getLang(byLangName: language);
         
+        self.needFix = true;
         if picker === self.nativeButton{
             self.nativeLocale = Locale(identifier: lang?.key ?? "");
         }else{
             self.transLocale = Locale(identifier: lang?.key ?? "");
         }
+        
+        AppDelegate.sharedGADManager?.show(unit: .full);
     }
     
     // MARK: GADBannerViewDelegate
