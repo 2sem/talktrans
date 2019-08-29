@@ -1,6 +1,0 @@
-framework module Pods_talktransTests {
-  umbrella header "Pods-talktransTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
