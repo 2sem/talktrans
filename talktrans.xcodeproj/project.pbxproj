@@ -10,25 +10,19 @@
 		2C0065281E37577D00E404F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C0065271E37577C00E404F7 /* Settings.bundle */; };
 		2C059CE01E00CFF00089DD84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C76627C1DF1003500A2C38C /* Main.storyboard */; };
 		2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
-		2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
 		2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
-		2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D35208484BC00DFA455 /* LSLanguagePickerCell.swift */; };
 		2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
-		2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3920849AAC00DFA455 /* LSLanguagePickerButton.swift */; };
 		2C1272352085C4C1009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
-		2C1272362085C4C3009AF35B /* NaverPapago.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1272332085BF06009AF35B /* NaverPapago.plist */; };
 		2C13A14B20FB688200E6C0E6 /* langs in Resources */ = {isa = PBXBuildFile; fileRef = 2C13A14A20FB688100E6C0E6 /* langs */; };
 		2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D71F7A564300BDF794 /* GADRewardManager.swift */; };
 		2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1425D81F7A564300BDF794 /* ReviewManager.swift */; };
 		2C155FA31F839F7E008AAD3F /* LSDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C155FA21F839F7E008AAD3F /* LSDefaults.swift */; };
 		2C155FA51F83A66E008AAD3F /* UIApplication+KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C155FA41F83A66E008AAD3F /* UIApplication+KakaoLink.swift */; };
-		2C17939A2083822C00E7725F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5836641DFD1949004B28FF /* Localizable.strings */; };
 		2C1932751E9E595E0056262C /* GADInterstitial+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1932741E9E595E0056262C /* GADInterstitial+.swift */; };
 		2C4445431E25C4FF005C9EE4 /* credif.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4445421E25C4FF005C9EE4 /* credif.png */; };
 		2C4445451E25C518005C9EE4 /* icons8.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4445441E25C518005C9EE4 /* icons8.png */; };
 		2C4445471E25E8D0005C9EE4 /* pin_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4445461E25E8D0005C9EE4 /* pin_off.png */; };
 		2C4445491E25E8E0005C9EE4 /* pin_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C4445481E25E8E0005C9EE4 /* pin_on.png */; };
-		2C54C9E71F83C930005AFFE3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C7289801E011361000553F6 /* InfoPlist.strings */; };
 		2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58365C1DFD0840004B28FF /* GADBannerView+.swift */; };
 		2C5836621DFD1949004B28FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5836641DFD1949004B28FF /* Localizable.strings */; };
 		2C5A6CEA228F978B00F80205 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C5A6CE9228F978B00F80205 /* GoogleService-Info.plist */; };
@@ -50,15 +44,9 @@
 		2CFB6D741E2519BB00AA2285 /* swap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D731E2519BB00AA2285 /* swap.png */; };
 		2CFB6D761E251A2900AA2285 /* rotate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D751E251A2900AA2285 /* rotate_left.png */; };
 		2CFB6D781E251A5700AA2285 /* rotate_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D771E251A5700AA2285 /* rotate_right.png */; };
-		2CFF0C2E1E35F160004F9EF4 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF0C2D1E35F160004F9EF4 /* ActionViewController.swift */; };
-		2CFF0C311E35F160004F9EF4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFF0C2F1E35F160004F9EF4 /* MainInterface.storyboard */; };
-		2CFF0C351E35F160004F9EF4 /* action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2CFF0C2B1E35F160004F9EF4 /* action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2CFF0C3A1E35F709004F9EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7662821DF1003500A2C38C /* Assets.xcassets */; };
-		2CFF0C481E3614CF004F9EF4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CFF0C471E3614CF004F9EF4 /* GoogleService-Info.plist */; };
 		2E0B9A4818A1EBFA5D74C0D3 /* Pods_talktrans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8DC9F6D096D853161CDCA5 /* Pods_talktrans.framework */; };
 		377893159078DDD1EE5DB1DB /* Pods_talktransTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD26230AD72D90AA378D60E3 /* Pods_talktransTests.framework */; };
 		8DFF1CB23F66884EF2ADE578 /* Pods_talktransUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F264F856C43861B97A2634 /* Pods_talktransUITests.framework */; };
-		F0CEDEF3E7AD3EF4DF16F960 /* Pods_talktrans_action.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93AA14AD73C9A34A771E31CF /* Pods_talktrans_action.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,13 +64,6 @@
 			remoteGlobalIDString = 2C7662741DF1003500A2C38C;
 			remoteInfo = talktrans;
 		};
-		2CFF0C331E35F160004F9EF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C76626D1DF1003500A2C38C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CFF0C2A1E35F160004F9EF4;
-			remoteInfo = action;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,7 +73,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2CFF0C351E35F160004F9EF4 /* action.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +181,6 @@
 		2CFF0C1A1E35E3AC004F9EF4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		2CFF0C1D1E35E3AC004F9EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		2CFF0C1F1E35E3AC004F9EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CFF0C2B1E35F160004F9EF4 /* action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = action.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CFF0C2D1E35F160004F9EF4 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		2CFF0C301E35F160004F9EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		2CFF0C321E35F160004F9EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -246,14 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFF1CB23F66884EF2ADE578 /* Pods_talktransUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CFF0C281E35F160004F9EF4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0CEDEF3E7AD3EF4DF16F960 /* Pods_talktrans_action.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +292,6 @@
 				2C7662751DF1003500A2C38C /* talktrans.app */,
 				2C76628C1DF1003500A2C38C /* talktransTests.xctest */,
 				2C7662971DF1003500A2C38C /* talktransUITests.xctest */,
-				2CFF0C2B1E35F160004F9EF4 /* action.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -457,12 +427,12 @@
 				2C7662731DF1003500A2C38C /* Resources */,
 				2CFF0C261E35E3AC004F9EF4 /* Embed App Extensions */,
 				234EA7F4E32623EABAB62E69 /* [CP] Embed Pods Frameworks */,
+				2C14D34C231946F100F01B6C /* ShellScript */,
 				2C5A6CF8228FB1E500F80205 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2CFF0C341E35F160004F9EF4 /* PBXTargetDependency */,
 			);
 			name = talktrans;
 			productName = talktrans;
@@ -507,24 +477,6 @@
 			productReference = 2C7662971DF1003500A2C38C /* talktransUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		2CFF0C2A1E35F160004F9EF4 /* action */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2CFF0C361E35F160004F9EF4 /* Build configuration list for PBXNativeTarget "action" */;
-			buildPhases = (
-				25A6C104888F56ED07361152 /* [CP] Check Pods Manifest.lock */,
-				2CFF0C271E35F160004F9EF4 /* Sources */,
-				2CFF0C281E35F160004F9EF4 /* Frameworks */,
-				2CFF0C291E35F160004F9EF4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = action;
-			productName = action;
-			productReference = 2CFF0C2B1E35F160004F9EF4 /* action.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -554,12 +506,6 @@
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2C7662741DF1003500A2C38C;
-					};
-					2CFF0C2A1E35F160004F9EF4 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = M29A6H95KD;
-						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -592,7 +538,6 @@
 				2C7662741DF1003500A2C38C /* talktrans */,
 				2C76628B1DF1003500A2C38C /* talktransTests */,
 				2C7662961DF1003500A2C38C /* talktransUITests */,
-				2CFF0C2A1E35F160004F9EF4 /* action */,
 			);
 		};
 /* End PBXProject section */
@@ -642,19 +587,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CFF0C291E35F160004F9EF4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C1272362085C4C3009AF35B /* NaverPapago.plist in Resources */,
-				2C17939A2083822C00E7725F /* Localizable.strings in Resources */,
-				2C54C9E71F83C930005AFFE3 /* InfoPlist.strings in Resources */,
-				2CFF0C3A1E35F709004F9EF4 /* Assets.xcassets in Resources */,
-				2CFF0C481E3614CF004F9EF4 /* GoogleService-Info.plist in Resources */,
-				2CFF0C311E35F160004F9EF4 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -675,7 +607,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		25A6C104888F56ED07361152 /* [CP] Check Pods Manifest.lock */ = {
+		2C14D34C231946F100F01B6C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -683,19 +615,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-talktrans-action-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		2C5A6CF8228FB1E500F80205 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -819,17 +746,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CFF0C271E35F160004F9EF4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C0F9D37208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
-				2CFF0C2E1E35F160004F9EF4 /* ActionViewController.swift in Sources */,
-				2C0F9D3420847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
-				2C0F9D3B20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -842,11 +758,6 @@
 			isa = PBXTargetDependency;
 			target = 2C7662741DF1003500A2C38C /* talktrans */;
 			targetProxy = 2C7662981DF1003500A2C38C /* PBXContainerItemProxy */;
-		};
-		2CFF0C341E35F160004F9EF4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CFF0C2A1E35F160004F9EF4 /* action */;
-			targetProxy = 2CFF0C331E35F160004F9EF4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1220,199 +1131,6 @@
 			};
 			name = Release;
 		};
-		2CFF0C371E35F160004F9EF4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48980C27ACFAA8C90FC0E9F6 /* Pods-talktrans-action.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M29A6H95KD;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
-				INFOPLIST_FILE = action/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"c++\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreMotion\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"FirebaseAnalytics\"",
-					"-framework",
-					"\"FirebaseCore\"",
-					"-framework",
-					"\"FirebaseCoreDiagnostics\"",
-					"-framework",
-					"\"FirebaseInstanceID\"",
-					"-framework",
-					"\"GLKit\"",
-					"-framework",
-					"\"KakaoCommon\"",
-					"-framework",
-					"\"KakaoLink\"",
-					"-framework",
-					"\"KakaoNavi\"",
-					"-framework",
-					"\"KakaoOpenSDK\"",
-					"-framework",
-					"\"KakaoS2\"",
-					"-framework",
-					"\"Material\"",
-					"-framework",
-					"\"MediaPlayer\"",
-					"-framework",
-					"\"MessageUI\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"StoreKit\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"nanopb\"",
-					"-weak_framework",
-					"\"AdSupport\"",
-					"-weak_framework",
-					"\"JavaScriptCore\"",
-					"-weak_framework",
-					"\"SafariServices\"",
-					"-weak_framework",
-					"\"WebKit\"",
-					"-v",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans.action;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		2CFF0C381E35F160004F9EF4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5ABFCF0BD5E410124DBE7B3D /* Pods-talktrans-action.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M29A6H95KD;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = action/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"c++\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreMotion\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"FirebaseAnalytics\"",
-					"-framework",
-					"\"FirebaseCore\"",
-					"-framework",
-					"\"FirebaseCoreDiagnostics\"",
-					"-framework",
-					"\"FirebaseInstanceID\"",
-					"-framework",
-					"\"GLKit\"",
-					"-framework",
-					"\"KakaoCommon\"",
-					"-framework",
-					"\"KakaoLink\"",
-					"-framework",
-					"\"KakaoNavi\"",
-					"-framework",
-					"\"KakaoOpenSDK\"",
-					"-framework",
-					"\"KakaoS2\"",
-					"-framework",
-					"\"Material\"",
-					"-framework",
-					"\"MediaPlayer\"",
-					"-framework",
-					"\"MessageUI\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"StoreKit\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"nanopb\"",
-					"-weak_framework",
-					"\"AdSupport\"",
-					"-weak_framework",
-					"\"JavaScriptCore\"",
-					"-weak_framework",
-					"\"SafariServices\"",
-					"-weak_framework",
-					"\"WebKit\"",
-					"-v",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans.action;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1448,15 +1166,6 @@
 			buildConfigurations = (
 				2C7662A71DF1003500A2C38C /* Debug */,
 				2C7662A81DF1003500A2C38C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2CFF0C361E35F160004F9EF4 /* Build configuration list for PBXNativeTarget "action" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2CFF0C371E35F160004F9EF4 /* Debug */,
-				2CFF0C381E35F160004F9EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
