@@ -246,7 +246,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         guard NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
                 let nativeTitle = self.nativeButton.language ?? "";
                 let transTitle = self.transButton.language ?? "";
-            self.showAlert(title: "Error".localized(), msg: String(format: "It is not supported to translate %@ to %@".localized(), nativeTitle, transTitle), actions: [UIAlertAction(title: "OK".localized(), style: .default, handler: nil)], style: .alert);
+            self.showAlert(title: "Error".localized(), msg: String(format: "It is not supported to translate %@ to %@".localized(), nativeTitle.localized(), transTitle.localized()), actions: [UIAlertAction(title: "OK".localized(), style: .default, handler: nil)], style: .alert);
                 return;
         }
 
@@ -488,10 +488,12 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             return;
         }
         
-        let target = self.supportedLangs.first { (key: String, value: String) -> Bool in
+        let langs = NaverPapago.supportedTargetLangs(source: self.nativeLocale);
+        let target = langs.first(where: { $0 == .english }) ?? langs.first;
+        /*let target = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.nativeLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
-        }
-        self.transLocale = Locale(identifier: target?.key ?? "en");
+        }*/
+        self.transLocale = Locale(identifier: target?.rawValue ?? "en");
         print("fix translated locale. locale[\(self.transLocale)]");
     }
     
