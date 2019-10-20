@@ -151,7 +151,13 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
                     }
                     
                     self.av.inputNode.removeTap(onBus: 0);
-                    let recordingFormat = self.av.inputNode.outputFormat(forBus: 0);
+                    //let recordingFormat = self.av.inputNode.outputFormat(forBus: 0);
+                    let recordingFormat = self.av.inputNode.inputFormat(forBus: 0);
+                    guard recordingFormat.channelCount > 0 else{
+                        return;
+                    }
+                    
+                    self.av.reset();
                     self.av.inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat, block: { (buffer, time) in
                         self.av_req.append(buffer);
                     })
