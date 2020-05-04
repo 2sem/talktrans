@@ -1343,6 +1343,38 @@
             endingLineNumber = "196"
             landmarkName = "onRegnizeSpeech(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2141E13B-3DD3-42C9-B119-81E730926E8F - 57943c64c1f91129"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in closure #1 (__C.NSError) -&gt; () in closure #3 (Swift.Optional&lt;__C.SFSpeechRecognitionResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "2141E13B-3DD3-42C9-B119-81E730926E8F - b6c8662a79907f28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.UIAlertAction) -&gt; () in closure #1 (__C.NSError) -&gt; () in closure #3 (Swift.Optional&lt;__C.SFSpeechRecognitionResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1360,40 +1392,6 @@
             endingLineNumber = "192"
             landmarkName = "onRegnizeSpeech(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "11455CDB-D8A1-4CB9-BF8D-6E28C6E4350C - 57943c64c1f91129"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in closure #1 (__C.NSError) -&gt; () in closure #3 (Swift.Optional&lt;__C.SFSpeechRecognitionResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
-                  moduleName = "talktrans"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
-                  timestampString = "588433038.5210249"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "190"
-                  endingLineNumber = "190"
-                  offsetFromSymbolStart = "324">
-               </Location>
-               <Location
-                  uuid = "11455CDB-D8A1-4CB9-BF8D-6E28C6E4350C - b6c8662a79907f28"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__C.UIAlertAction) -&gt; () in closure #1 (__C.NSError) -&gt; () in closure #3 (Swift.Optional&lt;__C.SFSpeechRecognitionResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
-                  moduleName = "talktrans"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
-                  timestampString = "588433038.522526"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "192"
-                  endingLineNumber = "192"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1887,6 +1885,38 @@
             endingLineNumber = "498"
             landmarkName = "fixTransLang()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2872CEAF-74FF-4A8B-9E6F-C4A25C385DEA - d58dd8a22e24fc7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "talktrans.MainViewController.fixTransLang() -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "498"
+                  endingLineNumber = "498"
+                  offsetFromSymbolStart = "552">
+               </Location>
+               <Location
+                  uuid = "2872CEAF-74FF-4A8B-9E6F-C4A25C385DEA - b4afa27c7f03a615"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NaverPapago.NaverPapago.PapagoLocale) -&gt; Swift.Bool in talktrans.MainViewController.fixTransLang() -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "498"
+                  endingLineNumber = "498"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1989,40 +2019,6 @@
             endingLineNumber = "495"
             landmarkName = "fixTransLang()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E916CBC5-27C7-4E5D-A3C7-C88E5DACD862 - d58dd8a22e24fc7e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "talktrans.MainViewController.fixTransLang() -&gt; ()"
-                  moduleName = "talktrans"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
-                  timestampString = "588433038.5733351"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "492"
-                  endingLineNumber = "492"
-                  offsetFromSymbolStart = "468">
-               </Location>
-               <Location
-                  uuid = "E916CBC5-27C7-4E5D-A3C7-C88E5DACD862 - b1508207c70484b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String, Swift.String) -&gt; Swift.Bool in talktrans.MainViewController.fixTransLang() -&gt; ()"
-                  moduleName = "talktrans"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
-                  timestampString = "588433038.574548"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "493"
-                  endingLineNumber = "493"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2090,6 +2086,150 @@
             startingLineNumber = "160"
             endingLineNumber = "160"
             landmarkName = "canSupportTranslate(source:target:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95AA5A39-04A5-49A3-8402-1D5018EB39D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "95AA5A39-04A5-49A3-8402-1D5018EB39D9 - 178ff57bb4ba3830"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "95AA5A39-04A5-49A3-8402-1D5018EB39D9 - e994ccb9a9fe12c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in closure #2 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (__C.SFSpeechRecognizerAuthorizationStatus) -&gt; () in talktrans.MainViewController.onRegnizeSpeech(__C.UIButton) -&gt; ()"
+                  moduleName = "talktrans"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LYJ/Projects/leesam/talktrans/src/talktrans/talktrans/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D47A86BA-E15C-4AEB-96C8-F85C2E42042A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93368B2B-2917-4A93-BC68-8D8F0CA374C9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1560924-3038-45F1-A8EC-A61D66EA2E25"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E378100-8737-4D03-B2BF-68FDFD83C661"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4EBEFD9-3815-4EB8-BADC-A2C66DBF80C1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "onRegnizeSpeech(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C2AF4AC-393A-4B2B-BB06-672E1620FCD8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "talktrans/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "onRegnizeSpeech(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
