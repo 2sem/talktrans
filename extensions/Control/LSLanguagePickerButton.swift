@@ -13,7 +13,7 @@ protocol LSLanguagePickerButtonDelegate {
 }
 
 class LSLanguagePickerButton: UIButton, LSLanguagePickerDataSource, LSLanguagePickerDelegate {
-    private weak var hiddenTextField : UITextField!;
+    private var hiddenTextField : UITextField!;
     private var picker : LSLanguagePicker!;
     var languages : [String] = [];
     var language : String?{

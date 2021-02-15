@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,12 +19,11 @@
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69A-Ey-gSr">
                                 <rect key="frame" x="158" y="353" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="GADBannerView">
-                                <rect key="frame" x="4" y="-30" width="356" height="50"/>
+                                <rect key="frame" x="4" y="-50" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NAo-4X-n5Q"/>
@@ -35,8 +32,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="enZ-CO-SrN"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnn-lW-N5M" customClass="IconButton" customModule="Material">
-                                <rect key="frame" x="360" y="-30" width="50" height="50"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnn-lW-N5M" customClass="IconButton" customModule="Material">
+                                <rect key="frame" x="360" y="-50" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gnn-lW-N5M" secondAttribute="height" multiplier="1:1" id="gMa-CI-08d"/>
@@ -57,34 +54,34 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZf-en-3to" userLabel="View Container">
-                                <rect key="frame" x="20" y="20" width="374" height="716"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="947-j3-xGv" userLabel="Translator Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="686"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PyM-70-ONS" userLabel="Translated View">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="343"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-90-agl" userLabel="Trans Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-90-agl" userLabel="Trans Stack View">
                                                         <rect key="frame" x="8" y="0.0" width="358" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translated Language:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fZV-5d-WK3">
-                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="214" height="20.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="198" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-E4-MHX" customClass="LSLanguagePickerButton" customModule="talktrans" customModuleProvider="target">
-                                                                <rect key="frame" x="214" y="0.0" width="100" height="44"/>
+                                                                <rect key="frame" x="206" y="0.0" width="100" height="44"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="PIa-Mo-cN4"/>
                                                                 </constraints>
-                                                                <inset key="titleEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-13" maxY="0.0"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                                 <state key="normal" title="▼" image="korea.png"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBz-DK-gxu" userLabel="Fix Button">
-                                                                <rect key="frame" x="314" y="9.6666666666666679" width="44" height="25.000000000000004"/>
+                                                                <rect key="frame" x="314" y="9.6666666666666643" width="44" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="44" id="v2m-6G-A3F"/>
                                                                 </constraints>
@@ -97,11 +94,12 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="u5t-D3-9A1"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pa-e1-U9z" userLabel="Select Trans Language" customClass="RaisedButton" customModule="Material">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pa-e1-U9z" userLabel="Select Trans Language" customClass="RaisedButton" customModule="Material">
                                                         <rect key="frame" x="8" y="0.0" width="314" height="44"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal">
@@ -117,7 +115,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eoq-qB-f4C" userLabel="Trans Text View">
-                                                        <rect key="frame" x="0.0" y="44" width="374" height="289"/>
+                                                        <rect key="frame" x="0.0" y="44" width="374" height="299"/>
                                                         <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -149,7 +147,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g15-TJ-syY" userLabel="Native View">
-                                                <rect key="frame" x="0.0" y="333" width="374" height="333"/>
+                                                <rect key="frame" x="0.0" y="343" width="374" height="343"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYK-Kt-V4V" userLabel="Line View">
                                                         <rect key="frame" x="-8" y="0.0" width="390" height="10"/>
@@ -158,21 +156,21 @@
                                                             <constraint firstAttribute="height" constant="10" id="A8U-d2-rlp"/>
                                                         </constraints>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bH5-IE-IIg" userLabel="Native Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bH5-IE-IIg" userLabel="Native Stack View">
                                                         <rect key="frame" x="8" y="10" width="358" height="44"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native Language:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p7r-Pn-qe7">
-                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="214" height="20.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="198" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce6-OW-F1W" customClass="LSLanguagePickerButton" customModule="talktrans" customModuleProvider="target">
-                                                                <rect key="frame" x="214" y="0.0" width="100" height="44"/>
+                                                                <rect key="frame" x="206" y="0.0" width="100" height="44"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="DbY-lv-wTD"/>
                                                                 </constraints>
-                                                                <inset key="titleEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-13" maxY="0.0"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                                                 <state key="normal" title="▼" image="korea.png"/>
                                                             </button>
@@ -189,13 +187,14 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="44" id="wLD-1f-s0m"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwK-Aq-t5k" userLabel="Select Native Language" customClass="RaisedButton" customModule="Material">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwK-Aq-t5k" userLabel="Select Native Language" customClass="RaisedButton" customModule="Material">
                                                         <rect key="frame" x="8" y="10" width="314" height="44"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -210,8 +209,9 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-q7-XdU" userLabel="Native Text View">
-                                                        <rect key="frame" x="0.0" y="54" width="374" height="279"/>
+                                                        <rect key="frame" x="0.0" y="54" width="374" height="289"/>
                                                         <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
@@ -249,9 +249,9 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-Xt-YXj" userLabel="Buttons Stack View">
-                                        <rect key="frame" x="0.0" y="666" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="686" width="374" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-ln-kbF" customClass="RaisedButton" customModule="Material">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-ln-kbF" customClass="RaisedButton" customModule="Material">
                                                 <rect key="frame" x="0.0" y="5" width="187" height="40"/>
                                                 <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -273,7 +273,7 @@
                                                     <action selector="onTranslate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JLb-19-4ot"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVa-2b-sIO" customClass="RaisedButton" customModule="Material">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVa-2b-sIO" customClass="RaisedButton" customModule="Material">
                                                 <rect key="frame" x="187" y="5" width="187" height="40"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -285,7 +285,7 @@
                                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="value" systemColor="darkTextColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -343,6 +343,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="zxY-2u-9li"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.32549019607843138" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pKj-VY-D7J" firstAttribute="trailing" secondItem="Qp3-24-uY1" secondAttribute="leading" id="0Id-Kn-nCu"/>
@@ -362,7 +363,6 @@
                             <constraint firstItem="fn0-30-AZe" firstAttribute="bottom" secondItem="zxY-2u-9li" secondAttribute="top" identifier="TopBanner_BOTTOM" id="xYV-VP-rbr"/>
                             <constraint firstItem="gnn-lW-N5M" firstAttribute="height" secondItem="fn0-30-AZe" secondAttribute="height" id="xkN-U3-dme"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zxY-2u-9li"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -400,5 +400,8 @@
         <image name="korea.png" width="100" height="67"/>
         <image name="review_white_line@x1.5.png" width="32" height="32"/>
         <image name="swap.png" width="25" height="25"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

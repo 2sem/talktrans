@@ -346,14 +346,14 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             self.constraint_bottomBanner_bottom = self.bottomBannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor);
         };
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: .UIKeyboardWillShow, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: .UIKeyboardWillHide, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: UIResponder.keyboardWillHideNotification, object: nil);
         
         self.topBannerView.loadUnitId(name: "TopBanner");
         self.topBannerView.rootViewController = self;
         
         var req = GADRequest();
-        self.topBannerView.load(req);
+//        self.topBannerView.load(req);
         
         //self.topBannerView.rotate(180);
         //self.topBannerView.rotate(180, anchor: CGPoint.init(x: 0, y: 0));
@@ -393,6 +393,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         //self.nativePlaceHolderLabel.rx.isHidden
         //self.nativePlaceHolderLabel.isHidden = self.nativeTextView.text.any;
         //self.transPlaceHolderLabel.isHidden = self.transTextView.text.any;
+        AVAudioSession.fixConditionFalseCrash();
     }
 
     override func didReceiveMemoryWarning() {
@@ -447,7 +448,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             let frame = noti.keyboardFrame;
             
             //Hides while user is typing native text
-            self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_bottom, constarintOff: self.constraint_topBanner_top);
+//            self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_bottom, constarintOff: self.constraint_topBanner_top);
             self.topBannerView.isHidden = true;
             self.constraint_bottomBanner_top.constant = -(frame.height);
             self.constraint_bottomBanner_bottom.constant = -(frame.height);
@@ -469,8 +470,8 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
             self.constraint_bottomBanner_bottom.constant = 0;
             
             //shows while user is not typing
-            self.toggleContraint(value: false, constraintOn: self.constraint_topBanner_bottom, constarintOff: self.constraint_topBanner_top);
-            self.topBannerView.isHidden = false;
+//            self.toggleContraint(value: false, constraintOn: self.constraint_topBanner_bottom, constarintOff: self.constraint_topBanner_top);
+//            self.topBannerView.isHidden = false;
             
             if !self.fixButton.isSelected{
                 self.isUpSideDown = false;

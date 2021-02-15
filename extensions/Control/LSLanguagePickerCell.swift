@@ -40,7 +40,7 @@ class LSLanguagePickerCell: UIControl {
         
         self.addSubview(self.stackView);
         self.stackView.frame = frame;
-        self.stackView.backgroundColor = UIColor.blue;
+        self.stackView.backgroundColor = UIColor.clear;
         //self.stackView.distribution = .equalCentering;
         self.stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true;
         self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true;

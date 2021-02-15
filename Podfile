@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '10.0'
 
 target 'talktrans' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -10,8 +10,11 @@ target 'talktrans' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   
-  pod 'Fabric'
-  pod 'Crashlytics'
+  # Add the pod for Firebase Crashlytics
+  pod 'Firebase/Crashlytics'
+
+  # Recommended: Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
   
   pod 'KakaoOpenSDK'
   pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'

@@ -35,6 +35,7 @@
 		2C7662911DF1003500A2C38C /* talktransTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662901DF1003500A2C38C /* talktransTests.swift */; };
 		2C76629C1DF1003500A2C38C /* talktransUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76629B1DF1003500A2C38C /* talktransUITests.swift */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
+		2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
 		2CF31DF91E64219F00992A7A /* fix_on_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF81E64219F00992A7A /* fix_on_white@x32.png */; };
 		2CF31DFB1E6421CF00992A7A /* fix_off_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DFA1E6421CF00992A7A /* fix_off_white@x32.png */; };
@@ -160,6 +161,7 @@
 		2C76629D1DF1003500A2C38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD074561E9FAE7A0032CFCD /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
 		2CD5BA541DFD975C00AA0E16 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+.swift"; sourceTree = "<group>"; };
 		2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action_white@x1.5.png"; sourceTree = "<group>"; };
 		2CF31DF81E64219F00992A7A /* fix_on_white@x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fix_on_white@x32.png"; sourceTree = "<group>"; };
 		2CF31DFA1E6421CF00992A7A /* fix_off_white@x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fix_off_white@x32.png"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				2C1932741E9E595E0056262C /* GADInterstitial+.swift */,
 				2C1425D71F7A564300BDF794 /* GADRewardManager.swift */,
 				2C1425D81F7A564300BDF794 /* ReviewManager.swift */,
+				2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -640,7 +643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run -gsp \"${PROJECT_DIR}/${PROJECT}/GoogleService-Info.plist\"\n";
 		};
 		4E3DF43E26421672ABB70D46 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -717,6 +720,7 @@
 			files = (
 				2C0F9D3A20849AAC00DFA455 /* LSLanguagePickerButton.swift in Sources */,
 				2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */,
+				2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */,
 				2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */,
 				2C7662811DF1003500A2C38C /* talktrans.xcdatamodeld in Sources */,
 				2C0F9D36208484BC00DFA455 /* LSLanguagePickerCell.swift in Sources */,
@@ -1015,13 +1019,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1042,13 +1046,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
