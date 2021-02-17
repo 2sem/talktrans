@@ -43,6 +43,8 @@ class LSLanguagePicker : NSObject, UIPickerViewDataSource, UIPickerViewDelegate{
         let space = UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil);
         self.pickerToolbar.items = [cancelButtonItem, space, doneButtonItem];
         self.pickerToolbar.tintColor = .white;
+        self.pickerToolbar.backgroundColor = .black;
+//        self.picker.backgroundColor = .brown;
         //self.pickerToolbar.setBackgroundImage(UIImage(named: "bg_nav"), forToolbarPosition: UIBarPosition.any, barMetrics: .default);
         //self.pickerToolbar.tintColor = UIColor.white;
         self.picker.autoresizingMask = [.flexibleWidth, .flexibleHeight];

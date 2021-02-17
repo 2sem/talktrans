@@ -353,6 +353,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         self.topBannerView.rootViewController = self;
         
         var req = GADRequest();
+        req.hideTestLabel();
 //        self.topBannerView.load(req);
         
         //self.topBannerView.rotate(180);
@@ -369,6 +370,7 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         self.bottomBannerView.loadUnitId(name: "BottomBanner");
         self.bottomBannerView.rootViewController = self;
         req = GADRequest();
+        req.hideTestLabel();
         self.bottomBannerView.load(req);
         
         if LSDefaults.isRotateFixed ?? false{

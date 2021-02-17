@@ -14,7 +14,7 @@ extension AVAudioSession{
         let session = self.sharedInstance();
 //        AVAudioSession.Category.playback;
         do{
-            try session.setCategory(.record, options: .defaultToSpeaker);
+            try session.setCategory(.record, mode: .default, options: .defaultToSpeaker);
             try session.setActive(true, options: .notifyOthersOnDeactivation)
         }catch let error{
             print(#function, error);
