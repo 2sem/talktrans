@@ -26,6 +26,7 @@
 		2C58365D1DFD0840004B28FF /* GADBannerView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C58365C1DFD0840004B28FF /* GADBannerView+.swift */; };
 		2C5836621DFD1949004B28FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5836641DFD1949004B28FF /* Localizable.strings */; };
 		2C5A6CEA228F978B00F80205 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C5A6CE9228F978B00F80205 /* GoogleService-Info.plist */; };
+		2C5C441726CA0A8D00C71FFF /* GADRewardedAd+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C441626CA0A8D00C71FFF /* GADRewardedAd+.swift */; };
 		2C72897E1E011361000553F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C7289801E011361000553F6 /* InfoPlist.strings */; };
 		2C7662791DF1003500A2C38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662781DF1003500A2C38C /* AppDelegate.swift */; };
 		2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76627A1DF1003500A2C38C /* MainViewController.swift */; };
@@ -144,6 +145,7 @@
 		2C5836631DFD1949004B28FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C5836651DFD194E004B28FF /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C5A6CE9228F978B00F80205 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C5C441626CA0A8D00C71FFF /* GADRewardedAd+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GADRewardedAd+.swift"; sourceTree = "<group>"; };
 		2C72897A1E011318000553F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C72897F1E011361000553F6 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C7662751DF1003500A2C38C /* talktrans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talktrans.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +269,7 @@
 				2C58365C1DFD0840004B28FF /* GADBannerView+.swift */,
 				2C155FA41F83A66E008AAD3F /* UIApplication+KakaoLink.swift */,
 				2C1932741E9E595E0056262C /* GADInterstitial+.swift */,
+				2C5C441626CA0A8D00C71FFF /* GADRewardedAd+.swift */,
 				2C1425D71F7A564300BDF794 /* GADRewardManager.swift */,
 				2C1425D81F7A564300BDF794 /* ReviewManager.swift */,
 				2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */,
@@ -727,6 +730,7 @@
 				2C155FA31F839F7E008AAD3F /* LSDefaults.swift in Sources */,
 				2C155FA51F83A66E008AAD3F /* UIApplication+KakaoLink.swift in Sources */,
 				2C1932751E9E595E0056262C /* GADInterstitial+.swift in Sources */,
+				2C5C441726CA0A8D00C71FFF /* GADRewardedAd+.swift in Sources */,
 				2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */,
 				2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */,
 				2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */,
@@ -1019,7 +1023,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1046,7 +1050,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

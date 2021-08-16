@@ -16,7 +16,7 @@ import NaverPapago
 import RxCocoa
 import RxSwift
 
-class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDelegate, UIPopoverPresentationControllerDelegate, LSLanguagePickerButtonDelegate {
+class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresentationControllerDelegate, LSLanguagePickerButtonDelegate {
     
     /// Limits length of native text
     static let MaxNativeTextLength = 100;
@@ -546,27 +546,6 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         AppDelegate.sharedGADManager?.show(unit: .full);
     }
     
-    // MARK: GADBannerViewDelegate
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        if bannerView === self.topBannerView && !self.keyboardEnabled{
-            self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
-            self.topBannerView.isHidden = false;
-        }else if bannerView === self.bottomBannerView{
-            self.toggleContraint(value: true, constraintOn: self.constraint_bottomBanner_bottom, constarintOff: self.constraint_bottomBanner_top);
-            self.bottomBannerView.isHidden = false;
-        }
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        if bannerView === self.topBannerView{
-            self.toggleContraint(value: false, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
-            self.topBannerView.isHidden = true;
-        }else if bannerView === self.bottomBannerView{
-            self.toggleContraint(value: false, constraintOn: self.constraint_bottomBanner_bottom, constarintOff: self.constraint_bottomBanner_top);
-            self.bottomBannerView.isHidden = true;
-        }
-    }
-    
     /// MARK: UITextViewDelegate
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let textLength = textView.text.lengthOfBytes(using: .utf8);
@@ -594,5 +573,27 @@ class MainViewController: UIViewController, UITextViewDelegate, GADBannerViewDel
         }
         
         self.doneRecognition();
+    }
+}
+
+extension MainViewController : GADBannerViewDelegate{
+    @objc func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if bannerView === self.topBannerView && !self.keyboardEnabled{
+            self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
+            self.topBannerView.isHidden = false;
+        }else if bannerView === self.bottomBannerView{
+            self.toggleContraint(value: true, constraintOn: self.constraint_bottomBanner_bottom, constarintOff: self.constraint_bottomBanner_top);
+            self.bottomBannerView.isHidden = false;
+        }
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        if bannerView === self.topBannerView{
+            self.toggleContraint(value: false, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
+            self.topBannerView.isHidden = true;
+        }else if bannerView === self.bottomBannerView{
+            self.toggleContraint(value: false, constraintOn: self.constraint_bottomBanner_bottom, constarintOff: self.constraint_bottomBanner_top);
+            self.bottomBannerView.isHidden = true;
+        }
     }
 }

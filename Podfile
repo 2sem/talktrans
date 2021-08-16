@@ -7,8 +7,8 @@ target 'talktrans' do
   #inhibit_all_warnings!
 
   # Pods for talktrans
-  pod 'Firebase/Core'
-  pod 'Firebase/AdMob'
+#  pod 'Firebase/Core'
+#  pod 'Firebase/AdMob'
   
   # Add the pod for Firebase Crashlytics
   pod 'Firebase/Crashlytics'
@@ -17,8 +17,8 @@ target 'talktrans' do
   pod 'Firebase/Analytics'
   
   pod 'KakaoOpenSDK'
-  pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
-  pod 'GADManager', :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
+  pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  pod 'GADManager'#, :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
   pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material', '~> 2.16.4'
   pod 'RxSwift', '~> 4.0'

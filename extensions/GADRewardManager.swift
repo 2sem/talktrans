@@ -21,7 +21,7 @@ extension GADRewardManagerDelegate{
     func GADRewardUserCompleted(){}
 }
 
-class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
+class GADRewardManager : NSObject{
     var window : UIWindow;
     var unitId : String;
     var interval : TimeInterval = 60.0 * 60.0 * 3.0;
@@ -53,7 +53,7 @@ class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
         self.delegate?.GADRewardUpdate(showTime: Date());
     }
     
-    var rewardAd : GADRewardBasedVideoAd?;
+    var rewardAd : GADRewardedAd?;
     var canShow : Bool{
         get{
             var value = true;
@@ -97,26 +97,37 @@ class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
          return;
          }*/
         
-        guard !(self.rewardAd?.isReady ?? false) else{
+        guard !(self.rewardAd?.isReady() ?? false) else{
             print("reward ad is already ready - self.rewardAd?.isReady");
             self.__show();
             return;
         }
-        
-        print("create new reward ad");
-        self.rewardAd = GADRewardBasedVideoAd.sharedInstance();
     
-        self.rewardAd?.delegate = self;
+//        self.rewardAd?.delegate = self;
         let req = GADRequest();
         #if DEBUG
-            req.testDevices = ["5fb1f297b8eafe217348a756bdb2de56"];
+        let unitId = "ca-app-pub-3940256099942544/1712485313"
+        #else
+        let unitId = self.unitId;
         #endif
         /*if let alert = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController as? UIAlertController{
          alert.dismiss(animated: false, completion: nil);
          }
          }*/
         
-        self.rewardAd?.load(req, withAdUnitID: self.unitId);
+        print("create new reward ad");
+//        self.rewardAd = GADRewardedAd(adUnitId: self.);
+        GADRewardedAd.load(withAdUnitID: unitId, request: req) { [weak self](newAd, error) in
+            self?.rewardAd = newAd
+            self?.rewardAd?.fullScreenContentDelegate = self;
+            
+            guard error == nil else{
+                return;
+            }
+            
+            print("reward is ready to be presented");
+            self?._show();
+        }
         self.delegate?.GADRewardWillLoad();
     }
     
@@ -140,25 +151,23 @@ class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
             return;
         }
         
-        print("present full ad on view[\(self.window.rootViewController?.description ?? "")]");
+        print("present full ad view[\(self.window.rootViewController?.description ?? "")]");
         self.rewarded = false;
-        self.rewardAd?.present(fromRootViewController: self.window.rootViewController!);
+        self.rewardAd?.present(fromRootViewController: self.window.rootViewController!, userDidEarnRewardHandler: { [weak self] in
+            guard let reward = self?.rewardAd?.adReward else{
+                return;
+            }
+            
+            print("user reward. type[\(reward.type)] amount[\(reward.amount)]");
+            self?.rewarded = true;
+        })
         self.delegate?.GADRewardUpdate(showTime: Date());
         //RSDefaults.LastFullADShown = Date();
     }
-    
-    /// MARK: GADRewardBasedVideoAdDelegate
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        print("user reward. type[\(reward.type)] amount[\(reward.amount)]");
-        self.rewarded = true;
-    }
-    
-    func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("reward is ready to be presented");
-        
-        self._show();
-    }
-    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+}
+
+extension GADRewardManager : GADFullScreenContentDelegate{
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("reward has been compleated");
         
         self.rewardAd = nil;
@@ -173,7 +182,7 @@ class GADRewardManager : NSObject, GADRewardBasedVideoAdDelegate{
         self.delegate?.GADRewardUserCompleted();
     }
     
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("reward fail[\(error)]");
     }
 }
