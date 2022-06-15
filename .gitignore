@@ -1,6 +1,6 @@
 *.xlsx
 # Created by https://www.gitignore.io/api/xcode,swift,cocoapods
-relatedstocks/relatedstocks.plist
+talktrans/NaverPapago.plist
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
 
@@ -88,3 +88,5 @@ fastlane/test_output
 
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
+.gitsecret/keys/random_seed
+!*.secret
