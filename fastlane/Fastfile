@@ -1,0 +1,146 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+platform :ios do
+  def loadiOSConfigs()
+    @package_name = ENV["PACKAGE_NAME"]
+    @project_name = ENV["PRODUCT_NAME"]
+    @keychain_name = ENV["IOS_KEYCHAIN"]
+    @keychain_password = ENV["IOS_KEYCHAIN_PWD"]
+    @certificate_path = ENV["IOS_CERT_PATH"]
+    @certificate_password = ENV["IOS_CERT_PWD"]
+    @provisioning_profile_path = ENV["IOS_PROFILE_PATH"]
+    @team_id = ENV["APPLE_TEAM_ID"]
+    @api_key_path = ENV["IOS_KEY_PATH"]
+    @xcodeproj = "./#{@project_name}.xcodeproj"
+    @profile_name = @project_name
+
+    puts "iOS 프로젝트: #{@project_name}]"
+    puts "Fastlane 키파일 경로: #{@api_key_path}]"
+  end
+  
+  def installCert
+    create_keychain(
+        name: @keychain_name,
+        password: @keychain_password,
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: true,
+    )
+  
+    import_certificate(
+        certificate_path: @certificate_path,
+        certificate_password: @certificate_password,
+        keychain_name: @keychain_name,
+        keychain_password: @keychain_password,
+    )
+    
+    puts "iOS 인증서 설치"
+  end
+
+  def readySigning
+    installCert()
+    
+    install_provisioning_profile(
+      path: @provisioning_profile_path
+    )
+    puts "Provisioning Profile 설치"
+    
+    #update_project_provisioning(
+    #  xcodeproj: @xcodeproj,
+    #  profile: @provisioning_profile_path
+    #)
+    #puts "Provisioning Profile 설정"
+    
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: @xcodeproj,
+      team_id: @team_id,
+      code_sign_identity: "iPhone Distribution",
+      profile_name: @profile_name
+    )
+    puts "Code Signing 수동으로 전환"
+
+  end
+
+  def setiOSVersions
+    @app_version = get_version_number(
+       xcodeproj: @xcodeproj,
+       target: @project_name
+    )
+    puts "iOS 앱 버전: #{@app_version}"
+
+    @build_version = latest_testflight_build_number(
+      version: @app_version,
+      api_key_path: @api_key_path,
+      app_identifier: @package_name,
+      initial_build_number: 0
+    )
+    
+    @new_build_version = @build_version + 1
+    increment_build_number(
+      xcodeproj: @xcodeproj,
+      build_number: @new_build_version
+    )
+    puts "iOS 앱 빌드번호 상향: #{@build_version} => #{@new_build_version}"
+
+    @full_app_verion = "#{@app_version}(#{@new_build_version})"
+  end
+
+  def buildiOS(changelog: 'build from fastlane', isReleasing: false)
+    loadiOSConfigs()
+    readySigning()
+    setiOSVersions()
+    
+    puts "iOS 운영서버 빌드 시작: #{@full_app_verion}"
+    build_app(
+      workspace: "./#{@project_name}.xcworkspace",
+      scheme: "#{@project_name}",
+      skip_profile_detection: true,
+      export_options: {
+        provisioningProfiles: {
+          @package_name => @profile_name,
+        }
+      },
+      silent: true
+    )
+    
+    if isReleasing
+        puts "iOS 심사 업로드 시작"
+        upload_to_app_store(
+          api_key_path: @api_key_path,
+          app_identifier: @package_name,
+          submit_for_review: true,
+          release_notes: {
+            'default' => changelog
+          }
+        )
+        puts "iOS 심사 제출 완료"
+    else
+        puts "iOS TestFlight 업로드 시작"
+        upload_to_testflight(
+          api_key_path: @api_key_path,
+          changelog: changelog,
+          app_identifier: @package_name,
+        )
+        puts "iOS TestFlight 배포 완료"
+    end
+  end
+
+  lane :release do | options|
+    buildiOS(changelog: options[:description], isReleasing: options[:isReleasing])
+  end
+end

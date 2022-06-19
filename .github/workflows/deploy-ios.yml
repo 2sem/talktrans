@@ -1,0 +1,121 @@
+
+name: DEPLOY IOS
+on:
+  workflow_dispatch:
+    inputs:
+        isReleasing:
+            description: '심사제출'
+            type: boolean
+            required: true
+            default: true
+        body:
+            description: 'Version changes'
+            required: false
+            default: '수정사항'
+
+concurrency:
+  group: ${{ github.ref }}/ios/deploy
+  cancel-in-progress: true
+
+jobs:
+  install-pods:
+    runs-on: macos-11
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Create pods cache key
+        id: pods-cache-hash
+        run: echo "::set-output name=hash::${{ runner.os }}-pods-cache-hash-${{ hashFiles('./Podfile.lock') }}"
+
+      - name: Cache pods
+        uses: actions/cache@v2
+        id: cache-pods
+        with:
+          path: ./Pods
+          key: ${{ steps.pods-cache-hash.outputs.hash }}
+
+      - name: Install CocoaPods
+        if: steps.cache-pods.outputs.cache-hit == ''
+        run: |
+          pod install
+
+    outputs:
+      pods-cache-key: ${{ steps.pods-cache-hash.outputs.hash }}
+      
+  deploy:
+    needs: install-pods
+    runs-on: macos-11
+    env:
+        PRODUCT_NAME: 'talktrans'
+        IOS_CERT_PATH: 'cert.p12'
+        IOS_PROFILE_PATH: 'profile.mobileprovision'
+        IOS_KEY_PATH: 'api-key.json'
+        GPG_PRIVATE_KEY_PATH: 'private.gpg'
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        
+      - name: Load cached pods
+        uses: actions/cache@v2
+        with:
+          path: ./Pods
+          key: ${{ needs.install-pods.outputs.pods-cache-key }}
+
+      - name: Install CocoaPods
+        run: |
+          pod install
+
+      - name: Import signing certificate
+        env:
+          IOS_CERT_BASE64: $IOS_CERT_PATH.base64
+        run: |
+          echo "${{ secrets.IOS_CERT_P12_DATA }}" > $IOS_CERT_BASE64
+          base64 --decode $IOS_CERT_BASE64 -o $IOS_CERT_PATH
+
+      - name: Import provisioning profile
+        env:
+          IOS_PROFILE_PATH_BASE64: $IOS_PROFILE_PATH.base64
+        run: |
+          echo "${{ secrets.IOS_PROFILE_DATA }}" > $IOS_PROFILE_PATH_BASE64
+          base64 --decode $IOS_PROFILE_PATH_BASE64 -o $IOS_PROFILE_PATH
+
+      - name: Remove Network Security Exceptions
+        continue-on-error: true
+        run: |
+          /usr/libexec/PlistBuddy -c "delete :NSAppTransportSecurity:NSExceptionDomains" ./ios/$PRODUCT_NAME/Info.plist
+
+      - name: Upgrade fastlane
+        run: |
+          sudo gem install fastlane
+
+      - name: Export Fastlane App Store Key
+        env:
+          API_KEY_PATH_BASE64: $IOS_KEY_PATH.base64
+        run: |
+          echo '${{ secrets.IOS_API_KEY }}' > $API_KEY_PATH_BASE64
+          base64 --decode $API_KEY_PATH_BASE64 -o $IOS_KEY_PATH
+          rm $API_KEY_PATH_BASE64
+          
+      - name: Import Secret Key
+        run: |
+          echo ${{ secrets.GPG_PRIVATE_KEY }} | base64 -d -o $GPG_PRIVATE_KEY_PATH
+          gpg --batch --no-tty --yes --import $GPG_PRIVATE_KEY_PATH
+          
+      - name: Install Encrypter
+        run: |
+            brew install git-secret
+      
+      - name: Decrypt Secret Data
+        run: |
+          git secret reveal -p ${{ secrets.GPG_PRIVATE_PWD }}
+          
+      - name: Build/Upload app
+        env:
+          PACKAGE_NAME: 'com.credif.talktrans'
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          IOS_CERT_PWD: ${{ secrets.IOS_CERT_P12_PWD }}
+          IOS_KEYCHAIN: ${{ secrets.IOS_KEYCHAIN }}
+          IOS_KEYCHAIN_PWD: ${{ secrets.IOS_KEYCHAIN_PWD }}
+        run: |
+          fastlane ios release description:'${{ github.event.inputs.body }}' isReleasing:${{ github.event.inputs.isReleasing }}

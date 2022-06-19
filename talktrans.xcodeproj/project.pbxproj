@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A9DC1973329D4FE29810CA /* Pods_talktransUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */; };
 		2C0065281E37577D00E404F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C0065271E37577C00E404F7 /* Settings.bundle */; };
 		2C059CE01E00CFF00089DD84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C76627C1DF1003500A2C38C /* Main.storyboard */; };
 		2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
@@ -35,6 +36,9 @@
 		2C7662861DF1003500A2C38C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7662841DF1003500A2C38C /* LaunchScreen.storyboard */; };
 		2C7662911DF1003500A2C38C /* talktransTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7662901DF1003500A2C38C /* talktransTests.swift */; };
 		2C76629C1DF1003500A2C38C /* talktransUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76629B1DF1003500A2C38C /* talktransUITests.swift */; };
+		2CA46399285F2BA100A81476 /* .github in Resources */ = {isa = PBXBuildFile; fileRef = 2CA46398285F2BA100A81476 /* .github */; };
+		2CA4639C285F2BF500A81476 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 2CA4639B285F2BF500A81476 /* Fastfile */; };
+		2CB47D9E28577CBE00D25B91 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2CB47D9D28577CBE00D25B91 /* .gitignore */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
 		2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
@@ -46,9 +50,8 @@
 		2CFB6D741E2519BB00AA2285 /* swap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D731E2519BB00AA2285 /* swap.png */; };
 		2CFB6D761E251A2900AA2285 /* rotate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D751E251A2900AA2285 /* rotate_left.png */; };
 		2CFB6D781E251A5700AA2285 /* rotate_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D771E251A5700AA2285 /* rotate_right.png */; };
-		2E0B9A4818A1EBFA5D74C0D3 /* Pods_talktrans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8DC9F6D096D853161CDCA5 /* Pods_talktrans.framework */; };
-		377893159078DDD1EE5DB1DB /* Pods_talktransTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD26230AD72D90AA378D60E3 /* Pods_talktransTests.framework */; };
-		8DFF1CB23F66884EF2ADE578 /* Pods_talktransUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F264F856C43861B97A2634 /* Pods_talktransUITests.framework */; };
+		8EF83BDC91A8EEB0BAC799C4 /* Pods_talktransTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */; };
+		D6C8B9A07BEF9884FFA76FB0 /* Pods_talktrans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D79E201E91B024263D695F /* Pods_talktrans.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +85,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15A5DF8C20BE64F79C5108B9 /* Pods-talktransTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.release.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.release.xcconfig"; sourceTree = "<group>"; };
+		10D79E201E91B024263D695F /* Pods_talktrans.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktrans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.debug.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.debug.xcconfig"; sourceTree = "<group>"; };
 		2C0065271E37577C00E404F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C0264411DFF856300BB9F7D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C0264421DFF873A00BB9F7D /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -161,6 +165,9 @@
 		2C7662971DF1003500A2C38C /* talktransUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talktransUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C76629B1DF1003500A2C38C /* talktransUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talktransUITests.swift; sourceTree = "<group>"; };
 		2C76629D1DF1003500A2C38C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CA46398285F2BA100A81476 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
+		2CA4639B285F2BF500A81476 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		2CB47D9D28577CBE00D25B91 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2CD074561E9FAE7A0032CFCD /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
 		2CD5BA541DFD975C00AA0E16 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+.swift"; sourceTree = "<group>"; };
@@ -194,17 +201,13 @@
 		2CFF203D1DFC482F005774CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2CFF203E1DFC4869005774CA /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Main.strings"; sourceTree = "<group>"; };
 		2CFF20411DFC4BB3005774CA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		343EC210D3DB6E53165DFE1A /* Pods-talktransTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.debug.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.debug.xcconfig"; sourceTree = "<group>"; };
-		41E6CD294DC95F9D1278E652 /* Pods-talktransUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.release.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.release.xcconfig"; sourceTree = "<group>"; };
-		48980C27ACFAA8C90FC0E9F6 /* Pods-talktrans-action.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans-action.debug.xcconfig"; path = "Target Support Files/Pods-talktrans-action/Pods-talktrans-action.debug.xcconfig"; sourceTree = "<group>"; };
-		5ABFCF0BD5E410124DBE7B3D /* Pods-talktrans-action.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans-action.release.xcconfig"; path = "Target Support Files/Pods-talktrans-action/Pods-talktrans-action.release.xcconfig"; sourceTree = "<group>"; };
-		77D9ADD0757E214B897616DF /* Pods-talktransUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.debug.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8CE5313D2B45DD3372622BC3 /* Pods-talktrans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.release.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.release.xcconfig"; sourceTree = "<group>"; };
-		93AA14AD73C9A34A771E31CF /* Pods_talktrans_action.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktrans_action.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE8DC9F6D096D853161CDCA5 /* Pods_talktrans.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktrans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD26230AD72D90AA378D60E3 /* Pods_talktransTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4F264F856C43861B97A2634 /* Pods_talktransUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6DC3E79C90D7B3864943004 /* Pods-talktrans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.debug.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.debug.xcconfig"; sourceTree = "<group>"; };
+		3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.release.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.release.xcconfig"; sourceTree = "<group>"; };
+		68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.release.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.release.xcconfig"; sourceTree = "<group>"; };
+		A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.debug.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.debug.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.release.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E0B9A4818A1EBFA5D74C0D3 /* Pods_talktrans.framework in Frameworks */,
+				D6C8B9A07BEF9884FFA76FB0 /* Pods_talktrans.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377893159078DDD1EE5DB1DB /* Pods_talktransTests.framework in Frameworks */,
+				8EF83BDC91A8EEB0BAC799C4 /* Pods_talktransTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFF1CB23F66884EF2ADE578 /* Pods_talktransUITests.framework in Frameworks */,
+				09A9DC1973329D4FE29810CA /* Pods_talktransUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +283,9 @@
 		2C76626C1DF1003500A2C38C = {
 			isa = PBXGroup;
 			children = (
+				2CA4639A285F2BDC00A81476 /* fastlane */,
+				2CA46398285F2BA100A81476 /* .github */,
+				2CB47D9D28577CBE00D25B91 /* .gitignore */,
 				2C646FF31DF1348C0075DC04 /* extensions */,
 				2C7662771DF1003500A2C38C /* talktrans */,
 				2C76628F1DF1003500A2C38C /* talktransTests */,
@@ -288,7 +294,7 @@
 				2CFF0C2C1E35F160004F9EF4 /* action */,
 				2C7662761DF1003500A2C38C /* Products */,
 				CB91AD0BC6B90CC085ABFEA5 /* Pods */,
-				BCAB57279EB975D719DEE990 /* Frameworks */,
+				E52B5CCA299354252740CEE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -339,6 +345,14 @@
 				2C76629D1DF1003500A2C38C /* Info.plist */,
 			);
 			path = talktransUITests;
+			sourceTree = "<group>";
+		};
+		2CA4639A285F2BDC00A81476 /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				2CA4639B285F2BF500A81476 /* Fastfile */,
+			);
+			path = fastlane;
 			sourceTree = "<group>";
 		};
 		2CFB6D6D1E25183400AA2285 /* image */ = {
@@ -394,30 +408,27 @@
 			path = action;
 			sourceTree = "<group>";
 		};
-		BCAB57279EB975D719DEE990 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BE8DC9F6D096D853161CDCA5 /* Pods_talktrans.framework */,
-				93AA14AD73C9A34A771E31CF /* Pods_talktrans_action.framework */,
-				CD26230AD72D90AA378D60E3 /* Pods_talktransTests.framework */,
-				E4F264F856C43861B97A2634 /* Pods_talktransUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CB91AD0BC6B90CC085ABFEA5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E6DC3E79C90D7B3864943004 /* Pods-talktrans.debug.xcconfig */,
-				8CE5313D2B45DD3372622BC3 /* Pods-talktrans.release.xcconfig */,
-				48980C27ACFAA8C90FC0E9F6 /* Pods-talktrans-action.debug.xcconfig */,
-				5ABFCF0BD5E410124DBE7B3D /* Pods-talktrans-action.release.xcconfig */,
-				343EC210D3DB6E53165DFE1A /* Pods-talktransTests.debug.xcconfig */,
-				15A5DF8C20BE64F79C5108B9 /* Pods-talktransTests.release.xcconfig */,
-				77D9ADD0757E214B897616DF /* Pods-talktransUITests.debug.xcconfig */,
-				41E6CD294DC95F9D1278E652 /* Pods-talktransUITests.release.xcconfig */,
+				18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */,
+				70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */,
+				A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */,
+				F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */,
+				AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */,
+				3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E52B5CCA299354252740CEE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10D79E201E91B024263D695F /* Pods_talktrans.framework */,
+				68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */,
+				E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,14 +438,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A01DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktrans" */;
 			buildPhases = (
-				B9748ED46DF4BF659796FC83 /* [CP] Check Pods Manifest.lock */,
+				21AE20298DA92D2B5115EDDF /* [CP] Check Pods Manifest.lock */,
 				2C7662711DF1003500A2C38C /* Sources */,
 				2C7662721DF1003500A2C38C /* Frameworks */,
 				2C7662731DF1003500A2C38C /* Resources */,
 				2CFF0C261E35E3AC004F9EF4 /* Embed App Extensions */,
-				234EA7F4E32623EABAB62E69 /* [CP] Embed Pods Frameworks */,
-				2C14D34C231946F100F01B6C /* ShellScript */,
 				2C5A6CF8228FB1E500F80205 /* ShellScript */,
+				56C4374B256A6050C9CCB439 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,7 +459,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A31DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktransTests" */;
 			buildPhases = (
-				4E3DF43E26421672ABB70D46 /* [CP] Check Pods Manifest.lock */,
+				2250CB0624545A50FAE1099F /* [CP] Check Pods Manifest.lock */,
 				2C7662881DF1003500A2C38C /* Sources */,
 				2C7662891DF1003500A2C38C /* Frameworks */,
 				2C76628A1DF1003500A2C38C /* Resources */,
@@ -468,7 +478,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A61DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktransUITests" */;
 			buildPhases = (
-				9404D10508D0E3F889E9FABC /* [CP] Check Pods Manifest.lock */,
+				6D0F79B94BEA80E1F92C348C /* [CP] Check Pods Manifest.lock */,
 				2C7662931DF1003500A2C38C /* Sources */,
 				2C7662941DF1003500A2C38C /* Frameworks */,
 				2C7662951DF1003500A2C38C /* Resources */,
@@ -517,10 +527,9 @@
 			};
 			buildConfigurationList = 2C7662701DF1003500A2C38C /* Build configuration list for PBXProject "talktrans" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ko,
@@ -553,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA4639C285F2BF500A81476 /* Fastfile in Resources */,
 				2C4445451E25C518005C9EE4 /* icons8.png in Resources */,
 				2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */,
 				2C13A14B20FB688200E6C0E6 /* langs in Resources */,
@@ -569,8 +579,10 @@
 				2C059CE01E00CFF00089DD84 /* Main.storyboard in Resources */,
 				2C0065281E37577D00E404F7 /* Settings.bundle in Resources */,
 				2CFB6D741E2519BB00AA2285 /* swap.png in Resources */,
+				2CB47D9E28577CBE00D25B91 /* .gitignore in Resources */,
 				2C7662861DF1003500A2C38C /* LaunchScreen.storyboard in Resources */,
 				2C7662831DF1003500A2C38C /* Assets.xcassets in Resources */,
+				2CA46399285F2BA100A81476 /* .github in Resources */,
 				2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */,
 				2C5A6CEA228F978B00F80205 /* GoogleService-Info.plist in Resources */,
 				2CFB6D761E251A2900AA2285 /* rotate_left.png in Resources */,
@@ -596,59 +608,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		234EA7F4E32623EABAB62E69 /* [CP] Embed Pods Frameworks */ = {
+		21AE20298DA92D2B5115EDDF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-talktrans-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2C14D34C231946F100F01B6C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$PRODUCT_SETTINGS_PATH\")\necho \"/usr/libexec/PlistBuddy -c 'Print CFBundleVersion $PRODUCT_SETTINGS_PATH'\"\nif [ -z \"$buildNumber\" ] || [ \"$buildNumber\" = \"\\$(CURRENT_PROJECT_VERSION)\" ]\nthen\n        echo \"${PRODUCT_NAME} buildNumber is [empty]\"\n        buildNumber=1\nelse\n        echo \"${PRODUCT_NAME} buildnumber is $buildNumber\"\n        buildNumber=$((buildNumber + 1))\nfi\n\necho \"\\n${PRODUCT_NAME} new buildnumber = $buildNumber\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$PRODUCT_SETTINGS_PATH\"\n";
-		};
-		2C5A6CF8228FB1E500F80205 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run -gsp \"${PROJECT_DIR}/${PROJECT}/GoogleService-Info.plist\"\n";
-		};
-		4E3DF43E26421672ABB70D46 /* [CP] Check Pods Manifest.lock */ = {
+		2250CB0624545A50FAE1099F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -670,7 +652,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9404D10508D0E3F889E9FABC /* [CP] Check Pods Manifest.lock */ = {
+		2C5A6CF8228FB1E500F80205 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run -gsp \"${PROJECT_DIR}/${PROJECT}/GoogleService-Info.plist\"\n";
+		};
+		56C4374B256A6050C9CCB439 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D0F79B94BEA80E1F92C348C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -686,28 +703,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-talktransUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B9748ED46DF4BF659796FC83 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-talktrans-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -944,7 +939,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -998,7 +993,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1009,21 +1004,21 @@
 		};
 		2C7662A11DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6DC3E79C90D7B3864943004 /* Pods-talktrans.debug.xcconfig */;
+			baseConfigurationReference = 18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M29A6H95KD;
 				INFOPLIST_FILE = talktrans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.10;
+				MARKETING_VERSION = 1.1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1036,21 +1031,21 @@
 		};
 		2C7662A21DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CE5313D2B45DD3372622BC3 /* Pods-talktrans.release.xcconfig */;
+			baseConfigurationReference = 70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M29A6H95KD;
 				INFOPLIST_FILE = talktrans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.10;
+				MARKETING_VERSION = 1.1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.credif.talktrans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1063,7 +1058,7 @@
 		};
 		2C7662A41DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 343EC210D3DB6E53165DFE1A /* Pods-talktransTests.debug.xcconfig */;
+			baseConfigurationReference = A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1084,7 +1079,7 @@
 		};
 		2C7662A51DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15A5DF8C20BE64F79C5108B9 /* Pods-talktransTests.release.xcconfig */;
+			baseConfigurationReference = F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1105,7 +1100,7 @@
 		};
 		2C7662A71DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77D9ADD0757E214B897616DF /* Pods-talktransUITests.debug.xcconfig */;
+			baseConfigurationReference = AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = Q5YYY27YSF;
@@ -1125,7 +1120,7 @@
 		};
 		2C7662A81DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41E6CD294DC95F9D1278E652 /* Pods-talktransUITests.release.xcconfig */;
+			baseConfigurationReference = 3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = Q5YYY27YSF;
