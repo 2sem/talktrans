@@ -77,7 +77,7 @@ class LSLanguagePickerButton: UIButton, LSLanguagePickerDataSource, LSLanguagePi
     }
     
     func rowForLanguage(_ picker: LSLanguagePicker, language: String) -> Int {
-        return self.languages.index(of: language) ?? 0;
+        return self.languages.firstIndex(of: language) ?? 0;
     }
     
     // MARK: LSLanguagePickerDelegate

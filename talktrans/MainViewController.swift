@@ -225,6 +225,8 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
             case .restricted:
                 str = "restricted";
                 break;
+            default:
+                break
             }
             
             print("\(#function) - requestAuthorization => \(str)");
@@ -310,6 +312,12 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     }
     
     var disposeBag = DisposeBag();
+    
+    // Sets white status bar because app's theme is dark
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -326,8 +334,6 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
          10. ja : japan
          */
         
-        // Sets white status bar because app's theme is dark
-        UIApplication.shared.statusBarStyle = .lightContent;
         print("current locale[\(self.nativeLocale.identifier)] lang[\(self.nativeLocale.languageCode?.description ?? "")] region[\(self.nativeLocale.regionCode?.description ?? "")]");
         let current = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return self.nativeLocale.identifier.hasPrefix(key);

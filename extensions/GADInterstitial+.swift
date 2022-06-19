@@ -15,7 +15,7 @@ import GoogleMobileAds
 extension GADInterstitialAd {
     static func loadUnitId(name : String) -> String?{
         var value : String?;
-        var unitList = Bundle.main.infoDictionary?["GoogleADUnitID"] as? [String : String];
+        let unitList = Bundle.main.infoDictionary?["GoogleADUnitID"] as? [String : String];
         guard unitList != nil else{
             print("Add [String : String] Dictionary as 'GoogleADUnitID'");
             return value;
