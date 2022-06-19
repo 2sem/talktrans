@@ -19,11 +19,11 @@ target 'talktrans' do
   pod 'KakaoOpenSDK'
   pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'GADManager'#, :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
-  pod 'NaverPapago', :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
+  pod 'NaverPapago'#, :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material', '~> 2.16.4'
-  pod 'RxSwift', '~> 4.0'
-  pod 'RxCocoa', '~> 4.0'
-  pod 'Alamofire'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'Alamofire', '4.7.3'
   #, :xcconfig => { 'APPLICATION_EXTENSION_API_ONLY' => 'FALSE' }
 
 #  target 'action' do
@@ -42,7 +42,12 @@ target 'talktrans' do
   end
 
     #script to do after install pod projects
-#    post_install do |installer|
+    post_install do |installer|
+      installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+#          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+        end
+      end
 #        #find target name of "Material" from targets in Pods
 #        Material = installer.pods_project.targets.find{ |t| t.name == "Material" }
 #        #puts "capture #{Material}";
@@ -79,5 +84,5 @@ target 'talktrans' do
 #            config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
 #            puts "off APPLICATION_EXTENSION_API_ONLY of #{GADManager}";
 #        end
-#    end
+    end
 end
