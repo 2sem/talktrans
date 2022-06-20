@@ -108,7 +108,7 @@ jobs:
       
       - name: Decrypt Secret Data
         run: |
-          git secret reveal -p ${{ secrets.GPG_PRIVATE_PWD }}
+          git secret reveal -p '${{ secrets.GPG_PRIVATE_PWD }}'
           
       - name: Build/Upload app
         env:
