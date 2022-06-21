@@ -114,8 +114,8 @@ jobs:
         env:
           PACKAGE_NAME: 'com.credif.talktrans'
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          IOS_CERT_PWD: ${{ secrets.IOS_CERT_P12_PWD }}
+          IOS_CERT_PWD: '${{ secrets.IOS_CERT_P12_PWD }}'
           IOS_KEYCHAIN: ${{ secrets.IOS_KEYCHAIN }}
-          IOS_KEYCHAIN_PWD: ${{ secrets.IOS_KEYCHAIN_PWD }}
+          IOS_KEYCHAIN_PWD: '${{ secrets.IOS_KEYCHAIN_PWD }}'
         run: |
           fastlane ios release description:'${{ github.event.inputs.body }}' isReleasing:${{ github.event.inputs.isReleasing }}
