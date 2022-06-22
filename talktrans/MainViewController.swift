@@ -50,10 +50,11 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     var supportedLangs = ["ko" : "Korean", "en" : "English", "ja" : "Japanese", "zh-Hans" : "Chinese", "zh-Hant" : "Taiwanese", "vi" : "Vietnamese", "id" : "Indonesian", "th" : "Thai", "de" : "German", "ru" : "Russian", "es" : "Spanish", "it" : "Italian", "fr" : "French"];
     
     // MARK: Layout Constraints to toggle Admob Banner
-    var constraint_topBanner_top : NSLayoutConstraint!;
+    @IBOutlet weak var constraint_topBanner_top: NSLayoutConstraint!
     @IBOutlet var constraint_topBanner_bottom: NSLayoutConstraint!
     @IBOutlet var constraint_bottomBanner_top : NSLayoutConstraint!;
-    var constraint_bottomBanner_bottom : NSLayoutConstraint!;
+    @IBOutlet weak var constraint_bottomBanner_bottom: NSLayoutConstraint!
+    //    var constraint_bottomBanner_bottom : NSLayoutConstraint!;
 
     @IBOutlet weak var topBannerView: GADBannerView!
     @IBOutlet weak var bottomBannerView: GADBannerView!
@@ -343,15 +344,6 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         
         self.transButton.delegate = self;
         
-        // Treats iPhone X
-        if #available(iOS 11.0, *) {
-            self.constraint_topBanner_top = self.topBannerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor);
-            self.constraint_bottomBanner_bottom = self.bottomBannerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor);
-        } else {
-            self.constraint_topBanner_top = self.topBannerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20);
-            self.constraint_bottomBanner_bottom = self.bottomBannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor);
-        };
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(noti:)), name: UIResponder.keyboardWillHideNotification, object: nil);
         
@@ -583,7 +575,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
 }
 
 extension MainViewController : GADBannerViewDelegate{
-    @objc func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         if bannerView === self.topBannerView && !self.keyboardEnabled{
             self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
             self.topBannerView.isHidden = false;
