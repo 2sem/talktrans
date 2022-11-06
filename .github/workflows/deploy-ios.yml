@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   install-pods:
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
       
   deploy:
     needs: install-pods
-    runs-on: macos-11
+    runs-on: macos-12
     env:
         PRODUCT_NAME: 'talktrans'
         IOS_CERT_PATH: 'cert.p12'
