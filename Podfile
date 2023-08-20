@@ -16,14 +16,14 @@ target 'talktrans' do
   # Recommended: Add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
   
-  pod 'KakaoOpenSDK'
+  pod 'KakaoSDKShare'
   pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'GADManager'#, :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
   pod 'NaverPapago'#, :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material', '~> 2.16.4'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod 'Alamofire', '4.7.3'
+#  pod 'Alamofire', '~> 5.1'
   #, :xcconfig => { 'APPLICATION_EXTENSION_API_ONLY' => 'FALSE' }
 
 #  target 'action' do
@@ -45,10 +45,11 @@ target 'talktrans' do
     post_install do |installer|
       installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-#          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
           config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ''
           config.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
           config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+          
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
         end
       end
 #        #find target name of "Material" from targets in Pods
