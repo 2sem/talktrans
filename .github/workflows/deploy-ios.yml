@@ -22,14 +22,14 @@ jobs:
     runs-on: macos-12
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Create pods cache key
         id: pods-cache-hash
         run: echo "::set-output name=hash::${{ runner.os }}-pods-cache-hash-${{ hashFiles('./Podfile.lock') }}"
 
       - name: Cache pods
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-pods
         with:
           path: ./Pods
@@ -54,10 +54,10 @@ jobs:
         GPG_PRIVATE_KEY_PATH: 'private.gpg'
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Load cached pods
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./Pods
           key: ${{ needs.install-pods.outputs.pods-cache-key }}
