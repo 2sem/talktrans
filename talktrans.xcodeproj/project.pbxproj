@@ -73,14 +73,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2CFF0C261E35E3AC004F9EF4 /* Embed App Extensions */ = {
+		2CFF0C261E35E3AC004F9EF4 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -444,7 +444,7 @@
 				2C7662711DF1003500A2C38C /* Sources */,
 				2C7662721DF1003500A2C38C /* Frameworks */,
 				2C7662731DF1003500A2C38C /* Resources */,
-				2CFF0C261E35E3AC004F9EF4 /* Embed App Extensions */,
+				2CFF0C261E35E3AC004F9EF4 /* Embed Foundation Extensions */,
 				2C5A6CF8228FB1E500F80205 /* ShellScript */,
 				56C4374B256A6050C9CCB439 /* [CP] Embed Pods Frameworks */,
 			);
@@ -504,8 +504,9 @@
 		2C76626D1DF1003500A2C38C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = leesam;
 				TargetAttributes = {
 					2C7662741DF1003500A2C38C = {
@@ -921,6 +922,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -981,6 +983,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
