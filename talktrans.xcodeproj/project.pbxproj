@@ -662,7 +662,7 @@
 		};
 		2C5A6CF8228FB1E500F80205 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -674,7 +674,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run -gsp \"${PROJECT_DIR}/${PROJECT}/GoogleService-Info.plist\"\n";
 		};
