@@ -41,6 +41,7 @@
 		2CB47D9E28577CBE00D25B91 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2CB47D9D28577CBE00D25B91 /* .gitignore */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
 		2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */; };
+		2CE340172B9C90B200BBB5AC /* LSExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE340162B9C90B200BBB5AC /* LSExtensions */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
 		2CF31DF91E64219F00992A7A /* fix_on_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF81E64219F00992A7A /* fix_on_white@x32.png */; };
 		2CF31DFB1E6421CF00992A7A /* fix_off_white@x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DFA1E6421CF00992A7A /* fix_off_white@x32.png */; };
@@ -216,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C8B9A07BEF9884FFA76FB0 /* Pods_talktrans.framework in Frameworks */,
+				2CE340172B9C90B200BBB5AC /* LSExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +453,9 @@
 			dependencies = (
 			);
 			name = talktrans;
+			packageProductDependencies = (
+				2CE340162B9C90B200BBB5AC /* LSExtensions */,
+			);
 			productName = talktrans;
 			productReference = 2C7662751DF1003500A2C38C /* talktrans.app */;
 			productType = "com.apple.product-type.application";
@@ -546,6 +551,9 @@
 				it,
 			);
 			mainGroup = 2C76626C1DF1003500A2C38C;
+			packageReferences = (
+				2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */,
+			);
 			productRefGroup = 2C7662761DF1003500A2C38C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1186,6 +1194,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/2sem/LSExtensions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.22;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CE340162B9C90B200BBB5AC /* LSExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */;
+			productName = LSExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2C76627F1DF1003500A2C38C /* talktrans.xcdatamodeld */ = {

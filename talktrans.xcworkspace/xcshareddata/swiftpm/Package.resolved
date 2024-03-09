@@ -1,0 +1,15 @@
+{
+  "originHash" : "8f803c8eddbd337a9967f2f00b542dda604589dd1b20abae65a615fdbf9f1e27",
+  "pins" : [
+    {
+      "identity" : "lsextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/2sem/LSExtensions",
+      "state" : {
+        "revision" : "76152a1fa0d0f5cb4726bdb5b1934567bad26fff",
+        "version" : "0.1.22"
+      }
+    }
+  ],
+  "version" : 3
+}

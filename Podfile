@@ -17,7 +17,7 @@ target 'talktrans' do
   pod 'Firebase/Analytics'
   
   pod 'KakaoSDKShare'
-  pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  #pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'GADManager'#, :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
   pod 'NaverPapago'#, :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material', '~> 2.16.4'
