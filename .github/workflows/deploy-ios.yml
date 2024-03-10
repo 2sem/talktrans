@@ -22,14 +22,14 @@ jobs:
     runs-on: macos-13
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create pods cache key
         id: pods-cache-hash
         run: echo "::set-output name=hash::${{ runner.os }}-pods-cache-hash-${{ hashFiles('./Podfile.lock') }}"
 
       - name: Cache pods
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-pods
         with:
           path: ./Pods
@@ -45,7 +45,7 @@ jobs:
       
   deploy:
     needs: install-pods
-    runs-on: macos-12
+    runs-on: macos-13
     env:
         PRODUCT_NAME: 'talktrans'
         IOS_CERT_PATH: 'cert.p12'
@@ -54,10 +54,10 @@ jobs:
         GPG_PRIVATE_KEY_PATH: 'private.gpg'
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Load cached pods
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./Pods
           key: ${{ needs.install-pods.outputs.pods-cache-key }}
@@ -71,14 +71,14 @@ jobs:
           IOS_CERT_BASE64: $IOS_CERT_PATH.base64
         run: |
           echo "${{ secrets.IOS_CERT_P12_DATA }}" > $IOS_CERT_BASE64
-          base64 --decode $IOS_CERT_BASE64 -o $IOS_CERT_PATH
+          base64 --decode -i $IOS_CERT_BASE64 -o $IOS_CERT_PATH
 
       - name: Import provisioning profile
         env:
           IOS_PROFILE_PATH_BASE64: $IOS_PROFILE_PATH.base64
         run: |
           echo "${{ secrets.IOS_PROFILE_DATA }}" > $IOS_PROFILE_PATH_BASE64
-          base64 --decode $IOS_PROFILE_PATH_BASE64 -o $IOS_PROFILE_PATH
+          base64 --decode -i $IOS_PROFILE_PATH_BASE64 -o $IOS_PROFILE_PATH
 
       - name: Remove Network Security Exceptions
         continue-on-error: true
@@ -94,7 +94,7 @@ jobs:
           API_KEY_PATH_BASE64: $IOS_KEY_PATH.base64
         run: |
           echo '${{ secrets.IOS_API_KEY }}' > $API_KEY_PATH_BASE64
-          base64 --decode $API_KEY_PATH_BASE64 -o $IOS_KEY_PATH
+          base64 --decode -i $API_KEY_PATH_BASE64 -o $IOS_KEY_PATH
           rm $API_KEY_PATH_BASE64
           
       - name: Import Secret Key
