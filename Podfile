@@ -51,6 +51,22 @@ target 'talktrans' do
           
           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
         end
+        
+        if target.name == 'FirebaseCrashlytics'
+          target.build_configurations.each do |config|
+            puts "Found FirebaseCrashlytics Target"
+            if config.name == 'Debug'
+              puts "Add -Wl,-ld_classic into Other Linker Flags of Debug Configuration for FirebaseCrashlytics"
+              config.build_settings['OTHER_LDFLAGS'] = "$(inherited) -Wl,-ld_classic"
+              #"#{config.build_settings['OTHER_LDFLAGS']} -Wl,-ld_classic"
+            end
+          end
+          
+#          xcconfig_path = config.base_configuration_reference.real_path
+#          xcconfig = File.read(xcconfig_path)
+#          new_xcconfig = xcconfig.sub('OTHER_LDFLAGS = $(inherited) -Wl,-ld_classic', 'OTHER_LDFLAGS = $(inherited)')
+#          File.open(xcconfig_path, "w") { |file| file << new_xcconfig }
+        end
       end
 #        #find target name of "Material" from targets in Pods
 #        Material = installer.pods_project.targets.find{ |t| t.name == "Material" }
