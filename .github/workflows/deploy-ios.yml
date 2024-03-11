@@ -108,6 +108,7 @@ jobs:
             rm '/usr/local/bin/idle3.11' #fix Could not symlink bin/idle3.11
             rm /usr/local/bin/2to3 # fix Could not symlink bin/2to3
             rm '/usr/local/bin/pydoc3.11' # fix Could not symlink bin/pydoc3.11
+            rm '/usr/local/bin/python3.11' # fix Could not symlink bin/python3.11
             brew link --overwrite python@3.12 # fix Could not symlink bin/2to3
             brew install git-secret
       
