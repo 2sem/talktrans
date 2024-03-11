@@ -104,6 +104,7 @@ jobs:
           
       - name: Install Encrypter
         run: |
+            brew link --overwrite python@3.11 # fix Could not symlink bin/2to3-3.11
             brew install git-secret
       
       - name: Decrypt Secret Data
