@@ -104,8 +104,6 @@ jobs:
           
       - name: Install Encrypter
         run: |
-#            brew unlink python@3.12
-#            brew unlink python@3.11
             rm '/usr/local/bin/2to3-3.11' # fix Could not symlink bin/2to3-3.11
             rm '/usr/local/bin/idle3.11' #fix Could not symlink bin/idle3.11
             rm /usr/local/bin/2to3 # fix Could not symlink bin/2to3
@@ -116,7 +114,6 @@ jobs:
             rm '/usr/local/bin/python3.11-config' # fix ould not symlink bin/python3.11-config
             rm '/usr/local/bin/idle3.12' # fix Could not symlink bin/idle3.12
             rm '/usr/local/bin/pydoc3' # Could not symlink bin/pydoc3
-#            brew link --overwrite python@3.12 # fix Could not symlink bin/2to3
             brew install git-secret
       
       - name: Decrypt Secret Data
