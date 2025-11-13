@@ -12,7 +12,6 @@ import Speech
 import AVKit
 import Material
 import LSExtensions
-import NaverPapago
 import RxCocoa
 import RxSwift
 
@@ -104,7 +103,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     @IBAction func onTransLang(_ button: UIButton) {
         
         //self.transButton.languages = [String].init(self.supportedLangs.values);
-        self.transButton?.languages = NaverPapago.supportedTargetLangs(source: self.nativeLocale)
+        self.transButton?.languages = TranslationManager.shared.supportedTargetLangs(source: self.nativeLocale)
             .compactMap{ self.supportedLangs[$0.rawValue] }
         self.transButton?.showPicker();
     }
@@ -252,7 +251,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         self.nativeTextView.resignFirstResponder();
         
         //Checks if native locale can be translated to the translated locale
-        guard NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard TranslationManager.shared.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
                 let nativeTitle = self.nativeButton.language ?? "";
                 let transTitle = self.transButton.language ?? "";
             self.showAlert(title: "Error".localized(), msg: String(format: "It is not supported to translate %@ to %@".localized(), nativeTitle.localized(), transTitle.localized()), actions: [UIAlertAction(title: "OK".localized(), style: .default, handler: nil)], style: .alert);
@@ -260,17 +259,17 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         }
 
         //Translates native text
-        NaverPapago.shared.requestTranslateByNMT(text: self.nativeTextView.text,
-                                        source: self.nativeLocale,
-                                        target: self.transLocale,
-                                        completionHandler: {(result) -> Void in
+        TranslationManager.shared.requestTranslate(text: self.nativeTextView.text,
+                                        from: self.nativeLocale,
+                                        to: self.transLocale,
+                                        completion: {(result) -> Void in
             switch result{
                 case .success(let translated):
                     DispatchQueue.main.async {
                         self.transTextView.text = translated;
                     }
                     break;
-                case .error:
+                case .failure(let error):
                     self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
                         self.onTranslate(self.translateButton);
                     }, cancelHandler: { (act) in
@@ -490,12 +489,12 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     
     func fixTransLang(){
         self.needFix = false;
-        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !TranslationManager.shared.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
             self.updateNativeInputMessage();
             return;
         }
         
-        let langs = NaverPapago.supportedTargetLangs(source: self.nativeLocale);
+        let langs = TranslationManager.shared.supportedTargetLangs(source: self.nativeLocale);
         let target = langs.first(where: { $0 == .english }) ?? langs.first;
         /*let target = self.supportedLangs.first { (key: String, value: String) -> Bool in
             return (self.nativeLocale.languageCode != "ko") ? key == "ko-Kore" : key == "en";
@@ -506,7 +505,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     
     func fixNativeLang(){
         self.needFix = false;
-        guard !NaverPapago.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
+        guard !TranslationManager.shared.canSupportTranslate(source: self.nativeLocale, target: self.transLocale) else{
 //            self.updateTransMessage();
             return;
         }

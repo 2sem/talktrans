@@ -40,6 +40,8 @@
 		2CA4639C285F2BF500A81476 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = 2CA4639B285F2BF500A81476 /* Fastfile */; };
 		2CB47D9E28577CBE00D25B91 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2CB47D9D28577CBE00D25B91 /* .gitignore */; };
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
+		2CD34DC12EC0DA0F00C7D401 /* TranslationLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD34DC02EC0DA0F00C7D401 /* TranslationLocale.swift */; };
+		2CD34DC42EC0DE6800C7D401 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD34DC32EC0DE6800C7D401 /* TranslationManager.swift */; };
 		2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */; };
 		2CE340172B9C90B200BBB5AC /* LSExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE340162B9C90B200BBB5AC /* LSExtensions */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
@@ -170,6 +172,8 @@
 		2CA4639B285F2BF500A81476 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		2CB47D9D28577CBE00D25B91 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2CD074561E9FAE7A0032CFCD /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
+		2CD34DC02EC0DA0F00C7D401 /* TranslationLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLocale.swift; sourceTree = "<group>"; };
+		2CD34DC32EC0DE6800C7D401 /* TranslationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
 		2CD5BA541DFD975C00AA0E16 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+.swift"; sourceTree = "<group>"; };
 		2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action_white@x1.5.png"; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 		2C7662771DF1003500A2C38C /* talktrans */ = {
 			isa = PBXGroup;
 			children = (
+				2CD34DC22EC0DE3E00C7D401 /* Managers */,
+				2CD34DBF2EC0D9B400C7D401 /* Models */,
 				2C1932781E9E5A990056262C /* data */,
 				2CFB6D6D1E25183400AA2285 /* image */,
 				2C7662781DF1003500A2C38C /* AppDelegate.swift */,
@@ -355,6 +361,22 @@
 				2CA4639B285F2BF500A81476 /* Fastfile */,
 			);
 			path = fastlane;
+			sourceTree = "<group>";
+		};
+		2CD34DBF2EC0D9B400C7D401 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CD34DC02EC0DA0F00C7D401 /* TranslationLocale.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2CD34DC22EC0DE3E00C7D401 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2CD34DC32EC0DE6800C7D401 /* TranslationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		2CFB6D6D1E25183400AA2285 /* image */ = {
@@ -740,7 +762,9 @@
 				2C1932751E9E595E0056262C /* GADInterstitial+.swift in Sources */,
 				2C5C441726CA0A8D00C71FFF /* GADRewardedAd+.swift in Sources */,
 				2C76627B1DF1003500A2C38C /* MainViewController.swift in Sources */,
+				2CD34DC12EC0DA0F00C7D401 /* TranslationLocale.swift in Sources */,
 				2C1425DB1F7A564300BDF794 /* ReviewManager.swift in Sources */,
+				2CD34DC42EC0DE6800C7D401 /* TranslationManager.swift in Sources */,
 				2C1425DA1F7A564300BDF794 /* GADRewardManager.swift in Sources */,
 				2C7662791DF1003500A2C38C /* AppDelegate.swift in Sources */,
 			);
@@ -1028,7 +1052,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M29A6H95KD;
 				INFOPLIST_FILE = talktrans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1102,8 +1126,6 @@
 					"\"MobileCoreServices\"",
 					"-framework",
 					"\"Motion\"",
-					"-framework",
-					"\"NaverPapago\"",
 					"-framework",
 					"\"Promises\"",
 					"-framework",
@@ -1164,7 +1186,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M29A6H95KD;
 				INFOPLIST_FILE = talktrans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1238,8 +1260,6 @@
 					"\"MobileCoreServices\"",
 					"-framework",
 					"\"Motion\"",
-					"-framework",
-					"\"NaverPapago\"",
 					"-framework",
 					"\"Promises\"",
 					"-framework",

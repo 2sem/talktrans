@@ -138,8 +138,6 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
-  - NaverPapago (0.0.3):
-    - Alamofire (~> 5)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
@@ -156,7 +154,6 @@ DEPENDENCIES:
   - GADManager
   - KakaoSDKShare
   - Material (~> 2.16.4)
-  - NaverPapago
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
 
@@ -183,7 +180,6 @@ SPEC REPOS:
     - Material
     - Motion
     - nanopb
-    - NaverPapago
     - PromisesObjC
     - PromisesSwift
     - RxCocoa
@@ -212,13 +208,12 @@ SPEC CHECKSUMS:
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
-  NaverPapago: 4473a4ce36aa134a4bb25513fddaa6dceb380a0c
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
   RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
 
-PODFILE CHECKSUM: c8ddf7754909b42043c9069d83f116a7d687c333
+PODFILE CHECKSUM: 9b98e1afac79a3724cd1a96a7ad44d369b94cd5d
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

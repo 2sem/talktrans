@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
- platform :ios, '13.0'
+ platform :ios, '18.0'
 
 target 'talktrans' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -19,7 +19,6 @@ target 'talktrans' do
   pod 'KakaoSDKShare'
   #pod 'LSExtensions'#, :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
   pod 'GADManager'#, :path => '~/Projects/leesam/pods/GADManager/src/GADManager'
-  pod 'NaverPapago'#, :path => '~/Projects/leesam/pods/NaverPapago/src/NaverPapago'
   pod 'Material', '~> 2.16.4'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
