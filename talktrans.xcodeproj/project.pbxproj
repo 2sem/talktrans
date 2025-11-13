@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09A9DC1973329D4FE29810CA /* Pods_talktransUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */; };
 		2C0065281E37577D00E404F7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C0065271E37577C00E404F7 /* Settings.bundle */; };
 		2C059CE01E00CFF00089DD84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C76627C1DF1003500A2C38C /* Main.storyboard */; };
 		2C0F9D3320847AD900DFA455 /* LSLanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F9D3220847AD900DFA455 /* LSLanguagePicker.swift */; };
@@ -42,6 +41,15 @@
 		2CD074571E9FAE7A0032CFCD /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2CD074561E9FAE7A0032CFCD /* Y2K.PNG */; };
 		2CD34DC12EC0DA0F00C7D401 /* TranslationLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD34DC02EC0DA0F00C7D401 /* TranslationLocale.swift */; };
 		2CD34DC42EC0DE6800C7D401 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD34DC32EC0DE6800C7D401 /* TranslationManager.swift */; };
+		2CE10F962EC61B0F001BD0AF /* Material in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10F952EC61B0F001BD0AF /* Material */; };
+		2CE10F992EC61DEB001BD0AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10F982EC61DEB001BD0AF /* FirebaseAnalytics */; };
+		2CE10F9B2EC61DEB001BD0AF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10F9A2EC61DEB001BD0AF /* FirebaseCrashlytics */; };
+		2CE10F9D2EC61DEB001BD0AF /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10F9C2EC61DEB001BD0AF /* FirebaseMessaging */; };
+		2CE10F9F2EC61DEB001BD0AF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10F9E2EC61DEB001BD0AF /* FirebaseRemoteConfig */; };
+		2CE10FA22EC6204D001BD0AF /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10FA12EC6204D001BD0AF /* KakaoSDK */; };
+		2CE10FA52EC62105001BD0AF /* GADManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10FA42EC62105001BD0AF /* GADManager */; };
+		2CE10FA82EC621C1001BD0AF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10FA72EC621C1001BD0AF /* RxCocoa */; };
+		2CE10FAA2EC621C1001BD0AF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE10FA92EC621C1001BD0AF /* RxSwift */; };
 		2CE3070925DA3E020066D8C1 /* AVAudioSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3070825DA3E020066D8C1 /* AVAudioSession+.swift */; };
 		2CE340172B9C90B200BBB5AC /* LSExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE340162B9C90B200BBB5AC /* LSExtensions */; };
 		2CF31DF71E640DDB00992A7A /* action_white@x1.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF31DF61E640DDB00992A7A /* action_white@x1.5.png */; };
@@ -53,8 +61,6 @@
 		2CFB6D741E2519BB00AA2285 /* swap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D731E2519BB00AA2285 /* swap.png */; };
 		2CFB6D761E251A2900AA2285 /* rotate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D751E251A2900AA2285 /* rotate_left.png */; };
 		2CFB6D781E251A5700AA2285 /* rotate_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFB6D771E251A5700AA2285 /* rotate_right.png */; };
-		8EF83BDC91A8EEB0BAC799C4 /* Pods_talktransTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */; };
-		D6C8B9A07BEF9884FFA76FB0 /* Pods_talktrans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D79E201E91B024263D695F /* Pods_talktrans.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +94,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		10D79E201E91B024263D695F /* Pods_talktrans.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktrans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.debug.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.debug.xcconfig"; sourceTree = "<group>"; };
 		2C0065271E37577C00E404F7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C0264411DFF856300BB9F7D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C0264421DFF873A00BB9F7D /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -206,13 +210,6 @@
 		2CFF203D1DFC482F005774CA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2CFF203E1DFC4869005774CA /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Main.strings"; sourceTree = "<group>"; };
 		2CFF20411DFC4BB3005774CA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.release.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.release.xcconfig"; sourceTree = "<group>"; };
-		68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktrans.release.xcconfig"; path = "Target Support Files/Pods-talktrans/Pods-talktrans.release.xcconfig"; sourceTree = "<group>"; };
-		A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.debug.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransUITests.debug.xcconfig"; path = "Target Support Files/Pods-talktransUITests/Pods-talktransUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_talktransUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-talktransTests.release.xcconfig"; path = "Target Support Files/Pods-talktransTests/Pods-talktransTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,8 +217,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6C8B9A07BEF9884FFA76FB0 /* Pods_talktrans.framework in Frameworks */,
+				2CE10FA52EC62105001BD0AF /* GADManager in Frameworks */,
+				2CE10F9D2EC61DEB001BD0AF /* FirebaseMessaging in Frameworks */,
+				2CE10FA82EC621C1001BD0AF /* RxCocoa in Frameworks */,
+				2CE10FA22EC6204D001BD0AF /* KakaoSDK in Frameworks */,
+				2CE10F962EC61B0F001BD0AF /* Material in Frameworks */,
+				2CE10F9F2EC61DEB001BD0AF /* FirebaseRemoteConfig in Frameworks */,
+				2CE10F9B2EC61DEB001BD0AF /* FirebaseCrashlytics in Frameworks */,
+				2CE10F992EC61DEB001BD0AF /* FirebaseAnalytics in Frameworks */,
 				2CE340172B9C90B200BBB5AC /* LSExtensions in Frameworks */,
+				2CE10FAA2EC621C1001BD0AF /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +234,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF83BDC91A8EEB0BAC799C4 /* Pods_talktransTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +241,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09A9DC1973329D4FE29810CA /* Pods_talktransUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +302,6 @@
 				2CFF0C191E35E3AC004F9EF4 /* share */,
 				2CFF0C2C1E35F160004F9EF4 /* action */,
 				2C7662761DF1003500A2C38C /* Products */,
-				CB91AD0BC6B90CC085ABFEA5 /* Pods */,
-				E52B5CCA299354252740CEE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -432,29 +433,6 @@
 			path = action;
 			sourceTree = "<group>";
 		};
-		CB91AD0BC6B90CC085ABFEA5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */,
-				70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */,
-				A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */,
-				F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */,
-				AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */,
-				3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		E52B5CCA299354252740CEE9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				10D79E201E91B024263D695F /* Pods_talktrans.framework */,
-				68E8BEA2BC960864E05CFA66 /* Pods_talktransTests.framework */,
-				E150D1A8A20825E610483779 /* Pods_talktransUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,13 +440,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A01DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktrans" */;
 			buildPhases = (
-				21AE20298DA92D2B5115EDDF /* [CP] Check Pods Manifest.lock */,
 				2C7662711DF1003500A2C38C /* Sources */,
 				2C7662721DF1003500A2C38C /* Frameworks */,
 				2C7662731DF1003500A2C38C /* Resources */,
 				2CFF0C261E35E3AC004F9EF4 /* Embed Foundation Extensions */,
 				2C5A6CF8228FB1E500F80205 /* ShellScript */,
-				56C4374B256A6050C9CCB439 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -477,6 +453,15 @@
 			name = talktrans;
 			packageProductDependencies = (
 				2CE340162B9C90B200BBB5AC /* LSExtensions */,
+				2CE10F952EC61B0F001BD0AF /* Material */,
+				2CE10F982EC61DEB001BD0AF /* FirebaseAnalytics */,
+				2CE10F9A2EC61DEB001BD0AF /* FirebaseCrashlytics */,
+				2CE10F9C2EC61DEB001BD0AF /* FirebaseMessaging */,
+				2CE10F9E2EC61DEB001BD0AF /* FirebaseRemoteConfig */,
+				2CE10FA12EC6204D001BD0AF /* KakaoSDK */,
+				2CE10FA42EC62105001BD0AF /* GADManager */,
+				2CE10FA72EC621C1001BD0AF /* RxCocoa */,
+				2CE10FA92EC621C1001BD0AF /* RxSwift */,
 			);
 			productName = talktrans;
 			productReference = 2C7662751DF1003500A2C38C /* talktrans.app */;
@@ -486,7 +471,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A31DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktransTests" */;
 			buildPhases = (
-				2250CB0624545A50FAE1099F /* [CP] Check Pods Manifest.lock */,
 				2C7662881DF1003500A2C38C /* Sources */,
 				2C7662891DF1003500A2C38C /* Frameworks */,
 				2C76628A1DF1003500A2C38C /* Resources */,
@@ -505,7 +489,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7662A61DF1003500A2C38C /* Build configuration list for PBXNativeTarget "talktransUITests" */;
 			buildPhases = (
-				6D0F79B94BEA80E1F92C348C /* [CP] Check Pods Manifest.lock */,
 				2C7662931DF1003500A2C38C /* Sources */,
 				2C7662941DF1003500A2C38C /* Frameworks */,
 				2C7662951DF1003500A2C38C /* Resources */,
@@ -576,6 +559,11 @@
 			mainGroup = 2C76626C1DF1003500A2C38C;
 			packageReferences = (
 				2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */,
+				2CE10F942EC61B0F001BD0AF /* XCRemoteSwiftPackageReference "Material" */,
+				2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2CE10FA02EC6204D001BD0AF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				2CE10FA32EC62105001BD0AF /* XCRemoteSwiftPackageReference "GADManager" */,
+				2CE10FA62EC621C1001BD0AF /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 2C7662761DF1003500A2C38C /* Products */;
 			projectDirPath = "";
@@ -639,50 +627,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21AE20298DA92D2B5115EDDF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-talktrans-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2250CB0624545A50FAE1099F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-talktransTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2C5A6CF8228FB1E500F80205 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -700,49 +644,6 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run -gsp \"${PROJECT_DIR}/${PROJECT}/GoogleService-Info.plist\"\n";
-		};
-		56C4374B256A6050C9CCB439 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-talktrans/Pods-talktrans-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D0F79B94BEA80E1F92C348C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-talktransUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1043,7 +944,6 @@
 		};
 		2C7662A11DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18435D102DEEB64420E9EEC5 /* Pods-talktrans.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1177,7 +1077,6 @@
 		};
 		2C7662A21DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70D746DF3E558C39CC7AD593 /* Pods-talktrans.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1309,7 +1208,6 @@
 		};
 		2C7662A41DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2B2E0C5BF1DD334C97203A7 /* Pods-talktransTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1330,7 +1228,6 @@
 		};
 		2C7662A51DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F32D2C5ED8EFAEDBD639A065 /* Pods-talktransTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1351,7 +1248,6 @@
 		};
 		2C7662A71DF1003500A2C38C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC8314F3262542D6F580392B /* Pods-talktransUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = Q5YYY27YSF;
@@ -1371,7 +1267,6 @@
 		};
 		2C7662A81DF1003500A2C38C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3012B51CA8320BDAF42BC444 /* Pods-talktransUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = Q5YYY27YSF;
@@ -1431,6 +1326,46 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2CE10F942EC61B0F001BD0AF /* XCRemoteSwiftPackageReference "Material" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CosmicMind/Material";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+		2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.1;
+			};
+		};
+		2CE10FA02EC6204D001BD0AF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.22.2;
+			};
+		};
+		2CE10FA32EC62105001BD0AF /* XCRemoteSwiftPackageReference "GADManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/2sem/GADManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.6;
+			};
+		};
+		2CE10FA62EC621C1001BD0AF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.3;
+			};
+		};
 		2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/2sem/LSExtensions";
@@ -1442,6 +1377,51 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2CE10F952EC61B0F001BD0AF /* Material */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10F942EC61B0F001BD0AF /* XCRemoteSwiftPackageReference "Material" */;
+			productName = Material;
+		};
+		2CE10F982EC61DEB001BD0AF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2CE10F9A2EC61DEB001BD0AF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		2CE10F9C2EC61DEB001BD0AF /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		2CE10F9E2EC61DEB001BD0AF /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10F972EC61DEB001BD0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		2CE10FA12EC6204D001BD0AF /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10FA02EC6204D001BD0AF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		2CE10FA42EC62105001BD0AF /* GADManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10FA32EC62105001BD0AF /* XCRemoteSwiftPackageReference "GADManager" */;
+			productName = GADManager;
+		};
+		2CE10FA72EC621C1001BD0AF /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10FA62EC621C1001BD0AF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		2CE10FA92EC621C1001BD0AF /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE10FA62EC621C1001BD0AF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		2CE340162B9C90B200BBB5AC /* LSExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CE340152B9C90B200BBB5AC /* XCRemoteSwiftPackageReference "LSExtensions" */;
