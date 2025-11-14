@@ -12,7 +12,7 @@ import GoogleMobileAds
 /**
  GoogleADUnitID/{name}
  */
-extension GADInterstitialAd {
+extension InterstitialAd {
     static func loadUnitId(name : String) -> String?{
         var value : String?;
         let unitList = Bundle.main.infoDictionary?["GoogleADUnitID"] as? [String : String];

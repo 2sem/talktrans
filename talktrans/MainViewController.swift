@@ -55,8 +55,8 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     @IBOutlet weak var constraint_bottomBanner_bottom: NSLayoutConstraint!
     //    var constraint_bottomBanner_bottom : NSLayoutConstraint!;
 
-    @IBOutlet weak var topBannerView: GADBannerView!
-    @IBOutlet weak var bottomBannerView: GADBannerView!
+    @IBOutlet weak var topBannerView: BannerView!
+    @IBOutlet weak var bottomBannerView: BannerView!
     
     @IBOutlet weak var viewContainer: UIView!
     
@@ -349,7 +349,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         self.topBannerView.loadUnitId(name: "TopBanner");
         self.topBannerView.rootViewController = self;
         
-        var req = GADRequest();
+        var req = Request();
         req.hideTestLabel();
 //        self.topBannerView.load(req);
         
@@ -366,7 +366,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         
         self.bottomBannerView.loadUnitId(name: "BottomBanner");
         self.bottomBannerView.rootViewController = self;
-        req = GADRequest();
+        req = Request();
         req.hideTestLabel();
         self.bottomBannerView.load(req);
         
@@ -573,8 +573,8 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
     }
 }
 
-extension MainViewController : GADBannerViewDelegate{
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+extension MainViewController : BannerViewDelegate{
+    func bannerViewDidReceiveAd(_ bannerView: BannerView) {
         if bannerView === self.topBannerView && !self.keyboardEnabled{
             self.toggleContraint(value: true, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
             self.topBannerView.isHidden = false;
@@ -584,7 +584,7 @@ extension MainViewController : GADBannerViewDelegate{
         }
     }
     
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
         if bannerView === self.topBannerView{
             self.toggleContraint(value: false, constraintOn: self.constraint_topBanner_top, constarintOff: self.constraint_topBanner_bottom);
             self.topBannerView.isHidden = true;

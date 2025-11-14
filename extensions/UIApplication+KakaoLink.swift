@@ -6,7 +6,7 @@
 //  Copyright © 2017년 leesam. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import KakaoSDKShare
 import KakaoSDKTemplate
 

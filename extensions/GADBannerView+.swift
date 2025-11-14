@@ -9,7 +9,7 @@
 import Foundation
 import GoogleMobileAds
 
-extension GADBannerView{
+extension BannerView{
     func loadUnitId(name : String){
         let unitList = Bundle.main.infoDictionary?["GoogleADUnitID"] as? [String : String];
         guard unitList != nil else{
