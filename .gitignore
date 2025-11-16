@@ -90,3 +90,7 @@ fastlane/test_output
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
 .gitsecret/keys/random_seed
 !*.secret
+
+### Tuist ###
+*.xcworkspace
+*.xcodeproj

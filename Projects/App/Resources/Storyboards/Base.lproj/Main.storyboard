@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +21,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="GADBannerView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="BannerView" customModule="talktrans" customModuleProvider="target">
                                 <rect key="frame" x="4" y="-50" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -54,13 +53,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZf-en-3to" userLabel="View Container">
-                                <rect key="frame" x="20" y="44" width="374" height="852"/>
+                                <rect key="frame" x="20" y="96" width="374" height="800"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="947-j3-xGv" userLabel="Translator Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="802"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="750"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PyM-70-ONS" userLabel="Translated View">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="401"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="375"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Uvu-90-agl" userLabel="Trans Stack View">
                                                         <rect key="frame" x="8" y="0.0" width="358" height="44"/>
@@ -115,7 +114,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eoq-qB-f4C" userLabel="Trans Text View">
-                                                        <rect key="frame" x="0.0" y="44" width="374" height="357"/>
+                                                        <rect key="frame" x="0.0" y="44" width="374" height="331"/>
                                                         <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -147,7 +146,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g15-TJ-syY" userLabel="Native View">
-                                                <rect key="frame" x="0.0" y="401" width="374" height="401"/>
+                                                <rect key="frame" x="0.0" y="375" width="374" height="375"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYK-Kt-V4V" userLabel="Line View">
                                                         <rect key="frame" x="-8" y="0.0" width="390" height="10"/>
@@ -209,7 +208,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-q7-XdU" userLabel="Native Text View">
-                                                        <rect key="frame" x="0.0" y="54" width="374" height="347"/>
+                                                        <rect key="frame" x="0.0" y="54" width="374" height="321"/>
                                                         <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -249,7 +248,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-Xt-YXj" userLabel="Buttons Stack View">
-                                        <rect key="frame" x="0.0" y="802" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="750" width="374" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-ln-kbF" customClass="RaisedButton" customModule="Material">
                                                 <rect key="frame" x="0.0" y="5" width="187" height="40"/>
@@ -312,7 +311,7 @@
                                     <constraint firstItem="947-j3-xGv" firstAttribute="leading" secondItem="mZf-en-3to" secondAttribute="leading" id="nBj-x1-q4x"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKj-VY-D7J" userLabel="Bottom Banner View" customClass="GADBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKj-VY-D7J" userLabel="Bottom Banner View" customClass="BannerView" customModule="talktrans" customModuleProvider="target">
                                 <rect key="frame" x="4" y="896" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -367,8 +366,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="yUa-BE-PbA"/>
                                 <exclude reference="xYV-VP-rbr"/>
+                                <exclude reference="yUa-BE-PbA"/>
                                 <exclude reference="5fa-cz-2U8"/>
                             </mask>
                         </variation>

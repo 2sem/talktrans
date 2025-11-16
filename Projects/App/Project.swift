@@ -65,6 +65,7 @@ let project = Project(
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchStoryboardName": "LaunchScreen",
+                    "UIMainStoryboardFile": "Main",
                     "GADApplicationIdentifier": "ca-app-pub-9684378399371172~6560332448",
                     "GADUnitIdentifiers": [
                         "FullAd" : "ca-app-pub-9684378399371172/1814946844",
@@ -75,7 +76,7 @@ let project = Project(
                     "SKAdNetworkItems": .array(skAdNetworks),
                     "ITSAppUsesNonExemptEncryption": "NO",
                     "CFBundleShortVersionString": "${MARKETING_VERSION}",
-                    "CFBundleDisplayName": "Talk-Translator",
+                    "CFBundleDisplayName": "Talk Translator",
                     "NSAppTransportSecurity": [
                         "NSAllowsArbitraryLoads": true,
                     ],
