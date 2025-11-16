@@ -21,7 +21,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="BannerView" customModule="talktrans" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-30-AZe" userLabel="Top Banner View" customClass="GADBannerView">
                                 <rect key="frame" x="4" y="-50" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -311,7 +311,7 @@
                                     <constraint firstItem="947-j3-xGv" firstAttribute="leading" secondItem="mZf-en-3to" secondAttribute="leading" id="nBj-x1-q4x"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKj-VY-D7J" userLabel="Bottom Banner View" customClass="BannerView" customModule="talktrans" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKj-VY-D7J" userLabel="Bottom Banner View" customClass="GADBannerView">
                                 <rect key="frame" x="4" y="896" width="356" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

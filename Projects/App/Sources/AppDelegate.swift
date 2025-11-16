@@ -27,28 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GA
     let reviewInterval = 30;
     
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let req = GoogleMobileAds.Request();
         // Override point for customization after application launch.
         //GADMobileAds.configure(withApplicationID: "ca-app-pub-9684378399371172~6560332448");
         FirebaseApp.configure()
         
-        self.reviewManager = ReviewManager(self.window!, interval: 60.0 * 60 * 24 * 2);
-        self.reviewManager?.delegate = self;
-        //self.reviewManager?.show();
-        
-        self.rewardAd = GADRewardManager(self.window!, unitId: InterstitialAd.loadUnitId(name: "RewardAd") ?? "", interval: 60.0 * 60.0 * 24 * 3); //
-        self.rewardAd?.delegate = self;
-        
-        var adManager = GADManager<GADUnitName>.init(self.window!);
-        AppDelegate.sharedGADManager = adManager;
-        adManager.delegate = self;
+        MobileAds.shared.start { [unowned self](status) in
+            self.reviewManager = ReviewManager(self.window!, interval: 60.0 * 60 * 24 * 2);
+            self.reviewManager?.delegate = self;
+            //self.reviewManager?.show();
+            
+            self.rewardAd = GADRewardManager(self.window!, unitId: InterstitialAd.loadUnitId(name: "RewardAd") ?? "", interval: 60.0 * 60.0 * 24 * 3); //
+            self.rewardAd?.delegate = self;
+            
+            var adManager = GADManager<GADUnitName>.init(self.window!);
+            AppDelegate.sharedGADManager = adManager;
+            adManager.delegate = self;
         #if DEBUG
-        adManager.prepare(interstitialUnit: .full, interval: 60.0);
-        adManager.prepare(openingUnit: .launch, isTesting: true, interval: 60.0); //
+            adManager.prepare(interstitialUnit: .full, interval: 60.0);
+            adManager.prepare(openingUnit: .launch, isTesting: true, interval: 60.0); //
         #else
-        adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60.0 * 6);
-        adManager.prepare(openingUnit: .launch, interval: 60.0 * 5); //
+            adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60.0 * 6);
+            adManager.prepare(openingUnit: .launch, interval: 60.0 * 5); //
         #endif
-        adManager.canShowFirstTime = true;
+            adManager.canShowFirstTime = true;
+        }
         
         LSDefaults.increaseLaunchCount();
 
