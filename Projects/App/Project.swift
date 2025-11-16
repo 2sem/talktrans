@@ -65,7 +65,6 @@ let project = Project(
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchStoryboardName": "LaunchScreen",
-                    "UIMainStoryboardFile": "Main",
                     "GADApplicationIdentifier": "ca-app-pub-9684378399371172~6560332448",
                     "GADUnitIdentifiers": [
                         "FullAd" : "ca-app-pub-9684378399371172/1814946844",
@@ -80,7 +79,6 @@ let project = Project(
                     "NSAppTransportSecurity": [
                         "NSAllowsArbitraryLoads": true,
                     ],
-                    "KAKAO_APP_KEY": "f1c4e306b4e9103968bbb5cd4bd550f1",
                     "NSMicrophoneUsageDescription": "For Speech Recognition",
                     "NSSpeechRecognitionUsageDescription": "For Speech Recognition",
                     "UIViewControllerBasedStatusBarAppearance": false,

@@ -13,7 +13,6 @@ import StoreKit
 import GADManager
 import GoogleMobileAds
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, GADRewardManagerDelegate {
 
     var window: UIWindow?

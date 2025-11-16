@@ -123,11 +123,94 @@ var isValid: Bool {
 }
 ```
 
-## UIKit Specific Patterns
+## SwiftUI Specific Patterns
+
+### View Structure
+
+```swift
+struct CustomView: View {
+    @State private var isExpanded = false
+    @Binding var text: String
+    
+    var body: some View {
+        VStack {
+            Text("Title")
+            TextField("Placeholder", text: $text)
+        }
+        .padding()
+    }
+}
+```
+
+### ViewModel Pattern
+
+```swift
+@MainActor
+class CustomViewModel: ObservableObject {
+    @Published var property: String = ""
+    @Published var isLoading: Bool = false
+    
+    private let manager: SomeManager
+    
+    init(manager: SomeManager = SomeManager.shared) {
+        self.manager = manager
+    }
+    
+    func performAction() {
+        isLoading = true
+        // Async work
+        isLoading = false
+    }
+}
+```
+
+### State Management
+
+```swift
+struct MyScreen: View {
+    @StateObject private var viewModel = MyViewModel() // View-owned
+    @ObservedObject var sharedViewModel: SharedViewModel // Passed in
+    
+    @State private var localState: Bool = false // Local state
+    
+    var body: some View {
+        // View content
+    }
+}
+```
+
+### Modifiers and Styling
+
+```swift
+Text("Hello")
+    .font(.system(size: 16, weight: .semibold))
+    .foregroundColor(.primary)
+    .padding()
+    .background(Color.purple.opacity(0.1))
+    .cornerRadius(12)
+```
+
+### Sheet Presentation
+
+```swift
+.sheet(isPresented: $showSheet) {
+    LanguageSelectionView(
+        languages: availableLanguages,
+        selectedLocale: currentLocale,
+        onSelect: { locale in
+            // Handle selection
+        }
+    )
+    .presentationDetents([.medium, .large])
+}
+```
+
+## Legacy UIKit Patterns (Deprecated)
 
 ### View Initialization
 
 ```swift
+// Legacy UIKit code - use SwiftUI instead
 class CustomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,6 +229,7 @@ class CustomView: UIView {
 ### Constraint Setup (NSLayoutAnchor)
 
 ```swift
+// Legacy UIKit - use SwiftUI layout instead
 private func setupConstraints() {
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
@@ -154,31 +238,6 @@ private func setupConstraints() {
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
     ])
-}
-```
-
-### Table View Cells
-
-```swift
-class TranslateCell: UITableViewCell {
-    static let reuseIdentifier = "TranslateCell"
-    static let height: CGFloat = 80
-    
-    private let titleLabel = UILabel()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-        setupConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(with model: TranslateItem) {
-        titleLabel.text = model.title
-    }
 }
 ```
 

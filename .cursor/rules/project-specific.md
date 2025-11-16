@@ -3,10 +3,10 @@
 ## Project Overview
 
 **TalkTrans** is an iOS translation application built with:
-- **Framework**: UIKit (NOT SwiftUI)
+- **Framework**: SwiftUI (renewed from UIKit)
 - **Build System**: Tuist
-- **Architecture**: MVVM with Manager pattern
-- **Target iOS Version**: iOS 14.0+
+- **Architecture**: MVVM pattern with SwiftUI
+- **Target iOS Version**: iOS 18.0+
 - **Localization**: Multi-language support (English, Korean, Spanish, German, etc.)
 
 ## Third-Party Services
@@ -18,35 +18,84 @@
 ### Translation APIs
 - **Naver Papago**: Configured in `Resources/InfoPlist/NaverPapago.plist`
 - **Backup APIs**: For redundancy and API switching
+- **Apple Translation Framework**: Native translation support
 
 ### App Structure
 
 ```
 Projects/App/
 ├── Sources/
-│   ├── App.swift                 # SwiftUI app entry
-│   ├── AppDelegate.swift         # UIKit app delegate
-│   ├── ContentView.swift         # SwiftUI root view
-│   ├── MainViewController.swift   # UIKit main controller
-│   ├── Datas/                    # Core Data models
-│   │   ├── Models
-│   │   ├── Repositories
-│   │   └── talktrans.xcdatamodeld/
-│   ├── Extensions/               # Utility extensions
-│   ├── Managers/                 # Business logic
-│   │   ├── TranslationManager
-│   │   ├── LanguageManager
-│   │   └── StorageManager
-│   └── Models/                   # Data models
+│   ├── App.swift                      # SwiftUI app entry
+│   ├── AppDelegate.swift              # UIKit app delegate (for legacy support)
+│   ├── ContentView.swift              # SwiftUI root view
+│   ├── MainViewController.swift       # Legacy UIKit controller (deprecated)
+│   ├── Views/                         # SwiftUI Views
+│   │   ├── TranslationScreen.swift   # Main translation screen
+│   │   ├── LanguageSelectionView.swift # Language picker sheet
+│   │   ├── LanguagePickerButton.swift  # Language selection button
+│   │   ├── TranslationInputView.swift # Input text section
+│   │   └── TranslationOutputView.swift # Output text section
+│   ├── ViewModels/                    # MVVM ViewModels
+│   │   ├── TranslationViewModel.swift # Translation logic
+│   │   └── SpeechRecognitionViewModel.swift # Speech recognition
+│   ├── Models/                        # Data models
+│   │   ├── TranslationLocale.swift   # Language enum
+│   │   └── TranslationLocale+Extension.swift # Language extensions
+│   ├── Managers/                      # Business logic
+│   │   └── TranslationManager.swift  # Translation API manager
+│   ├── Datas/                         # Data persistence
+│   │   └── LSDefaults.swift          # UserDefaults wrapper
+│   └── Extensions/                    # Utility extensions
+│       ├── View+CornerRadius.swift   # SwiftUI view extensions
+│       └── [Other extensions]
 ├── Resources/
-│   ├── Assets.xcassets/          # Images, icons, colors
-│   ├── Datas/                    # Core Data models
-│   ├── Images/                   # Language flags, icons
-│   ├── InfoPlist/                # Configuration files
-│   ├── Strings/                  # Localization strings
-│   └── Storyboards/              # UI layouts (if any)
-└── Tests/                        # Unit tests
+│   ├── Assets.xcassets/              # Images, icons, colors
+│   ├── Datas/                        # Core Data models
+│   ├── Images/                       # Language flags, icons
+│   │   └── langs/                    # Language flag images
+│   ├── InfoPlist/                    # Configuration files
+│   ├── Strings/                      # Localization strings
+│   └── Storyboards/                  # Legacy UI layouts (deprecated)
+└── Tests/                            # Unit tests
 ```
+
+## SwiftUI Architecture
+
+### View Structure
+
+All SwiftUI views follow this pattern:
+
+```swift
+struct FeatureScreen: View {
+    @StateObject private var viewModel = FeatureViewModel()
+    
+    var body: some View {
+        // View implementation
+    }
+}
+```
+
+### ViewModel Pattern
+
+ViewModels use `@MainActor` and `ObservableObject`:
+
+```swift
+@MainActor
+class FeatureViewModel: ObservableObject {
+    @Published var property: String = ""
+    @Published var isLoading: Bool = false
+    
+    func performAction() {
+        // Business logic
+    }
+}
+```
+
+### Screen Naming Convention
+
+- **Main screens**: End with `Screen` (e.g., `TranslationScreen`)
+- **Sub views**: End with `View` (e.g., `LanguagePickerButton`)
+- **ViewModels**: End with `ViewModel` (e.g., `TranslationViewModel`)
 
 ## Translation Feature Implementation
 
@@ -56,136 +105,230 @@ Responsibilities:
 - Handle translation requests to various APIs
 - Cache translation results
 - Manage API key rotation and error handling
+- Support Apple Translation framework
 
 ```swift
-protocol TranslationProviding {
-    func translate(_ text: String, from: String, to: String) async throws -> String
-}
-
-class TranslationManager: TranslationProviding {
-    private let papago: NaverPapagoProvider
-    private let fallback: FallbackProvider
+class TranslationManager {
+    static let shared = TranslationManager()
     
-    func translate(_ text: String, from source: String, to target: String) async throws -> String {
-        // Try primary API
-        // Fallback to secondary if needed
+    func requestTranslate(
+        text: String,
+        from sourceLocale: Locale,
+        to targetLocale: Locale,
+        completion: @escaping (Result<String, Error>) -> Void
+    ) {
+        // Translation implementation
+    }
+    
+    func canSupportTranslate(source: Locale, target: Locale) -> Bool {
+        // Check if translation is supported
+    }
+    
+    func supportedTargetLangs(source: Locale) -> [TranslationLocale] {
+        // Get supported target languages
+    }
+}
+```
+
+### TranslationViewModel
+
+Manages translation state and business logic:
+
+```swift
+@MainActor
+class TranslationViewModel: ObservableObject {
+    @Published var nativeText: String = ""
+    @Published var translatedText: String = ""
+    @Published var nativeLocale: TranslationLocale = .english
+    @Published var translatedLocale: TranslationLocale = .korean
+    @Published var isTranslating: Bool = false
+    
+    func translate() {
+        // Perform translation
+    }
+    
+    func swapLanguages() {
+        // Swap source and target languages
     }
 }
 ```
 
 ### Language Support
 
-Supported languages configuration:
+Supported languages via `TranslationLocale` enum:
 
 ```swift
-enum LanguageCode: String, CaseIterable {
-    case english = "en"
+enum TranslationLocale: String, CaseIterable {
     case korean = "ko"
-    case spanish = "es"
+    case english = "en"
+    case japanese = "ja"
+    case chinese = "zh-Hans"
+    case taiwan = "zh-Hant"
+    case vietnam = "vi"
+    case indonesian = "id"
+    case thai = "th"
     case german = "de"
-    // ... other languages
+    case russian = "ru"
+    case spain = "es"
+    case italian = "it"
+    case france = "fr"
 }
 ```
 
-## Data Persistence
+Each locale has extensions for:
+- `displayName`: Localized language name
+- `flagImageName`: Path to flag image in `Resources/Images/langs/`
+- `locale`: Convert to `Locale` object
 
-### Core Data
+## SwiftUI Components
 
-Models defined in `Resources/Datas/talktrans.xcdatamodeld/`:
+### TranslationScreen
 
-- **Translation History**: Store past translations
-- **Favorites**: Save frequently used phrases
-- **Settings**: User preferences
-
-### Data Access Pattern
+Main screen structure:
 
 ```swift
-protocol TranslationRepository {
-    func saveTranslation(_ translation: TranslationItem) throws
-    func fetchRecentTranslations() throws -> [TranslationItem]
-    func deleteTranslation(_ id: UUID) throws
+struct TranslationScreen: View {
+    @StateObject private var viewModel = TranslationViewModel()
+    @StateObject private var speechViewModel = SpeechRecognitionViewModel()
+    
+    var body: some View {
+        ZStack {
+            // Gradient background
+            LinearGradient(...)
+            
+            ScrollView {
+                VStack {
+                    TranslationOutputView(...)
+                    TranslationInputView(...)
+                    ActionButtons(...)
+                }
+            }
+        }
+    }
 }
+```
 
-class CoreDataTranslationRepository: TranslationRepository {
-    // Implementation
+### Language Selection
+
+Language picker uses sheet presentation:
+
+```swift
+.sheet(isPresented: $showLanguagePicker) {
+    LanguageSelectionView(
+        languages: availableLocales,
+        selectedLocale: currentLocale,
+        onSelect: { locale in
+            // Handle selection
+        }
+    )
+    .presentationDetents([.medium, .large])
+}
+```
+
+### Speech Recognition
+
+Speech recognition uses `SpeechRecognitionViewModel`:
+
+```swift
+@MainActor
+class SpeechRecognitionViewModel: ObservableObject {
+    @Published var isRecognizing: Bool = false
+    @Published var recognizedText: String = ""
+    
+    func startRecognition(locale: Locale, onResult: @escaping (String) -> Void) {
+        // Speech recognition implementation
+    }
 }
 ```
 
 ## UI/UX Patterns
 
-### Main Tab Structure
+### Color Scheme
 
-```
-MainViewController
-├── TranslateViewController       # Main translation screen
-├── HistoryViewController         # Translation history
-├── FavoritesViewController       # Saved translations
-└── SettingsViewController        # App settings
-```
+- **Primary**: Purple (`Color.purple`)
+- **Background**: Gradient from purple to pink
+- **Input/Output Sections**: Light purple background (`Color.purple.opacity(0.05)`)
+- **Buttons**: Purple for primary, white/gray for secondary
 
-### TranslateViewController Pattern
+### Layout Structure
+
+1. **Translated Output Section** (Top)
+   - Language picker button
+   - Translated text display
+   - Light purple background
+
+2. **Native Input Section** (Middle)
+   - Language picker button
+   - Text input field
+   - Light purple background
+
+3. **Action Buttons** (Bottom)
+   - Translate button (purple)
+   - Speech Recognition button (white/gray)
+
+4. **Advertisement Banner** (Very bottom)
+   - Placeholder for ads
+
+### Navigation
+
+- Use `NavigationStack` (not `NavigationView`)
+- Use `.sheet()` for modal presentations
+- Use `.presentationDetents()` for custom sheet sizes
+
+## Data Persistence
+
+### UserDefaults
+
+Use `LSDefaults` wrapper:
 
 ```swift
-class TranslateViewController: UIViewController {
-    private let viewModel: TranslateViewModel
-    
-    // Source and target language pickers
-    private let sourceLanguageButton = UIButton()
-    private let targetLanguageButton = UIButton()
-    
-    // Input and output text views
-    private let inputTextView = UITextView()
-    private let outputTextView = UITextView()
-    
-    // Action buttons
-    private let translateButton = UIButton()
-    private let swapLanguagesButton = UIButton()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        setupConstraints()
-        bindViewModel()
-    }
+class LSDefaults {
+    static var isUpsideDown: Bool?
+    static var isRotateFixed: Bool?
+    // Other preferences
 }
 ```
 
-### Key UI Components
+### Core Data (Future)
 
-- **Language Picker**: Modal or popover showing language list
-- **Text Input**: Accept paste, voice input, and text entry
-- **Translation Output**: Display with copy and share options
-- **History View**: Scrollable list of translations
+Models defined in `Resources/Datas/talktrans.xcdatamodeld/`:
+- **Translation History**: Store past translations
+- **Favorites**: Save frequently used phrases
+- **Settings**: User preferences
+
+## Image Resources
+
+### Language Flags
+
+Flag images stored in `Resources/Images/langs/`:
+- `korean.png`
+- `english.png`
+- `japanese.png`
+- `chinese.png`
+- `taiwanese.png`
+- `vietnamese.png`
+- `indonesian.png`
+- `thai.png`
+- `german.png`
+- `russian.png`
+- `spanish.png`
+- `italian.png`
+- `french.png`
+
+Access via `TranslationLocale.flagImageName`:
+```swift
+Image(locale.flagImageName)
+    .resizable()
+    .scaledToFit()
+```
 
 ## Network Configuration
 
 ### API Endpoints
 
 Store in configuration files:
-
-```swift
-enum APIConfiguration {
-    static let papagoBaseURL = "https://openapi.naver.com"
-    static let googleTranslateBaseURL = "https://translation.googleapis.com"
-    static let timeout: TimeInterval = 30
-}
-```
-
-### Request/Response Models
-
-```swift
-struct TranslationRequest: Encodable {
-    let source: String
-    let target: String
-    let text: String
-}
-
-struct TranslationResponse: Decodable {
-    let translatedText: String
-    let sourceLanguage: String
-    let targetLanguage: String
-}
-```
+- `Resources/InfoPlist/NaverPapago.plist` - Naver Papago API keys
+- `Resources/InfoPlist/NaverPapago.plist.secret` - Secret keys (not committed)
 
 ## Testing
 
@@ -193,27 +336,29 @@ struct TranslationResponse: Decodable {
 
 ```
 Tests/
-├── Features/
-│   ├── TranslateViewControllerTests.swift
-│   ├── TranslateViewModelTests.swift
+├── ViewModels/
+│   ├── TranslationViewModelTests.swift
+│   └── SpeechRecognitionViewModelTests.swift
+├── Managers/
 │   └── TranslationManagerTests.swift
 ├── Mocks/
 │   ├── MockTranslationManager.swift
-│   └── MockLanguageManager.swift
+│   └── MockSpeechRecognizer.swift
 └── Helpers/
     └── TestHelper.swift
 ```
 
-### Mock Implementation Pattern
+### SwiftUI Testing
 
 ```swift
-class MockTranslationManager: TranslationProviding {
-    var translateWasCalled = false
-    var translateResult: Result<String, Error> = .success("Mocked translation")
-    
-    func translate(_ text: String, from: String, to: String) async throws -> String {
-        translateWasCalled = true
-        return try translateResult.get()
+import XCTest
+import SwiftUI
+@testable import App
+
+class TranslationScreenTests: XCTestCase {
+    func testTranslationScreenRenders() {
+        let view = TranslationScreen()
+        // Test view rendering
     }
 }
 ```
@@ -226,6 +371,7 @@ class MockTranslationManager: TranslationProviding {
 - `Resources/Strings/ko.lproj/Localizable.strings` - Korean
 - `Resources/Strings/es.lproj/Localizable.strings` - Spanish
 - `Resources/Strings/de.lproj/Localizable.strings` - German
+- (Other languages...)
 
 ### String Keys Convention
 
@@ -235,20 +381,28 @@ class MockTranslationManager: TranslationProviding {
 "language.select" = "Select Language"
 "error.network" = "Network error occurred"
 "button.translate" = "Translate"
+"button.speech.recognition" = "Speech Recognition"
 ```
 
 ## Performance Optimization
 
+### SwiftUI Best Practices
+
+- Use `@StateObject` for view-owned ViewModels
+- Use `@ObservedObject` for passed ViewModels
+- Use `@Published` for reactive properties
+- Avoid unnecessary view updates
+
 ### Image Optimization
 
 - Store language flag icons in `Resources/Images/langs/`
-- Use PNG/WebP format
-- Maintain @1x, @2x, @3x variants
+- Use PNG format
+- Maintain @1x, @2x, @3x variants if needed
 
 ### Translation Caching
 
 ```swift
-class CachedTranslationManager: TranslationProviding {
+class CachedTranslationManager {
     private var cache: [String: String] = [:]
     private let manager: TranslationManager
     
@@ -306,24 +460,25 @@ tuist clean
 
 ## Coding Tips for TalkTrans
 
-### When Creating a New View Controller
+### When Creating a New SwiftUI Screen
 
-1. Create `{Feature}ViewController.swift` in `Sources/`
-2. Create `{Feature}ViewModel.swift` for business logic
-3. Use UIKit with NSLayoutAnchor or SnapKit
-4. Follow MARK organization pattern
+1. Create `{Feature}Screen.swift` in `Sources/Views/`
+2. Create `{Feature}ViewModel.swift` in `Sources/ViewModels/`
+3. Use `@StateObject` for ViewModel in Screen
+4. Follow SwiftUI declarative syntax
 5. Add localized strings to resource files
 6. Write unit tests in `Tests/`
 7. Update Project.swift if adding new target
 
 ### When Adding a New Feature
 
-1. Create directory under `Sources/Features/{FeatureName}/`
-2. Add ViewController, ViewModel, and Models
-3. Register routes in navigation manager
-4. Add unit tests
-5. Update resource strings for all supported languages
-6. Test on multiple device sizes and orientations
+1. Create View in `Sources/Views/{Feature}/`
+2. Create ViewModel in `Sources/ViewModels/`
+3. Add Models if needed in `Sources/Models/`
+4. Register navigation routes if needed
+5. Add unit tests
+6. Update resource strings for all supported languages
+7. Test on multiple device sizes
 
 ### When Integrating External APIs
 
@@ -333,3 +488,19 @@ tuist clean
 4. Add mock implementation for testing
 5. Add API key storage in secure location
 6. Implement retry logic and timeouts
+7. Use async/await for modern Swift concurrency
+
+## Migration Notes
+
+### From UIKit to SwiftUI
+
+- `MainViewController.swift` is kept for reference but deprecated
+- All new features should use SwiftUI
+- Legacy UIKit components can be wrapped with `UIViewRepresentable` if needed
+- Use `@StateObject` and `@ObservedObject` instead of manual binding
+
+### Legacy Code
+
+- `MainViewController.swift` - Legacy UIKit implementation (can be removed after full migration)
+- `LSLanguagePicker*` - Legacy UIKit components (replaced by SwiftUI views)
+- Storyboards - Legacy UI (replaced by SwiftUI)
