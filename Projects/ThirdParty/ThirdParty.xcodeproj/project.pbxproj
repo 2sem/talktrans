@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2091B0CBCD5FC8DBCFEBEA58 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 886BB9F738BFB8495E27FED9 /* KakaoSDK */; };
-		20A21FE37737DF24238CBE92 /* LSExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 7152E26718993BCF2414A63E /* LSExtensions */; };
-		3AD19AD9624B166EC1312505 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0660AACEC56DC4DF635CD2F9 /* RxCocoa */; };
-		52472A12B99CEBB8190241B1 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A0281BB2C938B8C5C05D4688 /* MBProgressHUD */; };
-		5970783FABD72308C0CCABBB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 16282C4473A0C946D187308B /* RxSwift */; };
-		DA972B4EDC56ED5C26B31CBF /* Material in Frameworks */ = {isa = PBXBuildFile; productRef = 936B35966EB216E5A70BF16B /* Material */; };
+		2091B0CBCD5FC8DBCFEBEA58 /* LSExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 7152E26718993BCF2414A63E /* LSExtensions */; };
+		20A21FE37737DF24238CBE92 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 16282C4473A0C946D187308B /* RxSwift */; };
+		52472A12B99CEBB8190241B1 /* Material in Frameworks */ = {isa = PBXBuildFile; productRef = 936B35966EB216E5A70BF16B /* Material */; };
+		DA972B4EDC56ED5C26B31CBF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0660AACEC56DC4DF635CD2F9 /* RxCocoa */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,12 +36,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2091B0CBCD5FC8DBCFEBEA58 /* KakaoSDK in Frameworks */,
-				52472A12B99CEBB8190241B1 /* MBProgressHUD in Frameworks */,
-				20A21FE37737DF24238CBE92 /* LSExtensions in Frameworks */,
-				DA972B4EDC56ED5C26B31CBF /* Material in Frameworks */,
-				5970783FABD72308C0CCABBB /* RxSwift in Frameworks */,
-				3AD19AD9624B166EC1312505 /* RxCocoa in Frameworks */,
+				2091B0CBCD5FC8DBCFEBEA58 /* LSExtensions in Frameworks */,
+				52472A12B99CEBB8190241B1 /* Material in Frameworks */,
+				20A21FE37737DF24238CBE92 /* RxSwift in Frameworks */,
+				DA972B4EDC56ED5C26B31CBF /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +104,6 @@
 			);
 			name = ThirdParty;
 			packageProductDependencies = (
-				886BB9F738BFB8495E27FED9 /* KakaoSDK */,
-				A0281BB2C938B8C5C05D4688 /* MBProgressHUD */,
 				7152E26718993BCF2414A63E /* LSExtensions */,
 				936B35966EB216E5A70BF16B /* Material */,
 				16282C4473A0C946D187308B /* RxSwift */,
@@ -142,9 +136,6 @@
 				6646A19284832AD862C3045A /* XCRemoteSwiftPackageReference "LSExtensions" */,
 				7392CCC4540A5973327E2E4D /* XCRemoteSwiftPackageReference "Material" */,
 				FF4CAB2C55A82333396CEFEA /* XCRemoteSwiftPackageReference "RxSwift" */,
-				C7C2AD3786E9C833FD4C36DD /* XCRemoteSwiftPackageReference "UITextView-Placeholder" */,
-				996AE6C52D92450A5590ED1F /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
-				B2779762D629B9A267894CCF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = C04DB49BAFD37E93F4993806 /* Products */;
 			projectDirPath = "";
@@ -398,30 +389,6 @@
 				minimumVersion = 3.1.8;
 			};
 		};
-		996AE6C52D92450A5590ED1F /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-		B2779762D629B9A267894CCF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.22.2;
-			};
-		};
-		C7C2AD3786E9C833FD4C36DD /* XCRemoteSwiftPackageReference "UITextView-Placeholder" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/UITextView-Placeholder";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
-			};
-		};
 		FF4CAB2C55A82333396CEFEA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -445,17 +412,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = LSExtensions;
 		};
-		886BB9F738BFB8495E27FED9 /* KakaoSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = KakaoSDK;
-		};
 		936B35966EB216E5A70BF16B /* Material */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Material;
-		};
-		A0281BB2C938B8C5C05D4688 /* MBProgressHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MBProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

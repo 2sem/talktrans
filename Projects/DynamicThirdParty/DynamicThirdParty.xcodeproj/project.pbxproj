@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D8BD704F9DAC448E966B93D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E668D299DDE0AC0A59D943CA /* FirebaseMessaging */; };
-		5D73BBF6E71FBBF67ADD0541 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B405E1B9454D3D3E06E0DA9 /* FirebaseCrashlytics */; };
-		838EB335968D316BFFAEA636 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = BEA4546F851C8A111D8DB809 /* FirebaseRemoteConfig */; };
-		8E4DB8D1588D5B541DE47F52 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CEE7819FFD7B8416FC6F9CE3 /* SDWebImage */; };
-		FB7D276239E80EEA312CBA51 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E66994A52B0341404692FF78 /* FirebaseAnalytics */; };
+		0D8BD704F9DAC448E966B93D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = BEA4546F851C8A111D8DB809 /* FirebaseRemoteConfig */; };
+		5D73BBF6E71FBBF67ADD0541 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E66994A52B0341404692FF78 /* FirebaseAnalytics */; };
+		8E4DB8D1588D5B541DE47F52 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B405E1B9454D3D3E06E0DA9 /* FirebaseCrashlytics */; };
+		FB7D276239E80EEA312CBA51 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E668D299DDE0AC0A59D943CA /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,11 +36,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E4DB8D1588D5B541DE47F52 /* SDWebImage in Frameworks */,
-				5D73BBF6E71FBBF67ADD0541 /* FirebaseCrashlytics in Frameworks */,
-				FB7D276239E80EEA312CBA51 /* FirebaseAnalytics in Frameworks */,
-				0D8BD704F9DAC448E966B93D /* FirebaseMessaging in Frameworks */,
-				838EB335968D316BFFAEA636 /* FirebaseRemoteConfig in Frameworks */,
+				8E4DB8D1588D5B541DE47F52 /* FirebaseCrashlytics in Frameworks */,
+				5D73BBF6E71FBBF67ADD0541 /* FirebaseAnalytics in Frameworks */,
+				FB7D276239E80EEA312CBA51 /* FirebaseMessaging in Frameworks */,
+				0D8BD704F9DAC448E966B93D /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +104,6 @@
 			);
 			name = DynamicThirdParty;
 			packageProductDependencies = (
-				CEE7819FFD7B8416FC6F9CE3 /* SDWebImage */,
 				1B405E1B9454D3D3E06E0DA9 /* FirebaseCrashlytics */,
 				E66994A52B0341404692FF78 /* FirebaseAnalytics */,
 				E668D299DDE0AC0A59D943CA /* FirebaseMessaging */,
@@ -136,7 +133,6 @@
 			);
 			mainGroup = 5CA209862328B1BE9A1FE1E7;
 			packageReferences = (
-				6F26D37576C0180184C70F08 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				E3FBB5C2AD6BDB3F9AE2218C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FBBF848EF88F61BD5DA1F962 /* Products */;
@@ -373,14 +369,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6F26D37576C0180184C70F08 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
-			};
-		};
 		E3FBB5C2AD6BDB3F9AE2218C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -399,10 +387,6 @@
 		BEA4546F851C8A111D8DB809 /* FirebaseRemoteConfig */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseRemoteConfig;
-		};
-		CEE7819FFD7B8416FC6F9CE3 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SDWebImage;
 		};
 		E668D299DDE0AC0A59D943CA /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
