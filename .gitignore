@@ -94,3 +94,6 @@ fastlane/test_output
 ### Tuist ###
 *.xcworkspace
 *.xcodeproj
+
+### Serena ###
+.serena/
