@@ -14,6 +14,8 @@ let project = Project(
                 requirement: .upToNextMajor(from: "3.1.8")),
         .remote(url: "https://github.com/devxoul/UITextView-Placeholder",
                 requirement: .upToNextMajor(from: "1.4.0")),
+        .remote(url: "https://github.com/ReactiveX/RxSwift",
+                requirement: .upToNextMajor(from: "5.1.3")),
 //        .remote(url: "https://github.com/SDWebImage/SDWebImage",
 //                requirement: .upToNextMajor(from: "5.20.0")),
 //        .local(path: "../../../../../spms/DownPicker")
@@ -27,7 +29,9 @@ let project = Project(
             dependencies: [.package(product: "KakaoSDK", type: .runtime),
                            .package(product: "MBProgressHUD", type: .runtime),
                            .package(product: "LSExtensions", type: .runtime),
-                           .package(product: "Material", type: .runtime)
+                           .package(product: "Material", type: .runtime),
+                           .package(product: "RxSwift", type: .runtime),
+                           .package(product: "RxCocoa", type: .runtime)
             ]
         ),
     ]
