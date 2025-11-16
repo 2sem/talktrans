@@ -1,0 +1,48 @@
+# Cursor AI Ignore Rules
+
+# Build artifacts
+build/
+.build/
+DerivedData/
+.xcodeproj/
+.xcworkspace/
+*.xcodeproj
+*.xcworkspace
+*.pbxuser
+*.mode1v3
+
+# Tuist generated files
+Tuist/ProjectDescriptionHelpers/LocalPackage.swift
+
+# Dependencies
+.package.resolved
+Package.resolved
+Pods/
+.cocoapods/
+
+# Secrets and sensitive files
+**/*.secret
+**/*.keys
+**/*.env.local
+GoogleService-Info.plist
+*.plist.secret
+
+# System files
+.DS_Store
+.swiftpm/
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test artifacts
+*.coverage
+
+# Temporary files
+*.tmp
+*.temp
+
+# Third party generated code
+.generated/

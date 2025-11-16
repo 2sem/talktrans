@@ -1,0 +1,61 @@
+# iOS 프로젝트 개발 규칙
+
+## 코딩 스타일
+- Swift 코드는 Swift 6.0+ 문법을 사용
+- 들여쓰기는 Tab 사용
+- 변수명과 함수명은 camelCase 사용
+- 클래스명과 구조체명은 PascalCase 사용
+- 상수는 let 키워드 사용, 변수는 var 키워드 사용
+
+## 빌드 도구
+- Xcode 16.4 사용
+- Tuist
+- Fastlane
+
+## 아키텍처 패턴
+- MVVM 패턴 준수
+- 싱글톤 패턴은 필요한 경우에만 사용
+
+## Platform
+- iOS만 지원
+- 최소 지원 iOS 18 이상
+
+## UI 개발
+- SwiftUI 기반 개발
+- Navigation은 NavigationView 대신 NavigationStack 사용
+- 하드코딩된 값 대신 상수 사용
+- 접근성(Accessibility) 고려
+
+## 메모리 관리
+- ARC(Automatic Reference Counting) 활용
+- 강한 참조 순환(Strong Reference Cycle) 방지
+- weak, unowned 키워드 적절히 사용
+
+## 에러 처리
+- do-catch 문을 사용한 에러 처리
+- Optional 타입 적절히 활용
+- guard 문을 사용한 조기 반환
+
+## 성능 최적화
+- 불필요한 객체 생성 최소화
+- 이미지 캐싱 고려
+- 네트워크 요청 최적화
+
+## 보안
+- API 키 하드코딩 금지
+- 사용자 데이터 보호
+- HTTPS 통신 사용
+
+## 테스트
+- Unit Test 작성 권장
+- UI Test 필요시 작성
+- 테스트 가능한 코드 구조 설계
+
+## 이름
+- ViewController에 해당하는 전체 View는 Screen으로 끝냄
+- Screen내 하위 View는 View로 끝냄
+- 요청하지 않은 이름 변경은 확인 받을 것
+
+## Rules
+- 반복되는 Prompt는 Rules에 추가
+- 필요시 Rule Update
