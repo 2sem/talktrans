@@ -11,12 +11,6 @@
 /* Class = "UIButton"; normalTitle = "Korean"; ObjectID = "cwK-Aq-t5k"; */
 "cwK-Aq-t5k.normalTitle" = "한국어";
 
-/* Class = "UITextView"; text = "Translated Message will appear here"; ObjectID = "eoq-qB-f4C"; */
-"eoq-qB-f4C.text" = "번역된 문장이 표시됩니다";
-
-/* Class = "UILabel"; text = "Translated Language:"; ObjectID = "fZV-5d-WK3"; */
-"fZV-5d-WK3.text" = "번역 언어:";
-
 /* Class = "UITextView"; text = "Please input your message to be translated as English"; ObjectID = "lXA-q7-XdU"; */
 "lXA-q7-XdU.text" = "영어로 번역될 문장을 입력하세요";
 

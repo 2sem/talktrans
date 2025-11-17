@@ -10,12 +10,6 @@
 /* Class = "UIButton"; normalTitle = "Korean"; ObjectID = "cwK-Aq-t5k"; */
 "cwK-Aq-t5k.normalTitle" = "韓語";
 
-/* Class = "UITextView"; text = "Translated Message will appear  here"; ObjectID = "eoq-qB-f4C"; */
-"eoq-qB-f4C.text" = "翻譯的消息將出現在這裡";
-
-/* Class = "UILabel"; text = "Translated Language:"; ObjectID = "fZV-5d-WK3"; */
-"fZV-5d-WK3.text" = "翻譯語言：";
-
 /* Class = "UITextView"; text = "Please input your message to be translated as English"; ObjectID = "lXA-q7-XdU"; */
 "lXA-q7-XdU.text" = "請輸入您的消息以翻譯成英語";
 

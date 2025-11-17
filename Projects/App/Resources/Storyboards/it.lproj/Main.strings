@@ -2,17 +2,11 @@
 /* Class = "UIButton"; normalTitle = "▼"; ObjectID = "Ce6-OW-F1W"; */
 "Ce6-OW-F1W.normalTitle" = "▼";
 
-/* Class = "UILabel"; text = "Translated message will appear here"; ObjectID = "Uxv-oK-Wrk"; */
-"Uxv-oK-Wrk.text" = "Translated message will appear here";
-
 /* Class = "UIButton"; normalTitle = "Speech Recognition"; ObjectID = "XVa-2b-sIO"; */
 "XVa-2b-sIO.normalTitle" = "Speech Recognition";
 
 /* Class = "UILabel"; text = "Please input your message to be translated as English"; ObjectID = "dqr-Fp-Nj8"; */
 "dqr-Fp-Nj8.text" = "Please input your message to be translated as English";
-
-/* Class = "UILabel"; text = "Translated Language:"; ObjectID = "fZV-5d-WK3"; */
-"fZV-5d-WK3.text" = "Translated Language:";
 
 /* Class = "UIButton"; normalTitle = "▼"; ObjectID = "j4p-E4-MHX"; */
 "j4p-E4-MHX.normalTitle" = "▼";

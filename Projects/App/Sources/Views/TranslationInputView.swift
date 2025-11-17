@@ -10,62 +10,84 @@ import SwiftUI
 
 struct TranslationInputView: View {
 	@Binding var text: String
+	var isFocused: FocusState<Bool>.Binding
 	let locale: TranslationLocale
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
+	// Called when user taps the swap (clockwise) button. Optional to preserve
+	// backward compatibility with existing initializers.
+	let onSwap: () -> Void
 	let maxLength: Int
 	
 	var body: some View {
 		VStack(spacing: 0) {
-			// Language Picker
-			LanguagePickerButton(
-				locale: locale,
-				availableLocales: availableLocales,
-				onSelect: onLocaleChange
-			)
-			.padding(.horizontal, 16)
-			.padding(.top, 16)
-			.padding(.bottom, 12)
+            HStack{
+                // Language Picker
+                LanguagePickerButton(
+                    title: "Native Language:".localized(),
+                    locale: locale,
+                    availableLocales: availableLocales,
+                    onSelect: onLocaleChange
+                )
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 12)
+                
+				// Swap Button - calls onSwap closure when tapped
+				Button(action: {
+					onSwap()
+				}) {
+					Image(systemName: "arrow.clockwise")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(.secondary)
+                }.padding(.horizontal, 16)
+            }
 			
 			// Text Input
 			ZStack(alignment: .topLeading) {
-				if text.isEmpty {
-					Text(placeholder)
-						.font(.system(size: 16))
-						.foregroundColor(.secondary)
-						.padding(.horizontal, 16)
-						.padding(.vertical, 12)
-				}
-				
 				TextEditor(text: $text)
 					.font(.system(size: 16))
 					.frame(minHeight: 100)
 					.padding(.horizontal, 12)
 					.padding(.vertical, 8)
+					.focused(isFocused)
 					.onChange(of: text) { oldValue, newValue in
 						if newValue.count > maxLength {
 							text = String(newValue.prefix(maxLength))
 						}
 					}
+                
+                if text.isEmpty {
+                    Text(placeholder)
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                }
 			}
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}
-		.background(Color.purple.opacity(0.05))
+		.background(Color.white)
 		.cornerRadius(16)
 	}
 }
 
 #Preview {
+	@Previewable @FocusState var isFocused: Bool
+	
 	TranslationInputView(
 		text: .constant(""),
+		isFocused: $isFocused,
 		locale: .english,
 		availableLocales: TranslationLocale.allCases,
 		placeholder: "Please input your message to be translated as Korean",
-		onLocaleChange: { _ in },
+        onLocaleChange: { _ in },
+        onSwap: {  },
 		maxLength: 100
 	)
-	.padding()
+    .frame(height: 100)
+    .padding()
 }
 

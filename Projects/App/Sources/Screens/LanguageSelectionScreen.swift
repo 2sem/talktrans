@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LanguageSelectionView: View {
+struct LanguageSelectionScreen: View {
 	let languages: [TranslationLocale]
 	let selectedLocale: TranslationLocale
 	let onSelect: (TranslationLocale) -> Void
@@ -95,7 +95,7 @@ struct LanguageSelectionView: View {
 }
 
 #Preview {
-	LanguageSelectionView(
+	LanguageSelectionScreen(
 		languages: TranslationLocale.allCases,
 		selectedLocale: .english,
 		onSelect: { _ in }

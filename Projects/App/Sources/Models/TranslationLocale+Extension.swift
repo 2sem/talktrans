@@ -29,19 +29,19 @@ extension TranslationLocale {
 	
 	var flagImageName: String {
 		switch self {
-		case .korean: return "langs/korean"
-		case .japanese: return "langs/japanese"
-		case .english: return "langs/english"
-		case .taiwan: return "langs/taiwanese"
-		case .chinese: return "langs/chinese"
-		case .vietnam: return "langs/vietnamese"
-		case .indonesian: return "langs/indonesian"
-		case .thai: return "langs/thai"
-		case .german: return "langs/german"
-		case .russian: return "langs/russian"
-		case .spain: return "langs/spanish"
-		case .italian: return "langs/italian"
-		case .france: return "langs/french"
+		case .korean: return "korean"
+		case .japanese: return "japanese"
+		case .english: return "english"
+		case .taiwan: return "taiwanese"
+		case .chinese: return "chinese"
+		case .vietnam: return "vietnamese"
+		case .indonesian: return "indonesian"
+		case .thai: return "thai"
+		case .german: return "german"
+		case .russian: return "russian"
+		case .spain: return "spanish"
+		case .italian: return "italian"
+		case .france: return "french"
 		}
 	}
 	

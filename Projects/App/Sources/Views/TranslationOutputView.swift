@@ -19,6 +19,7 @@ struct TranslationOutputView: View {
 		VStack(spacing: 0) {
 			// Language Picker
 			LanguagePickerButton(
+                title: "Translated Language:".localized(),
 				locale: locale,
 				availableLocales: availableLocales,
 				onSelect: onLocaleChange
@@ -49,7 +50,7 @@ struct TranslationOutputView: View {
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}
-		.background(Color.purple.opacity(0.05))
+		.background(Color.white)
 		.cornerRadius(16)
 	}
 }
