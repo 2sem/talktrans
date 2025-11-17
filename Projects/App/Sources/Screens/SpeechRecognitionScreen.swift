@@ -1,0 +1,84 @@
+//
+//  SpeechRecognitionScreen.swift
+//  App
+//
+//  Created by 영준 이 on 11/17/25.
+//
+import SwiftUI
+
+struct SpeechRecognitionScreen: View {
+    @ObservedObject var viewModel: SpeechRecognitionViewModel
+    @ObservedObject var translationViewModel: TranslationViewModel
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Recognizing...")
+                .font(.system(size: 20, weight: .semibold))
+                .padding(.top, 20)
+            
+            Text("Please say sentence to be recognized")
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
+            
+            if viewModel.isRecognizing {
+                ProgressView()
+                    .scaleEffect(1.5)
+                    .padding()
+            }
+            
+            if !viewModel.recognizedText.isEmpty {
+                Text(viewModel.recognizedText)
+                    .font(.system(size: 16))
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(12)
+                    .padding(.horizontal, 20)
+            }
+            
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .font(.system(size: 14))
+                    .foregroundColor(.red)
+                    .padding(.horizontal, 20)
+            }
+            
+            HStack(spacing: 12) {
+                Button(action: {
+                    viewModel.stopRecognition()
+                    isPresented = false
+                }) {
+                    Text("Done")
+                        .font(.system(size: 17, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.gray.opacity(0.2))
+                        .foregroundColor(.primary)
+                        .cornerRadius(12)
+                }
+                
+                Button(action: {
+                    viewModel.stopRecognition()
+                    translationViewModel.translate()
+                    isPresented = false
+                }) {
+                    Text("Translate")
+                        .font(.system(size: 17, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
+            
+            Spacer()
+        }
+        .onDisappear {
+            viewModel.stopRecognition()
+        }
+    }
+}
