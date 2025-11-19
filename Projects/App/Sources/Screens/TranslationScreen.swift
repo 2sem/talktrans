@@ -29,17 +29,19 @@ struct TranslationScreen: View {
 			
             VStack(spacing: 20) {
                 // Translated Output Section
-                TranslationOutputView(
-                    text: viewModel.translatedText,
-                    locale: viewModel.translatedLocale,
-                    availableLocales: viewModel.supportedTargetLocales,
-                    placeholder: "Translated message will appear here".localized(),
-                    onLocaleChange: { locale in
-                        viewModel.updateTranslatedLocale(locale)
-                    }
-                )
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
+                if !showSpeechRecognition {
+                    TranslationOutputView(
+                        text: viewModel.translatedText,
+                        locale: viewModel.translatedLocale,
+                        availableLocales: viewModel.supportedTargetLocales,
+                        placeholder: "Translated message will appear here".localized(),
+                        onLocaleChange: { locale in
+                            viewModel.updateTranslatedLocale(locale)
+                        }
+                    )
+                    .padding(.horizontal, 16)
+                    .padding(.top, 20)
+                }
                 
                 // Native Input Section
                 TranslationInputView(
