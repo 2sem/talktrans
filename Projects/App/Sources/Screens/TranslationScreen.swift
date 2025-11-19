@@ -143,6 +143,7 @@ struct TranslationScreen: View {
 				viewModel: speechViewModel,
 				text: $viewModel.nativeText,
 				locale: viewModel.nativeLocale.locale,
+				processTitle: "Translate",
 				onProcess: {
 					viewModel.translate()
 				}

@@ -30,16 +30,6 @@ struct SpeechRecognitionScreen: View {
                     .padding()
             }
             
-            if !viewModel.recognizedText.isEmpty {
-                Text(viewModel.recognizedText)
-                    .font(.system(size: 16))
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(12)
-                    .padding(.horizontal, 20)
-            }
-            
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .font(.system(size: 14))
@@ -86,6 +76,7 @@ struct SpeechRecognitionScreen: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
         }
+        .presentationDetents([.height(250)])
         .onChange(of: viewModel.recognizedText) { _, newValue in
             if !newValue.isEmpty {
                 text = newValue
