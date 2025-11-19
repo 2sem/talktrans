@@ -96,9 +96,6 @@ struct TranslationScreen: View {
                     // Speech Recognition Button
                     Button(action: {
                         showSpeechRecognition = true
-                        speechViewModel.startRecognition(locale: viewModel.nativeLocale.locale) { recognizedText in
-                            viewModel.nativeText = recognizedText
-                        }
                     }) {
                         // Record Icon
                         Image(systemName: "mic")
@@ -144,8 +141,11 @@ struct TranslationScreen: View {
 		.sheet(isPresented: $showSpeechRecognition) {
 			SpeechRecognitionScreen(
 				viewModel: speechViewModel,
-				translationViewModel: viewModel,
-				isPresented: $showSpeechRecognition
+				text: $viewModel.nativeText,
+				locale: viewModel.nativeLocale.locale,
+				onProcess: {
+					viewModel.translate()
+				}
 			)
 		}
 	}

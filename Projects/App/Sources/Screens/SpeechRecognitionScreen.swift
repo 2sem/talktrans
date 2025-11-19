@@ -8,8 +8,11 @@ import SwiftUI
 
 struct SpeechRecognitionScreen: View {
     @ObservedObject var viewModel: SpeechRecognitionViewModel
-    @ObservedObject var translationViewModel: TranslationViewModel
-    @Binding var isPresented: Bool
+    @Binding var text: String
+    @Environment(\.dismiss) private var dismiss
+    let locale: Locale
+    var processTitle: String?
+    var onProcess: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -46,8 +49,11 @@ struct SpeechRecognitionScreen: View {
             
             HStack(spacing: 12) {
                 Button(action: {
+                    if !viewModel.recognizedText.isEmpty {
+                        text = viewModel.recognizedText
+                    }
                     viewModel.stopRecognition()
-                    isPresented = false
+                    dismiss()
                 }) {
                     Text("Done")
                         .font(.system(size: 17, weight: .semibold))
@@ -58,24 +64,37 @@ struct SpeechRecognitionScreen: View {
                         .cornerRadius(12)
                 }
                 
-                Button(action: {
-                    viewModel.stopRecognition()
-                    translationViewModel.translate()
-                    isPresented = false
-                }) {
-                    Text("Translate")
-                        .font(.system(size: 17, weight: .semibold))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color.purple)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                if let onProcess, let processTitle {
+                    Button(action: {
+                        if !viewModel.recognizedText.isEmpty {
+                            text = viewModel.recognizedText
+                        }
+                        viewModel.stopRecognition()
+                        onProcess()
+                        dismiss()
+                    }) {
+                        Text(processTitle)
+                            .font(.system(size: 17, weight: .semibold))
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.purple)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
                 }
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
-            
-            Spacer()
+        }
+        .onChange(of: viewModel.recognizedText) { _, newValue in
+            if !newValue.isEmpty {
+                text = newValue
+            }
+        }
+        .onAppear {
+            viewModel.startRecognition(locale: locale) { _ in
+                // Text will be updated via recognizedText in viewModel
+            }
         }
         .onDisappear {
             viewModel.stopRecognition()
