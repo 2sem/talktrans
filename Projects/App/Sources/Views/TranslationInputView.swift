@@ -51,6 +51,7 @@ struct TranslationInputView: View {
 			// Text Input
 			ZStack(alignment: .topLeading) {
 				TextEditor(text: $text)
+					.scrollContentBackground(.hidden)
 					.font(.system(size: 16))
 					.foregroundColor(.appTextPrimary)
 					.frame(minHeight: 100)
