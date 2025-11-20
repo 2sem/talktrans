@@ -44,6 +44,10 @@ struct TranslationInputView: View {
                 }.padding(.horizontal, 16)
             }
 			
+			// Separator
+			Divider()
+				.padding(.horizontal, 16)
+			
 			// Text Input
 			ZStack(alignment: .topLeading) {
 				TextEditor(text: $text)

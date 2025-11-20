@@ -28,6 +28,10 @@ struct TranslationOutputView: View {
 			.padding(.top, 16)
 			.padding(.bottom, 12)
 			
+			// Separator
+			Divider()
+				.padding(.horizontal, 16)
+			
 			// Translated Text
 			ZStack(alignment: .topLeading) {
 				if text.isEmpty {
