@@ -37,7 +37,7 @@ struct TranslationScreen: View {
 			
             VStack(spacing: 20) {
                 // Translated Output Section
-                if !showSpeechRecognition {
+                if !showSpeechRecognition && !isInputFocused {
                     TranslationOutputView(
                         text: viewModel.translatedText,
                         locale: viewModel.translatedLocale,
