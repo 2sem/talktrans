@@ -33,7 +33,7 @@ struct TranslationOutputView: View {
 				if text.isEmpty {
 					Text(placeholder)
 						.font(.system(size: 16))
-						.foregroundColor(.secondary)
+						.foregroundColor(.appTextPlaceholder)
 						.padding(.horizontal, 16)
 						.padding(.vertical, 12)
 				}
@@ -41,6 +41,7 @@ struct TranslationOutputView: View {
 				ScrollView {
 					Text(text)
 						.font(.system(size: 16))
+						.foregroundColor(.appTextPrimary)
 						.frame(maxWidth: .infinity, alignment: .leading)
 						.padding(.horizontal, 16)
 						.padding(.vertical, 12)
@@ -50,7 +51,7 @@ struct TranslationOutputView: View {
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}
-		.background(Color.white)
+		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
 	}
 }

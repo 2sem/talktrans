@@ -67,7 +67,16 @@ struct SpeechRecognitionScreen: View {
                             .font(.system(size: 17, weight: .semibold))
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
-                            .background(Color.purple)
+                            .background(
+                                LinearGradient(
+                                    colors: [
+                                        .appAccentGradientStart,
+                                        .appAccentGradientEnd
+                                    ],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
                             .foregroundColor(.white)
                             .cornerRadius(12)
                     }

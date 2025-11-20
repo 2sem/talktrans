@@ -16,12 +16,13 @@ struct TranslationScreen: View {
 	
 	var body: some View {
 		ZStack {
-            // Set Background White
-            Color.white
-                .ignoresSafeArea()
 			// Gradient Background
 			LinearGradient(
-				colors: [Color.purple.opacity(0.5), Color.pink.opacity(0.5)],
+				colors: [
+					.appBackgroundGradientStart,
+					.appBackgroundGradientMid,
+					.appBackgroundGradientEnd
+				],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
 			)
@@ -62,7 +63,7 @@ struct TranslationScreen: View {
                 
                 // Advertisement Banner Placeholder
                 Rectangle()
-                    .fill(Color.white)
+                    .fill(Color.appInputOutputBackground)
                     .frame(height: 50)
                     .cornerRadius(8)
                     .overlay(
@@ -89,7 +90,16 @@ struct TranslationScreen: View {
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
-                        .background(viewModel.canTranslate ? Color.purple : Color.gray)
+                        .background(
+                            LinearGradient(
+                                colors: [
+                                    .appAccentGradientStart,
+                                    .appAccentGradientEnd
+                                ],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .foregroundColor(.white)
                         .cornerRadius(12)
                     }
@@ -104,13 +114,9 @@ struct TranslationScreen: View {
                             .font(.system(size: 14, weight: .medium))
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
-                            .background(Color.white)
-                            .foregroundColor(.primary)
+                            .background(Color.appSecondaryButton)
+                            .foregroundColor(.appTextPrimary)
                             .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                            )
                         
 //                        Text("Speech Recognition")
 //                            .font(.system(size: 17, weight: .semibold))

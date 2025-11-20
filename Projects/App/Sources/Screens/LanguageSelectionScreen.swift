@@ -70,13 +70,13 @@ struct LanguageSelectionScreen: View {
 								if locale == selectedLocale {
 									Image(systemName: "checkmark")
 										.font(.system(size: 16, weight: .semibold))
-										.foregroundColor(.purple)
+										.foregroundColor(.appSecondary)
 								}
 							}
 							.padding(.horizontal, 16)
 							.padding(.vertical, 12)
 							.background(
-								locale == selectedLocale ? Color.purple.opacity(0.1) : Color.clear
+								locale == selectedLocale ? Color.appSecondary.opacity(0.1) : Color.clear
 							)
 						}
 						.buttonStyle(PlainButtonStyle())

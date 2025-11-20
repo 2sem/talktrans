@@ -35,7 +35,7 @@ struct LanguagePickerButton: View {
 				// Chevron
 				Image(systemName: "chevron.down")
 					.font(.system(size: 12, weight: .medium))
-					.foregroundColor(.secondary)
+                    .foregroundColor(.appAccent)
 			}
 		}
 		.sheet(isPresented: $showLanguagePicker) {

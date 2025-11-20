@@ -40,7 +40,7 @@ struct TranslationInputView: View {
 				}) {
 					Image(systemName: "arrow.clockwise")
 						.font(.system(size: 14, weight: .medium))
-						.foregroundColor(.secondary)
+                        .foregroundColor(.appAccent)
                 }.padding(.horizontal, 16)
             }
 			
@@ -48,6 +48,7 @@ struct TranslationInputView: View {
 			ZStack(alignment: .topLeading) {
 				TextEditor(text: $text)
 					.font(.system(size: 16))
+					.foregroundColor(.appTextPrimary)
 					.frame(minHeight: 100)
 					.padding(.horizontal, 12)
 					.padding(.vertical, 8)
@@ -61,7 +62,7 @@ struct TranslationInputView: View {
                 if text.isEmpty {
                     Text(placeholder)
                         .font(.system(size: 16))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.appTextPlaceholder)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                 }
@@ -69,7 +70,7 @@ struct TranslationInputView: View {
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}
-		.background(Color.white)
+		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
 	}
 }
