@@ -7,12 +7,19 @@
 //
 
 import SwiftUI
+import Translation
 
 struct TranslationScreen: View {
-	@StateObject private var viewModel = TranslationViewModel()
+	@StateObject private var viewModel: TranslationViewModel
 	@StateObject private var speechViewModel = SpeechRecognitionViewModel()
 	@State private var showSpeechRecognition = false
 	@FocusState private var isInputFocused: Bool
+	
+	init() {
+		// TranslationSession will be created dynamically in TranslationViewModel
+		// when translate button is pressed
+		_viewModel = StateObject(wrappedValue: TranslationViewModel())
+	}
 	
 	var body: some View {
 		ZStack {
@@ -144,6 +151,13 @@ struct TranslationScreen: View {
 			.contentShape(Rectangle())
 			.onTapGesture {
 				isInputFocused = false
+			}
+		}
+		.translationTask(viewModel.translationConfiguration) { session in
+			// This closure receives the TranslationSession
+			// Pass the session to viewModel
+			Task { @MainActor in
+				viewModel.setTranslationSession(session)
 			}
 		}
 		.sheet(isPresented: $showSpeechRecognition) {

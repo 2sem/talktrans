@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import Speech
 import AVFoundation
+import Translation
 
 @MainActor
 class TranslationViewModel: ObservableObject {
@@ -20,9 +21,11 @@ class TranslationViewModel: ObservableObject {
 	@Published var isTranslating: Bool = false
 	@Published var isRecognizing: Bool = false
 	@Published var errorMessage: String?
+	@Published var translationConfiguration: TranslationSession.Configuration?
 	
 	private let translationManager = TranslationManager.shared
 	private let maxTextLength = 100
+	private var translationSession: TranslationSession?
 	
 	var canTranslate: Bool {
 		!nativeText.isEmpty && !isTranslating
@@ -62,22 +65,52 @@ class TranslationViewModel: ObservableObject {
 		isTranslating = true
 		errorMessage = nil
 		
-		translationManager.requestTranslate(
-			text: nativeText,
-			from: sourceLocale,
-			to: targetLocale
-		) { [weak self] result in
-			Task { @MainActor in
-				self?.isTranslating = false
-				switch result {
-				case .success(let translated):
-					self?.translatedText = translated
-				case .failure(let error):
-					self?.errorMessage = error.localizedDescription
+		// Recreate TranslationSession configuration when translate button is pressed
+		// This will trigger translationTask modifier in the View, which will call setTranslationSession
+		createTranslationConfiguration(source: sourceLocale, target: targetLocale)
+		
+		// Call TranslationManager.translate if session is already available
+		if let session = translationSession {
+			Task {
+				do {
+					let translated = try await translationManager.translate(text: nativeText, session: session)
+					await MainActor.run {
+						self.translatedText = translated
+						self.isTranslating = false
+					}
+				} catch {
+					await MainActor.run {
+						self.errorMessage = error.localizedDescription
+						self.isTranslating = false
+					}
 				}
 			}
 		}
 	}
+	
+	func setTranslationSession(_ session: TranslationSession) {
+		translationSession = session
+		
+		// Perform translation when session is set using TranslationManager
+		guard !nativeText.isEmpty else { return }
+		guard isTranslating else { return } // Only translate if translate() was called
+		
+		Task {
+			do {
+				let translated = try await translationManager.translate(text: nativeText, session: session)
+				await MainActor.run {
+					self.translatedText = translated
+					self.isTranslating = false
+				}
+			} catch {
+				await MainActor.run {
+					self.errorMessage = error.localizedDescription
+					self.isTranslating = false
+				}
+			}
+		}
+	}
+	
 	
 	func swapLanguages() {
 		let tempLocale = nativeLocale
@@ -107,6 +140,15 @@ class TranslationViewModel: ObservableObject {
 	
 	func validateText(_ text: String) -> Bool {
 		return text.count <= maxTextLength
+	}
+	
+	private func createTranslationConfiguration(source: Locale, target: Locale) {
+		// Create TranslationSession.Configuration for use with translationTask
+		var configuration = TranslationSession.Configuration()
+		configuration.source = source.language
+		configuration.target = target.language
+		
+		translationConfiguration = configuration
 	}
 }
 

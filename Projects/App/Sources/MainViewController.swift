@@ -259,25 +259,25 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
         }
 
         //Translates native text
-        TranslationManager.shared.requestTranslate(text: self.nativeTextView.text,
-                                        from: self.nativeLocale,
-                                        to: self.transLocale,
-                                        completion: {(result) -> Void in
-            switch result{
-                case .success(let translated):
-                    DispatchQueue.main.async {
-                        self.transTextView.text = translated;
-                    }
-                    break;
-                case .failure(let error):
-                    self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
-                        self.onTranslate(self.translateButton);
-                    }, cancelHandler: { (act) in
-                        
-                    })
-                    break;
-            }
-        });
+//        TranslationManager.shared.requestTranslate(text: self.nativeTextView.text,
+//                                        from: self.nativeLocale,
+//                                        to: self.transLocale,
+//                                        completion: {(result) -> Void in
+//            switch result{
+//                case .success(let translated):
+//                    DispatchQueue.main.async {
+//                        self.transTextView.text = translated;
+//                    }
+//                    break;
+//                case .failure(let error):
+//                    self.showCellularAlert(title: "Could not connect to Translator".localized(), okHandler: { (act) in
+//                        self.onTranslate(self.translateButton);
+//                    }, cancelHandler: { (act) in
+//                        
+//                    })
+//                    break;
+//            }
+//        });
     }
     
     @IBOutlet weak var reviewButton: IconButton!

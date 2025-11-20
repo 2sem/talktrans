@@ -60,7 +60,28 @@ class TranslationManager {
         return TranslationLocale.allCases.filter{ $0 != sourceLang };
     }
     
-    public func requestTranslate(text: String, from sourceLocale: Locale, to targetLocale: Locale, completion: @escaping (Result<String, Error>) -> Void) {
-//        let session = TranslationSession.init(installedSource: sourceLocale.language, target: targetLocale.language)
+    /**
+     Create TranslationSession.Configuration for use with translationTask modifier
+     - parameter source: locale of native text
+     - parameter target: locale of translated text
+     - returns: TranslationSession.Configuration
+     */
+    public func createConfiguration(from sourceLocale: Locale, to targetLocale: Locale) -> TranslationSession.Configuration {
+        var configuration = TranslationSession.Configuration()
+        configuration.source = sourceLocale.language
+        configuration.target = targetLocale.language
+        return configuration
+    }
+    
+    /**
+     Translate text using TranslationSession
+     - parameter text: text to translate
+     - parameter session: TranslationSession to use for translation
+     - returns: Translated text
+     - throws: Error if translation fails
+     */
+    public func translate(text: String, session: TranslationSession) async throws -> String {
+        let response = try await session.translate(text)
+        return response.targetText
     }
 }
