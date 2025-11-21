@@ -78,6 +78,7 @@ struct LanguageSelectionScreen: View {
 							.background(
 								locale == selectedLocale ? Color.appSecondary.opacity(0.1) : Color.clear
 							)
+							.contentShape(Rectangle())
 						}
 						.buttonStyle(PlainButtonStyle())
 						
