@@ -16,8 +16,16 @@ import Translation
 class TranslationViewModel: ObservableObject {
 	@Published var nativeText: String = ""
 	@Published var translatedText: String = ""
-	@Published var nativeLocale: TranslationLocale = .english
-	@Published var translatedLocale: TranslationLocale = .korean
+	@Published var nativeLocale: TranslationLocale = .english {
+        didSet {
+            LSDefaults.translationSourceLocale = nativeLocale.rawValue
+        }
+    }
+	@Published var translatedLocale: TranslationLocale = .korean {
+        didSet {
+            LSDefaults.translationTargetLocale = translatedLocale.rawValue
+        }
+    }
 	@Published var isTranslating: Bool = false
 	@Published var isRecognizing: Bool = false
 	@Published var errorMessage: String?
@@ -37,17 +45,26 @@ class TranslationViewModel: ObservableObject {
 	}
 	
 	init() {
-		// Initialize with current locale
-		if let currentLocale = TranslationLocale.from(locale: Locale.current) {
+		// Initialize with saved locale or current locale
+        if let savedSource = LSDefaults.translationSourceLocale,
+           let locale = TranslationLocale(rawValue: savedSource) {
+            nativeLocale = locale
+        } else if let currentLocale = TranslationLocale.from(locale: Locale.current) {
 			nativeLocale = currentLocale
 		}
 		
-		// Set default translated locale (Korean if native is not Korean, otherwise English)
-		if nativeLocale != .korean {
-			translatedLocale = .korean
-		} else {
-			translatedLocale = .english
-		}
+        // Initialize with saved target locale or default
+        if let savedTarget = LSDefaults.translationTargetLocale,
+           let locale = TranslationLocale(rawValue: savedTarget) {
+            translatedLocale = locale
+        } else {
+            // Set default translated locale (Korean if native is not Korean, otherwise English)
+            if nativeLocale != .korean {
+                translatedLocale = .korean
+            } else {
+                translatedLocale = .english
+            }
+        }
 	}
 	
 	func translate() {

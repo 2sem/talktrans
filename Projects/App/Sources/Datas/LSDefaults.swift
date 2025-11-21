@@ -25,6 +25,9 @@ class LSDefaults{
         static let LastOpeningAdPrepared = "LastOpeningAdPrepared";
 
         static let LaunchCount = "LaunchCount";
+        
+        static let TranslationSourceLocale = "TranslationSourceLocale"
+        static let TranslationTargetLocale = "TranslationTargetLocale"
     }
     
     static var isUpsideDown : Bool?{
@@ -103,6 +106,24 @@ class LSDefaults{
         
         set(value){
             Defaults.set(value, forKey: Keys.LaunchCount);
+        }
+    }
+    
+    static var translationSourceLocale: String? {
+        get {
+            return Defaults.string(forKey: Keys.TranslationSourceLocale)
+        }
+        set(value) {
+            Defaults.set(value, forKey: Keys.TranslationSourceLocale)
+        }
+    }
+    
+    static var translationTargetLocale: String? {
+        get {
+            return Defaults.string(forKey: Keys.TranslationTargetLocale)
+        }
+        set(value) {
+            Defaults.set(value, forKey: Keys.TranslationTargetLocale)
         }
     }
 }
