@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct LanguageSelectionScreen: View {
 	let languages: [TranslationLocale]
@@ -53,11 +54,16 @@ struct LanguageSelectionScreen: View {
 						}) {
 							HStack {
 								// Flag
-								Image(locale.flagImageName)
-									.resizable()
-									.scaledToFit()
-									.frame(width: 32, height: 32)
-									.clipShape(Circle())
+								if let flagImage = UIImage(named: locale.flagImageName) {
+									Image(uiImage: flagImage)
+										.resizable()
+										.scaledToFit()
+										.frame(width: 32, height: 32)
+										.clipShape(Circle())
+								} else {
+									Color.clear
+										.frame(width: 32, height: 32)
+								}
 								
 								// Language Name
 								Text(locale.displayName)
