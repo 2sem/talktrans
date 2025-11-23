@@ -40,11 +40,18 @@ struct TranslationOutputView: View {
 					}
 					LSDefaults.translationOutputRotationAngle = newAngle
 				}) {
-					Image(systemName: "arrow.triangle.2.circlepath")
-						.font(.system(size: 14, weight: .medium))
-						.foregroundColor(.appAccent)
-						.rotationEffect(.degrees(-rotationAngle))
+					if rotationAngle.truncatingRemainder(dividingBy: 360) != 0 {
+						Image(systemName: "pin.fill")
+							.font(.system(size: 14, weight: .medium))
+							.foregroundColor(.appAccent)
+							.rotationEffect(.degrees(45))
+					} else {
+						Image(systemName: "arrow.triangle.2.circlepath")
+							.font(.system(size: 14, weight: .medium))
+							.foregroundColor(.appAccent)
+					}
 				}
+				.rotationEffect(.degrees(-rotationAngle))
 				.padding(.horizontal, 16)
 			}
 			
