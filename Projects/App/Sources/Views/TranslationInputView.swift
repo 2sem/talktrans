@@ -34,6 +34,8 @@ struct TranslationInputView: View {
                 .padding(.top, 16)
                 .padding(.bottom, 12)
                 
+				Spacer()
+				
 				// Swap Button - calls onSwap closure when tapped
 				Button(action: {
 					onSwap()

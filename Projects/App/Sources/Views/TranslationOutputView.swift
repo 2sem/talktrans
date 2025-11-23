@@ -14,19 +14,37 @@ struct TranslationOutputView: View {
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
+	@State private var rotationAngle: Double = 0
 	
 	var body: some View {
 		VStack(spacing: 0) {
-			// Language Picker
-			LanguagePickerButton(
-                title: "Translated Language:".localized(),
-				locale: locale,
-				availableLocales: availableLocales,
-				onSelect: onLocaleChange
-			)
-			.padding(.horizontal, 16)
-			.padding(.top, 16)
-			.padding(.bottom, 12)
+			HStack {
+				// Language Picker
+				LanguagePickerButton(
+					title: "Translated Language:".localized(),
+					locale: locale,
+					availableLocales: availableLocales,
+					onSelect: onLocaleChange
+				)
+				.padding(.horizontal, 16)
+				.padding(.top, 16)
+				.padding(.bottom, 12)
+				
+				Spacer()
+				
+				// Rotate Button - rotates entire view 180 degrees when tapped
+				Button(action: {
+					withAnimation(.easeInOut(duration: 0.3)) {
+						rotationAngle += 180
+					}
+				}) {
+					Image(systemName: "arrow.triangle.2.circlepath")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(.appAccent)
+						.rotationEffect(.degrees(-rotationAngle))
+				}
+				.padding(.horizontal, 16)
+			}
 			
 			// Separator
 			Divider()
@@ -57,6 +75,7 @@ struct TranslationOutputView: View {
 		}
 		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
+		.rotationEffect(.degrees(rotationAngle))
 	}
 }
 
