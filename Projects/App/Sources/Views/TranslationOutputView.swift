@@ -14,7 +14,7 @@ struct TranslationOutputView: View {
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
-	@State private var rotationAngle: Double = 0
+	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -34,9 +34,11 @@ struct TranslationOutputView: View {
 				
 				// Rotate Button - rotates entire view 180 degrees when tapped
 				Button(action: {
+					let newAngle = rotationAngle + 180
 					withAnimation(.easeInOut(duration: 0.3)) {
-						rotationAngle += 180
+						rotationAngle = newAngle
 					}
+					LSDefaults.translationOutputRotationAngle = newAngle
 				}) {
 					Image(systemName: "arrow.triangle.2.circlepath")
 						.font(.system(size: 14, weight: .medium))

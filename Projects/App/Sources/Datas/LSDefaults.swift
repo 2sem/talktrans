@@ -28,6 +28,7 @@ class LSDefaults{
         
         static let TranslationSourceLocale = "TranslationSourceLocale"
         static let TranslationTargetLocale = "TranslationTargetLocale"
+        static let TranslationOutputRotationAngle = "TranslationOutputRotationAngle"
     }
     
     static var isUpsideDown : Bool?{
@@ -124,6 +125,19 @@ class LSDefaults{
         }
         set(value) {
             Defaults.set(value, forKey: Keys.TranslationTargetLocale)
+        }
+    }
+    
+    static var translationOutputRotationAngle: Double {
+        get {
+            if Defaults.object(forKey: Keys.TranslationOutputRotationAngle) == nil {
+                // Default to 180 degrees if not set
+                return 180
+            }
+            return Defaults.double(forKey: Keys.TranslationOutputRotationAngle)
+        }
+        set(value) {
+            Defaults.set(value, forKey: Keys.TranslationOutputRotationAngle)
         }
     }
 }
