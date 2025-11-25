@@ -68,7 +68,8 @@ let project = Project(
                     "GADApplicationIdentifier": "ca-app-pub-9684378399371172~6560332448",
                     "GADUnitIdentifiers": [
                         "FullAd" : "ca-app-pub-9684378399371172/1814946844",
-                        "Launch": "ca-app-pub-9684378399371172/1669573614"
+                        "Launch": "ca-app-pub-9684378399371172/1669573614",
+                        "Banner" : "ca-app-pub-9684378399371172/9513798848"
                     ],
                     "Itunes App Id": "1186147362",
                     "NSUserTrackingUsageDescription": "Use location information to explore nearby attractions.",

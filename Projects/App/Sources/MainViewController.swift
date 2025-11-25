@@ -540,7 +540,7 @@ class MainViewController: UIViewController, UITextViewDelegate, UIPopoverPresent
             self.transLocale = Locale(identifier: lang?.key ?? "");
         }
         
-        AppDelegate.sharedGADManager?.show(unit: .full);
+//        AppDelegate.sharedGADManager?.show(unit: .full);
     }
     
     /// MARK: UITextViewDelegate

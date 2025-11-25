@@ -29,6 +29,10 @@ class LSDefaults{
         static let TranslationSourceLocale = "TranslationSourceLocale"
         static let TranslationTargetLocale = "TranslationTargetLocale"
         static let TranslationOutputRotationAngle = "TranslationOutputRotationAngle"
+        
+        static let AdsShownCount = "AdsShownCount";
+        static let AdsTrackingRequested = "AdsTrackingRequested";
+        static let ReviewRequestedDate = "ReviewRequestedDate";
     }
     
     static var isUpsideDown : Bool?{
@@ -140,4 +144,39 @@ class LSDefaults{
             Defaults.set(value, forKey: Keys.TranslationOutputRotationAngle)
         }
     }
+    
+    static var AdsTrackingRequested : Bool{
+            get{
+                return Defaults.bool(forKey: Keys.AdsTrackingRequested);
+            }
+            
+            set{
+                Defaults.set(newValue, forKey: Keys.AdsTrackingRequested);
+            }
+        }
+        
+        static var isReviewRequested: Bool {
+            get {
+                return ReviewRequestedDate != nil
+            }
+        }
+        
+        static var ReviewRequestedDate: Date? {
+            get {
+                let seconds = Defaults.double(forKey: Keys.ReviewRequestedDate)
+                return seconds > 0 ? Date(timeIntervalSince1970: seconds) : nil
+            }
+            
+            set {
+                if let value = newValue {
+                    Defaults.set(value.timeIntervalSince1970, forKey: Keys.ReviewRequestedDate)
+                } else {
+                    Defaults.removeObject(forKey: Keys.ReviewRequestedDate)
+                }
+            }
+        }
+        
+        static func updateReviewRequestDate() {
+            ReviewRequestedDate = Date()
+        }
 }
