@@ -7,7 +7,7 @@ class SwiftUIAdManager: NSObject, ObservableObject {
     enum GADUnitName: String {
         case full = "FullAd"
         case launch = "Launch"
-        case banner = "banner"
+        case banner = "Banner"
     }
     
 #if DEBUG
@@ -67,8 +67,12 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         }
     }
     
-    func createAdLoader(forUnit unit: GADUnitName, options: [NativeAdViewAdOptions] = []) -> AdLoader? {
-        return gadManager?.createNativeLoader(forAd: unit, isTesting: self.isTesting(unit: unit))
+    func createNativeLoader(forUnit unit: GADUnitName, options: [NativeAdViewAdOptions] = []) -> AdLoader? {
+        return gadManager?.createNativeLoader(forAd: unit, withOptions: options, isTesting: self.isTesting(unit: unit))
+    }
+    
+    func createBannerAdView(withAdSize size: AdSize, forUnit unit: GADUnitName) -> BannerView? {
+        return gadManager?.prepare(bannerUnit: unit, isTesting: self.isTesting(unit: unit), size: size)
     }
     
     // MARK: - Testing Flags

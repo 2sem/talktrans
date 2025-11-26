@@ -69,15 +69,9 @@ struct TranslationScreen: View {
                 .padding(.horizontal, 16)
                 
                 // Advertisement Banner Placeholder
-                Rectangle()
-                    .fill(Color.appInputOutputBackground)
+                BannerAdSwiftUIView()
                     .frame(height: 50)
-                    .cornerRadius(8)
-                    .overlay(
-                        Text("Advertisement")
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
-                    )
+//                    .cornerRadius(8)
                 
                 // Action Buttons
                 HStack(spacing: 12) {
