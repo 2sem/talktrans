@@ -21,7 +21,7 @@ struct TranslationOutputView: View {
 	// Computed property for effective font size with constraints
 	private var effectiveFontSize: CGFloat {
 		let size = fontSize * magnification
-		return min(max(size, 12), 48) // Constrain between 12 and 48 points
+		return min(max(size, 16), 48) // Constrain between 16 (default) and 48 points
 	}
 
 	var body: some View {
@@ -94,7 +94,7 @@ struct TranslationOutputView: View {
                     }
                     .onEnded { value in
                         let newSize = fontSize * value.magnification
-                        fontSize = min(max(newSize, 12), 48)
+                        fontSize = min(max(newSize, 16), 48)
                         LSDefaults.translationOutputFontSize = fontSize
                         magnification = 1.0
                     }
