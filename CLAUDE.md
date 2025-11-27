@@ -17,22 +17,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Tuist Commands
 
+**IMPORTANT**: This project uses `mise` to manage Tuist. Always run Tuist commands via `mise x --`:
+
 ```bash
 # Generate Xcode project (MUST run this before opening Xcode)
-tuist generate
+mise x -- tuist generate
 
 # Clean generated files
-tuist clean
+mise x -- tuist clean
 
 # Build the project
-tuist build
+mise x -- tuist build
 
 # Run tests
-tuist test
+mise x -- tuist test
 
 # Build for specific configuration
-tuist build --configuration Release
+mise x -- tuist build --configuration Release
+
+# Check Tuist version
+mise x -- tuist version
 ```
+
+**Note**: Running `tuist` directly will NOT work. You must use `mise x -- tuist` because:
+- Tuist is managed via mise tool version manager
+- `mise` is located at `/opt/homebrew/bin/mise`
+- Running Tuist without mise will result in "command not found" errors
 
 ### Git Workflow
 
@@ -219,11 +229,12 @@ When writing tests:
 
 ## Common Pitfalls
 
-1. **Always run `tuist generate` after**:
+1. **Always run `mise x -- tuist generate` after**:
    - Pulling changes from git
    - Modifying Project.swift
    - Adding/removing dependencies
    - Changing build configurations
+   - **Remember**: Use `mise x -- tuist`, NOT just `tuist`
 
 2. **File organization**:
    - Screens go in `Sources/Screens/`
