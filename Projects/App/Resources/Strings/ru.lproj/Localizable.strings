@@ -6,19 +6,19 @@
   Copyright © 2016년 leesam. All rights reserved.
 */
 
-Korean="корейский язык";
-English="английский";
-Chinese="китайский язык";
-Japanese="японский язык";
-Taiwanese="Тайваньская";
-Spanish="испанский";
-Vietnamese="вьетнамский";
-Thai="тайский";
-Indonesian="индонезийский";
+Korean="Корейский";
+English="Английский";
+Chinese="Китайский";
+Japanese="Японский";
+Taiwanese="Тайваньский";
+Spanish="Испанский";
+Vietnamese="Вьетнамский";
+Thai="Тайский";
+Indonesian="Индонезийский";
 French="Французский";
 German="Немецкий";
-Russian="русский";
-Italian="итальянский";
+Russian="Русский";
+Italian="Итальянский";
 Cancel="отменить";
 OK="Хорошо";
 Done="Готово";

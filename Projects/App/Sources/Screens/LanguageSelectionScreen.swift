@@ -66,7 +66,7 @@ struct LanguageSelectionScreen: View {
 								}
 								
 								// Language Name
-								Text(locale.displayName)
+								Text(locale.displayName.localized())
 									.font(.system(size: 17))
 									.foregroundColor(.primary)
 								

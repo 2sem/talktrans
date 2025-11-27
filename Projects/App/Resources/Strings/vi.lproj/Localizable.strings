@@ -6,19 +6,19 @@
   Copyright © 2016년 leesam. All rights reserved.
 */
 
-Korean="Hàn Quốc";
-English="Anh";
-Chinese="Trung Quốc";
-Japanese="tiếng Nhật";
-Taiwanese="Người Đài Loan";
-Spanish="người Tây Ban Nha";
+Korean="Tiếng Hàn";
+English="Tiếng Anh";
+Chinese="Tiếng Trung";
+Japanese="Tiếng Nhật";
+Taiwanese="Tiếng Đài Loan";
+Spanish="Tiếng Tây Ban Nha";
 Vietnamese="Tiếng Việt";
 Thai="Tiếng Thái";
-Indonesian="Người Indonesia";
-French="người Pháp";
-German="tiếng Đức";
-Russian="Tiếng nga";
-Italian="người Ý";
+Indonesian="Tiếng Indonesia";
+French="Tiếng Pháp";
+German="Tiếng Đức";
+Russian="Tiếng Nga";
+Italian="Tiếng Ý";
 Cancel="Hủy";
 OK="được";
 Done="Làm xong";
