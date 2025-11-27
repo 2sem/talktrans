@@ -118,21 +118,13 @@ struct TranslationScreen: View {
                             .background(Color.appSecondaryButton)
                             .foregroundColor(.appTextPrimary)
                             .cornerRadius(12)
-                        
-//                        Text("Speech Recognition")
-//                            .font(.system(size: 17, weight: .semibold))
-//                            .frame(maxWidth: .infinity)
-//                            .frame(height: 50)
-//                            .background(Color.white)
-//                            .foregroundColor(.primary)
-//                            .cornerRadius(12)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 12)
-//                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-//                            )
                     }
+                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 16)
+                .padding(.bottom, 20)
+                
+                Spacer(minLength: 0)
                 
                 // Error Message
                 if let errorMessage = viewModel.errorMessage {
@@ -142,7 +134,6 @@ struct TranslationScreen: View {
                         .padding(.horizontal, 16)
                 }
             }
-			.contentShape(Rectangle())
 			.onTapGesture {
 				isInputFocused = false
 			}
