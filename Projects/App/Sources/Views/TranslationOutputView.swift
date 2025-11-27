@@ -15,7 +15,15 @@ struct TranslationOutputView: View {
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
 	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
-	
+	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
+	@State private var magnification: CGFloat = 1.0
+
+	// Computed property for effective font size with constraints
+	private var effectiveFontSize: CGFloat {
+		let size = fontSize * magnification
+		return min(max(size, 12), 48) // Constrain between 12 and 48 points
+	}
+
 	var body: some View {
 		VStack(spacing: 0) {
 			HStack {
@@ -63,15 +71,15 @@ struct TranslationOutputView: View {
 			ZStack(alignment: .topLeading) {
 				if text.isEmpty {
 					Text(placeholder)
-						.font(.system(size: 16))
+						.font(.system(size: effectiveFontSize))
 						.foregroundColor(.appTextPlaceholder)
 						.padding(.horizontal, 16)
 						.padding(.vertical, 12)
 				}
-				
+
 				ScrollView {
 					Text(text)
-						.font(.system(size: 16))
+						.font(.system(size: effectiveFontSize))
 						.foregroundColor(.appTextPrimary)
 						.frame(maxWidth: .infinity, alignment: .leading)
 						.padding(.horizontal, 16)
@@ -79,6 +87,18 @@ struct TranslationOutputView: View {
 				}
 				.frame(minHeight: 100)
 			}
+			.simultaneousGesture(
+                MagnifyGesture()
+                    .onChanged { value in
+                        magnification = value.magnification
+                    }
+                    .onEnded { value in
+                        let newSize = fontSize * value.magnification
+                        fontSize = min(max(newSize, 12), 48)
+                        LSDefaults.translationOutputFontSize = fontSize
+                        magnification = 1.0
+                    }
+            )
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}

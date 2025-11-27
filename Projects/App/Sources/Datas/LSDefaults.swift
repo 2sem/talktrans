@@ -29,6 +29,7 @@ class LSDefaults{
         static let TranslationSourceLocale = "TranslationSourceLocale"
         static let TranslationTargetLocale = "TranslationTargetLocale"
         static let TranslationOutputRotationAngle = "TranslationOutputRotationAngle"
+        static let TranslationOutputFontSize = "TranslationOutputFontSize"
         
         static let AdsShownCount = "AdsShownCount";
         static let AdsTrackingRequested = "AdsTrackingRequested";
@@ -144,7 +145,20 @@ class LSDefaults{
             Defaults.set(value, forKey: Keys.TranslationOutputRotationAngle)
         }
     }
-    
+
+    static var translationOutputFontSize: CGFloat {
+        get {
+            if Defaults.object(forKey: Keys.TranslationOutputFontSize) == nil {
+                // Default to 16 points if not set
+                return 16
+            }
+            return CGFloat(Defaults.double(forKey: Keys.TranslationOutputFontSize))
+        }
+        set(value) {
+            Defaults.set(Double(value), forKey: Keys.TranslationOutputFontSize)
+        }
+    }
+
     static var AdsTrackingRequested : Bool{
             get{
                 return Defaults.bool(forKey: Keys.AdsTrackingRequested);
