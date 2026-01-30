@@ -90,6 +90,14 @@ jobs:
         run: |
           sudo gem install fastlane
 
+      - name: Import Fastlane App Store Key
+        env:
+          API_KEY_PATH_BASE64: $IOS_KEY_PATH.base64
+        run: |
+          echo '${{ secrets.IOS_API_KEY }}' > $API_KEY_PATH_BASE64
+          base64 --decode -i $API_KEY_PATH_BASE64 -o $IOS_KEY_PATH
+          rm $API_KEY_PATH_BASE64
+
       - name: Setup Certificates and Increment Version
         env:
           PACKAGE_NAME: 'com.credif.talktrans'
