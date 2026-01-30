@@ -59,7 +59,6 @@ let project = Project(
             name: "App",
             destinations: [.iPhone, .iPad],
             product: .app,
-            productName: "talktrans",
             bundleId: .appBundleId,
             deploymentTargets: .iOS("18.0"),
             infoPlist: .extendingDefault(
