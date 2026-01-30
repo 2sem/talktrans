@@ -45,9 +45,9 @@ jobs:
         run: |
             brew install git-secret
 
-      - name: Decrypt Secret Data
-        run: |
-          git secret reveal -p ${{ secrets.GPG_PRIVATE_PWD }}
+      # - name: Decrypt Secret Data
+      #   run: |
+      #     git secret reveal -p ${{ secrets.GPG_PRIVATE_PWD }}
 
       - name: Install Mise
         uses: jdx/mise-action@v2
