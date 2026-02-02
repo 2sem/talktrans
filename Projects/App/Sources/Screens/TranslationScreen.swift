@@ -51,6 +51,11 @@ struct TranslationScreen: View {
                     .padding(.top, 20)
                 }
                 
+                // Advertisement Banner Placeholder
+                BannerAdSwiftUIView()
+                    .frame(height: 50)
+//                    .cornerRadius(8)
+
                 // Native Input Section
                 TranslationInputView(
                     text: $viewModel.nativeText,
@@ -67,11 +72,6 @@ struct TranslationScreen: View {
                     maxLength: 100
                 )
                 .padding(.horizontal, 16)
-                
-                // Advertisement Banner Placeholder
-                BannerAdSwiftUIView()
-                    .frame(height: 50)
-//                    .cornerRadius(8)
                 
                 // Action Buttons
                 HStack(spacing: 12) {
