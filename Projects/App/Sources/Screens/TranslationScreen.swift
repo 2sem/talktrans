@@ -77,6 +77,7 @@ struct TranslationScreen: View {
                 HStack(spacing: 12) {
                     // Translate Button
                     Button(action: {
+                        isInputFocused = false
                         viewModel.translate()
                     }) {
                         HStack {
