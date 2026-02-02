@@ -67,12 +67,7 @@ struct TranslationScreen: View {
                     maxLength: 100
                 )
                 .padding(.horizontal, 16)
-                
-                // Advertisement Banner Placeholder
-                BannerAdSwiftUIView()
-                    .frame(height: 50)
-//                    .cornerRadius(8)
-                
+
                 // Action Buttons
                 HStack(spacing: 12) {
                     // Translate Button
@@ -106,7 +101,7 @@ struct TranslationScreen: View {
                         .cornerRadius(12)
                     }
                     .disabled(!viewModel.canTranslate)
-                    
+
                     // Speech Recognition Button
                     Button(action: {
                         showSpeechRecognition = true
@@ -123,8 +118,13 @@ struct TranslationScreen: View {
                     .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 16)
-                .padding(.bottom, 20)
-                
+
+                // Advertisement Banner Placeholder
+                BannerAdSwiftUIView()
+                    .frame(height: 50)
+//                    .cornerRadius(8)
+                    .padding(.bottom, 20)
+
                 Spacer(minLength: 0)
                 
                 // Error Message
