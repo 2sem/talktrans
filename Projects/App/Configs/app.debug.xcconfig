@@ -20,3 +20,4 @@ TARGETED_DEVICE_FAMILY=1,2
 
 LD_RUNPATH_SEARCH_PATHS[config=Debug]=$(inherited) @executable_path/Frameworks
 OTHER_LDFLAGS[config=Debug]=$(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -weak_framework "AdSupport" -weak_framework "JavaScriptCore" -weak_framework "SafariServices" -weak_framework "WebKit" -Xlinker -no_warn_duplicate_libraries
+OTHER_SWIFT_FLAGS[config=Debug]=$(inherited) -DADS_DISABLED
