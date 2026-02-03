@@ -31,7 +31,11 @@ struct SendadvApp: App {
         guard !isSetupDone else {
             return
         }
-        
+        guard !SwiftUIAdManager.isDisabled else {
+            isSetupDone = true
+            return
+        }
+
         MobileAds.shared.start { [weak adManager] status in
             guard let adManager = adManager else { return }
             
@@ -75,9 +79,11 @@ struct SendadvApp: App {
             defer {
                 LSDefaults.increaseLaunchCount()
             }
-            
+
+            guard !SwiftUIAdManager.isDisabled else { return }
+
             let isTest = adManager.isTesting(unit: .launch)
-            
+
             await adManager.show(unit: .launch)
         }
     }

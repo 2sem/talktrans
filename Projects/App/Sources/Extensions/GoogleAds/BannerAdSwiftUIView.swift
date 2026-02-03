@@ -14,7 +14,9 @@ struct BannerAdSwiftUIView: View {
 
 	var body: some View {
 		Group {
-			if let bannerView = coordinator.bannerView {
+			if SwiftUIAdManager.isDisabled {
+				EmptyView()
+			} else if let bannerView = coordinator.bannerView {
 				BannerAdRepresentable(bannerView: bannerView)
 			}
 		}

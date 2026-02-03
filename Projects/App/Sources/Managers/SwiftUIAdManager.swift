@@ -9,7 +9,14 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         case launch = "Launch"
         case banner = "Banner"
     }
-    
+
+#if ADS_DISABLED
+    /// Ads are disabled via the ADS_DISABLED compiler flag (debug only).
+    static let isDisabled = true
+#else
+    static let isDisabled = false
+#endif
+
 #if DEBUG
     var testUnits: [GADUnitName] = [
         .full,
@@ -19,59 +26,67 @@ class SwiftUIAdManager: NSObject, ObservableObject {
 #else
     var testUnits: [GADUnitName] = []
 #endif
-    
+
     private var gadManager: GADManager<GADUnitName>!
     var canShowFirstTime = true
-    
+
     // 싱글톤 패턴으로 전역 접근 지원
     static var shared: SwiftUIAdManager?
     @Published var isReady: Bool = false
-    
+
     func setup() {
+        guard !SwiftUIAdManager.isDisabled else { return }
+
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first else { return }
-        
+
         let adManager = GADManager<GADUnitName>(window)
         self.gadManager = adManager
         adManager.delegate = self
-        
+
         // 싱글톤 인스턴스 설정
         SwiftUIAdManager.shared = self
         self.isReady = true
     }
-    
+
     func prepare(interstitialUnit unit: GADUnitName, interval: TimeInterval) {
+        guard !SwiftUIAdManager.isDisabled else { return }
         gadManager?.prepare(interstitialUnit: unit, isTesting: self.isTesting(unit: unit), interval: interval)
     }
-    
+
     func prepare(openingUnit unit: GADUnitName, interval: TimeInterval) {
+        guard !SwiftUIAdManager.isDisabled else { return }
         gadManager?.prepare(openingUnit: unit, isTesting: self.isTesting(unit: unit), interval: interval)
     }
-    
+
     /// Shows an ad for the specified unit.
-    /// 
+    ///
     /// Note: This method may cause undo/transaction issues in SwiftUI.
     /// To avoid potential problems, consider using `showDeferred(unit:)` which defers the call to the main queue and ensures proper transaction handling.
     @MainActor
     @discardableResult
     func show(unit: GADUnitName) async -> Bool {
-        await withCheckedContinuation { continuation in
+        guard !SwiftUIAdManager.isDisabled else { return false }
+
+        return await withCheckedContinuation { continuation in
             guard let gadManager else {
                 continuation.resume(returning: false)
                 return
             }
-            
+
             gadManager.show(unit: unit, isTesting: self.isTesting(unit: .launch) ){ unit, _,result  in
                 continuation.resume(returning: result)
             }
         }
     }
-    
+
     func createNativeLoader(forUnit unit: GADUnitName, options: [NativeAdViewAdOptions] = []) -> AdLoader? {
+        guard !SwiftUIAdManager.isDisabled else { return nil }
         return gadManager?.createNativeLoader(forAd: unit, withOptions: options, isTesting: self.isTesting(unit: unit))
     }
-    
+
     func createBannerAdView(withAdSize size: AdSize, forUnit unit: GADUnitName) -> BannerView? {
+        guard !SwiftUIAdManager.isDisabled else { return nil }
         return gadManager?.prepare(bannerUnit: unit, isTesting: self.isTesting(unit: unit), size: size)
     }
     
