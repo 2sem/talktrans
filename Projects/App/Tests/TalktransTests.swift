@@ -1,5 +1,5 @@
 import Testing
-@testable import Talktrans
+@testable import App
 
 struct TalktransTests {
 
