@@ -68,4 +68,4 @@ jobs:
       env:
         SCHEME: App
       run: |
-        tuist test -scheme App
+        tuist test
