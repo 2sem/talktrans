@@ -24,6 +24,7 @@ jobs:
     runs-on: macos-26
     env:
         PRODUCT_NAME: 'talktrans'
+        PACKAGE_NAME: ${{ secrets.PACKAGE_NAME }}
         IOS_CERT_PATH: 'cert.p12'
         IOS_PROFILE_PATH: 'profile.mobileprovision'
         IOS_KEY_PATH: 'api-key.json'
@@ -100,7 +101,6 @@ jobs:
 
       - name: Setup Certificates and Increment Version
         env:
-          PACKAGE_NAME: 'com.credif.talktrans'
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           IOS_CERT_PWD: ${{ secrets.IOS_CERT_P12_PWD }}
           IOS_KEYCHAIN: ${{ secrets.IOS_KEYCHAIN }}
@@ -111,7 +111,6 @@ jobs:
       - name: Create export options plist
         env:
           TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          PACKAGE_NAME: 'com.credif.talktrans'
         run: |
           cat > ./exportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
@@ -173,7 +172,6 @@ jobs:
 
       - name: Upload to TestFlight/App Store
         env:
-          PACKAGE_NAME: 'com.credif.talktrans'
           IOS_IPA_PATH: ./Output/IPA/App.ipa
         run: |
           fastlane ios upload description:'${{ github.event.inputs.body }}' isReleasing:${{ github.event.inputs.isReleasing }}
