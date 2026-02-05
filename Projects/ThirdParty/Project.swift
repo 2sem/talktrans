@@ -18,6 +18,7 @@ let project = Project(
             destinations: .iOS,
             product: .staticFramework,
             bundleId: .appBundleId.appending(".thirdparty"),
+            deploymentTargets: .iOS("18.0"),
             dependencies: [.package(product: "LSExtensions", type: .runtime),
                            .package(product: "Material", type: .runtime),
                            .package(product: "RxSwift", type: .runtime),
