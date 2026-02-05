@@ -82,8 +82,6 @@ struct SendadvApp: App {
 
             guard !SwiftUIAdManager.isDisabled else { return }
 
-            let isTest = adManager.isTesting(unit: .launch)
-
             await adManager.show(unit: .launch)
         }
     }
