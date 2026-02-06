@@ -23,7 +23,7 @@ jobs:
   deploy:
     runs-on: macos-26
     env:
-        PRODUCT_NAME: 'talktrans'
+        PRODUCT_NAME: ${{ vars.PRODUCT_NAME }}
         PACKAGE_NAME: ${{ secrets.PACKAGE_NAME }}
         IOS_CERT_PATH: 'cert.p12'
         IOS_PROFILE_PATH: 'profile.mobileprovision'
