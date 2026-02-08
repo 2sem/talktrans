@@ -14,6 +14,7 @@ struct TranslationOutputView: View {
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
+	@Binding var isFullScreen: Bool
 	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
 	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
 	@State private var magnification: CGFloat = 1.0
@@ -68,37 +69,59 @@ struct TranslationOutputView: View {
 				.padding(.horizontal, 16)
 			
 			// Translated Text
-			ZStack(alignment: .topLeading) {
-				if text.isEmpty {
-					Text(placeholder)
-						.font(.system(size: effectiveFontSize))
-						.foregroundColor(.appTextPlaceholder)
-						.padding(.horizontal, 16)
-						.padding(.vertical, 12)
-				}
+			ZStack(alignment: .bottomTrailing) {
+				ZStack(alignment: .topLeading) {
+					if text.isEmpty {
+						Text(placeholder)
+							.font(.system(size: effectiveFontSize))
+							.foregroundColor(.appTextPlaceholder)
+							.padding(.horizontal, 16)
+							.padding(.vertical, 12)
+					}
 
-				ScrollView {
-					Text(text)
-						.font(.system(size: effectiveFontSize))
-						.foregroundColor(.appTextPrimary)
-						.frame(maxWidth: .infinity, alignment: .leading)
-						.padding(.horizontal, 16)
-						.padding(.vertical, 12)
+					ScrollView {
+						Text(text)
+							.font(.system(size: effectiveFontSize))
+							.foregroundColor(.appTextPrimary)
+							.frame(maxWidth: .infinity, alignment: .leading)
+							.padding(.horizontal, 16)
+							.padding(.vertical, 12)
+					}
+					.frame(minHeight: 100)
 				}
-				.frame(minHeight: 100)
+				.simultaneousGesture(
+	                MagnifyGesture()
+	                    .onChanged { value in
+	                        magnification = value.magnification
+	                    }
+	                    .onEnded { value in
+	                        let newSize = fontSize * value.magnification
+	                        fontSize = min(max(newSize, 16), 48)
+	                        LSDefaults.translationOutputFontSize = fontSize
+	                        magnification = 1.0
+	                    }
+	            )
+
+				// Full Screen Toggle Button
+				Button(action: {
+					withAnimation(.easeInOut(duration: 0.3)) {
+						isFullScreen.toggle()
+					}
+				}) {
+					Image(systemName: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(.appAccent)
+						.padding(8)
+						.background(
+							Circle()
+								.fill(Color.appInputOutputBackground.opacity(0.8))
+								.shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+						)
+				}
+				.rotationEffect(.degrees(-rotationAngle))
+				.padding(.trailing, 12)
+				.padding(.bottom, 12)
 			}
-			.simultaneousGesture(
-                MagnifyGesture()
-                    .onChanged { value in
-                        magnification = value.magnification
-                    }
-                    .onEnded { value in
-                        let newSize = fontSize * value.magnification
-                        fontSize = min(max(newSize, 16), 48)
-                        LSDefaults.translationOutputFontSize = fontSize
-                        magnification = 1.0
-                    }
-            )
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
 		}
@@ -109,13 +132,22 @@ struct TranslationOutputView: View {
 }
 
 #Preview {
-	TranslationOutputView(
-		text: "번역된 문장이 표시됩니다",
-		locale: .korean,
-		availableLocales: TranslationLocale.allCases,
-		placeholder: "Translated message will appear here",
-		onLocaleChange: { _ in }
-	)
-	.padding()
+	struct PreviewWrapper: View {
+		@State private var isFullScreen = false
+
+		var body: some View {
+			TranslationOutputView(
+				text: "번역된 문장이 표시됩니다",
+				locale: .korean,
+				availableLocales: TranslationLocale.allCases,
+				placeholder: "Translated message will appear here",
+				onLocaleChange: { _ in },
+				isFullScreen: $isFullScreen
+			)
+			.padding()
+		}
+	}
+
+	return PreviewWrapper()
 }
 

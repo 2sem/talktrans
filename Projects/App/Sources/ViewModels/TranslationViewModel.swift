@@ -30,6 +30,7 @@ class TranslationViewModel: ObservableObject {
 	@Published var isRecognizing: Bool = false
 	@Published var errorMessage: String?
 	@Published var translationConfiguration: TranslationSession.Configuration?
+	@Published var isFullScreen: Bool = false
 	
 	private let translationManager = TranslationManager.shared
 	private let maxTextLength = 100
@@ -154,7 +155,13 @@ class TranslationViewModel: ObservableObject {
 	func updateTranslatedLocale(_ locale: TranslationLocale) {
 		translatedLocale = locale
 	}
-	
+
+	func toggleFullScreen() {
+		withAnimation(.easeInOut(duration: 0.3)) {
+			isFullScreen.toggle()
+		}
+	}
+
 	func validateText(_ text: String) -> Bool {
 		return text.count <= maxTextLength
 	}

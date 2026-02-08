@@ -34,109 +34,127 @@ struct TranslationScreen: View {
                 endPoint: .bottomTrailing
 			)
 			.ignoresSafeArea()
-			
-            VStack(spacing: 20) {
-                // Translated Output Section
-                if !showSpeechRecognition && !isInputFocused {
-                    TranslationOutputView(
-                        text: viewModel.translatedText,
-                        locale: viewModel.translatedLocale,
-                        availableLocales: viewModel.supportedTargetLocales,
-                        placeholder: "Translated message will appear here".localized(),
-                        onLocaleChange: { locale in
-                            viewModel.updateTranslatedLocale(locale)
-                        }
-                    )
-                    .padding(.horizontal, 16)
-                    .padding(.top, 20)
-                }
-                
-                // Advertisement Banner Placeholder
-                BannerAdSwiftUIView()
-                    .frame(height: 50)
-//                    .cornerRadius(8)
 
-                // Native Input Section
-                TranslationInputView(
-                    text: $viewModel.nativeText,
-                    isFocused: $isInputFocused,
-                    locale: viewModel.nativeLocale,
-                    availableLocales: TranslationLocale.allCases,
-                    placeholder: "".appendingFormat("Please input your message to be translated as %@".localized(), viewModel.translatedLocale.displayName.localized()),
+			if viewModel.isFullScreen {
+				// Full Screen Mode - Only show translated output
+				TranslationOutputView(
+					text: viewModel.translatedText,
+					locale: viewModel.translatedLocale,
+					availableLocales: viewModel.supportedTargetLocales,
+					placeholder: "Translated message will appear here".localized(),
 					onLocaleChange: { locale in
-						viewModel.updateNativeLocale(locale)
+						viewModel.updateTranslatedLocale(locale)
 					},
-					onSwap: {
-						viewModel.swapLanguages()
-					},
-                    maxLength: 100
-                )
-                .padding(.horizontal, 16)
+					isFullScreen: $viewModel.isFullScreen
+				)
+				.padding(16)
+				.ignoresSafeArea(edges: .bottom)
+			} else {
+				// Normal Mode - Show all UI elements
+				VStack(spacing: 20) {
+					// Translated Output Section
+					if !showSpeechRecognition && !isInputFocused {
+						TranslationOutputView(
+							text: viewModel.translatedText,
+							locale: viewModel.translatedLocale,
+							availableLocales: viewModel.supportedTargetLocales,
+							placeholder: "Translated message will appear here".localized(),
+							onLocaleChange: { locale in
+								viewModel.updateTranslatedLocale(locale)
+							},
+							isFullScreen: $viewModel.isFullScreen
+						)
+						.padding(.horizontal, 16)
+						.padding(.top, 20)
+					}
+
+					// Advertisement Banner Placeholder
+					BannerAdSwiftUIView()
+						.frame(height: 50)
+	//                    .cornerRadius(8)
+
+					// Native Input Section
+					TranslationInputView(
+						text: $viewModel.nativeText,
+						isFocused: $isInputFocused,
+						locale: viewModel.nativeLocale,
+						availableLocales: TranslationLocale.allCases,
+						placeholder: "".appendingFormat("Please input your message to be translated as %@".localized(), viewModel.translatedLocale.displayName.localized()),
+						onLocaleChange: { locale in
+							viewModel.updateNativeLocale(locale)
+						},
+						onSwap: {
+							viewModel.swapLanguages()
+						},
+						maxLength: 100
+					)
+					.padding(.horizontal, 16)
+
+					// Action Buttons
+					HStack(spacing: 12) {
+						// Translate Button
+						Button(action: {
+							isInputFocused = false
+							viewModel.translate()
+						}) {
+							HStack {
+								if viewModel.isTranslating {
+									ProgressView()
+										.progressViewStyle(CircularProgressViewStyle(tint: .white))
+										.scaleEffect(0.8)
+								} else {
+									Text("Translate")
+										.font(.system(size: 17, weight: .semibold))
+								}
+							}
+							.frame(maxWidth: .infinity)
+							.frame(height: 50)
+							.background(
+								LinearGradient(
+									colors: [
+										.appAccentGradientStart,
+										.appAccentGradientEnd
+									],
+									startPoint: .leading,
+									endPoint: .trailing
+								)
+							)
+							.foregroundColor(.white)
+							.cornerRadius(12)
+						}
+						.disabled(!viewModel.canTranslate)
+
+						// Speech Recognition Button
+						Button(action: {
+							showSpeechRecognition = true
+						}) {
+							// Record Icon
+							Image(systemName: "mic")
+								.font(.system(size: 14, weight: .medium))
+								.frame(maxWidth: .infinity)
+								.frame(height: 50)
+								.background(Color.appSecondaryButton)
+								.foregroundColor(.appTextPrimary)
+								.cornerRadius(12)
+						}
+						.buttonStyle(.plain)
+					}
+					.padding(.horizontal, 16)
+					.padding(.bottom, 20)
+
+					Spacer(minLength: 0)
                 
-                // Action Buttons
-                HStack(spacing: 12) {
-                    // Translate Button
-                    Button(action: {
-                        isInputFocused = false
-                        viewModel.translate()
-                    }) {
-                        HStack {
-                            if viewModel.isTranslating {
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                    .scaleEffect(0.8)
-                            } else {
-                                Text("Translate")
-                                    .font(.system(size: 17, weight: .semibold))
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(
-                            LinearGradient(
-                                colors: [
-                                    .appAccentGradientStart,
-                                    .appAccentGradientEnd
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                    }
-                    .disabled(!viewModel.canTranslate)
-                    
-                    // Speech Recognition Button
-                    Button(action: {
-                        showSpeechRecognition = true
-                    }) {
-                        // Record Icon
-                        Image(systemName: "mic")
-                            .font(.system(size: 14, weight: .medium))
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(Color.appSecondaryButton)
-                            .foregroundColor(.appTextPrimary)
-                            .cornerRadius(12)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 20)
-                
-                Spacer(minLength: 0)
-                
-                // Error Message
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .font(.system(size: 14))
-                        .foregroundColor(.red)
-                        .padding(.horizontal, 16)
-                }
-            }
-			.onTapGesture {
-				isInputFocused = false
+					// Error Message
+					if let errorMessage = viewModel.errorMessage {
+						Text(errorMessage)
+							.font(.system(size: 14))
+							.foregroundColor(.red)
+							.padding(.horizontal, 16)
+					}
+				}
+				.onTapGesture {
+					isInputFocused = false
+				}
 			}
 		}
 		.translationTask(viewModel.translationConfiguration) { session in
