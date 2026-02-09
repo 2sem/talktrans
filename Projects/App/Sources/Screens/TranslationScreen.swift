@@ -37,18 +37,22 @@ struct TranslationScreen: View {
 
 			if viewModel.isFullScreen {
 				// Full Screen Mode - Only show translated output
-				TranslationOutputView(
-					text: viewModel.translatedText,
-					locale: viewModel.translatedLocale,
-					availableLocales: viewModel.supportedTargetLocales,
-					placeholder: "Translated message will appear here".localized(),
-					onLocaleChange: { locale in
-						viewModel.updateTranslatedLocale(locale)
-					},
-					isFullScreen: $viewModel.isFullScreen
-				)
-				.padding(16)
-				.ignoresSafeArea(edges: .bottom)
+				VStack(spacing: 0) {
+					TranslationOutputView(
+						text: viewModel.translatedText,
+						locale: viewModel.translatedLocale,
+						availableLocales: viewModel.supportedTargetLocales,
+						placeholder: "Translated message will appear here".localized(),
+						onLocaleChange: { locale in
+							viewModel.updateTranslatedLocale(locale)
+						},
+						isFullScreen: $viewModel.isFullScreen
+					)
+					.padding(16)
+					
+					BannerAdSwiftUIView()
+						.frame(height: 50)
+                }.transition(.scale)
 			} else {
 				// Normal Mode - Show all UI elements
 				VStack(spacing: 20) {
@@ -155,8 +159,10 @@ struct TranslationScreen: View {
 				.onTapGesture {
 					isInputFocused = false
 				}
+                .transition(.scale)
 			}
 		}
+        .animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in
 			// This closure receives the TranslationSession
 			// Pass the session to viewModel
