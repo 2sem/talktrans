@@ -18,7 +18,9 @@ struct BannerAdSwiftUIView: View {
 				EmptyView()
 			} else if let bannerView = coordinator.bannerView {
 				BannerAdRepresentable(bannerView: bannerView)
-			}
+            } else {
+                Color.clear.frame(height: 0)
+            }
 		}
 		.onChange(of: adManager.isReady, initial: true) { _, isReady in
 			guard isReady else { return }
