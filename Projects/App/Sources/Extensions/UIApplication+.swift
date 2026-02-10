@@ -15,4 +15,12 @@ extension UIApplication {
 			.flatMap { $0.windows }
 			.first(where: { $0.isKeyWindow })?.rootViewController
 	}
+	
+	/// Returns the first key window from all connected scenes.
+	var firstKeyWindow: UIWindow? {
+		connectedScenes
+			.compactMap { $0 as? UIWindowScene }
+			.flatMap { $0.windows }
+			.first { $0.isKeyWindow }
+	}
 }
