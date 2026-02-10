@@ -46,7 +46,11 @@ struct TranslationScreen: View {
 						onLocaleChange: { locale in
 							viewModel.updateTranslatedLocale(locale)
 						},
-						isFullScreen: $viewModel.isFullScreen
+						isFullScreen: viewModel.isFullScreen,
+						onToggleFullScreen: {
+							viewModel.toggleFullScreen()
+						},
+						deviceOrientation: viewModel.deviceOrientation
 					)
 					.padding(16)
 					
@@ -66,7 +70,11 @@ struct TranslationScreen: View {
 							onLocaleChange: { locale in
 								viewModel.updateTranslatedLocale(locale)
 							},
-							isFullScreen: $viewModel.isFullScreen
+							isFullScreen: viewModel.isFullScreen,
+						onToggleFullScreen: {
+							viewModel.toggleFullScreen()
+						},
+							deviceOrientation: viewModel.deviceOrientation
 						)
 						.padding(.horizontal, 16)
 						.padding(.top, 20)

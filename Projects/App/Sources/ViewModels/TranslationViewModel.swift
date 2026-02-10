@@ -111,12 +111,14 @@ class TranslationViewModel: ObservableObject {
 		// Auto-toggle full screen only if user hasn't manually toggled
 		guard !manualFullScreenToggle else { return }
 
-		// Switch to full screen in landscape, normal mode in portrait
-		let shouldBeFullScreen = newOrientation.isLandscape
+		// On iPhone, switch to full screen in landscape, normal mode in portrait
+		if UIDevice.current.userInterfaceIdiom == .phone {
+			let shouldBeFullScreen = newOrientation.isLandscape
 
-		if shouldBeFullScreen != isFullScreen {
-			withAnimation(.easeInOut(duration: 0.3)) {
-				isFullScreen = shouldBeFullScreen
+			if shouldBeFullScreen != isFullScreen {
+				withAnimation(.easeInOut(duration: 0.3)) {
+					isFullScreen = shouldBeFullScreen
+				}
 			}
 		}
 	}
