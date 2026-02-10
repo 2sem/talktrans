@@ -14,7 +14,9 @@ struct TranslationOutputView: View {
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
-	@Binding var isFullScreen: Bool
+	let isFullScreen: Bool
+	let onToggleFullScreen: () -> Void
+	let deviceOrientation: UIDeviceOrientation
 	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
 	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
 	@State private var magnification: CGFloat = 1.0
@@ -23,6 +25,12 @@ struct TranslationOutputView: View {
 	private var effectiveFontSize: CGFloat {
 		let size = fontSize * magnification
 		return min(max(size, 16), 48) // Constrain between 16 (default) and 48 points
+	}
+	
+	// Computed property for rotation angle based on device orientation
+	private var effectiveRotationAngle: Double {
+		// Disable rotation in landscape mode
+		deviceOrientation.isLandscape ? 0 : rotationAngle
 	}
 
 	var body: some View {
@@ -49,7 +57,7 @@ struct TranslationOutputView: View {
 					}
 					LSDefaults.translationOutputRotationAngle = newAngle
 				}) {
-					if rotationAngle.truncatingRemainder(dividingBy: 360) != 0 {
+					if effectiveRotationAngle.truncatingRemainder(dividingBy: 360) != 0 {
 						Image(systemName: "pin.fill")
 							.font(.system(size: 14, weight: .medium))
 							.foregroundColor(.appAccent)
@@ -60,7 +68,9 @@ struct TranslationOutputView: View {
 							.foregroundColor(.appAccent)
 					}
 				}
-				.rotationEffect(.degrees(-rotationAngle))
+				.disabled(deviceOrientation.isLandscape) // Disable rotation button in landscape
+				.opacity(deviceOrientation.isLandscape ? 0.5 : 1.0) // Visual feedback for disabled state
+				.rotationEffect(.degrees(-effectiveRotationAngle))
 				.padding(.horizontal, 16)
 			}
 			
@@ -104,9 +114,7 @@ struct TranslationOutputView: View {
 
 				// Full Screen Toggle Button
 				Button(action: {
-					withAnimation(.easeInOut(duration: 0.3)) {
-						isFullScreen.toggle()
-					}
+					onToggleFullScreen()
 				}) {
 					Image(systemName: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
 						.font(.system(size: 14, weight: .medium))
@@ -118,7 +126,7 @@ struct TranslationOutputView: View {
 								.shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
 						)
 				}
-				.rotationEffect(.degrees(-rotationAngle))
+				.rotationEffect(.degrees(-effectiveRotationAngle))
 				.padding(.trailing, 12)
 				.padding(.bottom, 12)
 			}
@@ -127,7 +135,7 @@ struct TranslationOutputView: View {
 		}
 		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
-		.rotationEffect(.degrees(rotationAngle))
+		.rotationEffect(.degrees(effectiveRotationAngle))
 	}
 }
 
@@ -142,7 +150,11 @@ struct TranslationOutputView: View {
 				availableLocales: TranslationLocale.allCases,
 				placeholder: "Translated message will appear here",
 				onLocaleChange: { _ in },
-				isFullScreen: $isFullScreen
+				isFullScreen: isFullScreen,
+				onToggleFullScreen: {
+					isFullScreen.toggle()
+				},
+				deviceOrientation: .portrait
 			)
 			.padding()
 		}

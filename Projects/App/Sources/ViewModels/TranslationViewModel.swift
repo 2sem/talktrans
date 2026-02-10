@@ -11,6 +11,7 @@ import SwiftUI
 import Speech
 import AVFoundation
 import Translation
+import Combine
 
 @MainActor
 class TranslationViewModel: ObservableObject {
@@ -31,10 +32,13 @@ class TranslationViewModel: ObservableObject {
 	@Published var errorMessage: String?
 	@Published var translationConfiguration: TranslationSession.Configuration?
 	@Published var isFullScreen: Bool = false
-	
+	@Published var deviceOrientation: UIDeviceOrientation = .portrait
+
 	private let translationManager = TranslationManager.shared
 	private let maxTextLength = 100
 	private var translationSession: TranslationSession?
+	private var orientationObserver: AnyCancellable?
+	private var manualFullScreenToggle: Bool = false
 	
 	var canTranslate: Bool {
 		!nativeText.isEmpty && !isTranslating
@@ -53,7 +57,7 @@ class TranslationViewModel: ObservableObject {
         } else if let currentLocale = TranslationLocale.from(locale: Locale.current) {
 			nativeLocale = currentLocale
 		}
-		
+
         // Initialize with saved target locale or default
         if let savedTarget = LSDefaults.translationTargetLocale,
            let locale = TranslationLocale(rawValue: savedTarget) {
@@ -66,6 +70,57 @@ class TranslationViewModel: ObservableObject {
                 translatedLocale = .english
             }
         }
+
+		// Setup orientation observer
+		setupOrientationObserver()
+	}
+
+	deinit {
+		orientationObserver?.cancel()
+	}
+
+	// MARK: - Orientation Handling
+
+	private func setupOrientationObserver() {
+		// Enable orientation notifications
+		UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+
+		// Observe orientation changes
+		orientationObserver = NotificationCenter.default
+			.publisher(for: UIDevice.orientationDidChangeNotification)
+			.sink { [weak self] _ in
+				guard let self = self else { return }
+				Task { @MainActor in
+					self.handleOrientationChange()
+				}
+			}
+
+		// Set initial orientation
+		deviceOrientation = UIDevice.current.orientation
+		handleOrientationChange()
+	}
+
+	private func handleOrientationChange() {
+		let newOrientation = UIDevice.current.orientation
+
+		// Only handle valid orientations
+		guard newOrientation.isValidInterfaceOrientation else { return }
+
+		deviceOrientation = newOrientation
+
+		// Auto-toggle full screen only if user hasn't manually toggled
+		guard !manualFullScreenToggle else { return }
+
+		// On iPhone, switch to full screen in landscape, normal mode in portrait
+		if UIDevice.current.userInterfaceIdiom == .phone {
+			let shouldBeFullScreen = newOrientation.isLandscape
+
+			if shouldBeFullScreen != isFullScreen {
+				withAnimation(.easeInOut(duration: 0.3)) {
+					isFullScreen = shouldBeFullScreen
+				}
+			}
+		}
 	}
 	
 	func translate() {
@@ -157,9 +212,18 @@ class TranslationViewModel: ObservableObject {
 	}
 
 	func toggleFullScreen() {
+		// Mark that user has manually toggled full screen
+		manualFullScreenToggle = true
+
 		withAnimation(.easeInOut(duration: 0.3)) {
 			isFullScreen.toggle()
 		}
+	}
+
+	func resetManualFullScreenToggle() {
+		manualFullScreenToggle = false
+		// Re-apply orientation-based full screen state
+		handleOrientationChange()
 	}
 
 	func validateText(_ text: String) -> Bool {
@@ -171,8 +235,21 @@ class TranslationViewModel: ObservableObject {
 		var configuration = TranslationSession.Configuration()
 		configuration.source = source.language
 		configuration.target = target.language
-		
+
 		translationConfiguration = configuration
+	}
+}
+
+// MARK: - UIDeviceOrientation Extension
+
+extension UIDeviceOrientation {
+	var isValidInterfaceOrientation: Bool {
+		switch self {
+		case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+			return true
+		default:
+			return false
+		}
 	}
 }
 
