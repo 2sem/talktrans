@@ -43,16 +43,13 @@ class SpeechRecognitionViewModel: ObservableObject {
 				}
 				
 				// Request microphone permission
-				AVAudioSession.sharedInstance().requestRecordPermission { granted in
-					Task { @MainActor in
-						guard granted else {
-							self?.errorMessage = "Microphone permission denied"
-							return
-						}
-						
-						self?.performRecognition(locale: locale, onResult: onResult)
-					}
+				let granted = await AVAudioApplication.requestRecordPermission()
+				guard granted else {
+					self?.errorMessage = "Microphone permission denied"
+					return
 				}
+
+				self?.performRecognition(locale: locale, onResult: onResult)
 			}
 		}
 	}
