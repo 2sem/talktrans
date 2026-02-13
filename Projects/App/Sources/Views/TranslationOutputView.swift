@@ -20,13 +20,14 @@ struct TranslationOutputView: View {
 	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
 	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
 	@State private var magnification: CGFloat = 1.0
+	@State private var isFontSizeSheetPresented: Bool = false
 
 	// Computed property for effective font size with constraints
 	private var effectiveFontSize: CGFloat {
 		let size = fontSize * magnification
 		return min(max(size, 16), 48) // Constrain between 16 (default) and 48 points
 	}
-	
+
 	// Computed property for rotation angle based on device orientation
 	private var effectiveRotationAngle: Double {
 		// Disable rotation in landscape mode
@@ -46,9 +47,25 @@ struct TranslationOutputView: View {
 				.padding(.horizontal, 16)
 				.padding(.top, 16)
 				.padding(.bottom, 12)
-				
+
 				Spacer()
-				
+
+				// Font Size Button
+				Button(action: {
+					isFontSizeSheetPresented = true
+				}) {
+					Image(systemName: "textformat.size")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(.appAccent)
+				}
+				.rotationEffect(.degrees(-effectiveRotationAngle))
+				.padding(.trailing, 8)
+				.sheet(isPresented: $isFontSizeSheetPresented) {
+					FontSizeSheetView(fontSize: $fontSize)
+						.presentationDetents([.height(220)])
+						.presentationDragIndicator(.visible)
+				}
+
 				// Rotate Button - rotates entire view 180 degrees when tapped
 				Button(action: {
 					let newAngle = rotationAngle + 180
@@ -73,11 +90,11 @@ struct TranslationOutputView: View {
 				.rotationEffect(.degrees(-effectiveRotationAngle))
 				.padding(.horizontal, 16)
 			}
-			
+
 			// Separator
 			Divider()
 				.padding(.horizontal, 16)
-			
+
 			// Translated Text
 			ZStack(alignment: .bottomTrailing) {
 				ZStack(alignment: .topLeading) {
@@ -100,17 +117,17 @@ struct TranslationOutputView: View {
 					.frame(minHeight: 100)
 				}
 				.simultaneousGesture(
-	                MagnifyGesture()
-	                    .onChanged { value in
-	                        magnification = value.magnification
-	                    }
-	                    .onEnded { value in
-	                        let newSize = fontSize * value.magnification
-	                        fontSize = min(max(newSize, 16), 48)
-	                        LSDefaults.translationOutputFontSize = fontSize
-	                        magnification = 1.0
-	                    }
-	            )
+                    MagnifyGesture()
+                        .onChanged { value in
+                            magnification = value.magnification
+                        }
+                        .onEnded { value in
+                            let newSize = fontSize * value.magnification
+                            fontSize = min(max(newSize, 16), 48)
+                            LSDefaults.translationOutputFontSize = fontSize
+                            magnification = 1.0
+                        }
+                )
 
 				// Full Screen Toggle Button
 				Button(action: {
@@ -136,6 +153,56 @@ struct TranslationOutputView: View {
 		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
 		.rotationEffect(.degrees(effectiveRotationAngle))
+	}
+}
+
+// MARK: - FontSizeSheetView
+
+private struct FontSizeSheetView: View {
+	@Binding var fontSize: CGFloat
+
+	var body: some View {
+		VStack(spacing: 16) {
+			Text("Font Size".localized())
+				.font(.headline)
+				.padding(.top, 16)
+
+			// Live preview
+			Text("Aa")
+				.font(.system(size: fontSize))
+				.foregroundColor(.appTextPrimary)
+				.animation(.easeInOut(duration: 0.1), value: fontSize)
+				.frame(height: 52)
+
+			// Slider with step buttons
+			HStack(spacing: 12) {
+				Button(action: {
+					let newSize = max(fontSize - 2, 16)
+					fontSize = newSize
+					LSDefaults.translationOutputFontSize = newSize
+				}) {
+					Image(systemName: "textformat.size.smaller")
+						.font(.system(size: 18, weight: .medium))
+						.foregroundColor(.appAccent)
+				}
+
+				Slider(value: $fontSize, in: 16...48, step: 1) { _ in
+					LSDefaults.translationOutputFontSize = fontSize
+				}
+
+				Button(action: {
+					let newSize = min(fontSize + 2, 48)
+					fontSize = newSize
+					LSDefaults.translationOutputFontSize = newSize
+				}) {
+					Image(systemName: "textformat.size.larger")
+						.font(.system(size: 18, weight: .medium))
+						.foregroundColor(.appAccent)
+				}
+			}
+			.padding(.horizontal, 24)
+			.padding(.bottom, 16)
+		}
 	}
 }
 
