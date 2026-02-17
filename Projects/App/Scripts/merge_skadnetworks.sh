@@ -8,7 +8,7 @@ set -e
 
 PLIST_BUDDY="/usr/libexec/PlistBuddy"
 INFO_PLIST="${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-SK_NETWORKS_PLIST="${SRCROOT}/Resources/skNetworks.plist"
+SK_NETWORKS_PLIST="${SRCROOT}/Resources/InfoPlist/skNetworks.plist"
 
 if [ ! -f "${INFO_PLIST}" ]; then
     echo "Error: Info.plist not found at ${INFO_PLIST}"

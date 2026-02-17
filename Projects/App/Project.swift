@@ -45,6 +45,7 @@ let project = Project(
                     "NSMicrophoneUsageDescription": "For Speech Recognition",
                     "NSSpeechRecognitionUsageDescription": "For Speech Recognition",
                     "UIViewControllerBasedStatusBarAppearance": false,
+                    "SKAdNetworkItems": [],
                 ]
             ),
             sources: ["Sources/**"],
@@ -52,7 +53,7 @@ let project = Project(
             //            entitlements: .file(path: .relativeToCurrentFile("Sources/gersanghelper.entitlements")),
             scripts: [.post(script: "/bin/sh \"${SRCROOT}/Scripts/merge_skadnetworks.sh\"",
                             name: "Merge SKAdNetworkItems",
-                            inputPaths: ["$(SRCROOT)/Resources/skNetworks.plist"],
+                            inputPaths: ["$(SRCROOT)/Resources/InfoPlist/skNetworks.plist"],
                             outputPaths: []),
                       .post(script: "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run",
                             name: "Upload dSYM for Crashlytics",
