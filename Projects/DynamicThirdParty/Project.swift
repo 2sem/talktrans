@@ -3,8 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project(
     name: "DynamicThirdParty",
-    packages: [.remote(url: "https://github.com/firebase/firebase-ios-sdk",
-                       requirement: .upToNextMajor(from: "11.8.1")),
+    packages: [.package(id: "firebase.firebase-ios-sdk", from: "11.8.1"),
     ],
     targets: [
         .target(
