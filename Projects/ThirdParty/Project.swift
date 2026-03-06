@@ -8,8 +8,7 @@ let project = Project(
                 requirement: .exact("0.1.22")),
         .remote(url: "https://github.com/CosmicMind/Material",
                 requirement: .upToNextMajor(from: "3.1.8")),
-        .remote(url: "https://github.com/ReactiveX/RxSwift",
-                requirement: .upToNextMajor(from: "5.1.3")),
+        .package(id: "reactivex.RxSwift", from: "5.1.3"),
 //        .local(path: "../../../../../spms/DownPicker")
     ],
     targets: [
