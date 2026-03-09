@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["mise", "custom.regex"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Project\\.swift$/"],
+      "matchStrings": [
+        "\\.remote\\(url:\\s*\"(?:https?:\\/\\/)?github\\.com\\/(?<depName>[\\w\\-_]+\\/[\\w\\-_.]+?)(?:\\.git)?\"[\\s,]*requirement:\\s*\\.(?:upToNextMajor|upToNextMinor)\\(from:\\s*\"(?<currentValue>[^\"]+)\"\\)"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Project\\.swift$/"],
+      "matchStrings": [
+        "\\.remote\\(url:\\s*\"(?:https?:\\/\\/)?github\\.com\\/(?<depName>[\\w\\-_]+\\/[\\w\\-_.]+?)(?:\\.git)?\"[\\s,]*requirement:\\s*\\.(?:upToNextMajor|upToNextMinor)\\(from:\\s*\"(?<currentValue>[^\"]+)\"\\)"
+      ],
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Project\\.swift$/"],
+      "matchStrings": [
+        "\\.remote\\(url:\\s*\"(?:https?:\\/\\/)?github\\.com\\/(?<depName>[\\w\\-_]+\\/[\\w\\-_.]+?)(?:\\.git)?\"[\\s,]*requirement:\\s*\\.exact\\(\"(?<currentValue>[^\"]+)\"\\)"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Project\\.swift$/"],
+      "matchStrings": [
+        "\\.remote\\(url:\\s*\"(?:https?:\\/\\/)?github\\.com\\/(?<depName>[\\w\\-_]+\\/[\\w\\-_.]+?)(?:\\.git)?\"[\\s,]*requirement:\\s*\\.exact\\(\"(?<currentValue>[^\"]+)\"\\)"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "groupName": "Swift dependencies",
+      "schedule": ["at any time"]
+    },
+    {
+      "matchManagers": ["mise"],
+      "groupName": "Dev tools",
+      "schedule": ["at any time"]
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "matchUpdateTypes": ["minor", "major"],
+      "automerge": false
+    }
+  ],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2
+}
