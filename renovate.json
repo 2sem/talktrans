@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "schedule": ["before 9am on Monday"],
   "enabledManagers": ["mise", "custom.regex"],
   "customManagers": [
     {
@@ -39,13 +40,11 @@
   "packageRules": [
     {
       "matchManagers": ["custom.regex"],
-      "groupName": "Swift dependencies",
-      "schedule": ["at any time"]
+      "groupName": "Swift dependencies"
     },
     {
       "matchManagers": ["mise"],
-      "groupName": "Dev tools",
-      "schedule": ["at any time"]
+      "groupName": "Dev tools"
     },
     {
       "matchUpdateTypes": ["patch"],
