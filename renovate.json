@@ -40,12 +40,12 @@
     {
       "matchManagers": ["custom.regex"],
       "groupName": "Swift dependencies",
-      "schedule": ["before 9am on monday"]
+      "schedule": ["at any time"]
     },
     {
       "matchManagers": ["mise"],
       "groupName": "Dev tools",
-      "schedule": ["before 9am on monday"]
+      "schedule": ["at any time"]
     },
     {
       "matchUpdateTypes": ["patch"],

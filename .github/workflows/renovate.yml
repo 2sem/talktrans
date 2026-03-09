@@ -1,8 +1,6 @@
 name: Renovate
 
 on:
-  schedule:
-    - cron: '0 0 * * 1'  # every Monday at 00:00 UTC (09:00 KST)
   workflow_dispatch:
 
 permissions:
