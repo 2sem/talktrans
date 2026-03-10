@@ -8,6 +8,7 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         case full = "FullAd"
         case launch = "Launch"
         case banner = "Banner"
+        case rewarded = "Rewarded"
     }
 
 #if ADS_DISABLED
@@ -22,6 +23,7 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         .full,
         .launch,
         .banner,
+        .rewarded,
     ]
 #else
     var testUnits: [GADUnitName] = []
@@ -59,6 +61,11 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         gadManager?.prepare(openingUnit: unit, isTesting: self.isTesting(unit: unit), interval: interval)
     }
 
+    func prepare(rewardUnit unit: GADUnitName) {
+        guard !SwiftUIAdManager.isDisabled else { return }
+        gadManager?.prepare(rewardUnit: unit, isTesting: self.isTesting(unit: unit))
+    }
+
     /// Shows an ad for the specified unit.
     ///
     /// Note: This method may cause undo/transaction issues in SwiftUI.
@@ -67,6 +74,7 @@ class SwiftUIAdManager: NSObject, ObservableObject {
     @discardableResult
     func show(unit: GADUnitName) async -> Bool {
         guard !SwiftUIAdManager.isDisabled else { return false }
+        guard !LSDefaults.isAdFree else { return false }
 
         return await withCheckedContinuation { continuation in
             guard let gadManager else {
@@ -74,9 +82,19 @@ class SwiftUIAdManager: NSObject, ObservableObject {
                 return
             }
 
-            gadManager.show(unit: unit, isTesting: self.isTesting(unit: .launch) ){ unit, _,result  in
+            gadManager.show(unit: unit, isTesting: self.isTesting(unit: .launch)) { unit, _, result in
                 continuation.resume(returning: result)
             }
+        }
+    }
+
+    @MainActor
+    func showRewarded(completion: @escaping (Bool) -> Void) {
+        guard !SwiftUIAdManager.isDisabled else { completion(false); return }
+        guard let gadManager else { completion(false); return }
+
+        gadManager.show(unit: .rewarded, needToWait: true, isTesting: isTesting(unit: .rewarded)) { _, _, rewarded in
+            completion(rewarded)
         }
     }
 
@@ -87,9 +105,10 @@ class SwiftUIAdManager: NSObject, ObservableObject {
 
     func createBannerAdView(withAdSize size: AdSize, forUnit unit: GADUnitName) -> BannerView? {
         guard !SwiftUIAdManager.isDisabled else { return nil }
+        guard !LSDefaults.isAdFree else { return nil }
         return gadManager?.prepare(bannerUnit: unit, isTesting: self.isTesting(unit: unit), size: size)
     }
-    
+
     // MARK: - Testing Flags
     func isTesting(unit: GADUnitName) -> Bool {
         return testUnits.contains(unit)

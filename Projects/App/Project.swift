@@ -23,8 +23,7 @@ let project = Project(
                      developmentRegion: "en"),
     packages: [
         .remote(url: "https://github.com/2sem/GADManager",
-                requirement: .upToNextMajor(from: "1.3.6")),
-        // .local(path: "../../../../../pods/GADManager/src/GADManager"),
+                requirement: .upToNextMajor(from: "1.4.0")),
     ],
     settings: .settings(configurations: [
         .debug(
@@ -48,7 +47,8 @@ let project = Project(
                     "GADUnitIdentifiers": [
                         "FullAd" : "ca-app-pub-9684378399371172/1814946844",
                         "Launch": "ca-app-pub-9684378399371172/1669573614",
-                        "Banner" : "ca-app-pub-9684378399371172/9513798848"
+                        "Banner" : "ca-app-pub-9684378399371172/9513798848",
+                        "Rewarded": "ca-app-pub-9684378399371172/7656598281"
                     ],
                     "Itunes App Id": "1186147362",
                     "NSUserTrackingUsageDescription": "Use location information to explore nearby attractions.",

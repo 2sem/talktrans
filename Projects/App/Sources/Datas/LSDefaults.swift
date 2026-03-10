@@ -209,4 +209,16 @@ class LSDefaults{
             get { Defaults.bool(forKey: Keys.PendingReviewRequest) }
             set { Defaults.set(newValue, forKey: Keys.PendingReviewRequest) }
         }
+
+        static var isAdFree: Bool {
+            #if DEBUG
+            return Date().timeIntervalSince(LastRewardShown) < 5 * 60
+            #else
+            return Date().timeIntervalSince(LastRewardShown) < 60 * 60
+            #endif
+        }
+
+        static func activateAdFree() {
+            LastRewardShown = Date()
+        }
 }
