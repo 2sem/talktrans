@@ -12,10 +12,10 @@ import StoreKit
 class ReviewManager : ObservableObject {
     var canShow: Bool {
         guard LSDefaults.translationCompletedCount >= 3 else { return false }
-        #if DEBUG
-        return true
-        #else
         guard let lastDate = LSDefaults.ReviewRequestedDate else { return true }
+        #if DEBUG
+        return Date().timeIntervalSince(lastDate) > 5 * 60
+        #else
         return Date().timeIntervalSince(lastDate) > 90 * 86400
         #endif
     }
