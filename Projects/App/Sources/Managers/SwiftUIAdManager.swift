@@ -61,11 +61,8 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         gadManager?.prepare(openingUnit: unit, isTesting: self.isTesting(unit: unit), interval: interval)
     }
 
-    private(set) var adFreeInterval: TimeInterval = 3600
-
-    func prepare(rewardUnit unit: GADUnitName, interval: TimeInterval = 3600) {
+    func prepare(rewardUnit unit: GADUnitName) {
         guard !SwiftUIAdManager.isDisabled else { return }
-        adFreeInterval = interval
         gadManager?.prepare(rewardUnit: unit, isTesting: self.isTesting(unit: unit))
     }
 

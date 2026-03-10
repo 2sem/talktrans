@@ -211,8 +211,11 @@ class LSDefaults{
         }
 
         static var isAdFree: Bool {
-            let interval = SwiftUIAdManager.shared?.adFreeInterval ?? 3600
-            return Date().timeIntervalSince(LastRewardShown) < interval
+            #if DEBUG
+            return Date().timeIntervalSince(LastRewardShown) < 5 * 60
+            #else
+            return Date().timeIntervalSince(LastRewardShown) < 60 * 60
+            #endif
         }
 
         static func activateAdFree() {
