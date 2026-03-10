@@ -12,6 +12,7 @@ import Translation
 struct TranslationScreen: View {
 	@StateObject private var viewModel: TranslationViewModel
 	@StateObject private var speechViewModel = SpeechRecognitionViewModel()
+	@EnvironmentObject private var reviewManager: ReviewManager
 	@State private var showSpeechRecognition = false
 	@FocusState private var isInputFocused: Bool
 	
@@ -170,6 +171,12 @@ struct TranslationScreen: View {
                 .transition(.scale)
 			}
 		}
+        .onChange(of: viewModel.translatedText) { _, newValue in
+            guard !newValue.isEmpty else { return }
+            if reviewManager.canShow {
+                LSDefaults.pendingReviewRequest = true
+            }
+        }
         .animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in
 			// This closure receives the TranslationSession
