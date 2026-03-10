@@ -173,7 +173,9 @@ struct TranslationScreen: View {
 		}
         .onChange(of: viewModel.translatedText) { _, newValue in
             guard !newValue.isEmpty else { return }
-            reviewManager.show()
+            if reviewManager.canShow {
+                LSDefaults.pendingReviewRequest = true
+            }
         }
         .animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in

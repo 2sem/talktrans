@@ -35,6 +35,7 @@ class LSDefaults{
         static let AdsTrackingRequested = "AdsTrackingRequested";
         static let ReviewRequestedDate = "ReviewRequestedDate";
         static let TranslationCompletedCount = "TranslationCompletedCount";
+        static let PendingReviewRequest = "PendingReviewRequest";
     }
     
     static var isUpsideDown : Bool?{
@@ -202,5 +203,10 @@ class LSDefaults{
 
         static func incrementTranslationCount() {
             translationCompletedCount += 1;
+        }
+
+        static var pendingReviewRequest: Bool {
+            get { Defaults.bool(forKey: Keys.PendingReviewRequest) }
+            set { Defaults.set(newValue, forKey: Keys.PendingReviewRequest) }
         }
 }

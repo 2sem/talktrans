@@ -75,14 +75,24 @@ struct SendadvApp: App {
     
     private func handleAppDidBecomeActive() {
         print("scene become active")
-        Task{
+        Task {
             defer {
                 LSDefaults.increaseLaunchCount()
             }
 
-            guard !SwiftUIAdManager.isDisabled else { return }
+            guard !SwiftUIAdManager.isDisabled else {
+                checkPendingReview()
+                return
+            }
 
             await adManager.show(unit: .launch)
+            checkPendingReview()
         }
+    }
+
+    private func checkPendingReview() {
+        guard LSDefaults.pendingReviewRequest else { return }
+        LSDefaults.pendingReviewRequest = false
+        reviewManager.show()
     }
 }
