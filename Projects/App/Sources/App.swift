@@ -52,7 +52,11 @@ struct SendadvApp: App {
             adManager.prepare(interstitialUnit: .full, interval: 60.0 * 60)
             adManager.prepare(openingUnit: .launch, interval: 60.0 * 5)
         #endif
+            #if DEBUG
+            adManager.prepare(rewardUnit: .rewarded, interval: 5 * 60)
+            #else
             adManager.prepare(rewardUnit: .rewarded, interval: 60 * 60)
+            #endif
             adManager.canShowFirstTime = true
         }
         
