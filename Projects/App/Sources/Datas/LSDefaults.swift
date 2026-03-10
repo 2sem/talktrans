@@ -209,4 +209,13 @@ class LSDefaults{
             get { Defaults.bool(forKey: Keys.PendingReviewRequest) }
             set { Defaults.set(newValue, forKey: Keys.PendingReviewRequest) }
         }
+
+        static var isAdFree: Bool {
+            let interval = SwiftUIAdManager.shared?.adFreeInterval ?? 3600
+            return Date().timeIntervalSince(LastRewardShown) < interval
+        }
+
+        static func activateAdFree() {
+            LastRewardShown = Date()
+        }
 }
