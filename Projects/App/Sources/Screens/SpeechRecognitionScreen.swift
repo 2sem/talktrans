@@ -30,6 +30,15 @@ struct SpeechRecognitionScreen: View {
                     .padding()
             }
             
+            if !viewModel.recognizedText.isEmpty {
+                Text(viewModel.recognizedText)
+                    .font(.system(size: 16))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                    .lineLimit(3)
+            }
+            
             if let errorMessage = viewModel.errorMessage {
                 Text(errorMessage)
                     .font(.system(size: 14))

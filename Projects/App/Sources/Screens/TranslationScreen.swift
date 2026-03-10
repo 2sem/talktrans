@@ -153,17 +153,17 @@ struct TranslationScreen: View {
 						.buttonStyle(.plain)
 					}
 					.padding(.horizontal, 16)
-					.padding(.bottom, 20)
+									.padding(.bottom, 8)
 
-					Spacer(minLength: 0)
-                
-					// Error Message
-					if let errorMessage = viewModel.errorMessage {
-						Text(errorMessage)
-							.font(.system(size: 14))
-							.foregroundColor(.red)
-							.padding(.horizontal, 16)
-					}
+				// Error Message (moved here, before Spacer)
+				if let errorMessage = viewModel.errorMessage {
+					Text(errorMessage)
+						.font(.system(size: 14))
+						.foregroundColor(.red)
+						.padding(.horizontal, 16)
+				}
+
+				Spacer(minLength: 0)
 				}
 				.onTapGesture {
 					isInputFocused = false
