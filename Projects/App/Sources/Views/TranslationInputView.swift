@@ -40,7 +40,7 @@ struct TranslationInputView: View {
 				Button(action: {
 					onSwap()
 				}) {
-					Image(systemName: "arrow.clockwise")
+					Image(systemName: "arrow.left.arrow.right")
 						.font(.system(size: 14, weight: .medium))
                         .foregroundColor(.appAccent)
                 }.padding(.horizontal, 16)
@@ -73,6 +73,14 @@ struct TranslationInputView: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                 }
+			}
+			HStack {
+				Spacer()
+				Text("\(text.count)/\(maxLength)")
+					.font(.system(size: 12))
+					.foregroundColor(.appTextPlaceholder)
+					.padding(.trailing, 28)
+					.padding(.bottom, 4)
 			}
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)

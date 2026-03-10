@@ -13,16 +13,15 @@ struct TranslationScreen: View {
 	@StateObject private var viewModel: TranslationViewModel
 	@StateObject private var speechViewModel = SpeechRecognitionViewModel()
 	@EnvironmentObject private var reviewManager: ReviewManager
-	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@State private var showSpeechRecognition = false
-	@State private var isAdFree: Bool = LSDefaults.isAdFree
-	@State private var showAdFreeToast = false
 	@FocusState private var isInputFocused: Bool
-
+	
 	init() {
+		// TranslationSession will be created dynamically in TranslationViewModel
+		// when translate button is pressed
 		_viewModel = StateObject(wrappedValue: TranslationViewModel())
 	}
-
+	
 	var body: some View {
 		ZStack {
 			// Gradient Background
@@ -32,8 +31,8 @@ struct TranslationScreen: View {
 					.appBackgroundGradientMid,
 					.appBackgroundGradientEnd
 				],
-				startPoint: .topLeading,
-				endPoint: .bottomTrailing
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
 			)
 			.ignoresSafeArea()
 
@@ -55,10 +54,10 @@ struct TranslationScreen: View {
 						deviceOrientation: viewModel.deviceOrientation
 					)
 					.padding(16)
-
+					
 					BannerAdSwiftUIView()
 						.frame(height: 50)
-				}.transition(.scale)
+                }.transition(.scale)
 			} else {
 				// Normal Mode - Show all UI elements
 				VStack(spacing: 20) {
@@ -73,20 +72,19 @@ struct TranslationScreen: View {
 								viewModel.updateTranslatedLocale(locale)
 							},
 							isFullScreen: viewModel.isFullScreen,
-							onToggleFullScreen: {
-								viewModel.toggleFullScreen()
-							},
+						onToggleFullScreen: {
+							viewModel.toggleFullScreen()
+						},
 							deviceOrientation: viewModel.deviceOrientation
 						)
 						.padding(.horizontal, 16)
 						.padding(.top, 20)
 					}
 
-					// Banner Ad (hidden when ad-free)
-					if !isAdFree {
-						BannerAdSwiftUIView()
-							.frame(height: 50)
-					}
+					// Advertisement Banner Placeholder
+					BannerAdSwiftUIView()
+						.frame(height: 50)
+	//                    .cornerRadius(8)
 
 					// Native Input Section
 					TranslationInputView(
@@ -143,6 +141,7 @@ struct TranslationScreen: View {
 						Button(action: {
 							showSpeechRecognition = true
 						}) {
+							// Record Icon
 							Image(systemName: "mic")
 								.font(.system(size: 14, weight: .medium))
 								.frame(maxWidth: .infinity)
@@ -152,66 +151,34 @@ struct TranslationScreen: View {
 								.cornerRadius(12)
 						}
 						.buttonStyle(.plain)
-
-						// Watch Ad Button (hidden when ad-free)
-						WatchAdButton(isAdFree: $isAdFree) {
-							showAdFreeToast = true
-							Task {
-								try? await Task.sleep(for: .seconds(2))
-								showAdFreeToast = false
-							}
-						}
 					}
 					.padding(.horizontal, 16)
-					.padding(.bottom, 20)
+									.padding(.bottom, 8)
 
-					Spacer(minLength: 0)
+				// Error Message (moved here, before Spacer)
+				if let errorMessage = viewModel.errorMessage {
+					Text(errorMessage)
+						.font(.system(size: 14))
+						.foregroundColor(.red)
+						.padding(.horizontal, 16)
+				}
 
-					// Error Message
-					if let errorMessage = viewModel.errorMessage {
-						Text(errorMessage)
-							.font(.system(size: 14))
-							.foregroundColor(.red)
-							.padding(.horizontal, 16)
-					}
+				Spacer(minLength: 0)
 				}
 				.onTapGesture {
 					isInputFocused = false
 				}
-				.transition(.scale)
-			}
-
-			// Ad-free toast
-			if showAdFreeToast {
-				VStack {
-					Spacer()
-					HStack(spacing: 6) {
-						Image(systemName: "checkmark.circle.fill")
-							.foregroundColor(.green)
-						Text("Ad-free for 1 hour")
-							.font(.system(size: 14, weight: .medium))
-					}
-					.padding(.horizontal, 16)
-					.padding(.vertical, 10)
-					.background(.regularMaterial, in: Capsule())
-					.padding(.bottom, 100)
-				}
-				.transition(.opacity.combined(with: .move(edge: .bottom)))
+                .transition(.scale)
 			}
 		}
-		.animation(.easeInOut(duration: 0.25), value: isAdFree)
-		.animation(.easeInOut(duration: 0.3), value: showAdFreeToast)
-		.onReceive(Timer.publish(every: 30, on: .main, in: .common).autoconnect()) { _ in
-			isAdFree = LSDefaults.isAdFree
-		}
-		.onChange(of: viewModel.translatedText) { _, newValue in
-			guard !newValue.isEmpty else { return }
-			if reviewManager.canShow {
-				LSDefaults.pendingReviewRequest = true
-			}
-		}
-		.animation(.easeInOut, value: viewModel.isFullScreen)
+        .onChange(of: viewModel.translatedText) { _, newValue in
+            guard !newValue.isEmpty else { return }
+            reviewManager.show()
+        }
+        .animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in
+			// This closure receives the TranslationSession
+			// Pass the session to viewModel
 			Task { @MainActor in
 				viewModel.setTranslationSession(session)
 			}
@@ -233,3 +200,4 @@ struct TranslationScreen: View {
 #Preview {
 	TranslationScreen()
 }
+
