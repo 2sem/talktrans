@@ -145,7 +145,8 @@ struct TranslationScreen: View {
 						}) {
 							Image(systemName: "mic")
 								.font(.system(size: 14, weight: .medium))
-								.frame(width: 50, height: 50)
+								.frame(maxWidth: .infinity)
+								.frame(height: 50)
 								.background(Color.appSecondaryButton)
 								.foregroundColor(.appTextPrimary)
 								.cornerRadius(12)
