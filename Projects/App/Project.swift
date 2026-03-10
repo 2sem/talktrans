@@ -22,9 +22,8 @@ let project = Project(
     options: .options(defaultKnownRegions: ["en"],
                      developmentRegion: "en"),
     packages: [
-        // .remote(url: "https://github.com/2sem/GADManager",
-        //         requirement: .upToNextMajor(from: "1.3.6")),
-        .local(path: "../../../../../pods/GADManager/src/GADManager"),
+        .remote(url: "https://github.com/2sem/GADManager",
+                requirement: .upToNextMajor(from: "1.4.0")),
     ],
     settings: .settings(configurations: [
         .debug(
