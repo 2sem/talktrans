@@ -17,6 +17,7 @@ struct TranslationScreen: View {
 	@State private var showSpeechRecognition = false
 	@State private var isAdFree: Bool = LSDefaults.isAdFree
 	@State private var showAdFreeToast = false
+	@State private var showWatchAdConfirmation = false
 	@FocusState private var isInputFocused: Bool
 
 	init() {
@@ -156,18 +157,7 @@ struct TranslationScreen: View {
 						// Watch Ad Button (hidden when ad-free)
 						if !isAdFree {
 							Button(action: {
-								adManager.showRewarded { rewarded in
-									guard rewarded else { return }
-									LSDefaults.activateAdFree()
-									withAnimation(.easeInOut(duration: 0.25)) {
-										isAdFree = true
-									}
-									showAdFreeToast = true
-									Task {
-										try? await Task.sleep(for: .seconds(2))
-										showAdFreeToast = false
-									}
-								}
+								showWatchAdConfirmation = true
 							}) {
 								Image(systemName: "gift")
 									.font(.system(size: 14, weight: .medium))
@@ -178,6 +168,29 @@ struct TranslationScreen: View {
 							}
 							.buttonStyle(.plain)
 							.transition(.opacity.combined(with: .scale(scale: 0.8)))
+							.confirmationDialog(
+								"Remove ads for 1 hour?",
+								isPresented: $showWatchAdConfirmation,
+								titleVisibility: .visible
+							) {
+								Button("Watch Ad") {
+									adManager.showRewarded { rewarded in
+										guard rewarded else { return }
+										LSDefaults.activateAdFree()
+										withAnimation(.easeInOut(duration: 0.25)) {
+											isAdFree = true
+										}
+										showAdFreeToast = true
+										Task {
+											try? await Task.sleep(for: .seconds(2))
+											showAdFreeToast = false
+										}
+									}
+								}
+								Button("Cancel", role: .cancel) {}
+							} message: {
+								Text("Watch a short ad to enjoy 1 hour ad-free.")
+							}
 						}
 					}
 					.padding(.horizontal, 16)
