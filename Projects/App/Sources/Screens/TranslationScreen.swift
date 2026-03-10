@@ -12,6 +12,7 @@ import Translation
 struct TranslationScreen: View {
 	@StateObject private var viewModel: TranslationViewModel
 	@StateObject private var speechViewModel = SpeechRecognitionViewModel()
+	@EnvironmentObject private var reviewManager: ReviewManager
 	@State private var showSpeechRecognition = false
 	@FocusState private var isInputFocused: Bool
 	
@@ -152,17 +153,17 @@ struct TranslationScreen: View {
 						.buttonStyle(.plain)
 					}
 					.padding(.horizontal, 16)
-					.padding(.bottom, 20)
+									.padding(.bottom, 8)
 
-					Spacer(minLength: 0)
-                
-					// Error Message
-					if let errorMessage = viewModel.errorMessage {
-						Text(errorMessage)
-							.font(.system(size: 14))
-							.foregroundColor(.red)
-							.padding(.horizontal, 16)
-					}
+				// Error Message (moved here, before Spacer)
+				if let errorMessage = viewModel.errorMessage {
+					Text(errorMessage)
+						.font(.system(size: 14))
+						.foregroundColor(.red)
+						.padding(.horizontal, 16)
+				}
+
+				Spacer(minLength: 0)
 				}
 				.onTapGesture {
 					isInputFocused = false
@@ -170,6 +171,10 @@ struct TranslationScreen: View {
                 .transition(.scale)
 			}
 		}
+        .onChange(of: viewModel.translatedText) { _, newValue in
+            guard !newValue.isEmpty else { return }
+            reviewManager.show()
+        }
         .animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in
 			// This closure receives the TranslationSession
