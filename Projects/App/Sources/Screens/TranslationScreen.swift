@@ -154,22 +154,12 @@ struct TranslationScreen: View {
 						.buttonStyle(.plain)
 
 						// Watch Ad Button (hidden when ad-free)
-						if !isAdFree {
-							WatchAdButton {
-								adManager.showRewarded { rewarded in
-									guard rewarded else { return }
-									LSDefaults.activateAdFree()
-									withAnimation(.easeInOut(duration: 0.25)) {
-										isAdFree = true
-									}
-									showAdFreeToast = true
-									Task {
-										try? await Task.sleep(for: .seconds(2))
-										showAdFreeToast = false
-									}
-								}
+						WatchAdButton(isAdFree: $isAdFree) {
+							showAdFreeToast = true
+							Task {
+								try? await Task.sleep(for: .seconds(2))
+								showAdFreeToast = false
 							}
-							.transition(.opacity.combined(with: .scale(scale: 0.8)))
 						}
 					}
 					.padding(.horizontal, 16)
