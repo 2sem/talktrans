@@ -10,11 +10,10 @@ import LSExtensions
 import StoreKit
 
 class ReviewManager : ObservableObject {
-    var canShow : Bool {
-        get {
-            // 리뷰 요청한 적이 없고, xxxx 경우
-            !LSDefaults.isReviewRequested //&& LSDefaults.MessageSentCount >= 2
-        }
+    var canShow: Bool {
+        guard LSDefaults.translationCompletedCount >= 3 else { return false }
+        guard let lastDate = LSDefaults.ReviewRequestedDate else { return true }
+        return Date().timeIntervalSince(lastDate) > 90 * 86400
     }
     
     func show(_ force : Bool = false) {

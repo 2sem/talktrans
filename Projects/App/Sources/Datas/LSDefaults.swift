@@ -34,6 +34,7 @@ class LSDefaults{
         static let AdsShownCount = "AdsShownCount";
         static let AdsTrackingRequested = "AdsTrackingRequested";
         static let ReviewRequestedDate = "ReviewRequestedDate";
+        static let TranslationCompletedCount = "TranslationCompletedCount";
     }
     
     static var isUpsideDown : Bool?{
@@ -192,5 +193,14 @@ class LSDefaults{
         
         static func updateReviewRequestDate() {
             ReviewRequestedDate = Date()
+        }
+
+        static var translationCompletedCount: Int {
+            get { Defaults.integer(forKey: Keys.TranslationCompletedCount) }
+            set { Defaults.set(newValue, forKey: Keys.TranslationCompletedCount) }
+        }
+
+        static func incrementTranslationCount() {
+            translationCompletedCount += 1;
         }
 }

@@ -150,6 +150,7 @@ class TranslationViewModel: ObservableObject {
 					await MainActor.run {
 						self.translatedText = translated
 						self.isTranslating = false
+						LSDefaults.incrementTranslationCount()
 					}
 				} catch {
 					await MainActor.run {
@@ -174,6 +175,7 @@ class TranslationViewModel: ObservableObject {
 				await MainActor.run {
 					self.translatedText = translated
 					self.isTranslating = false
+					LSDefaults.incrementTranslationCount()
 				}
 			} catch {
 				await MainActor.run {
@@ -252,4 +254,3 @@ extension UIDeviceOrientation {
 		}
 	}
 }
-
