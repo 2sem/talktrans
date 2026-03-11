@@ -67,7 +67,7 @@ let project = Project(
             sources: ["Sources/**"],
             resources: ["Resources/**"],
             //            entitlements: .file(path: .relativeToCurrentFile("Sources/gersanghelper.entitlements")),
-            scripts: [.post(script: "CRASHLYTICS_RUN=$(find \"${BUILD_DIR%/Build/*}/SourcePackages\" -name run -path \"*/Crashlytics/run\" | head -1); \"$CRASHLYTICS_RUN\"",
+            scripts: [.post(script: "CRASHLYTICS_RUN=$(find \"${BUILD_DIR%/Build/*}/SourcePackages/registry/downloads/firebase/firebase-ios-sdk\" -name run | head -1); \"$CRASHLYTICS_RUN\"",
                             name: "Upload dSYM for Crashlytics",
                             inputPaths: ["${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
                                          "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
