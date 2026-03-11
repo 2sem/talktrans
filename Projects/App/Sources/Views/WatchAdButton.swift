@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WatchAdButton: View {
 	@EnvironmentObject private var adManager: SwiftUIAdManager
+	@EnvironmentObject private var analyticsManager: AnalyticsManager
 	@Binding var isAdFree: Bool
 	var onAdFreeActivated: (() -> Void)?
 
@@ -18,6 +19,7 @@ struct WatchAdButton: View {
 	var body: some View {
 		if !isAdFree {
 			Button(action: {
+				analyticsManager.logWatchAdTapped()
 				showConfirmation = true
 			}) {
 				Image(systemName: "gift")
@@ -29,6 +31,9 @@ struct WatchAdButton: View {
 			}
 			.buttonStyle(.plain)
 			.transition(.opacity.combined(with: .scale(scale: 0.8)))
+			.onAppear {
+				analyticsManager.logWatchAdPromptShown()
+			}
 			.confirmationDialog(
 				"Remove ads for 1 hour?",
 				isPresented: $showConfirmation,
@@ -36,15 +41,21 @@ struct WatchAdButton: View {
 			) {
 				Button("Watch Ad") {
 					adManager.showRewarded { rewarded in
-						guard rewarded else { return }
-						LSDefaults.activateAdFree()
-						withAnimation(.easeInOut(duration: 0.25)) {
-							isAdFree = true
+						if rewarded {
+							LSDefaults.activateAdFree()
+							withAnimation(.easeInOut(duration: 0.25)) {
+								isAdFree = true
+							}
+							onAdFreeActivated?()
+							analyticsManager.logWatchAdCompleted()
+						} else {
+							analyticsManager.logWatchAdDismissed(exitStage: AnalyticsManager.ExitStage.adPlaying)
 						}
-						onAdFreeActivated?()
 					}
 				}
-				Button(role: .cancel) {} label: { Text("Cancel") }
+				Button(role: .cancel) {
+					analyticsManager.logWatchAdDismissed(exitStage: AnalyticsManager.ExitStage.confirmationSheet)
+				} label: { Text("Cancel") }
 			} message: {
 				Text("Watch a short ad to enjoy 1 hour ad-free.")
 			}
