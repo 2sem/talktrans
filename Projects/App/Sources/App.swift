@@ -12,12 +12,14 @@ struct SendadvApp: App {
     // SceneDelegate의 기능을 SwiftUI ObservableObject로 마이그레이션
     @StateObject private var adManager = SwiftUIAdManager()
     @StateObject private var reviewManager = ReviewManager()
+    @StateObject private var analyticsManager = AnalyticsManager()
     
     var body: some Scene {
         WindowGroup {
             TranslationScreen()
             .environmentObject(adManager)
             .environmentObject(reviewManager)
+            .environmentObject(analyticsManager)
             .onAppear {
                 setupAds()
             }
