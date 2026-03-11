@@ -12,11 +12,6 @@ import Firebase
 // MARK: - AnalyticsManager
 
 final class AnalyticsManager: ObservableObject {
-}
-
-	// MARK: - Init
-
-	init() {}
 
 	// MARK: - Event Names
 
