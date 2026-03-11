@@ -18,7 +18,8 @@ struct WatchAdButton: View {
 	var body: some View {
 		if !isAdFree {
 			Button(action: {
-				showConfirmation = true
+				AnalyticsManager.shared.logWatchAdTapped();
+				showConfirmation = true;
 			}) {
 				Image(systemName: "gift")
 					.font(.system(size: 14, weight: .medium))
@@ -29,6 +30,9 @@ struct WatchAdButton: View {
 			}
 			.buttonStyle(.plain)
 			.transition(.opacity.combined(with: .scale(scale: 0.8)))
+			.onAppear {
+				AnalyticsManager.shared.logWatchAdPromptShown();
+			}
 			.confirmationDialog(
 				"Remove ads for 1 hour?",
 				isPresented: $showConfirmation,
@@ -36,15 +40,21 @@ struct WatchAdButton: View {
 			) {
 				Button("Watch Ad") {
 					adManager.showRewarded { rewarded in
-						guard rewarded else { return }
-						LSDefaults.activateAdFree()
-						withAnimation(.easeInOut(duration: 0.25)) {
-							isAdFree = true
+						if rewarded {
+							LSDefaults.activateAdFree();
+							withAnimation(.easeInOut(duration: 0.25)) {
+								isAdFree = true;
+							}
+							onAdFreeActivated?();
+							AnalyticsManager.shared.logWatchAdCompleted();
+						} else {
+							AnalyticsManager.shared.logWatchAdDismissed(exitStage: AnalyticsManager.ExitStage.adPlaying);
 						}
-						onAdFreeActivated?()
 					}
 				}
-				Button(role: .cancel) {} label: { Text("Cancel") }
+				Button(role: .cancel) {
+					AnalyticsManager.shared.logWatchAdDismissed(exitStage: AnalyticsManager.ExitStage.confirmationSheet);
+				} label: { Text("Cancel") }
 			} message: {
 				Text("Watch a short ad to enjoy 1 hour ad-free.")
 			}
