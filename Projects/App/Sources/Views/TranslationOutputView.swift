@@ -66,6 +66,17 @@ struct TranslationOutputView: View {
 						.presentationDragIndicator(.visible)
 				}
 
+				// Share Button
+				if !text.isEmpty {
+					ShareLink(item: text) {
+						Image(systemName: "square.and.arrow.up")
+							.font(.system(size: 14, weight: .medium))
+							.foregroundColor(.appAccent)
+					}
+					.rotationEffect(.degrees(-effectiveRotationAngle))
+					.padding(.trailing, 8)
+				}
+
 				// Rotate Button - rotates entire view 180 degrees when tapped
 				Button(action: {
 					let newAngle = rotationAngle + 180
@@ -118,17 +129,17 @@ struct TranslationOutputView: View {
 					.frame(minHeight: 100)
 				}
 				.simultaneousGesture(
-                    MagnifyGesture()
-                        .onChanged { value in
-                            magnification = value.magnification
-                        }
-                        .onEnded { value in
-                            let newSize = fontSize * value.magnification
-                            fontSize = min(max(newSize, 16), 48)
-                            LSDefaults.translationOutputFontSize = fontSize
-                            magnification = 1.0
-                        }
-                )
+					MagnifyGesture()
+						.onChanged { value in
+							magnification = value.magnification
+						}
+						.onEnded { value in
+							let newSize = fontSize * value.magnification
+							fontSize = min(max(newSize, 16), 48)
+							LSDefaults.translationOutputFontSize = fontSize
+							magnification = 1.0
+						}
+				)
 
 				// Full Screen Toggle Button
 				Button(action: {
@@ -230,4 +241,3 @@ private struct FontSizeSheetView: View {
 
 	return PreviewWrapper()
 }
-

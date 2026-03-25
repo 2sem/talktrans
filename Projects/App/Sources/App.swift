@@ -1,6 +1,7 @@
 import SwiftUI
 import Firebase
 import GoogleMobileAds
+import SwiftData
 
 @main
 struct SendadvApp: App {
@@ -27,6 +28,7 @@ struct SendadvApp: App {
                 handleScenePhaseChange(from: oldPhase, to: newPhase)
             }
         }
+        .modelContainer(for: TranslationEntry.self)
     }
     
     private func setupAds() {
