@@ -87,6 +87,7 @@ struct TranslationOutputView: View {
 				}
 				.disabled(deviceOrientation.isLandscape) // Disable rotation button in landscape
 				.opacity(deviceOrientation.isLandscape ? 0.5 : 1.0) // Visual feedback for disabled state
+				.accessibilityHint(deviceOrientation.isLandscape ? "Rotation is disabled in landscape mode" : "")
 				.rotationEffect(.degrees(-effectiveRotationAngle))
 				.padding(.horizontal, 16)
 			}
