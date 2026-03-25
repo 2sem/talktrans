@@ -49,3 +49,11 @@ Translate="翻譯";
 "Watch a short ad to enjoy 1 hour ad-free."="觀看短廣告，享受1小時無廣告體驗。";
 "Ad-free for 1 hour"="1小時無廣告";
 
+// MARK: - History
+"History"="翻譯記錄";
+"All"="全部";
+"Favorited"="收藏";
+"No translations yet"="尚無翻譯記錄";
+"Re-translate"="重新翻譯";
+"Detail"="詳情";
+"Filter"="篩選";

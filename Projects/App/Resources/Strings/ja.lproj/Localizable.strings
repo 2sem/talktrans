@@ -48,3 +48,12 @@ Translate="翻訳";
 "Watch Ad"="広告を見る";
 "Watch a short ad to enjoy 1 hour ad-free."="短い広告を見て、1時間広告なしでお楽しみください。";
 "Ad-free for 1 hour"="1時間広告なし";
+
+// MARK: - History
+"History"="翻訳履歴";
+"All"="すべて";
+"Favorited"="お気に入り";
+"No translations yet"="翻訳履歴がありません";
+"Re-translate"="再翻訳";
+"Detail"="詳細";
+"Filter"="フィルター";
