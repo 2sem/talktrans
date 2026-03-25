@@ -99,7 +99,7 @@ struct TranslationScreen: View {
 						onSwap: {
 							viewModel.swapLanguages()
 						},
-						maxLength: 100
+						maxLength: 500
 					)
 					.padding(.horizontal, 16)
 

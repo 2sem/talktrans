@@ -101,7 +101,7 @@ struct TranslationInputView: View {
 		placeholder: "Please input your message to be translated as Korean",
         onLocaleChange: { _ in },
         onSwap: {  },
-		maxLength: 100
+		maxLength: 500
 	)
     .frame(height: 100)
     .padding()
