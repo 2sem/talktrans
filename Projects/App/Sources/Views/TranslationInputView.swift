@@ -56,7 +56,7 @@ struct TranslationInputView: View {
 					.scrollContentBackground(.hidden)
 					.font(.system(size: 16))
 					.foregroundColor(.appTextPrimary)
-					.frame(minHeight: 100)
+					.frame(minHeight: 100, maxHeight: 160)
 					.padding(.horizontal, 12)
 					.padding(.vertical, 8)
 					.focused(isFocused)
