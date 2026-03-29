@@ -14,9 +14,12 @@ struct TranslationScreen: View {
 	@StateObject private var viewModel: TranslationViewModel
 	@StateObject private var speechViewModel = SpeechRecognitionViewModel()
 	@EnvironmentObject private var reviewManager: ReviewManager
+	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@Environment(\.modelContext) private var modelContext
 	@State private var showSpeechRecognition = false
 	@State private var showHistory = false
+	@State private var isAdFree: Bool = LSDefaults.isAdFree
+	@State private var showAdFreeToast = false
 	@FocusState private var isInputFocused: Bool
 
 	init() {
@@ -101,6 +104,9 @@ struct TranslationScreen: View {
 						onSwap: {
 							viewModel.swapLanguages()
 						},
+						onHistoryTapped: {
+							showHistory = true
+						},
 						maxLength: 500
 					)
 					.padding(.horizontal, 16)
@@ -152,18 +158,14 @@ struct TranslationScreen: View {
 						}
 						.buttonStyle(.plain)
 
-						// History Button
-						Button(action: {
-							showHistory = true
-						}) {
-							Image(systemName: "clock.arrow.circlepath")
-								.font(.system(size: 14, weight: .medium))
-								.frame(width: 50, height: 50)
-								.background(Color.appSecondaryButton)
-								.foregroundColor(.appTextPrimary)
-								.cornerRadius(12)
+						// Watch Ad Button (hidden when ad-free)
+						WatchAdButton(isAdFree: $isAdFree) {
+							showAdFreeToast = true
+							Task {
+								try? await Task.sleep(for: .seconds(2))
+								showAdFreeToast = false
+							}
 						}
-						.buttonStyle(.plain)
 					}
 					.padding(.horizontal, 16)
 					.padding(.bottom, 8)

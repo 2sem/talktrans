@@ -18,6 +18,7 @@ struct TranslationInputView: View {
 	// Called when user taps the swap (clockwise) button. Optional to preserve
 	// backward compatibility with existing initializers.
 	let onSwap: () -> Void
+	let onHistoryTapped: () -> Void
 	let maxLength: Int
 	
 	var body: some View {
@@ -75,15 +76,28 @@ struct TranslationInputView: View {
                 }
 			}
 			HStack {
+				// History Button
+				Button(action: {
+					onHistoryTapped()
+				}) {
+					Image(systemName: "clock.arrow.circlepath")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(.appAccent)
+						.frame(width: 44, height: 44)
+				}
+				.accessibilityLabel("Translation history")
+				.accessibilityHint("Opens list of previous translations")
+
 				Spacer()
+
 				Text("\(text.count)/\(maxLength)")
 					.font(.system(size: 12))
 					.foregroundColor(.appTextPlaceholder)
-					.padding(.trailing, 28)
+					.padding(.trailing, 12)
 					.padding(.bottom, 4)
 			}
 			.padding(.horizontal, 16)
-			.padding(.bottom, 16)
+			.padding(.bottom, 8)
 		}
 		.background(Color.appInputOutputBackground)
 		.cornerRadius(16)
@@ -100,7 +114,8 @@ struct TranslationInputView: View {
 		availableLocales: TranslationLocale.allCases,
 		placeholder: "Please input your message to be translated as Korean",
         onLocaleChange: { _ in },
-        onSwap: {  },
+        onSwap: {},
+        onHistoryTapped: {},
 		maxLength: 500
 	)
     .frame(height: 100)

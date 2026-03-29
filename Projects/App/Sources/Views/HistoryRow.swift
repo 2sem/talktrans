@@ -26,13 +26,13 @@ struct HistoryRow: View {
 			// MARK: Text stack
 			VStack(alignment: .leading, spacing: 4) {
 				Text(entry.sourceText)
-					.font(.caption)
-					.foregroundColor(.appTextPlaceholder)
+					.font(.body)
+					.foregroundColor(.appTextPrimary)
 					.lineLimit(2)
 
 				Text(entry.translatedText)
-					.font(.body)
-					.foregroundColor(.appTextPrimary)
+					.font(.caption)
+					.foregroundColor(.appTextPlaceholder)
 					.lineLimit(2)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
@@ -87,5 +87,6 @@ struct HistoryRow: View {
 			}
 		}
 		.padding(.vertical, 4)
+		.contentShape(Rectangle())
 	}
 }
