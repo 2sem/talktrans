@@ -49,3 +49,11 @@ Translate="Переведите";
 "Watch a short ad to enjoy 1 hour ad-free."="Посмотрите короткую рекламу и пользуйтесь приложением без рекламы 1 час.";
 "Ad-free for 1 hour"="Без рекламы 1 час";
 
+// MARK: - History
+"History"="История";
+"All"="Все";
+"Favorited"="Избранное";
+"No translations yet"="Нет переводов";
+"Re-translate"="Перевести снова";
+"Detail"="Подробности";
+"Filter"="Фильтр";

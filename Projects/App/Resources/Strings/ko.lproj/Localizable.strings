@@ -49,3 +49,12 @@ Translate="번역";
 "Watch Ad"="광고 보기";
 "Watch a short ad to enjoy 1 hour ad-free."="짧은 광고를 시청하고 1시간 동안 광고 없이 이용하세요.";
 "Ad-free for 1 hour"="1시간 광고 없음";
+
+// MARK: - History
+"History"="번역 기록";
+"All"="전체";
+"Favorited"="즐겨찾기";
+"No translations yet"="번역 기록이 없습니다";
+"Re-translate"="다시 번역";
+"Detail"="상세";
+"Filter"="필터";
