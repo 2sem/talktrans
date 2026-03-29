@@ -61,7 +61,7 @@ struct HistoryRow: View {
 				}
 
 				// Relative timestamp
-				Text(entry.timestamp, style: .relative)
+				Text(entry.timestamp, style: .time)
 					.font(.caption2)
 					.foregroundColor(.appTextPlaceholder)
 					.multilineTextAlignment(.trailing)
