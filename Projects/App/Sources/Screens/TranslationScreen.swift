@@ -211,8 +211,8 @@ struct TranslationScreen: View {
 			)
 		}
 		.sheet(isPresented: $showHistory) {
-			HistoryScreen { sourceText, sourceLang, targetLang in
-				applyRetranslate(sourceText: sourceText, sourceLang: sourceLang, targetLang: targetLang)
+			HistoryScreen { sourceText, translatedText, sourceLang, targetLang in
+				applyRetranslate(sourceText: sourceText, translatedText: translatedText, sourceLang: sourceLang, targetLang: targetLang)
 			}
 		}
 	}
@@ -229,7 +229,7 @@ struct TranslationScreen: View {
 		modelContext.insert(entry)
 	}
 
-	private func applyRetranslate(sourceText: String, sourceLang: String, targetLang: String) {
+	private func applyRetranslate(sourceText: String, translatedText: String, sourceLang: String, targetLang: String) {
 		if let source = TranslationLocale(rawValue: sourceLang) {
 			viewModel.updateNativeLocale(source)
 		}
@@ -237,7 +237,7 @@ struct TranslationScreen: View {
 			viewModel.updateTranslatedLocale(target)
 		}
 		viewModel.nativeText = sourceText
-		viewModel.translatedText = ""
+		viewModel.translatedText = translatedText
 	}
 }
 
