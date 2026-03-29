@@ -13,7 +13,7 @@ import SwiftData
 
 struct HistoryScreen: View {
 	/// Called when user taps Re-translate on a detail sheet.
-	let onRetranslate: (String, String, String) -> Void
+	let onRetranslate: (String, String, String, String) -> Void
 
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
@@ -57,9 +57,9 @@ struct HistoryScreen: View {
 				}
 			}
 			.sheet(item: $selectedEntry) { entry in
-				HistoryDetailSheet(entry: entry) { sourceText, sourceLang, targetLang in
+				HistoryDetailSheet(entry: entry) { sourceText, translatedText, sourceLang, targetLang in
 					dismiss()
-					onRetranslate(sourceText, sourceLang, targetLang)
+					onRetranslate(sourceText, translatedText, sourceLang, targetLang)
 				}
 				.presentationDetents([.large])
 				.presentationDragIndicator(.visible)

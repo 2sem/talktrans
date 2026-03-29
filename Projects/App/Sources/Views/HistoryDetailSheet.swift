@@ -11,8 +11,8 @@ import SwiftData
 
 struct HistoryDetailSheet: View {
 	let entry: TranslationEntry
-	/// Called when the user taps Re-translate.  Arguments: (sourceText, sourceLang, targetLang)
-	let onRetranslate: (String, String, String) -> Void
+	/// Called when the user taps Re-translate.  Arguments: (sourceText, translatedText, sourceLang, targetLang)
+	let onRetranslate: (String, String, String, String) -> Void
 
 	@Environment(\.dismiss) private var dismiss
 	@State private var isRotated: Bool = false
@@ -103,7 +103,7 @@ struct HistoryDetailSheet: View {
 						// Re-translate
 						Button(action: {
 							dismiss()
-							onRetranslate(entry.sourceText, entry.sourceLang, entry.targetLang)
+							onRetranslate(entry.sourceText, entry.translatedText, entry.sourceLang, entry.targetLang)
 						}) {
 							Label("Re-translate".localized(), systemImage: "arrow.clockwise")
 								.font(.system(size: 15, weight: .semibold))
