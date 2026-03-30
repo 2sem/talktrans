@@ -1,0 +1,5 @@
+Every translation you make is now automatically saved. Browse your history by day, mark favorites, and tap any entry to see the full source and translated text. Need to use a translation again? One tap restores everything instantly — no retyping, no re-translating.
+
+You can now translate up to 500 characters at a time, up from 100.
+
+Plus several small fixes to improve everyday use.

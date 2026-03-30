@@ -1,0 +1,5 @@
+Ogni traduzione che esegui viene ora salvata automaticamente. Sfoglia la cronologia per giorno, aggiungi i preferiti e tocca qualsiasi voce per vedere il testo originale e la traduzione completa. Hai bisogno di riutilizzare una traduzione? Un solo tocco ripristina tutto istantaneamente, senza dover riscrivere o ritradurre.
+
+Ora puoi tradurre fino a 500 caratteri alla volta, rispetto ai 100 precedenti.
+
+Inoltre alcune piccole correzioni per migliorare l'uso quotidiano.

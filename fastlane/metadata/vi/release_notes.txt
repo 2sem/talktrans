@@ -1,0 +1,5 @@
+Mọi bản dịch bạn thực hiện đều được lưu tự động. Duyệt lịch sử theo ngày, đánh dấu yêu thích và nhấn vào bất kỳ mục nào để xem đầy đủ văn bản gốc và bản dịch. Cần dùng lại một bản dịch? Chỉ một chạm là khôi phục ngay lập tức, không cần nhập lại hay dịch lại.
+
+Bạn có thể dịch tới 500 ký tự mỗi lần, tăng so với mức 100 ký tự trước đây.
+
+Ngoài ra còn có một số sửa lỗi nhỏ giúp cải thiện trải nghiệm sử dụng hàng ngày.
