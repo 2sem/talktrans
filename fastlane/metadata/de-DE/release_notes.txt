@@ -1,0 +1,5 @@
+Jede Übersetzung wird jetzt automatisch gespeichert. Durchsuchen Sie Ihren Verlauf nach Datum, markieren Sie Favoriten und tippen Sie auf einen Eintrag, um den vollständigen Quell- und Zieltext zu sehen. Möchten Sie eine Übersetzung erneut verwenden? Ein Tipp stellt alles sofort wieder her – kein erneutes Eintippen, kein erneutes Übersetzen.
+
+Sie können jetzt bis zu 500 Zeichen auf einmal übersetzen, zuvor waren es 100.
+
+Außerdem wurden einige kleine Korrekturen vorgenommen, die die tägliche Nutzung verbessern.

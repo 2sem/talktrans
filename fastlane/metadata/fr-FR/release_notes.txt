@@ -1,0 +1,5 @@
+Chaque traduction que vous effectuez est désormais sauvegardée automatiquement. Parcourez votre historique par jour, ajoutez des favoris et appuyez sur une entrée pour afficher le texte source et la traduction complète. Besoin de réutiliser une traduction ? Un simple appui restaure tout instantanément, sans ressaisir ni retraduire.
+
+Vous pouvez maintenant traduire jusqu'à 500 caractères à la fois, contre 100 auparavant.
+
+Et plusieurs petites corrections pour améliorer l'usage au quotidien.
