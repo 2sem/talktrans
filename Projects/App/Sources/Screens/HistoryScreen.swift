@@ -36,12 +36,14 @@ struct HistoryScreen: View {
 				if filterMode == .favorited {
 					HistoryListView(
 						predicate: #Predicate<TranslationEntry> { $0.isFavorited == true },
+						emptyTitle: "No favorites yet".localized(),
 						onFavoriteToggle: toggleFavorite,
 						onSelect: { selectedEntry = $0 }
 					)
 				} else {
 					HistoryListView(
 						predicate: nil,
+						emptyTitle: "No translations yet".localized(),
 						onFavoriteToggle: toggleFavorite,
 						onSelect: { selectedEntry = $0 }
 					)
@@ -84,6 +86,7 @@ private enum HistoryFilter: Hashable {
 private struct HistoryListView: View {
 	@Query private var entries: [TranslationEntry]
 
+	private let emptyTitle: String
 	private let onFavoriteToggle: (TranslationEntry) -> Void
 	private let onSelect: (TranslationEntry) -> Void
 
@@ -91,6 +94,7 @@ private struct HistoryListView: View {
 
 	init(
 		predicate: Predicate<TranslationEntry>?,
+		emptyTitle: String,
 		onFavoriteToggle: @escaping (TranslationEntry) -> Void,
 		onSelect: @escaping (TranslationEntry) -> Void
 	) {
@@ -99,6 +103,7 @@ private struct HistoryListView: View {
 			sortBy: [SortDescriptor(\.timestamp, order: .reverse)]
 		)
 		_entries = Query(descriptor)
+		self.emptyTitle = emptyTitle
 		self.onFavoriteToggle = onFavoriteToggle
 		self.onSelect = onSelect
 	}
@@ -106,7 +111,7 @@ private struct HistoryListView: View {
 	var body: some View {
 		if entries.isEmpty {
 			ContentUnavailableView(
-				"No translations yet".localized(),
+				emptyTitle,
 				systemImage: "clock.arrow.circlepath"
 			)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

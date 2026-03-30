@@ -66,24 +66,13 @@ struct HistoryRow: View {
 					.foregroundColor(.appTextPlaceholder)
 					.multilineTextAlignment(.trailing)
 
-				// Action row
-				HStack(spacing: 12) {
-					// Favorite toggle
-					Button(action: onFavoriteToggle) {
-						Image(systemName: entry.isFavorited ? "star.fill" : "star")
-							.font(.system(size: 14, weight: .medium))
-							.foregroundColor(entry.isFavorited ? .yellow : .appTextPlaceholder)
-					}
-					.buttonStyle(.plain)
-
-					// Share
-					ShareLink(item: entry.translatedText) {
-						Image(systemName: "square.and.arrow.up")
-							.font(.system(size: 14, weight: .medium))
-							.foregroundColor(.appTextPlaceholder)
-					}
-					.buttonStyle(.plain)
+				// Favorite toggle
+				Button(action: onFavoriteToggle) {
+					Image(systemName: entry.isFavorited ? "star.fill" : "star")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundColor(entry.isFavorited ? .yellow : .appTextPlaceholder)
 				}
+				.buttonStyle(.plain)
 			}
 		}
 		.padding(.vertical, 4)
