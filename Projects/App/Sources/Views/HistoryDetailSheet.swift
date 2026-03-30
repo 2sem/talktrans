@@ -105,7 +105,7 @@ struct HistoryDetailSheet: View {
 							dismiss()
 							onRetranslate(entry.sourceText, entry.translatedText, entry.sourceLang, entry.targetLang)
 						}) {
-							Label("Re-translate".localized(), systemImage: "arrow.clockwise")
+							Label("Translate Again".localized(), systemImage: "arrow.clockwise")
 								.font(.system(size: 15, weight: .semibold))
 								.frame(maxWidth: .infinity)
 								.frame(height: 48)
