@@ -1,0 +1,6 @@
+TalkTrans helps you communicate face to face while traveling. Speak or type to translate instantly, then show the result in large text for the other person.
+
+• Voice & text translation
+• Face-to-face conversation mode (full-screen display)
+• Translation history saved automatically (by day) + favorites
+• Translate up to 500 characters at once

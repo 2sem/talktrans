@@ -20,6 +20,11 @@ class SpeechRecognitionViewModel: ObservableObject {
 	private var audioEngine = AVAudioEngine()
 	private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
 	private var recognitionTask: SFSpeechRecognitionTask?
+
+	func resetSessionState() {
+		recognizedText = ""
+		errorMessage = nil
+	}
 	
 	func startRecognition(locale: Locale, onResult: @escaping (String) -> Void) {
 		guard !isRecognizing else { return }
@@ -77,6 +82,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 			
 			audioEngine.prepare()
 			try audioEngine.start()
+			resetSessionState()
 			
 			isRecognizing = true
 			errorMessage = nil
@@ -131,4 +137,3 @@ class SpeechRecognitionViewModel: ObservableObject {
 		isRecognizing = false
 	}
 }
-

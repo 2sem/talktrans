@@ -1,0 +1,6 @@
+TalkTrans te ayuda a comunicarte cara a cara mientras viajas. Habla o escribe, traduce al instante y muestra el resultado en texto grande.
+
+• Traducción por voz y texto
+• Modo conversación para mostrar (pantalla completa)
+• Historial guardado automáticamente (por día) + favoritos
+• Hasta 500 caracteres por traducción

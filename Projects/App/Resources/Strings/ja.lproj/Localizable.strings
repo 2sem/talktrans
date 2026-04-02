@@ -59,3 +59,7 @@ Translate="翻訳";
 "No favorites yet"="お気に入りがありません";
 "Detail"="詳細";
 "Filter"="フィルター";
+"Send Feedback"="フィードバックを送信";
+"Unable to Open Link"="リンクを開けません";
+"Copy Link"="リンクをコピー";
+"Please copy and open the feedback link manually."="フィードバックリンクをコピーして手動で開いてください。";

@@ -33,11 +33,16 @@ class TranslationViewModel: ObservableObject {
 	@Published var translationConfiguration: TranslationSession.Configuration?
 	@Published var isFullScreen: Bool = false
 	@Published var deviceOrientation: UIDeviceOrientation = .portrait
+	@Published private(set) var lastCompletedTranslationID: UUID?
 
 	private let translationManager = TranslationManager.shared
 	private let maxTextLength = 100
 	private var orientationObserver: AnyCancellable?
 	private var manualFullScreenToggle: Bool = false
+	private var translationExecutionGate = TranslationExecutionGate()
+	private var activeTranslationRequestID: UUID?
+	private(set) var sessionBindingRequestID: UUID?
+	
 	
 	var canTranslate: Bool {
 		!nativeText.isEmpty && !isTranslating
@@ -136,6 +141,9 @@ class TranslationViewModel: ObservableObject {
 		
 		isTranslating = true
 		errorMessage = nil
+		let requestID = translationExecutionGate.beginRequest()
+		activeTranslationRequestID = requestID
+		sessionBindingRequestID = requestID
 		
 		// Recreate TranslationSession configuration when translate button is pressed.
 		// Resetting to nil forces .translationTask to attach a fresh session,
@@ -144,20 +152,46 @@ class TranslationViewModel: ObservableObject {
 		createTranslationConfiguration(source: sourceLocale, target: targetLocale)
 	}
 	
-	func setTranslationSession(_ session: TranslationSession) async {
-		// Perform translation only with the session provided by .translationTask.
+	func setTranslationSession(_ session: TranslationSession, for requestID: UUID?) async {
+		// Perform translation only with the fresh session provided by .translationTask.
+		guard isValidSessionBindingRequestID(requestID) else { return }
 		guard !nativeText.isEmpty else { return }
-		guard isTranslating else { return } // Only translate if translate() was called
-		
+		guard isTranslating else { return }
+		guard let requestID = requestID else { return }
+		guard translationExecutionGate.canExecute(requestID) else { return }
+
+		let textToTranslate = nativeText
+
 		do {
-			let translated = try await translationManager.translate(text: nativeText, session: session)
+			let translated = try await translationManager.translate(text: textToTranslate, session: session)
+			guard activeTranslationRequestID == requestID else { return }
 			translatedText = translated
+			lastCompletedTranslationID = requestID
 			isTranslating = false
 			LSDefaults.incrementTranslationCount()
+			translationExecutionGate.complete(requestID)
+			activeTranslationRequestID = nil
+			sessionBindingRequestID = nil
 		} catch {
+			guard activeTranslationRequestID == requestID else { return }
+			if error is CancellationError {
+				isTranslating = false
+				translationExecutionGate.complete(requestID)
+				activeTranslationRequestID = nil
+				sessionBindingRequestID = nil
+				return
+			}
 			errorMessage = error.localizedDescription
 			isTranslating = false
+			translationExecutionGate.complete(requestID)
+			activeTranslationRequestID = nil
+			sessionBindingRequestID = nil
 		}
+	}
+
+	func isValidSessionBindingRequestID(_ requestID: UUID?) -> Bool {
+		guard let requestID else { return false }
+		return requestID == activeTranslationRequestID && requestID == sessionBindingRequestID
 	}
 	
 	
@@ -226,5 +260,30 @@ extension UIDeviceOrientation {
 		default:
 			return false
 		}
+	}
+}
+
+struct TranslationExecutionGate {
+	private(set) var currentRequestID: UUID?
+	private var executingRequestID: UUID?
+
+	mutating func beginRequest() -> UUID {
+		let requestID = UUID()
+		currentRequestID = requestID
+		executingRequestID = nil
+		return requestID
+	}
+
+	mutating func canExecute(_ requestID: UUID) -> Bool {
+		guard currentRequestID == requestID else { return false }
+		guard executingRequestID != requestID else { return false }
+		executingRequestID = requestID
+		return true
+	}
+
+	mutating func complete(_ requestID: UUID) {
+		guard currentRequestID == requestID else { return }
+		currentRequestID = nil
+		executingRequestID = nil
 	}
 }

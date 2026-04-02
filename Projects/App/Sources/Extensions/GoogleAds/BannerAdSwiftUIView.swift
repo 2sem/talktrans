@@ -14,7 +14,7 @@ struct BannerAdSwiftUIView: View {
 
 	var body: some View {
 		Group {
-			if SwiftUIAdManager.isDisabled {
+			if SwiftUIAdManager.isDisabled || adManager.isAdFree {
 				EmptyView()
 			} else if let bannerView = coordinator.bannerView {
 				BannerAdRepresentable(bannerView: bannerView)
@@ -24,7 +24,15 @@ struct BannerAdSwiftUIView: View {
 		}
 		.onChange(of: adManager.isReady, initial: true) { _, isReady in
 			guard isReady else { return }
+			guard !adManager.isAdFree else { return }
 			coordinator.load(withAdManager: adManager)
+		}
+		.onChange(of: adManager.isAdFree, initial: true) { _, isAdFree in
+			if isAdFree {
+				coordinator.reset()
+			} else if adManager.isReady {
+				coordinator.load(withAdManager: adManager)
+			}
 		}
 	}
 }
@@ -43,6 +51,11 @@ final class BannerAdCoordinator {
 			let request = Request()
 			banner.load(request)
 		}
+	}
+
+	func reset() {
+		bannerView = nil
+		hasLoaded = false
 	}
 }
 

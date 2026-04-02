@@ -11,13 +11,12 @@ import SwiftUI
 struct WatchAdButton: View {
 	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@EnvironmentObject private var analyticsManager: AnalyticsManager
-	@Binding var isAdFree: Bool
 	var onAdFreeActivated: (() -> Void)?
 
 	@State private var showConfirmation = false
 
 	var body: some View {
-		if !isAdFree {
+		if !adManager.isAdFree {
 			Button(action: {
 				analyticsManager.logWatchAdTapped()
 				showConfirmation = true
@@ -43,9 +42,7 @@ struct WatchAdButton: View {
 					adManager.showRewarded { rewarded in
 						if rewarded {
 							LSDefaults.activateAdFree()
-							withAnimation(.easeInOut(duration: 0.25)) {
-								isAdFree = true
-							}
+							adManager.refreshAdFreeStatus()
 							onAdFreeActivated?()
 							analyticsManager.logWatchAdCompleted()
 						} else {

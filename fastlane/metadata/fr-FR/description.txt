@@ -1,0 +1,6 @@
+TalkTrans facilite les échanges en face à face en voyage. Parlez ou tapez, traduisez instantanément, puis montrez le résultat en grands caractères.
+
+• Traduction voix + texte
+• Mode conversation à afficher (plein écran)
+• Historique enregistré automatiquement (par jour) + favoris
+• Jusqu’à 500 caractères par traduction
