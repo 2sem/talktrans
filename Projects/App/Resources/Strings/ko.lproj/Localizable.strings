@@ -60,3 +60,7 @@ Translate="번역";
 "No favorites yet"="즐겨찾기가 없습니다";
 "Detail"="상세";
 "Filter"="필터";
+"Send Feedback"="피드백 보내기";
+"Unable to Open Link"="링크를 열 수 없습니다";
+"Copy Link"="링크 복사";
+"Please copy and open the feedback link manually."="피드백 링크를 복사해 직접 열어주세요.";

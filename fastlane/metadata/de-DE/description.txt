@@ -1,0 +1,6 @@
+TalkTrans hilft dir unterwegs bei Gesprächen von Angesicht zu Angesicht. Sprich oder tippe, übersetze sofort und zeige das Ergebnis in großer Schrift.
+
+• Sprach- und Textübersetzung
+• Gesprächsmodus zum Vorzeigen (Vollbild)
+• Übersetzungsverlauf automatisch gespeichert (nach Tagen) + Favoriten
+• Bis zu 500 Zeichen pro Übersetzung

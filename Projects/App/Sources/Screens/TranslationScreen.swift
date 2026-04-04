@@ -18,8 +18,8 @@ struct TranslationScreen: View {
 	@Environment(\.modelContext) private var modelContext
 	@State private var showSpeechRecognition = false
 	@State private var showHistory = false
-	@State private var isAdFree: Bool = LSDefaults.isAdFree
 	@State private var showAdFreeToast = false
+	@State private var lastHandledTranslationID: UUID?
 	@FocusState private var isInputFocused: Bool
 
 	init() {
@@ -29,6 +29,8 @@ struct TranslationScreen: View {
 	}
 
 	var body: some View {
+		let sessionBindingRequestID = viewModel.sessionBindingRequestID
+
 		ZStack {
 			// Gradient Background
 			LinearGradient(
@@ -61,8 +63,10 @@ struct TranslationScreen: View {
 					)
 					.padding(16)
 
-					BannerAdSwiftUIView()
-						.frame(height: 50)
+					if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
+						BannerAdSwiftUIView()
+							.frame(height: 50)
+					}
 				}.transition(.scale)
 			} else {
 				// Normal Mode - Show all UI elements
@@ -87,9 +91,10 @@ struct TranslationScreen: View {
 						.padding(.top, 20)
 					}
 
-					// Advertisement Banner Placeholder
-					BannerAdSwiftUIView()
-						.frame(height: 50)
+					if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
+						BannerAdSwiftUIView()
+							.frame(height: 50)
+					}
 
 					// Native Input Section
 					TranslationInputView(
@@ -159,7 +164,7 @@ struct TranslationScreen: View {
 						.buttonStyle(.plain)
 
 						// Watch Ad Button (hidden when ad-free)
-						WatchAdButton(isAdFree: $isAdFree) {
+						WatchAdButton {
 							showAdFreeToast = true
 							Task {
 								try? await Task.sleep(for: .seconds(2))
@@ -186,14 +191,16 @@ struct TranslationScreen: View {
 				.transition(.scale)
 			}
 		}
-		.onChange(of: viewModel.translatedText) { _, newValue in
-			guard !newValue.isEmpty else { return }
+		.onChange(of: viewModel.lastCompletedTranslationID) { _, newValue in
+			guard let translationID = newValue else { return }
+			guard translationID != lastHandledTranslationID else { return }
+			lastHandledTranslationID = translationID
 			reviewManager.show()
 			saveTranslationEntry()
 		}
 		.animation(.easeInOut, value: viewModel.isFullScreen)
-		.translationTask(viewModel.translationConfiguration) { session in
-			await viewModel.setTranslationSession(session)
+		.translationTask(viewModel.translationConfiguration) { [sessionBindingRequestID] session in
+			await viewModel.setTranslationSession(session, for: sessionBindingRequestID)
 		}
 		.sheet(isPresented: $showSpeechRecognition) {
 			SpeechRecognitionScreen(

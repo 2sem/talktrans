@@ -1,3 +1,4 @@
+import Foundation
 import Firebase
 import GADManager
 import GoogleMobileAds
@@ -34,7 +35,14 @@ class SwiftUIAdManager: NSObject, ObservableObject {
 
     // 싱글톤 패턴으로 전역 접근 지원
     static var shared: SwiftUIAdManager?
-    @Published var isReady: Bool = false
+	@Published var isReady: Bool = false
+	@Published private(set) var isAdFree: Bool = LSDefaults.isAdFree
+
+	private var adFreeStatusTask: Task<Void, Never>?
+
+	deinit {
+		adFreeStatusTask?.cancel()
+	}
 
     func setup() {
         guard !SwiftUIAdManager.isDisabled else { return }
@@ -49,6 +57,10 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         // 싱글톤 인스턴스 설정
         SwiftUIAdManager.shared = self
         self.isReady = true
+        Task { @MainActor in
+            self.refreshAdFreeStatus()
+            self.startAdFreeStatusTimer()
+        }
     }
 
     func prepare(interstitialUnit unit: GADUnitName, interval: TimeInterval) {
@@ -74,7 +86,7 @@ class SwiftUIAdManager: NSObject, ObservableObject {
     @discardableResult
     func show(unit: GADUnitName) async -> Bool {
         guard !SwiftUIAdManager.isDisabled else { return false }
-        guard !LSDefaults.isAdFree else { return false }
+        guard !isAdFree else { return false }
 
         return await withCheckedContinuation { continuation in
             guard let gadManager else {
@@ -94,7 +106,9 @@ class SwiftUIAdManager: NSObject, ObservableObject {
         guard let gadManager else { completion(false); return }
 
         gadManager.show(unit: .rewarded, needToWait: true, isTesting: isTesting(unit: .rewarded)) { _, _, rewarded in
-            completion(rewarded)
+            Task { @MainActor in
+                completion(rewarded)
+            }
         }
     }
 
@@ -105,9 +119,29 @@ class SwiftUIAdManager: NSObject, ObservableObject {
 
     func createBannerAdView(withAdSize size: AdSize, forUnit unit: GADUnitName) -> BannerView? {
         guard !SwiftUIAdManager.isDisabled else { return nil }
-        guard !LSDefaults.isAdFree else { return nil }
+        guard !isAdFree else { return nil }
         return gadManager?.prepare(bannerUnit: unit, isTesting: self.isTesting(unit: unit), size: size)
     }
+
+    @MainActor
+    func refreshAdFreeStatus() {
+        let latestState = LSDefaults.isAdFree
+        guard latestState != isAdFree else { return }
+        isAdFree = latestState
+    }
+
+	@MainActor
+	private func startAdFreeStatusTimer() {
+		adFreeStatusTask?.cancel()
+
+		adFreeStatusTask = Task { [weak self] in
+			while !Task.isCancelled {
+				try? await Task.sleep(for: .seconds(30))
+				guard !Task.isCancelled else { return }
+				self?.refreshAdFreeStatus()
+			}
+		}
+	}
 
     // MARK: - Testing Flags
     func isTesting(unit: GADUnitName) -> Bool {

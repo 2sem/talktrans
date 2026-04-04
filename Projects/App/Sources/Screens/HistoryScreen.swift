@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 
 // MARK: - HistoryScreen
 
@@ -15,11 +16,15 @@ struct HistoryScreen: View {
 	/// Called when user taps Re-translate on a detail sheet.
 	let onRetranslate: (String, String, String, String) -> Void
 
+	static let feedbackIssueURLString = "https://github.com/2sem/talktrans/issues/new/choose"
+
 	@Environment(\.dismiss) private var dismiss
+	@Environment(\.openURL) private var openURL
 	@Environment(\.modelContext) private var modelContext
 
 	@State private var filterMode: HistoryFilter = .all
 	@State private var selectedEntry: TranslationEntry?
+	@State private var showFeedbackFallbackAlert = false
 
 	var body: some View {
 		NavigationStack {
@@ -52,11 +57,25 @@ struct HistoryScreen: View {
 			.navigationTitle("History".localized())
 			.navigationBarTitleDisplayMode(.large)
 			.toolbar {
+				ToolbarItem(placement: .topBarLeading) {
+					Button(action: openFeedbackIssue) {
+						Image(systemName: "bubble.left.and.text.bubble.right")
+					}
+					.accessibilityLabel("Send Feedback".localized())
+				}
 				ToolbarItem(placement: .topBarTrailing) {
 					Button("Done".localized()) {
 						dismiss()
 					}
 				}
+			}
+			.alert("Unable to Open Link".localized(), isPresented: $showFeedbackFallbackAlert) {
+				Button("Copy Link".localized()) {
+					UIPasteboard.general.string = Self.feedbackIssueURLString
+				}
+				Button("OK".localized(), role: .cancel) { }
+			} message: {
+				Text("Please copy and open the feedback link manually.".localized())
 			}
 			.sheet(item: $selectedEntry) { entry in
 				HistoryDetailSheet(entry: entry) { sourceText, translatedText, sourceLang, targetLang in
@@ -65,6 +84,19 @@ struct HistoryScreen: View {
 				}
 				.presentationDetents([.large])
 				.presentationDragIndicator(.visible)
+			}
+		}
+	}
+
+	private func openFeedbackIssue() {
+		guard let issueURL = URL(string: Self.feedbackIssueURLString) else {
+			showFeedbackFallbackAlert = true
+			return
+		}
+
+		openURL(issueURL) { accepted in
+			if !accepted {
+				showFeedbackFallbackAlert = true
 			}
 		}
 	}
