@@ -193,11 +193,7 @@ struct TranslationScreen: View {
 		}
 		.animation(.easeInOut, value: viewModel.isFullScreen)
 		.translationTask(viewModel.translationConfiguration) { session in
-			// This closure receives the TranslationSession
-			// Pass the session to viewModel
-			Task { @MainActor in
-				viewModel.setTranslationSession(session)
-			}
+			await viewModel.setTranslationSession(session)
 		}
 		.sheet(isPresented: $showSpeechRecognition) {
 			SpeechRecognitionScreen(

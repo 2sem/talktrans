@@ -36,7 +36,6 @@ class TranslationViewModel: ObservableObject {
 
 	private let translationManager = TranslationManager.shared
 	private let maxTextLength = 100
-	private var translationSession: TranslationSession?
 	private var orientationObserver: AnyCancellable?
 	private var manualFullScreenToggle: Bool = false
 	
@@ -138,51 +137,26 @@ class TranslationViewModel: ObservableObject {
 		isTranslating = true
 		errorMessage = nil
 		
-		// Recreate TranslationSession configuration when translate button is pressed
-		// This will trigger translationTask modifier in the View, which will call setTranslationSession
+		// Recreate TranslationSession configuration when translate button is pressed.
+		// Resetting to nil forces .translationTask to attach a fresh session,
+		// even when source/target language pair has not changed.
+		translationConfiguration = nil
 		createTranslationConfiguration(source: sourceLocale, target: targetLocale)
-		
-		// Call TranslationManager.translate if session is already available
-		if let session = translationSession {
-			Task {
-				do {
-					let translated = try await translationManager.translate(text: nativeText, session: session)
-					await MainActor.run {
-						self.translatedText = translated
-						self.isTranslating = false
-						LSDefaults.incrementTranslationCount()
-					}
-				} catch {
-					await MainActor.run {
-						self.errorMessage = error.localizedDescription
-						self.isTranslating = false
-					}
-				}
-			}
-		}
 	}
 	
-	func setTranslationSession(_ session: TranslationSession) {
-		translationSession = session
-		
-		// Perform translation when session is set using TranslationManager
+	func setTranslationSession(_ session: TranslationSession) async {
+		// Perform translation only with the session provided by .translationTask.
 		guard !nativeText.isEmpty else { return }
 		guard isTranslating else { return } // Only translate if translate() was called
 		
-		Task {
-			do {
-				let translated = try await translationManager.translate(text: nativeText, session: session)
-				await MainActor.run {
-					self.translatedText = translated
-					self.isTranslating = false
-					LSDefaults.incrementTranslationCount()
-				}
-			} catch {
-				await MainActor.run {
-					self.errorMessage = error.localizedDescription
-					self.isTranslating = false
-				}
-			}
+		do {
+			let translated = try await translationManager.translate(text: nativeText, session: session)
+			translatedText = translated
+			isTranslating = false
+			LSDefaults.incrementTranslationCount()
+		} catch {
+			errorMessage = error.localizedDescription
+			isTranslating = false
 		}
 	}
 	
