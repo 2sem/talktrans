@@ -31,11 +31,11 @@ class TranslationManager {
      - returns: the indication to able to translate by given locale of source/target
      */
     public func canSupportTranslate(source : Locale, target : Locale) -> Bool{
-        guard let sourceTransLocale = TranslationLocale(rawValue: source.language.languageCode?.identifier ?? "") else{
+        guard let sourceTransLocale = TranslationLocale.from(locale: source) else{
             return false;
         }
         
-        guard let targetTransLocale = TranslationLocale(rawValue: target.language.languageCode?.identifier  ?? "") else{
+        guard let targetTransLocale = TranslationLocale.from(locale: target) else{
             return false;
         }
         
@@ -52,8 +52,7 @@ class TranslationManager {
      - returns: target locales can be translated from given source locale
      */
     public func supportedTargetLangs(source: Locale) -> [TranslationLocale]{
-        let sourceLangCode = source.language.languageCode?.identifier ?? "";
-        guard let sourceLang = TranslationLocale(rawValue: sourceLangCode) else{
+        guard let sourceLang = TranslationLocale.from(locale: source) else{
             return [];
         }
         
