@@ -50,8 +50,26 @@ extension TranslationLocale {
 	}
 	
 	static func from(locale: Locale) -> TranslationLocale? {
-		let identifier = locale.language.languageCode?.identifier ?? ""
-		return TranslationLocale(rawValue: identifier)
+		let languageCode = locale.language.languageCode?.identifier.lowercased() ?? ""
+		let scriptCode = locale.language.script?.identifier.lowercased()
+		
+		switch languageCode {
+		case "zh":
+			if scriptCode == "hant" {
+				return .taiwan
+			}
+			if scriptCode == "hans" {
+				return .chinese
+			}
+			
+			let normalizedIdentifier = locale.identifier.lowercased().replacingOccurrences(of: "_", with: "-")
+			if normalizedIdentifier.contains("hant") || normalizedIdentifier.contains("zh-tw") {
+				return .taiwan
+			}
+			return .chinese
+		default:
+			return TranslationLocale(rawValue: languageCode)
+		}
 	}
 }
 
