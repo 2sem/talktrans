@@ -143,8 +143,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/2sem/LSExtensions",
       "state" : {
-        "revision" : "76152a1fa0d0f5cb4726bdb5b1934567bad26fff",
-        "version" : "0.1.22"
+        "revision" : "aa7f790c6e65a45dcbacd11c00be1991144f4e2a",
+        "version" : "0.1.23"
       }
     },
     {
