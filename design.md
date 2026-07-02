@@ -100,8 +100,26 @@ Design requirements:
 - Input card uses you-accent border and label: `KO · you`.
 - Character counter remains visible in the input card: `32 / 500`.
 - Primary CTA remains a large bottom `Translate` button.
-- Reward/ad-free button remains a square secondary CTA with gift styling.
+- Reward/ad-free button uses square amber gift styling when shown, but remains hidden in the current main CTA row pass.
 - Suggested phrases appear as horizontal chips under input/output when useful.
+
+Current implementation refinement rule:
+- The main portrait screen must read as a **compact conversation pair**, not two large blank panels.
+- Empty-state output and input cards should size to their content plus a practical writing area; do not let `ScrollView` or `TextEditor` consume all vertical space.
+- On tall phones, use explicit portrait caps until the layout is fully responsive: output card about 240–260pt, input card about 300–320pt. Extra height should remain as breathing room around the seam CTA, not inside blank cards.
+- Place the Table Mode entry on the seam between output and input. In the light design this appears as a centered teal circular CTA with a small `Table Mode` caption; in dark mode it may be a teal CTA between the cards.
+- The full-screen/rotation affordance should not visually dominate the normal output card; reserve rotation for full-screen/Table-style presentation.
+- Keep the banner visible as a full-width adaptive placement between the output and input cards in the normal portrait composition when ads are enabled. It should align with the card margins and must not force content into the status or home indicator areas.
+- Tighten the vertical rhythm around the output card, banner, and input card. The banner should sit visually between the two cards with only a small breathing gap, and the primary CTA row must remain above the home indicator safe area.
+- Main header must use right-top circular **history** and **settings** buttons; do not leave a blank navigation/header area.
+- Language controls in the main cards should show only the flag as the tappable framed language affordance. Do not frame the role text (`EN · for them`, `KO · you`) and do not show a chevron/dropdown beside it in the card.
+- Language role text should be prominent enough to match the design; use about 15pt semibold for `EN · for them` and `KO · you` labels.
+- Remove the normal-card language swap button from the input card.
+- Use `person.line.dotted.person.fill` for the Table Mode affordance because it communicates face-to-face translation better than a literal furniture icon. Remove the old rotate/full-screen button from the output card controls.
+- Hide the gift/reward button in the main CTA row for this pass. Place the Table Mode button to the right of the Translate CTA as a square secondary action.
+- Put the input character count at the top-right of the input text area, aligned with the right edge of the input flag row.
+- Remove the bottom microphone action from the main action row; speech remains accessible through the mode control/speech flow.
+- Translate CTA should use the design teal gradient and gift/reward CTA should use the design amber/gift styling.
 
 Approximate sizing:
 - Screen horizontal padding: 16pt.
