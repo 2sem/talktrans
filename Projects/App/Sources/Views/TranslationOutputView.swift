@@ -17,10 +17,10 @@ struct TranslationOutputView: View {
 	let isFullScreen: Bool
 	let onToggleFullScreen: () -> Void
 	let deviceOrientation: UIDeviceOrientation
-	@State private var rotationAngle: Double = LSDefaults.translationOutputRotationAngle
 	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
 	@State private var magnification: CGFloat = 1.0
 	@State private var isFontSizeSheetPresented: Bool = false
+	@State private var showLanguagePicker = false
 
 	// Computed property for effective font size with constraints
 	private var effectiveFontSize: CGFloat {
@@ -30,36 +30,35 @@ struct TranslationOutputView: View {
 
 	// Computed property for rotation angle based on device orientation
 	private var effectiveRotationAngle: Double {
-		// Disable rotation in landscape mode
-		deviceOrientation.isLandscape ? 0 : rotationAngle
+		// Duo Table Mode stays upright; the old manual rotation control is removed.
+		0
 	}
 
 	var body: some View {
 		VStack(spacing: 0) {
-			HStack {
-				// Language Picker
-				LanguagePickerButton(
-					title: "Translated Language:".localized(),
+			HStack(spacing: 10) {
+				DuoOutputFlagButton(locale: locale) {
+					showLanguagePicker = true
+				}
+
+				DuoOutputRoleBadge(
 					locale: locale,
-					availableLocales: availableLocales,
-					onSelect: onLocaleChange
+					label: "\(locale.rawValue.uppercased()) · for them",
+					accent: .duoThemAccent
 				)
-				.padding(.horizontal, 16)
-				.padding(.top, 16)
-				.padding(.bottom, 12)
 
 				Spacer()
 
-				// Font Size Button
 				Button(action: {
 					isFontSizeSheetPresented = true
 				}) {
 					Image(systemName: "textformat.size")
 						.font(.system(size: 14, weight: .medium))
-						.foregroundColor(.appAccent)
+						.foregroundStyle(Color.duoThemAccent)
+						.frame(width: 32, height: 32)
+						.background(Color.duoThemAccent.opacity(0.12), in: Circle())
 				}
 				.rotationEffect(.degrees(-effectiveRotationAngle))
-				.padding(.trailing, 8)
 				.sheet(isPresented: $isFontSizeSheetPresented) {
 					FontSizeSheetView(fontSize: $fontSize)
 						.presentationDetents([.height(220)])
@@ -71,49 +70,36 @@ struct TranslationOutputView: View {
 					ShareLink(item: text) {
 						Image(systemName: "square.and.arrow.up")
 							.font(.system(size: 14, weight: .medium))
-							.foregroundColor(.appAccent)
+							.foregroundStyle(Color.duoThemAccent)
+							.frame(width: 32, height: 32)
+							.background(Color.duoThemAccent.opacity(0.12), in: Circle())
 					}
 					.rotationEffect(.degrees(-effectiveRotationAngle))
-					.padding(.trailing, 8)
 				}
 
-				// Rotate Button - rotates entire view 180 degrees when tapped
-				Button(action: {
-					let newAngle = rotationAngle + 180
-					withAnimation(.easeInOut(duration: 0.3)) {
-						rotationAngle = newAngle
-					}
-					LSDefaults.translationOutputRotationAngle = newAngle
-				}) {
-					if effectiveRotationAngle.truncatingRemainder(dividingBy: 360) != 0 {
-						Image(systemName: "pin.fill")
-							.font(.system(size: 14, weight: .medium))
-							.foregroundColor(.appAccent)
-							.rotationEffect(.degrees(45))
-					} else {
-						Image(systemName: "arrow.triangle.2.circlepath")
-							.font(.system(size: 14, weight: .medium))
-							.foregroundColor(.appAccent)
-					}
-				}
-				.disabled(deviceOrientation.isLandscape) // Disable rotation button in landscape
-				.opacity(deviceOrientation.isLandscape ? 0.5 : 1.0) // Visual feedback for disabled state
-				.accessibilityHint(deviceOrientation.isLandscape ? "Rotation is disabled in landscape mode" : "")
-				.rotationEffect(.degrees(-effectiveRotationAngle))
-				.padding(.horizontal, 16)
 			}
+			.sheet(isPresented: $showLanguagePicker) {
+				LanguageSelectionScreen(
+					languages: availableLocales,
+					selectedLocale: locale,
+					onSelect: onLocaleChange
+				)
+				.presentationDetents([.medium, .large])
+			}
+			.padding(.horizontal, 15)
+			.padding(.top, 15)
+			.padding(.bottom, 11)
 
-			// Separator
 			Divider()
-				.padding(.horizontal, 16)
+				.overlay(Color.duoDivider.opacity(0.65))
+				.padding(.horizontal, 15)
 
-			// Translated Text
 			ZStack(alignment: .bottomTrailing) {
 				ZStack(alignment: .topLeading) {
 					if text.isEmpty {
 						Text(placeholder)
 							.font(.system(size: effectiveFontSize))
-							.foregroundColor(.appTextPlaceholder)
+							.foregroundStyle(Color.duoTextMuted)
 							.padding(.horizontal, 16)
 							.padding(.vertical, 12)
 					}
@@ -121,7 +107,7 @@ struct TranslationOutputView: View {
 					ScrollView {
 						Text(text)
 							.font(.system(size: effectiveFontSize))
-							.foregroundColor(.appTextPrimary)
+							.foregroundStyle(Color.duoTextPrimary)
 							.frame(maxWidth: .infinity, alignment: .leading)
 							.padding(.horizontal, 16)
 							.padding(.vertical, 12)
@@ -141,30 +127,53 @@ struct TranslationOutputView: View {
 						}
 				)
 
-				// Full Screen Toggle Button
-				Button(action: {
-					onToggleFullScreen()
-				}) {
-					Image(systemName: isFullScreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
-						.font(.system(size: 14, weight: .medium))
-						.foregroundColor(.appAccent)
-						.padding(8)
-						.background(
-							Circle()
-								.fill(Color.appInputOutputBackground.opacity(0.8))
-								.shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
-						)
-				}
-				.rotationEffect(.degrees(-effectiveRotationAngle))
-				.padding(.trailing, 12)
-				.padding(.bottom, 12)
 			}
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
+			.frame(maxHeight: .infinity)
 		}
-		.background(Color.appInputOutputBackground)
-		.cornerRadius(16)
+		.background(Color.duoElevatedSurface)
+		.overlay(
+			RoundedRectangle(cornerRadius: 20, style: .continuous)
+				.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
+		)
+		.clipShape(.rect(cornerRadius: 20, style: .continuous))
 		.rotationEffect(.degrees(effectiveRotationAngle))
+	}
+}
+
+// MARK: - DuoOutputRoleBadge
+
+private struct DuoOutputRoleBadge: View {
+	let locale: TranslationLocale
+	let label: String
+	let accent: Color
+
+	var body: some View {
+		Text(label.localized())
+			.font(.system(size: 15, weight: .semibold))
+			.foregroundStyle(accent)
+			.lineLimit(2)
+	}
+}
+
+private struct DuoOutputFlagButton: View {
+	let locale: TranslationLocale
+	let action: () -> Void
+
+	var body: some View {
+		Button(action: action) {
+			if let flagImage = UIImage(named: locale.flagImageName) {
+				Image(uiImage: flagImage)
+					.resizable()
+					.scaledToFill()
+					.frame(width: 34, height: 24)
+					.clipShape(.rect(cornerRadius: 4, style: .continuous))
+			}
+		}
+		.frame(width: 48, height: 38)
+		.background(Color.duoThemAccent.opacity(0.12), in: Capsule())
+		.accessibilityLabel("Translated Language:".localized())
 	}
 }
 

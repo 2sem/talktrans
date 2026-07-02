@@ -22,11 +22,15 @@ struct WatchAdButton: View {
 				showConfirmation = true
 			}) {
 				Image(systemName: "gift")
-					.font(.system(size: 14, weight: .medium))
-					.frame(width: 50, height: 50)
-					.background(Color.appSecondaryButton)
-					.foregroundColor(.appAccent)
-					.cornerRadius(12)
+					.font(.system(size: 18, weight: .semibold))
+					.frame(width: 52, height: 52)
+					.background(Color.duoYouAccent.opacity(0.14))
+					.foregroundStyle(Color.duoYouAccentDeep)
+					.clipShape(.rect(cornerRadius: 16, style: .continuous))
+					.overlay(
+						RoundedRectangle(cornerRadius: 16, style: .continuous)
+							.stroke(Color.duoYouAccent.opacity(0.24), lineWidth: 1)
+					)
 			}
 			.buttonStyle(.plain)
 			.transition(.opacity.combined(with: .scale(scale: 0.8)))

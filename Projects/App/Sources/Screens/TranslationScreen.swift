@@ -22,6 +22,8 @@ struct TranslationScreen: View {
 	@State private var lastHandledTranslationID: UUID?
 	@FocusState private var isInputFocused: Bool
 
+	private let topContentPadding: CGFloat = 12
+
 	init() {
 		// TranslationSession will be created dynamically in TranslationViewModel
 		// when translate button is pressed
@@ -32,12 +34,12 @@ struct TranslationScreen: View {
 		let sessionBindingRequestID = viewModel.sessionBindingRequestID
 
 		ZStack {
-			// Gradient Background
 			LinearGradient(
 				colors: [
-					.appBackgroundGradientStart,
-					.appBackgroundGradientMid,
-					.appBackgroundGradientEnd
+					.duoBackground,
+					.duoBackground,
+					.duoThemAccent.opacity(0.08),
+					.duoYouAccent.opacity(0.06)
 				],
 				startPoint: .topLeading,
 				endPoint: .bottomTrailing
@@ -70,7 +72,21 @@ struct TranslationScreen: View {
 				}.transition(.scale)
 			} else {
 				// Normal Mode - Show all UI elements
-				VStack(spacing: 20) {
+				VStack(spacing: 8) {
+					DuoHeaderView(
+						onHistoryTapped: { showHistory = true },
+						onSettingsTapped: { }
+					)
+						.padding(.horizontal, 18)
+						.padding(.top, topContentPadding)
+
+					DuoModeSelectorView(
+						isSpeechSelected: showSpeechRecognition,
+						onTypeTapped: { showSpeechRecognition = false },
+						onSpeakTapped: { showSpeechRecognition = true }
+					)
+						.padding(.horizontal, 16)
+
 					// Translated Output Section
 					if !showSpeechRecognition && !isInputFocused {
 						TranslationOutputView(
@@ -87,13 +103,18 @@ struct TranslationScreen: View {
 							},
 							deviceOrientation: viewModel.deviceOrientation
 						)
+						.frame(maxHeight: .infinity)
+						.layoutPriority(1)
 						.padding(.horizontal, 16)
-						.padding(.top, 20)
 					}
 
 					if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
-						BannerAdSwiftUIView()
-							.frame(height: 50)
+						GeometryReader { proxy in
+							BannerAdSwiftUIView(adWidth: proxy.size.width)
+								.frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+						}
+						.frame(height: 50)
+						.padding(.horizontal, 16)
 					}
 
 					// Native Input Section
@@ -114,6 +135,8 @@ struct TranslationScreen: View {
 						},
 						maxLength: 500
 					)
+					.frame(maxHeight: .infinity)
+					.layoutPriority(1)
 					.padding(.horizontal, 16)
 
 					// Action Buttons
@@ -134,43 +157,38 @@ struct TranslationScreen: View {
 								}
 							}
 							.frame(maxWidth: .infinity)
-							.frame(height: 50)
+							.frame(height: 52)
 							.background(
 								LinearGradient(
 									colors: [
-										.appAccentGradientStart,
-										.appAccentGradientEnd
+										.duoThemAccent,
+										.duoThemAccentDeep
 									],
 									startPoint: .leading,
 									endPoint: .trailing
 								)
 							)
-							.foregroundColor(.white)
-							.cornerRadius(12)
+							.foregroundStyle(.white)
+							.clipShape(.rect(cornerRadius: 16, style: .continuous))
 						}
 						.disabled(!viewModel.canTranslate)
 
-						// Speech Recognition Button
 						Button(action: {
-							showSpeechRecognition = true
+							viewModel.toggleFullScreen()
 						}) {
-							Image(systemName: "mic")
-								.font(.system(size: 14, weight: .medium))
-								.frame(width: 50, height: 50)
-								.background(Color.appSecondaryButton)
-								.foregroundColor(.appTextPrimary)
-								.cornerRadius(12)
+							Image(systemName: "person.line.dotted.person.fill")
+								.font(.system(size: 18, weight: .semibold))
+								.frame(width: 52, height: 52)
+								.background(Color.duoThemAccent.opacity(0.14))
+								.foregroundStyle(Color.duoThemAccentDeep)
+								.clipShape(.rect(cornerRadius: 16, style: .continuous))
+								.overlay(
+									RoundedRectangle(cornerRadius: 16, style: .continuous)
+										.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
+								)
 						}
 						.buttonStyle(.plain)
-
-						// Watch Ad Button (hidden when ad-free)
-						WatchAdButton {
-							showAdFreeToast = true
-							Task {
-								try? await Task.sleep(for: .seconds(2))
-								showAdFreeToast = false
-							}
-						}
+						.accessibilityLabel("Table Mode")
 					}
 					.padding(.horizontal, 16)
 					.padding(.bottom, 8)
@@ -183,8 +201,8 @@ struct TranslationScreen: View {
 							.padding(.horizontal, 16)
 					}
 
-					Spacer(minLength: 0)
 				}
+				.safeAreaPadding(.bottom, 12)
 				.onTapGesture {
 					isInputFocused = false
 				}
@@ -241,6 +259,90 @@ struct TranslationScreen: View {
 		}
 		viewModel.nativeText = sourceText
 		viewModel.translatedText = translatedText
+	}
+}
+
+// MARK: - DuoHeaderView
+
+private struct DuoHeaderView: View {
+	let onHistoryTapped: () -> Void
+	let onSettingsTapped: () -> Void
+
+	var body: some View {
+		HStack(spacing: 12) {
+			HStack(spacing: 0) {
+				Text("Talk")
+					.foregroundStyle(Color.duoTextPrimary)
+				Text("Trans")
+					.foregroundStyle(Color.duoThemAccent)
+			}
+
+			Spacer()
+
+			HStack(spacing: 8) {
+				Button(action: onHistoryTapped) {
+					Image(systemName: "clock.arrow.circlepath")
+						.font(.system(size: 14, weight: .semibold))
+						.foregroundStyle(Color.duoThemAccent)
+						.frame(width: 32, height: 32)
+						.background(Color.duoSurface, in: Circle())
+				}
+				.accessibilityLabel("Translation history")
+
+				Button(action: onSettingsTapped) {
+					Image(systemName: "gearshape")
+						.font(.system(size: 14, weight: .semibold))
+						.foregroundStyle(Color.duoYouAccent)
+						.frame(width: 32, height: 32)
+						.background(Color.duoSurface, in: Circle())
+				}
+				.accessibilityLabel("Settings")
+			}
+		}
+		.font(.system(size: 19, weight: .bold))
+		.accessibilityElement(children: .combine)
+		.accessibilityLabel("TalkTrans")
+	}
+}
+
+// MARK: - DuoModeSelectorView
+
+private struct DuoModeSelectorView: View {
+	let isSpeechSelected: Bool
+	let onTypeTapped: () -> Void
+	let onSpeakTapped: () -> Void
+
+	var body: some View {
+		HStack(spacing: 0) {
+			modeItem(title: "Type", systemImage: "keyboard", isSelected: !isSpeechSelected, action: onTypeTapped)
+			modeItem(title: "Speak", systemImage: "mic", isSelected: isSpeechSelected, action: onSpeakTapped)
+		}
+		.padding(3)
+		.background(Color.duoControlSurface.opacity(0.7), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+		.accessibilityLabel("Input mode")
+	}
+
+	private func modeItem(title: String, systemImage: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+		Button(action: action) {
+			HStack(spacing: 6) {
+				Image(systemName: systemImage)
+				Text(title.localized())
+			}
+			.font(.system(size: 13, weight: .semibold))
+			.foregroundStyle(isSelected ? Color.duoTextPrimary : Color.duoTextMuted)
+			.frame(maxWidth: .infinity)
+			.padding(.vertical, 8)
+			.background(
+				Group {
+					if isSelected {
+						RoundedRectangle(cornerRadius: 9, style: .continuous)
+							.fill(Color.duoSurface)
+					}
+				}
+			)
+		}
+		.buttonStyle(.plain)
+		.accessibilityAddTraits(isSelected ? [.isSelected] : [])
 	}
 }
 
