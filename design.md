@@ -105,8 +105,8 @@ Design requirements:
 
 Current implementation refinement rule:
 - The main portrait screen must read as a **compact conversation pair**, not two large blank panels.
-- Empty-state output and input cards should size to their content plus a practical writing area; do not let `ScrollView` or `TextEditor` consume all vertical space.
-- On tall phones, use explicit portrait caps until the layout is fully responsive: output card about 240–260pt, input card about 300–320pt. Extra height should remain as breathing room around the seam CTA, not inside blank cards.
+- Empty-state output and input cards should share the available vertical space equally; do not hard-code separate input/output card heights.
+- On tall phones, the output and input cards should fill equally after fixed elements such as header, mode control, banner, and CTA row are laid out.
 - Place the Table Mode entry on the seam between output and input. In the light design this appears as a centered teal circular CTA with a small `Table Mode` caption; in dark mode it may be a teal CTA between the cards.
 - The full-screen/rotation affordance should not visually dominate the normal output card; reserve rotation for full-screen/Table-style presentation.
 - Keep the banner visible as a full-width adaptive placement between the output and input cards in the normal portrait composition when ads are enabled. It should align with the card margins and must not force content into the status or home indicator areas.

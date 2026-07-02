@@ -34,10 +34,6 @@ struct TranslationOutputView: View {
 		0
 	}
 
-	private var textAreaHeight: CGFloat? {
-		isFullScreen ? nil : 170
-	}
-
 	var body: some View {
 		VStack(spacing: 0) {
 			HStack(spacing: 10) {
@@ -134,7 +130,7 @@ struct TranslationOutputView: View {
 			}
 			.padding(.horizontal, 16)
 			.padding(.bottom, 16)
-			.frame(height: textAreaHeight)
+			.frame(maxHeight: .infinity)
 		}
 		.background(Color.duoElevatedSurface)
 		.overlay(

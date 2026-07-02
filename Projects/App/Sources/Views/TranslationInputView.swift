@@ -26,10 +26,6 @@ struct TranslationInputView: View {
 		"\(text.count) / \(maxLength)"
 	}
 
-	private var inputAreaHeight: CGFloat {
-		180
-	}
-	
 	var body: some View {
 		VStack(spacing: 0) {
 			HStack(spacing: 10) {
@@ -70,7 +66,7 @@ struct TranslationInputView: View {
 					.scrollContentBackground(.hidden)
 					.font(.system(size: 16))
 					.foregroundStyle(Color.duoTextSecondary)
-					.frame(height: inputAreaHeight)
+					.frame(maxHeight: .infinity)
 					.padding(.horizontal, 12)
 					.padding(.vertical, 8)
 					.focused(isFocused)
@@ -88,7 +84,7 @@ struct TranslationInputView: View {
 						.padding(.vertical, 12)
 				}
 			}
-			.frame(height: inputAreaHeight)
+			.frame(maxHeight: .infinity)
 
 		}
 		.background(Color.duoSurface)

@@ -22,8 +22,6 @@ struct TranslationScreen: View {
 	@State private var lastHandledTranslationID: UUID?
 	@FocusState private var isInputFocused: Bool
 
-	private let outputCardHeight: CGFloat = 248
-	private let inputCardHeight: CGFloat = 300
 	private let topContentPadding: CGFloat = 12
 
 	init() {
@@ -105,7 +103,8 @@ struct TranslationScreen: View {
 							},
 							deviceOrientation: viewModel.deviceOrientation
 						)
-						.frame(height: outputCardHeight)
+						.frame(maxHeight: .infinity)
+						.layoutPriority(1)
 						.padding(.horizontal, 16)
 					}
 
@@ -136,7 +135,8 @@ struct TranslationScreen: View {
 						},
 						maxLength: 500
 					)
-					.frame(height: inputCardHeight)
+					.frame(maxHeight: .infinity)
+					.layoutPriority(1)
 					.padding(.horizontal, 16)
 
 					// Action Buttons
@@ -201,7 +201,6 @@ struct TranslationScreen: View {
 							.padding(.horizontal, 16)
 					}
 
-					Spacer(minLength: 0)
 				}
 				.safeAreaPadding(.bottom, 12)
 				.onTapGesture {
