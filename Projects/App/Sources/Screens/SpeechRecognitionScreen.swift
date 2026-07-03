@@ -42,7 +42,7 @@ struct SpeechRecognitionScreen: View {
 				recognizedText
 					.padding(.top, 76)
 
-				if let errorMessage = viewModel.errorMessage {
+				if shouldShowErrorMessage, let errorMessage = viewModel.errorMessage {
 					errorMessageView(errorMessage)
 						.padding(.top, 18)
 						.padding(.horizontal, 40)
@@ -63,7 +63,11 @@ struct SpeechRecognitionScreen: View {
 		}
 		.onAppear {
 			viewModel.resetSessionState()
+			#if targetEnvironment(simulator)
+			applySimulatorScreenshotMock()
+			#else
 			startRecognition()
+			#endif
 		}
 		.onDisappear {
 			viewModel.stopRecognition()
@@ -168,6 +172,14 @@ struct SpeechRecognitionScreen: View {
 		}
 	}
 
+	private var shouldShowErrorMessage: Bool {
+		#if targetEnvironment(simulator)
+		return false
+		#else
+		return true
+		#endif
+	}
+
 	private var displayText: String {
 		let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
 		if !trimmedText.isEmpty {
@@ -193,12 +205,17 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private func toggleRecognition() {
+		#if targetEnvironment(simulator)
+		applySimulatorScreenshotMock()
+		return
+		#else
 		if viewModel.isRecognizing {
 			viewModel.stopRecognition()
 			return
 		}
 
 		startRecognition()
+		#endif
 	}
 
 	private func startRecognition() {
@@ -206,6 +223,18 @@ struct SpeechRecognitionScreen: View {
 			// Text is mirrored through recognizedText onChange.
 		}
 	}
+
+	#if targetEnvironment(simulator)
+	private func applySimulatorScreenshotMock() {
+		let mockText = "가장 가까운 지하철역이\n어디예요?"
+		viewModel.stopRecognition()
+		viewModel.errorMessage = nil
+		viewModel.recognizedText = mockText
+		text = mockText
+	}
+	#else
+	private func applySimulatorScreenshotMock() { }
+	#endif
 
 	private func cancel() {
 		viewModel.stopRecognition()
