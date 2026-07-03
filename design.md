@@ -136,13 +136,17 @@ Current mapping:
 - `Projects/App/Sources/ViewModels/SpeechRecognitionViewModel.swift`
 
 Design requirements:
-- Full-screen or sheet-like focused listening state.
-- Speaker pill at top-left: `Speaking Korean`, using you-accent.
-- Large centered circular mic control with concentric rings.
-- Recognized text centered below mic.
-- Bottom actions:
-  - `Cancel` secondary.
-  - `Use & translate` primary with them-accent gradient.
+- Voice input is a **dedicated full-screen capture screen**, not a partial-height sheet.
+- Present from the `Speak` segment as an immersive flow; hide the main TalkTrans header, segmented control, cards, and ads while voice capture is active.
+- Hide banner ads while Speak mode is active; do not place ads near the microphone or let ads shift listening controls.
+- Show a top-left speaker pill: flag + `Speaking Korean`, using you-accent tint.
+- Large centered circular mic control with warm you-accent/orange gradient and subtle concentric ring.
+- It may begin listening immediately on entry, as long as the listening state is visually obvious and Cancel is always available.
+- Recognized text is centered below the mic in large bold type.
+- Inline error card for unavailable recognizer, permission denial, or no speech; always offer a path back to Type.
+- Bottom actions by state:
+  - `Cancel` secondary on the left.
+  - `Use & translate` primary with them-accent gradient on the right.
 
 Approximate sizing:
 - Mic orbit: 172pt.

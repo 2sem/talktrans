@@ -44,6 +44,24 @@ extension TranslationLocale {
 		case .france: return "french"
 		}
 	}
+
+	var flagEmoji: String {
+		switch self {
+		case .korean: return "🇰🇷"
+		case .japanese: return "🇯🇵"
+		case .english: return "🇺🇸"
+		case .taiwan: return "🇹🇼"
+		case .chinese: return "🇨🇳"
+		case .vietnam: return "🇻🇳"
+		case .indonesian: return "🇮🇩"
+		case .thai: return "🇹🇭"
+		case .german: return "🇩🇪"
+		case .russian: return "🇷🇺"
+		case .spain: return "🇪🇸"
+		case .italian: return "🇮🇹"
+		case .france: return "🇫🇷"
+		}
+	}
 	
 	var locale: Locale {
 		return Locale(identifier: self.rawValue)
@@ -72,4 +90,3 @@ extension TranslationLocale {
 		}
 	}
 }
-
