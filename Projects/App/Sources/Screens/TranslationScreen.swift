@@ -88,7 +88,7 @@ struct TranslationScreen: View {
 						.padding(.horizontal, 16)
 
 					// Translated Output Section
-					if !showSpeechRecognition && !isInputFocused {
+					if !isInputFocused {
 						TranslationOutputView(
 							text: viewModel.translatedText,
 							locale: viewModel.translatedLocale,
@@ -220,14 +220,20 @@ struct TranslationScreen: View {
 		.translationTask(viewModel.translationConfiguration) { [sessionBindingRequestID] session in
 			await viewModel.setTranslationSession(session, for: sessionBindingRequestID)
 		}
-		.sheet(isPresented: $showSpeechRecognition) {
+		.fullScreenCover(isPresented: $showSpeechRecognition) {
 			SpeechRecognitionScreen(
 				viewModel: speechViewModel,
 				text: $viewModel.nativeText,
-				locale: viewModel.nativeLocale.locale,
-				processTitle: "Translate",
+				sourceLocale: viewModel.nativeLocale,
+				targetLocale: viewModel.translatedLocale,
+				processTitle: "Use & translate",
 				onProcess: {
+					isInputFocused = false
+					showSpeechRecognition = false
 					viewModel.translate()
+				},
+				onCancel: {
+					showSpeechRecognition = false
 				}
 			)
 		}
