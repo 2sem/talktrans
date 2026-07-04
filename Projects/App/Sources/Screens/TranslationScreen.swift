@@ -52,6 +52,7 @@ struct TranslationScreen: View {
 					TranslationOutputView(
 						text: viewModel.translatedText,
 						locale: viewModel.translatedLocale,
+						sourceLocale: viewModel.nativeLocale,
 						availableLocales: viewModel.supportedTargetLocales,
 						placeholder: "Translated message will appear here".localized(),
 						onLocaleChange: { locale in
@@ -92,6 +93,7 @@ struct TranslationScreen: View {
 						TranslationOutputView(
 							text: viewModel.translatedText,
 							locale: viewModel.translatedLocale,
+							sourceLocale: viewModel.nativeLocale,
 							availableLocales: viewModel.supportedTargetLocales,
 							placeholder: "Translated message will appear here".localized(),
 							onLocaleChange: { locale in
@@ -122,6 +124,7 @@ struct TranslationScreen: View {
 						text: $viewModel.nativeText,
 						isFocused: $isInputFocused,
 						locale: viewModel.nativeLocale,
+						targetLocale: viewModel.translatedLocale,
 						availableLocales: TranslationLocale.allCases,
 						placeholder: "".appendingFormat("Please input your message to be translated as %@".localized(), viewModel.translatedLocale.displayName.localized()),
 						onLocaleChange: { locale in

@@ -12,6 +12,7 @@ struct TranslationInputView: View {
 	@Binding var text: String
 	var isFocused: FocusState<Bool>.Binding
 	let locale: TranslationLocale
+	let targetLocale: TranslationLocale
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
@@ -49,6 +50,9 @@ struct TranslationInputView: View {
 				LanguageSelectionScreen(
 					languages: availableLocales,
 					selectedLocale: locale,
+					selectedRole: .source,
+					sourceLocale: locale,
+					targetLocale: targetLocale,
 					onSelect: onLocaleChange
 				)
 				.presentationDetents([.medium, .large])
@@ -138,6 +142,7 @@ private struct DuoInputFlagButton: View {
 		text: .constant(""),
 		isFocused: $isFocused,
 		locale: .english,
+		targetLocale: .korean,
 		availableLocales: TranslationLocale.allCases,
 		placeholder: "Please input your message to be translated as Korean",
         onLocaleChange: { _ in },
