@@ -11,6 +11,7 @@ import SwiftUI
 struct TranslationOutputView: View {
 	let text: String
 	let locale: TranslationLocale
+	let sourceLocale: TranslationLocale
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
@@ -82,6 +83,9 @@ struct TranslationOutputView: View {
 				LanguageSelectionScreen(
 					languages: availableLocales,
 					selectedLocale: locale,
+					selectedRole: .target,
+					sourceLocale: sourceLocale,
+					targetLocale: locale,
 					onSelect: onLocaleChange
 				)
 				.presentationDetents([.medium, .large])
@@ -235,6 +239,7 @@ private struct FontSizeSheetView: View {
 			TranslationOutputView(
 				text: "번역된 문장이 표시됩니다",
 				locale: .korean,
+				sourceLocale: .english,
 				availableLocales: TranslationLocale.allCases,
 				placeholder: "Translated message will appear here",
 				onLocaleChange: { _ in },

@@ -62,6 +62,24 @@ extension TranslationLocale {
 		case .france: return "🇫🇷"
 		}
 	}
+
+	var nativeDisplayName: String {
+		switch self {
+		case .korean: return "한국어"
+		case .japanese: return "日本語"
+		case .english: return "English"
+		case .taiwan: return "繁體中文"
+		case .chinese: return "简体中文"
+		case .vietnam: return "Tiếng Việt"
+		case .indonesian: return "Bahasa Indonesia"
+		case .thai: return "ไทย"
+		case .german: return "Deutsch"
+		case .russian: return "Русский"
+		case .spain: return "Español"
+		case .italian: return "Italiano"
+		case .france: return "Français"
+		}
+	}
 	
 	var locale: Locale {
 		return Locale(identifier: self.rawValue)
