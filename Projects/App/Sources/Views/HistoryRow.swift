@@ -7,75 +7,74 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct HistoryRow: View {
 	let entry: TranslationEntry
 	let onFavoriteToggle: () -> Void
 
-	private var sourceFlagName: String? {
-		TranslationLocale(rawValue: entry.sourceLang)?.flagImageName
+	private var sourceLocale: TranslationLocale? {
+		TranslationLocale(rawValue: entry.sourceLang)
 	}
 
-	private var targetFlagName: String? {
-		TranslationLocale(rawValue: entry.targetLang)?.flagImageName
+	private var targetLocale: TranslationLocale? {
+		TranslationLocale(rawValue: entry.targetLang)
+	}
+
+	private var languageDirection: String {
+		let source = sourceLocale?.flagEmoji ?? entry.sourceLang.uppercased()
+		let target = targetLocale?.flagEmoji ?? entry.targetLang.uppercased()
+		return "\(source) → \(target)"
 	}
 
 	var body: some View {
-		HStack(alignment: .top, spacing: 12) {
-			// MARK: Text stack
-			VStack(alignment: .leading, spacing: 4) {
-				Text(entry.sourceText)
-					.font(.body)
-					.foregroundColor(.appTextPrimary)
-					.lineLimit(2)
+		ZStack(alignment: .leading) {
+			RoundedRectangle(cornerRadius: 22, style: .continuous)
+				.fill(Color.duoThemAccent)
+
+			RoundedRectangle(cornerRadius: 22, style: .continuous)
+				.fill(Color.duoSurface)
+				.offset(x: 5)
+				.overlay(
+					RoundedRectangle(cornerRadius: 22, style: .continuous)
+						.stroke(Color.duoDivider.opacity(0.25), lineWidth: 1)
+						.offset(x: 5)
+				)
+
+			VStack(alignment: .leading, spacing: 8) {
+				HStack(alignment: .center, spacing: 8) {
+					Text(languageDirection)
+						.font(.system(size: 13, weight: .bold))
+						.foregroundStyle(Color.duoTextSecondary)
+
+					Spacer(minLength: 0)
+
+					Text(entry.timestamp, style: .time)
+						.font(.system(size: 13, weight: .semibold))
+						.foregroundStyle(Color.duoTextMuted)
+				}
 
 				Text(entry.translatedText)
-					.font(.caption)
-					.foregroundColor(.appTextPlaceholder)
+					.font(.system(size: 18, weight: .bold))
+					.foregroundStyle(Color.duoTextPrimary)
 					.lineLimit(2)
-			}
-			.frame(maxWidth: .infinity, alignment: .leading)
+					.frame(maxWidth: .infinity, alignment: .leading)
 
-			// MARK: Right controls
-			VStack(alignment: .trailing, spacing: 8) {
-				// Flag pair
-				HStack(spacing: 4) {
-					if let src = sourceFlagName {
-						Image(src)
-							.resizable()
-							.scaledToFit()
-							.frame(width: 20, height: 14)
-							.cornerRadius(2)
-					}
-					Image(systemName: "arrow.right")
-						.font(.system(size: 9, weight: .medium))
-						.foregroundColor(.appTextPlaceholder)
-					if let tgt = targetFlagName {
-						Image(tgt)
-							.resizable()
-							.scaledToFit()
-							.frame(width: 20, height: 14)
-							.cornerRadius(2)
-					}
+				HStack(alignment: .bottom, spacing: 8) {
+					Text(entry.sourceText)
+						.font(.system(size: 16, weight: .medium))
+						.foregroundStyle(Color.duoTextSecondary)
+						.lineLimit(2)
+
+					Spacer(minLength: 0)
 				}
-
-				// Relative timestamp
-				Text(entry.timestamp, style: .time)
-					.font(.caption2)
-					.foregroundColor(.appTextPlaceholder)
-					.multilineTextAlignment(.trailing)
-
-				// Favorite toggle
-				Button(action: onFavoriteToggle) {
-					Image(systemName: entry.isFavorited ? "star.fill" : "star")
-						.font(.system(size: 14, weight: .medium))
-						.foregroundColor(entry.isFavorited ? .yellow : .appTextPlaceholder)
-				}
-				.buttonStyle(.plain)
 			}
+			.padding(.leading, 30)
+			.padding(.trailing, 20)
+			.padding(.vertical, 15)
 		}
-		.padding(.vertical, 4)
-		.contentShape(Rectangle())
+		.clipShape(.rect(cornerRadius: 22, style: .continuous))
+		.shadow(color: .black.opacity(0.06), radius: 14, y: 8)
+		.contentShape(.rect(cornerRadius: 22, style: .continuous))
 	}
+
 }
