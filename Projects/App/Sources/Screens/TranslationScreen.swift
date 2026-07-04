@@ -24,6 +24,11 @@ struct TranslationScreen: View {
 
 	private let topContentPadding: CGFloat = 12
 
+	private var canEnterTableMode: Bool {
+		!viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+		!viewModel.translatedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
+
 	init() {
 		// TranslationSession will be created dynamically in TranslationViewModel
 		// when translate button is pressed
@@ -166,21 +171,24 @@ struct TranslationScreen: View {
 						.disabled(!viewModel.canTranslate)
 
 						Button(action: {
+							guard canEnterTableMode else { return }
 							viewModel.toggleFullScreen()
 						}) {
 							Image(systemName: "person.line.dotted.person.fill")
 								.font(.system(size: 18, weight: .semibold))
 								.frame(width: 52, height: 52)
-								.background(Color.duoThemAccent.opacity(0.14))
-								.foregroundStyle(Color.duoThemAccentDeep)
+								.background(Color.duoThemAccent.opacity(canEnterTableMode ? 0.14 : 0.08))
+								.foregroundStyle(canEnterTableMode ? Color.duoThemAccentDeep : Color.duoTextMuted)
 								.clipShape(.rect(cornerRadius: 16, style: .continuous))
 								.overlay(
 									RoundedRectangle(cornerRadius: 16, style: .continuous)
-										.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
+										.stroke(Color.duoThemAccent.opacity(canEnterTableMode ? 0.24 : 0.10), lineWidth: 1)
 								)
 						}
+						.disabled(!canEnterTableMode)
 						.buttonStyle(.plain)
 						.accessibilityLabel("Table Mode")
+						.accessibilityHint(canEnterTableMode ? "" : "Translate or enter text before using Table Mode".localized())
 					}
 					.padding(.horizontal, 16)
 					.padding(.bottom, 8)
