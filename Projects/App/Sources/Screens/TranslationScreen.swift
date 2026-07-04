@@ -305,11 +305,11 @@ private struct DuoTableModeView: View {
 					Text("↑")
 					Text("↓")
 				}
-					.font(.system(size: 30, weight: .medium, design: .rounded))
+					.font(.system(size: 22, weight: .medium, design: .rounded))
 					.foregroundStyle(Color.duoTextMuted)
-					.frame(width: 92, height: 92)
+					.frame(width: 64, height: 64)
 					.background(Color.duoSurface, in: Circle())
-					.shadow(color: .black.opacity(0.14), radius: 28, x: 0, y: 12)
+					.shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
 					.accessibilityHidden(true)
 			}
 		}
