@@ -60,7 +60,7 @@ let project = Project(
                     ],
                     "NSMicrophoneUsageDescription": "For Speech Recognition",
                     "NSSpeechRecognitionUsageDescription": "For Speech Recognition",
-                    "UIViewControllerBasedStatusBarAppearance": false,
+					"UIViewControllerBasedStatusBarAppearance": true,
                     "SKAdNetworkItems": .array(skAdNetworks),
                 ]
             ),
