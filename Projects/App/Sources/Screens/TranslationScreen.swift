@@ -20,14 +20,10 @@ struct TranslationScreen: View {
 	@State private var showHistory = false
 	@State private var showAdFreeToast = false
 	@State private var lastHandledTranslationID: UUID?
+	@State private var isTableModePresented = false
 	@FocusState private var isInputFocused: Bool
 
 	private let topContentPadding: CGFloat = 12
-
-	private var canEnterTableMode: Bool {
-		!viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-		!viewModel.translatedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-	}
 
 	init() {
 		// TranslationSession will be created dynamically in TranslationViewModel
@@ -51,14 +47,14 @@ struct TranslationScreen: View {
 			)
 			.ignoresSafeArea()
 
-			if viewModel.isFullScreen {
+			if isTableModePresented {
 				DuoTableModeView(
 					sourceText: viewModel.nativeText,
 					translatedText: viewModel.translatedText,
 					sourceLocale: viewModel.nativeLocale,
 					targetLocale: viewModel.translatedLocale,
 					onExit: {
-						viewModel.toggleFullScreen()
+						isTableModePresented = false
 					},
 					onSpeakToReply: {
 						showSpeechRecognition = true
@@ -93,10 +89,8 @@ struct TranslationScreen: View {
 							onLocaleChange: { locale in
 								viewModel.updateTranslatedLocale(locale)
 							},
-							isFullScreen: viewModel.isFullScreen,
-							onToggleFullScreen: {
-								viewModel.toggleFullScreen()
-							},
+							isFullScreen: false,
+							onToggleFullScreen: { },
 							deviceOrientation: viewModel.deviceOrientation
 						)
 						.frame(maxHeight: .infinity)
@@ -171,24 +165,22 @@ struct TranslationScreen: View {
 						.disabled(!viewModel.canTranslate)
 
 						Button(action: {
-							guard canEnterTableMode else { return }
-							viewModel.toggleFullScreen()
+							isInputFocused = false
+							isTableModePresented = true
 						}) {
 							Image(systemName: "person.line.dotted.person.fill")
 								.font(.system(size: 18, weight: .semibold))
 								.frame(width: 52, height: 52)
-								.background(Color.duoThemAccent.opacity(canEnterTableMode ? 0.14 : 0.08))
-								.foregroundStyle(canEnterTableMode ? Color.duoThemAccentDeep : Color.duoTextMuted)
+								.background(Color.duoThemAccent.opacity(0.14))
+								.foregroundStyle(Color.duoThemAccentDeep)
 								.clipShape(.rect(cornerRadius: 16, style: .continuous))
 								.overlay(
 									RoundedRectangle(cornerRadius: 16, style: .continuous)
-										.stroke(Color.duoThemAccent.opacity(canEnterTableMode ? 0.24 : 0.10), lineWidth: 1)
+										.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
 								)
 						}
-						.disabled(!canEnterTableMode)
 						.buttonStyle(.plain)
 						.accessibilityLabel("Table Mode")
-						.accessibilityHint(canEnterTableMode ? "" : "Translate or enter text before using Table Mode".localized())
 					}
 					.padding(.horizontal, 16)
 					.padding(.bottom, 8)
@@ -209,7 +201,7 @@ struct TranslationScreen: View {
 				.transition(.scale)
 			}
 		}
-		.statusBarHidden(viewModel.isFullScreen)
+		.statusBarHidden(isTableModePresented)
 		.onChange(of: viewModel.lastCompletedTranslationID) { _, newValue in
 			guard let translationID = newValue else { return }
 			guard translationID != lastHandledTranslationID else { return }
@@ -217,7 +209,7 @@ struct TranslationScreen: View {
 			reviewManager.show()
 			saveTranslationEntry()
 		}
-		.animation(.easeInOut, value: viewModel.isFullScreen)
+		.animation(.easeInOut, value: isTableModePresented)
 		.translationTask(viewModel.translationConfiguration) { [sessionBindingRequestID] session in
 			await viewModel.setTranslationSession(session, for: sessionBindingRequestID)
 		}
