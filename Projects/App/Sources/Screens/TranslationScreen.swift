@@ -47,30 +47,19 @@ struct TranslationScreen: View {
 			.ignoresSafeArea()
 
 			if viewModel.isFullScreen {
-				// Full Screen Mode - Only show translated output
-				VStack(spacing: 0) {
-					TranslationOutputView(
-						text: viewModel.translatedText,
-						locale: viewModel.translatedLocale,
-						sourceLocale: viewModel.nativeLocale,
-						availableLocales: viewModel.supportedTargetLocales,
-						placeholder: "Translated message will appear here".localized(),
-						onLocaleChange: { locale in
-							viewModel.updateTranslatedLocale(locale)
-						},
-						isFullScreen: viewModel.isFullScreen,
-						onToggleFullScreen: {
-							viewModel.toggleFullScreen()
-						},
-						deviceOrientation: viewModel.deviceOrientation
-					)
-					.padding(16)
-
-					if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
-						BannerAdSwiftUIView()
-							.frame(height: 50)
+				DuoTableModeView(
+					sourceText: viewModel.nativeText,
+					translatedText: viewModel.translatedText,
+					sourceLocale: viewModel.nativeLocale,
+					targetLocale: viewModel.translatedLocale,
+					onExit: {
+						viewModel.toggleFullScreen()
+					},
+					onSpeakToReply: {
+						showSpeechRecognition = true
 					}
-				}.transition(.scale)
+				)
+				.transition(.scale)
 			} else {
 				// Normal Mode - Show all UI elements
 				VStack(spacing: 8) {
@@ -212,6 +201,7 @@ struct TranslationScreen: View {
 				.transition(.scale)
 			}
 		}
+		.statusBarHidden(viewModel.isFullScreen)
 		.onChange(of: viewModel.lastCompletedTranslationID) { _, newValue in
 			guard let translationID = newValue else { return }
 			guard translationID != lastHandledTranslationID else { return }
@@ -268,6 +258,163 @@ struct TranslationScreen: View {
 		}
 		viewModel.nativeText = sourceText
 		viewModel.translatedText = translatedText
+	}
+}
+
+// MARK: - DuoTableModeView
+
+private struct DuoTableModeView: View {
+	let sourceText: String
+	let translatedText: String
+	let sourceLocale: TranslationLocale
+	let targetLocale: TranslationLocale
+	let onExit: () -> Void
+	let onSpeakToReply: () -> Void
+
+	var body: some View {
+		GeometryReader { proxy in
+			VStack(spacing: 0) {
+				DuoTableModePanel(
+					roleTitle: "THEM".localized(),
+					locale: targetLocale,
+					text: translatedText,
+					placeholder: "Translated message will appear here".localized(),
+					accent: .duoThemAccentDeep,
+					textColor: .duoTableThemText,
+					backgroundColors: [.duoTableThemBackground, .duoTableThemBackgroundDeep],
+					isUpsideDown: true
+				)
+				.frame(height: proxy.size.height / 2)
+
+				DuoTableModePanel(
+					roleTitle: "YOU".localized(),
+					locale: sourceLocale,
+					text: sourceText,
+					placeholder: "Please input your message".localized(),
+					accent: .duoYouAccentDeep,
+					textColor: .duoTableYouText,
+					backgroundColors: [.duoTableYouBackground, .duoTableYouBackgroundDeep],
+					isUpsideDown: false,
+					onExit: onExit,
+					onSpeakToReply: onSpeakToReply
+				)
+				.frame(height: proxy.size.height / 2)
+			}
+			.overlay(alignment: .center) {
+				Image(systemName: "arrow.up.arrow.down")
+					.font(.system(size: 26, weight: .medium))
+					.foregroundStyle(Color.duoTextMuted)
+					.frame(width: 92, height: 92)
+					.background(Color.duoSurface, in: Circle())
+					.shadow(color: .black.opacity(0.14), radius: 28, x: 0, y: 12)
+					.accessibilityHidden(true)
+			}
+		}
+		.ignoresSafeArea()
+		.background(Color.duoBackground)
+		.statusBarHidden(true)
+		.accessibilityElement(children: .contain)
+	}
+}
+
+private struct DuoTableModePanel: View {
+	let roleTitle: String
+	let locale: TranslationLocale
+	let text: String
+	let placeholder: String
+	let accent: Color
+	let textColor: Color
+	let backgroundColors: [Color]
+	let isUpsideDown: Bool
+	var onExit: (() -> Void)?
+	var onSpeakToReply: (() -> Void)?
+
+	private var displayText: String {
+		text.isEmpty ? placeholder : text
+	}
+
+	var body: some View {
+		ZStack(alignment: .topTrailing) {
+			LinearGradient(
+				colors: backgroundColors,
+				startPoint: .topLeading,
+				endPoint: .bottomTrailing
+			)
+
+			VStack(spacing: 22) {
+				Spacer(minLength: 42)
+
+				DuoTableModeLanguagePill(
+					roleTitle: roleTitle,
+					locale: locale,
+					accent: accent
+				)
+
+				Text(displayText)
+					.font(.system(size: isUpsideDown ? 42 : 34, weight: .bold, design: .rounded))
+					.foregroundStyle(textColor)
+					.multilineTextAlignment(.center)
+					.lineSpacing(4)
+					.minimumScaleFactor(0.45)
+					.lineLimit(4)
+					.padding(.horizontal, 30)
+
+				if let onSpeakToReply {
+					Button(action: onSpeakToReply) {
+						Label("Speak to reply".localized(), systemImage: "microphone.fill")
+							.font(.system(size: 23, weight: .bold, design: .rounded))
+							.foregroundStyle(accent)
+							.padding(.horizontal, 28)
+							.frame(minHeight: 72)
+							.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+							.shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 8)
+					}
+					.buttonStyle(.plain)
+				}
+
+				Spacer(minLength: isUpsideDown ? 82 : 62)
+			}
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+
+			if let onExit {
+				Button(action: onExit) {
+					Label("Exit".localized(), systemImage: "xmark")
+						.font(.system(size: 19, weight: .bold, design: .rounded))
+						.foregroundStyle(textColor)
+						.padding(.horizontal, 20)
+						.frame(minHeight: 58)
+						.background(Color.duoSurface, in: Capsule())
+						.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+				}
+				.buttonStyle(.plain)
+				.padding(.top, 32)
+				.padding(.trailing, 34)
+			}
+		}
+		.rotationEffect(.degrees(isUpsideDown ? 180 : 0))
+	}
+}
+
+private struct DuoTableModeLanguagePill: View {
+	let roleTitle: String
+	let locale: TranslationLocale
+	let accent: Color
+
+	var body: some View {
+		HStack(spacing: 8) {
+			Text(locale.flagEmoji)
+				.font(.system(size: 18))
+
+			Text("\(roleTitle) · \(locale.displayName.uppercased())")
+				.font(.system(size: 19, weight: .bold, design: .rounded))
+				.foregroundStyle(accent)
+				.tracking(1.6)
+		}
+		.padding(.horizontal, 24)
+		.frame(minHeight: 54)
+		.background(Color.duoSurface, in: Capsule())
+		.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+		.accessibilityElement(children: .combine)
 	}
 }
 

@@ -64,6 +64,30 @@ extension Color {
 		Color.dynamic(light: 0xD2D8E0, dark: 0x2A303C)
 	}
 
+	static var duoTableThemBackground: Color {
+		Color.dynamic(light: 0xDDF7F2, dark: 0x0E3D37)
+	}
+
+	static var duoTableThemBackgroundDeep: Color {
+		Color.dynamic(light: 0xC9F0E9, dark: 0x0C2E2A)
+	}
+
+	static var duoTableYouBackground: Color {
+		Color.dynamic(light: 0xFDEFD6, dark: 0x2E2410)
+	}
+
+	static var duoTableYouBackgroundDeep: Color {
+		Color.dynamic(light: 0xFCE4BE, dark: 0x191007)
+	}
+
+	static var duoTableThemText: Color {
+		Color.dynamic(light: 0x093E38, dark: 0xEAFBF7)
+	}
+
+	static var duoTableYouText: Color {
+		Color.dynamic(light: 0x4A3208, dark: 0xFBF3E6)
+	}
+
 	private static func dynamic(light: UInt, dark: UInt) -> Color {
 		Color(uiColor: UIColor { traitCollection in
 			uiColor(hex: traitCollection.userInterfaceStyle == .dark ? dark : light)
