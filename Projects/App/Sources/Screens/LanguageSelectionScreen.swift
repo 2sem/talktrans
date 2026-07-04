@@ -145,35 +145,30 @@ private extension LanguageSelectionScreen {
 	}
 
 	var summaryCard: some View {
-		HStack(spacing: 10) {
+		HStack(spacing: 18) {
 			LanguageSummaryColumn(
 				title: "YOU".localized(),
 				locale: currentSourceLocale,
-				accent: .duoYouAccent,
-				isActive: selectedRole == .source
+				accent: .duoYouAccent
 			)
 
 			Image(systemName: "arrow.left.arrow.right")
-				.font(.system(size: 14, weight: .bold))
+				.font(.system(size: 18, weight: .medium))
 				.foregroundStyle(Color.duoTextMuted)
-				.frame(width: 36, height: 36)
-				.background(Color.duoControlSurface, in: Circle())
+				.frame(width: 58, height: 58)
+				.background(Color.duoControlSurface.opacity(0.72), in: Circle())
 				.accessibilityHidden(true)
 
 			LanguageSummaryColumn(
 				title: "THEM".localized(),
 				locale: currentTargetLocale,
-				accent: .duoThemAccent,
-				isActive: selectedRole == .target
+				accent: .duoThemAccent
 			)
 		}
-		.padding(12)
-		.background(Color.duoSurface.opacity(0.98), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-		.overlay(
-			RoundedRectangle(cornerRadius: 24, style: .continuous)
-				.stroke(Color.duoDivider.opacity(0.62), lineWidth: 1)
-		)
-		.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+		.padding(.horizontal, 24)
+		.padding(.vertical, 22)
+		.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 32, style: .continuous))
+		.shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 6)
 	}
 
 	var searchField: some View {
@@ -241,47 +236,25 @@ private struct LanguageSummaryColumn: View {
 	let title: String
 	let locale: TranslationLocale
 	let accent: Color
-	let isActive: Bool
 
 	var body: some View {
-		VStack(alignment: .leading, spacing: 9) {
-			HStack(spacing: 6) {
-				Text(title)
-					.font(.system(size: 11, weight: .bold))
-					.foregroundStyle(accent)
-
-				if isActive {
-					Capsule()
-						.fill(accent)
-						.frame(width: 18, height: 3)
-				}
-			}
+		VStack(alignment: .center, spacing: 8) {
+			Text(title)
+				.font(.system(size: 16, weight: .bold))
+				.foregroundStyle(accent)
+				.lineLimit(1)
 
 			HStack(spacing: 8) {
-				LanguageFlagView(locale: locale, width: 32, height: 22)
+				LanguageFlagView(locale: locale, width: 22, height: 15)
 
-				VStack(alignment: .leading, spacing: 1) {
-					Text(locale.displayName)
-						.font(.system(size: 15, weight: .semibold))
-						.foregroundStyle(Color.duoTextPrimary)
-						.lineLimit(1)
-
-					Text(locale.rawValue.uppercased())
-						.font(.system(size: 11, weight: .bold))
-						.foregroundStyle(Color.duoTextMuted)
-				}
+				Text(locale.displayName)
+					.font(.system(size: 22, weight: .bold, design: .rounded))
+					.foregroundStyle(Color.duoTextPrimary)
+					.lineLimit(1)
+					.minimumScaleFactor(0.82)
 			}
 		}
-		.frame(maxWidth: .infinity, alignment: .leading)
-		.padding(12)
-		.background(
-			(isActive ? accent.opacity(0.055) : Color.duoElevatedSurface.opacity(0.7)),
-			in: RoundedRectangle(cornerRadius: 18, style: .continuous)
-		)
-		.overlay(
-			RoundedRectangle(cornerRadius: 18, style: .continuous)
-				.stroke(isActive ? accent.opacity(0.34) : Color.duoDivider.opacity(0.55), lineWidth: 1)
-		)
+		.frame(maxWidth: .infinity)
 		.accessibilityElement(children: .combine)
 	}
 }
