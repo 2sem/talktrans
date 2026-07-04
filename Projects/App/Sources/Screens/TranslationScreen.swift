@@ -301,8 +301,11 @@ private struct DuoTableModeView: View {
 				.frame(height: proxy.size.height / 2)
 			}
 			.overlay(alignment: .center) {
-				Image(systemName: "arrow.up.arrow.down")
-					.font(.system(size: 26, weight: .medium))
+				HStack(spacing: -3) {
+					Text("↑")
+					Text("↓")
+				}
+					.font(.system(size: 30, weight: .medium, design: .rounded))
 					.foregroundStyle(Color.duoTextMuted)
 					.frame(width: 92, height: 92)
 					.background(Color.duoSurface, in: Circle())
@@ -361,7 +364,7 @@ private struct DuoTableModePanel: View {
 
 				if let onSpeakToReply {
 					Button(action: onSpeakToReply) {
-						Label("Speak to reply".localized(), systemImage: "microphone.fill")
+						Text("🎤 \("Speak to reply".localized())")
 							.font(.system(size: 23, weight: .bold, design: .rounded))
 							.foregroundStyle(accent)
 							.padding(.horizontal, 28)
@@ -378,7 +381,7 @@ private struct DuoTableModePanel: View {
 
 			if let onExit {
 				Button(action: onExit) {
-					Label("Exit".localized(), systemImage: "xmark")
+					Text("× \("Exit".localized())")
 						.font(.system(size: 19, weight: .bold, design: .rounded))
 						.foregroundStyle(textColor)
 						.padding(.horizontal, 20)
