@@ -58,6 +58,9 @@ struct TranslationScreen: View {
 					},
 					onSpeakToReply: {
 						showSpeechRecognition = true
+					},
+					onSwap: {
+						viewModel.swapLanguages()
 					}
 				)
 				.transition(.scale)
@@ -273,6 +276,7 @@ private struct DuoTableModeView: View {
 	let targetLocale: TranslationLocale
 	let onExit: () -> Void
 	let onSpeakToReply: () -> Void
+	let onSwap: () -> Void
 
 	var body: some View {
 		GeometryReader { proxy in
@@ -304,16 +308,20 @@ private struct DuoTableModeView: View {
 				.frame(height: proxy.size.height / 2)
 			}
 			.overlay(alignment: .center) {
-				HStack(spacing: -3) {
-					Text("↑")
-					Text("↓")
+				Button(action: onSwap) {
+					HStack(spacing: -3) {
+						Text("↑")
+						Text("↓")
+					}
+						.font(.system(size: 22, weight: .medium, design: .rounded))
+						.foregroundStyle(Color.duoTextMuted)
+						.frame(width: 64, height: 64)
+						.background(Color.duoSurface, in: Circle())
+						.shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
 				}
-					.font(.system(size: 22, weight: .medium, design: .rounded))
-					.foregroundStyle(Color.duoTextMuted)
-					.frame(width: 64, height: 64)
-					.background(Color.duoSurface, in: Circle())
-					.shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
-					.accessibilityHidden(true)
+				.buttonStyle(.plain)
+				.contentShape(Circle())
+				.accessibilityLabel("Swap languages".localized())
 			}
 		}
 		.ignoresSafeArea()
