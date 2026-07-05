@@ -53,7 +53,8 @@ struct TranslationInputView: View {
 					selectedRole: .source,
 					sourceLocale: locale,
 					targetLocale: targetLocale,
-					onSelect: onLocaleChange
+					onSelect: onLocaleChange,
+					onSwap: onSwap
 				)
 				.presentationDetents([.medium, .large])
 			}

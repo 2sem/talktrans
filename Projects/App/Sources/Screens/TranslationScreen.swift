@@ -89,6 +89,9 @@ struct TranslationScreen: View {
 							onLocaleChange: { locale in
 								viewModel.updateTranslatedLocale(locale)
 							},
+							onSwap: {
+								viewModel.swapLanguages()
+							},
 							isFullScreen: false,
 							onToggleFullScreen: { },
 							deviceOrientation: viewModel.deviceOrientation

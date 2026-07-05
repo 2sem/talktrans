@@ -43,6 +43,7 @@ struct LanguageSelectionScreen: View {
 	let sourceLocale: TranslationLocale?
 	let targetLocale: TranslationLocale?
 	let onSelect: (TranslationLocale) -> Void
+	let onSwap: (() -> Void)?
 
 	@Environment(\.dismiss) private var dismiss
 	@State private var searchText = ""
@@ -53,7 +54,8 @@ struct LanguageSelectionScreen: View {
 		selectedRole: LanguageSelectionRole = .target,
 		sourceLocale: TranslationLocale? = nil,
 		targetLocale: TranslationLocale? = nil,
-		onSelect: @escaping (TranslationLocale) -> Void
+		onSelect: @escaping (TranslationLocale) -> Void,
+		onSwap: (() -> Void)? = nil
 	) {
 		self.languages = languages
 		self.selectedLocale = selectedLocale
@@ -61,6 +63,7 @@ struct LanguageSelectionScreen: View {
 		self.sourceLocale = sourceLocale
 		self.targetLocale = targetLocale
 		self.onSelect = onSelect
+		self.onSwap = onSwap
 	}
 
 	private var currentSourceLocale: TranslationLocale {
@@ -152,12 +155,19 @@ private extension LanguageSelectionScreen {
 				accent: .duoYouAccent
 			)
 
-			Image(systemName: "arrow.left.arrow.right")
-				.font(.system(size: 18, weight: .medium))
-				.foregroundStyle(Color.duoTextMuted)
-				.frame(width: 58, height: 58)
-				.background(Color.duoControlSurface.opacity(0.72), in: Circle())
-				.accessibilityHidden(true)
+			Button {
+				onSwap?()
+				dismiss()
+			} label: {
+				Image(systemName: "arrow.left.arrow.right")
+					.font(.system(size: 18, weight: .medium))
+					.foregroundStyle(Color.duoTextMuted)
+					.frame(width: 58, height: 58)
+					.background(Color.duoControlSurface.opacity(0.72), in: Circle())
+			}
+			.buttonStyle(.plain)
+			.disabled(onSwap == nil)
+			.accessibilityLabel("Swap languages".localized())
 
 			LanguageSummaryColumn(
 				title: "THEM".localized(),
