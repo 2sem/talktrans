@@ -15,6 +15,7 @@ struct TranslationOutputView: View {
 	let availableLocales: [TranslationLocale]
 	let placeholder: String
 	let onLocaleChange: (TranslationLocale) -> Void
+	let onSwap: () -> Void
 	let isFullScreen: Bool
 	let onToggleFullScreen: () -> Void
 	let deviceOrientation: UIDeviceOrientation
@@ -86,7 +87,8 @@ struct TranslationOutputView: View {
 					selectedRole: .target,
 					sourceLocale: sourceLocale,
 					targetLocale: locale,
-					onSelect: onLocaleChange
+					onSelect: onLocaleChange,
+					onSwap: onSwap
 				)
 				.presentationDetents([.medium, .large])
 			}
@@ -243,6 +245,7 @@ private struct FontSizeSheetView: View {
 				availableLocales: TranslationLocale.allCases,
 				placeholder: "Translated message will appear here",
 				onLocaleChange: { _ in },
+				onSwap: { },
 				isFullScreen: isFullScreen,
 				onToggleFullScreen: {
 					isFullScreen.toggle()

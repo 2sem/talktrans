@@ -42,8 +42,6 @@ struct TranslationInputView: View {
 
 				Spacer()
 
-				DuoLanguageSwapButton(action: onSwap)
-
 				Text(counterText)
 					.font(.system(size: 12))
 					.foregroundStyle(Color.duoTextMuted)
@@ -55,7 +53,8 @@ struct TranslationInputView: View {
 					selectedRole: .source,
 					sourceLocale: locale,
 					targetLocale: targetLocale,
-					onSelect: onLocaleChange
+					onSelect: onLocaleChange,
+					onSwap: onSwap
 				)
 				.presentationDetents([.medium, .large])
 			}
@@ -99,24 +98,6 @@ struct TranslationInputView: View {
 				.stroke(Color.duoYouAccent.opacity(0.22), lineWidth: 1)
 		)
 		.clipShape(.rect(cornerRadius: 20, style: .continuous))
-	}
-}
-
-private struct DuoLanguageSwapButton: View {
-	let action: () -> Void
-
-	var body: some View {
-		Button(action: action) {
-			Image(systemName: "arrow.up.arrow.down")
-				.font(.system(size: 14, weight: .bold, design: .rounded))
-				.foregroundStyle(Color.duoTextMuted)
-				.frame(width: 32, height: 32)
-				.background(Color.duoControlSurface, in: Circle())
-		}
-		.buttonStyle(.plain)
-		.frame(width: 44, height: 44)
-		.contentShape(Circle())
-		.accessibilityLabel("Swap languages".localized())
 	}
 }
 
