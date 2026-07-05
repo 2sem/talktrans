@@ -98,4 +98,19 @@ struct TalktransTests {
 		#expect(!viewModel.isValidSessionBindingRequestID(nil))
 	}
 
+	@Test @MainActor func translationViewModel_swapLanguages_exchangesLocalesAndText() {
+		let viewModel = TranslationViewModel()
+		viewModel.nativeLocale = .english
+		viewModel.translatedLocale = .korean
+		viewModel.nativeText = "Hello"
+		viewModel.translatedText = "안녕하세요"
+
+		viewModel.swapLanguages()
+
+		#expect(viewModel.nativeLocale == .korean)
+		#expect(viewModel.translatedLocale == .english)
+		#expect(viewModel.nativeText == "안녕하세요")
+		#expect(viewModel.translatedText == "Hello")
+	}
+
 }
