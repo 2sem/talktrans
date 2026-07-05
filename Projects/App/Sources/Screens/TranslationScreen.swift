@@ -365,15 +365,16 @@ private struct DuoTableModePanel: View {
 				if let onSpeakToReply {
 					Button(action: onSpeakToReply) {
 						Text("🎤 \("Speak to reply".localized())")
-							.font(.system(size: 20, weight: .bold, design: .rounded))
+							.font(.system(size: 18, weight: .bold, design: .rounded))
 							.foregroundStyle(accent)
-							.padding(.horizontal, 24)
-							.frame(minHeight: 52)
-							.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-							.shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 8)
+							.padding(.horizontal, 20)
+							.frame(minHeight: 42)
+							.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+							.shadow(color: .black.opacity(0.07), radius: 12, x: 0, y: 6)
 					}
 					.buttonStyle(.plain)
-					.padding(.vertical, 10)
+					.padding(.vertical, 12)
+					.padding(.horizontal, 10)
 					.contentShape(Rectangle())
 					.accessibilityLabel("Speak to reply".localized())
 				}
@@ -385,16 +386,16 @@ private struct DuoTableModePanel: View {
 			if let onExit {
 				Button(action: onExit) {
 					Text("× \("Exit".localized())")
-						.font(.system(size: 16, weight: .bold, design: .rounded))
+						.font(.system(size: 14, weight: .bold, design: .rounded))
 						.foregroundStyle(textColor)
-						.padding(.horizontal, 16)
-						.frame(minHeight: 44)
+						.padding(.horizontal, 13)
+						.frame(minHeight: 34)
 						.background(Color.duoSurface, in: Capsule())
-						.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+						.shadow(color: .black.opacity(0.07), radius: 10, x: 0, y: 5)
 				}
 				.buttonStyle(.plain)
-				.padding(.vertical, 7)
-				.padding(.horizontal, 4)
+				.padding(.vertical, 10)
+				.padding(.horizontal, 8)
 				.contentShape(Rectangle())
 				.accessibilityLabel("Exit".localized())
 				.padding(.top, 32)
