@@ -355,44 +355,58 @@ private struct DuoTableModePanel: View {
 				endPoint: .bottomTrailing
 			)
 
-			VStack(spacing: 22) {
-				Spacer(minLength: 42)
+			GeometryReader { proxy in
+				let hasLongText = displayText.count > 80
+				let textMaxHeight = max(150, proxy.size.height * (onSpeakToReply == nil ? 0.48 : 0.44))
+				let textFontSize: CGFloat = hasLongText ? (isUpsideDown ? 34 : 28) : (isUpsideDown ? 42 : 34)
+				let topSpacerHeight: CGFloat = hasLongText ? 24 : 42
+				let bottomSpacerHeight: CGFloat = hasLongText ? 28 : (isUpsideDown ? 82 : 62)
 
-				DuoTableModeLanguagePill(
-					roleTitle: roleTitle,
-					locale: locale,
-					accent: accent
-				)
+				VStack(spacing: 22) {
+					Spacer(minLength: topSpacerHeight)
 
-				Text(displayText)
-					.font(.system(size: isUpsideDown ? 42 : 34, weight: .bold, design: .rounded))
-					.foregroundStyle(textColor)
-					.multilineTextAlignment(.center)
-					.lineSpacing(4)
-					.minimumScaleFactor(0.45)
-					.lineLimit(4)
-					.padding(.horizontal, 30)
+					DuoTableModeLanguagePill(
+						roleTitle: roleTitle,
+						locale: locale,
+						accent: accent
+					)
 
-				if let onSpeakToReply {
-					Button(action: onSpeakToReply) {
-						Text("🎤 \("Speak to reply".localized())")
-							.font(.system(size: 18, weight: .bold, design: .rounded))
-							.foregroundStyle(accent)
-							.padding(.horizontal, 20)
-							.frame(minHeight: 42)
-							.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-							.shadow(color: .black.opacity(0.07), radius: 12, x: 0, y: 6)
+					ScrollView(.vertical) {
+						Text(displayText)
+							.font(.system(size: textFontSize, weight: .bold, design: .rounded))
+							.foregroundStyle(textColor)
+							.multilineTextAlignment(.center)
+							.lineSpacing(4)
+							.minimumScaleFactor(0.45)
+							.fixedSize(horizontal: false, vertical: true)
+							.padding(.horizontal, 30)
+							.frame(maxWidth: .infinity)
 					}
-					.buttonStyle(.plain)
-					.padding(.vertical, 12)
-					.padding(.horizontal, 10)
-					.contentShape(Rectangle())
-					.accessibilityLabel("Speak to reply".localized())
-				}
+					.frame(maxHeight: textMaxHeight)
+					.scrollBounceBehavior(.basedOnSize)
+					.accessibilityLabel(displayText)
 
-				Spacer(minLength: isUpsideDown ? 82 : 62)
+					if let onSpeakToReply {
+						Button(action: onSpeakToReply) {
+							Text("🎤 \("Speak to reply".localized())")
+								.font(.system(size: 18, weight: .bold, design: .rounded))
+								.foregroundStyle(accent)
+								.padding(.horizontal, 20)
+								.frame(minHeight: 42)
+								.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+								.shadow(color: .black.opacity(0.07), radius: 12, x: 0, y: 6)
+						}
+						.buttonStyle(.plain)
+						.padding(.vertical, 12)
+						.padding(.horizontal, 10)
+						.contentShape(Rectangle())
+						.accessibilityLabel("Speak to reply".localized())
+					}
+
+					Spacer(minLength: bottomSpacerHeight)
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			}
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
 
 			if let onExit {
 				Button(action: onExit) {
