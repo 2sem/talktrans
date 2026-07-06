@@ -40,7 +40,7 @@ struct SpeechRecognitionScreen: View {
 				microphoneButton
 
 				recognizedText
-					.padding(.top, 76)
+					.padding(.top, hasLongDisplayText ? 44 : 76)
 
 				if shouldShowErrorMessage, let errorMessage = viewModel.errorMessage {
 					errorMessageView(errorMessage)
@@ -125,14 +125,19 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var recognizedText: some View {
-		Text(displayText)
-			.font(.system(size: 30, weight: .bold))
-			.foregroundStyle(text.isEmpty ? Color.duoTextMuted : Color.duoTextPrimary)
-			.multilineTextAlignment(.center)
-			.lineSpacing(8)
-			.frame(maxWidth: .infinity)
-			.padding(.horizontal, 56)
-			.accessibilityLabel(text.isEmpty ? "No recognized text yet" : "Recognized text: \(text)")
+		ScrollView(.vertical) {
+			Text(displayText)
+				.font(.system(size: hasLongDisplayText ? 24 : 30, weight: .bold))
+				.foregroundStyle(text.isEmpty ? Color.duoTextMuted : Color.duoTextPrimary)
+				.multilineTextAlignment(.center)
+				.lineSpacing(hasLongDisplayText ? 6 : 8)
+				.fixedSize(horizontal: false, vertical: true)
+				.frame(maxWidth: .infinity)
+				.padding(.horizontal, 56)
+		}
+		.frame(maxHeight: hasLongDisplayText ? 220 : 150)
+		.scrollBounceBehavior(.basedOnSize)
+		.accessibilityLabel(text.isEmpty ? "No recognized text yet" : "Recognized text: \(text)")
 	}
 
 	private var actionButtons: some View {
@@ -191,6 +196,10 @@ struct SpeechRecognitionScreen: View {
 		}
 
 		return "Listening…"
+	}
+
+	private var hasLongDisplayText: Bool {
+		displayText.count > 80 || displayText.components(separatedBy: .newlines).count > 3
 	}
 
 	private func errorMessageView(_ message: String) -> some View {
