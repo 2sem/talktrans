@@ -124,7 +124,6 @@ struct SpeechRecognitionScreen: View {
 						Circle()
 							.stroke(Color.duoYouAccent.opacity(0.28), lineWidth: 1.5)
 					)
-					.scaleEffect(viewModel.isRecognizing ? 1.08 : 1)
 
 				Circle()
 					.fill(
@@ -144,6 +143,7 @@ struct SpeechRecognitionScreen: View {
 					.foregroundStyle(.white)
 			}
 			.frame(width: micOuterDiameter, height: micOuterDiameter)
+			.scaleEffect(viewModel.isRecognizing ? 1.08 : 1)
 			.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isRecognizing)
 		}
 		.buttonStyle(.plain)
