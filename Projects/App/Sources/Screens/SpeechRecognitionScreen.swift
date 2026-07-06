@@ -139,7 +139,7 @@ struct SpeechRecognitionScreen: View {
 					.frame(width: micCoreDiameter, height: micCoreDiameter)
 					.shadow(color: Color.duoYouAccent.opacity(0.28), radius: 20, y: 12)
 
-				Image(systemName: viewModel.isRecognizing ? "stop.fill" : "mic.fill")
+				Image(systemName: "mic.fill")
 					.resizable()
 					.scaledToFit()
 					.frame(width: micIconSize, height: micIconSize)
