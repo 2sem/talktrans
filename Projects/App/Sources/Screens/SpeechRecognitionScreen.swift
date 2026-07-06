@@ -15,7 +15,6 @@ struct SpeechRecognitionScreen: View {
 	var onProcess: (() -> Void)?
 	var onCancel: (() -> Void)?
 	@State private var transcriptContentHeight: CGFloat = 0
-	@State private var transcriptViewportHeight: CGFloat = 0
 	@State private var isListeningStatusPulsing = false
 
 	var body: some View {
@@ -60,6 +59,9 @@ struct SpeechRecognitionScreen: View {
 					.padding(.bottom, 64)
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.overlay(alignment: .topLeading) {
+				transcriptOverflowMeasurement
+			}
 		}
 		.onChange(of: viewModel.recognizedText) { _, newValue in
 			if !newValue.isEmpty {
@@ -203,7 +205,7 @@ struct SpeechRecognitionScreen: View {
 
 	private var recognizedText: some View {
 		Group {
-			if hasLongDisplayText {
+			if hasLongDisplayText || shouldUseTranscriptFirstMode {
 				transcriptCard
 			} else {
 				Text(displayText)
@@ -242,27 +244,9 @@ struct SpeechRecognitionScreen: View {
 					.fixedSize(horizontal: false, vertical: true)
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.bottom, 6)
-					.background(
-						GeometryReader { proxy in
-							Color.clear.preference(key: TranscriptContentHeightKey.self, value: proxy.size.height)
-						}
-					)
 			}
 			.frame(maxHeight: transcriptMaxHeight)
-			.background(
-				GeometryReader { proxy in
-					Color.clear.preference(key: TranscriptViewportHeightKey.self, value: proxy.size.height)
-				}
-			)
 			.scrollBounceBehavior(.basedOnSize)
-		}
-		.onPreferenceChange(TranscriptContentHeightKey.self) { height in
-			transcriptContentHeight = height
-		}
-		.onPreferenceChange(TranscriptViewportHeightKey.self) { height in
-			if !shouldUseTranscriptFirstMode {
-				transcriptViewportHeight = height
-			}
 		}
 		.padding(.horizontal, 20)
 		.padding(.vertical, 16)
@@ -313,6 +297,29 @@ struct SpeechRecognitionScreen: View {
 		}
 	}
 
+	private var transcriptOverflowMeasurement: some View {
+		GeometryReader { proxy in
+			Text(displayText)
+				.font(.system(size: 24, weight: .bold))
+				.lineSpacing(6)
+				.fixedSize(horizontal: false, vertical: true)
+				.frame(width: max(1, proxy.size.width - transcriptMeasurementHorizontalInset), alignment: .leading)
+				.opacity(0)
+				.accessibilityHidden(true)
+				.background(
+					GeometryReader { textProxy in
+						Color.clear.preference(key: TranscriptContentHeightKey.self, value: textProxy.size.height)
+					}
+				)
+		}
+		.allowsHitTesting(false)
+		.frame(height: 0)
+		.clipped()
+		.onPreferenceChange(TranscriptContentHeightKey.self) { height in
+			transcriptContentHeight = height
+		}
+	}
+
 	private var shouldShowErrorMessage: Bool {
 		#if targetEnvironment(simulator)
 		return false
@@ -343,11 +350,7 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var transcriptNeedsScrolling: Bool {
-		hasLongDisplayText && transcriptContentHeight > measuredCompactTranscriptHeight + 1
-	}
-
-	private var measuredCompactTranscriptHeight: CGFloat {
-		transcriptViewportHeight > 0 ? transcriptViewportHeight : compactTranscriptMaxHeight
+		transcriptContentHeight > compactTranscriptMaxHeight + 1
 	}
 
 	private var transcriptMaxHeight: CGFloat {
@@ -360,6 +363,10 @@ struct SpeechRecognitionScreen: View {
 
 	private var expandedTranscriptMaxHeight: CGFloat {
 		360
+	}
+
+	private var transcriptMeasurementHorizontalInset: CGFloat {
+		104
 	}
 
 	private var listeningStatusScale: CGFloat {
@@ -403,7 +410,8 @@ struct SpeechRecognitionScreen: View {
 
 	#if targetEnvironment(simulator)
 	private func applySimulatorScreenshotMock() {
-		let mockText = "가장 가까운 지하철역이\n어디예요?"
+		let existingText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+		let mockText = existingText.isEmpty ? "가장 가까운 지하철역이\n어디예요?" : existingText
 		viewModel.stopRecognition()
 		viewModel.errorMessage = nil
 		viewModel.recognizedText = mockText
@@ -420,14 +428,6 @@ struct SpeechRecognitionScreen: View {
 }
 
 private struct TranscriptContentHeightKey: PreferenceKey {
-	static var defaultValue: CGFloat = 0
-
-	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-		value = max(value, nextValue())
-	}
-}
-
-private struct TranscriptViewportHeightKey: PreferenceKey {
 	static var defaultValue: CGFloat = 0
 
 	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
