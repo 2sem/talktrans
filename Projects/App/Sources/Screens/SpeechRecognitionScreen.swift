@@ -14,6 +14,8 @@ struct SpeechRecognitionScreen: View {
 	var processTitle: String?
 	var onProcess: (() -> Void)?
 	var onCancel: (() -> Void)?
+	@State private var transcriptContentHeight: CGFloat = 0
+	@State private var isListeningStatusPulsing = false
 
 	var body: some View {
 		ZStack {
@@ -64,6 +66,7 @@ struct SpeechRecognitionScreen: View {
 			}
 		}
 		.onAppear {
+			isListeningStatusPulsing = true
 			viewModel.resetSessionState()
 			#if targetEnvironment(simulator)
 			applySimulatorScreenshotMock()
@@ -118,6 +121,9 @@ struct SpeechRecognitionScreen: View {
 				.font(.system(size: 13, weight: .bold))
 				.foregroundStyle(Color.duoYouAccentDeep.opacity(0.82))
 		}
+		.scaleEffect(listeningStatusScale)
+		.opacity(listeningStatusOpacity)
+		.animation(.easeInOut(duration: 0.85).repeatForever(autoreverses: true), value: isListeningStatusPulsing)
 	}
 
 	private var compactListeningControl: some View {
@@ -132,6 +138,9 @@ struct SpeechRecognitionScreen: View {
 					.font(.system(size: 13, weight: .bold))
 					.foregroundStyle(Color.duoYouAccentDeep)
 			}
+			.scaleEffect(listeningStatusScale)
+			.opacity(listeningStatusOpacity)
+			.animation(.easeInOut(duration: 0.85).repeatForever(autoreverses: true), value: isListeningStatusPulsing)
 			.padding(.horizontal, 12)
 			.padding(.vertical, 8)
 			.background(Color.duoYouAccent.opacity(0.13))
@@ -232,9 +241,17 @@ struct SpeechRecognitionScreen: View {
 					.fixedSize(horizontal: false, vertical: true)
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.bottom, 6)
+					.background(
+						GeometryReader { proxy in
+							Color.clear.preference(key: TranscriptContentHeightKey.self, value: proxy.size.height)
+						}
+					)
 			}
-			.frame(maxHeight: shouldUseTranscriptFirstMode ? 360 : 218)
+			.frame(maxHeight: transcriptMaxHeight)
 			.scrollBounceBehavior(.basedOnSize)
+		}
+		.onPreferenceChange(TranscriptContentHeightKey.self) { height in
+			transcriptContentHeight = height
 		}
 		.padding(.horizontal, 20)
 		.padding(.vertical, 16)
@@ -307,17 +324,35 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var hasLongDisplayText: Bool {
-		displayText.count > 80 || estimatedDisplayLineCount > 3
+		displayText.count > 80 || displayText.components(separatedBy: .newlines).count > 3
 	}
 
 	private var shouldUseTranscriptFirstMode: Bool {
-		estimatedDisplayLineCount > 6 || displayText.count > 150
+		transcriptNeedsScrolling
 	}
 
-	private var estimatedDisplayLineCount: Int {
-		let explicitLines = displayText.components(separatedBy: .newlines).count
-		let estimatedWrappedLines = Int(ceil(Double(displayText.count) / 20.0))
-		return max(explicitLines, estimatedWrappedLines)
+	private var transcriptNeedsScrolling: Bool {
+		hasLongDisplayText && transcriptContentHeight > compactTranscriptMaxHeight + 1
+	}
+
+	private var transcriptMaxHeight: CGFloat {
+		shouldUseTranscriptFirstMode ? expandedTranscriptMaxHeight : compactTranscriptMaxHeight
+	}
+
+	private var compactTranscriptMaxHeight: CGFloat {
+		218
+	}
+
+	private var expandedTranscriptMaxHeight: CGFloat {
+		360
+	}
+
+	private var listeningStatusScale: CGFloat {
+		viewModel.isRecognizing && isListeningStatusPulsing ? 1.04 : 1
+	}
+
+	private var listeningStatusOpacity: Double {
+		viewModel.isRecognizing && isListeningStatusPulsing ? 0.72 : 1
 	}
 
 	private func errorMessageView(_ message: String) -> some View {
@@ -366,5 +401,13 @@ struct SpeechRecognitionScreen: View {
 	private func cancel() {
 		viewModel.stopRecognition()
 		onCancel?()
+	}
+}
+
+private struct TranscriptContentHeightKey: PreferenceKey {
+	static var defaultValue: CGFloat = 0
+
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+		value = max(value, nextValue())
 	}
 }
