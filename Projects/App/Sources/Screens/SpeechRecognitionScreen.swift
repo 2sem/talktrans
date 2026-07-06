@@ -35,12 +35,14 @@ struct SpeechRecognitionScreen: View {
 					.padding(.horizontal, hasLongDisplayText ? 32 : 44)
 					.padding(.top, 50)
 
-				Spacer(minLength: hasLongDisplayText ? 78 : 132)
+				Spacer(minLength: shouldUseTranscriptFirstMode ? 42 : (hasLongDisplayText ? 78 : 132))
 
-				microphoneButton
+				if !shouldUseTranscriptFirstMode {
+					microphoneButton
+				}
 
 				recognizedText
-					.padding(.top, hasLongDisplayText ? 34 : 76)
+					.padding(.top, shouldUseTranscriptFirstMode ? 0 : (hasLongDisplayText ? 34 : 76))
 
 				if shouldShowErrorMessage, let errorMessage = viewModel.errorMessage {
 					errorMessageView(errorMessage)
@@ -89,7 +91,11 @@ struct SpeechRecognitionScreen: View {
 			if hasLongDisplayText {
 				Spacer(minLength: 10)
 
-				listeningStatus
+				if shouldUseTranscriptFirstMode {
+					compactListeningControl
+				} else {
+					listeningStatus
+				}
 			}
 		}
 		.padding(.horizontal, hasLongDisplayText ? 16 : 18)
@@ -112,6 +118,28 @@ struct SpeechRecognitionScreen: View {
 				.font(.system(size: 13, weight: .bold))
 				.foregroundStyle(Color.duoYouAccentDeep.opacity(0.82))
 		}
+	}
+
+	private var compactListeningControl: some View {
+		Button(action: toggleRecognition) {
+			HStack(spacing: 8) {
+				Circle()
+					.fill(Color.duoYouAccentDeep)
+					.frame(width: 7, height: 7)
+					.opacity(viewModel.isRecognizing ? 1 : 0.45)
+
+				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Resume")
+					.font(.system(size: 13, weight: .bold))
+					.foregroundStyle(Color.duoYouAccentDeep)
+			}
+			.padding(.horizontal, 12)
+			.padding(.vertical, 8)
+			.background(Color.duoYouAccent.opacity(0.13))
+			.clipShape(.capsule)
+			.contentShape(.capsule)
+		}
+		.buttonStyle(.plain)
+		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Resume listening")
 	}
 
 	private var microphoneButton: some View {
@@ -197,7 +225,7 @@ struct SpeechRecognitionScreen: View {
 
 			ScrollView(.vertical) {
 				Text(displayText)
-					.font(.system(size: 24, weight: .bold))
+					.font(.system(size: shouldUseTranscriptFirstMode ? 23 : 24, weight: .bold))
 					.foregroundStyle(Color.duoTextPrimary)
 					.multilineTextAlignment(.leading)
 					.lineSpacing(6)
@@ -205,7 +233,7 @@ struct SpeechRecognitionScreen: View {
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.bottom, 6)
 			}
-			.frame(maxHeight: 218)
+			.frame(maxHeight: shouldUseTranscriptFirstMode ? 360 : 218)
 			.scrollBounceBehavior(.basedOnSize)
 		}
 		.padding(.horizontal, 20)
@@ -279,7 +307,17 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var hasLongDisplayText: Bool {
-		displayText.count > 80 || displayText.components(separatedBy: .newlines).count > 3
+		displayText.count > 80 || estimatedDisplayLineCount > 3
+	}
+
+	private var shouldUseTranscriptFirstMode: Bool {
+		estimatedDisplayLineCount > 6 || displayText.count > 150
+	}
+
+	private var estimatedDisplayLineCount: Int {
+		let explicitLines = displayText.components(separatedBy: .newlines).count
+		let estimatedWrappedLines = Int(ceil(Double(displayText.count) / 20.0))
+		return max(explicitLines, estimatedWrappedLines)
 	}
 
 	private func errorMessageView(_ message: String) -> some View {
