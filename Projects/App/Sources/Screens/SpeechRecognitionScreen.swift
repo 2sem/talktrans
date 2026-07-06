@@ -119,7 +119,7 @@ struct SpeechRecognitionScreen: View {
 			ZStack {
 				Circle()
 					.fill(Color.duoYouAccent.opacity(0.08))
-					.frame(width: hasLongDisplayText ? 142 : 178, height: hasLongDisplayText ? 142 : 178)
+					.frame(width: micOuterDiameter, height: micOuterDiameter)
 					.overlay(
 						Circle()
 							.stroke(Color.duoYouAccent.opacity(0.28), lineWidth: 1.5)
@@ -134,17 +134,32 @@ struct SpeechRecognitionScreen: View {
 							endPoint: .bottom
 						)
 					)
-					.frame(width: hasLongDisplayText ? 96 : 118, height: hasLongDisplayText ? 96 : 118)
+					.frame(width: micCoreDiameter, height: micCoreDiameter)
 					.shadow(color: Color.duoYouAccent.opacity(0.28), radius: 20, y: 12)
 
 				Image(systemName: viewModel.isRecognizing ? "stop.fill" : "mic.fill")
-					.font(.system(size: hasLongDisplayText ? 36 : 44, weight: .semibold))
+					.resizable()
+					.scaledToFit()
+					.frame(width: micIconSize, height: micIconSize)
 					.foregroundStyle(.white)
 			}
+			.frame(width: micOuterDiameter, height: micOuterDiameter)
 			.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isRecognizing)
 		}
 		.buttonStyle(.plain)
 		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Start listening")
+	}
+
+	private var micOuterDiameter: CGFloat {
+		hasLongDisplayText ? 142 : 178
+	}
+
+	private var micCoreDiameter: CGFloat {
+		hasLongDisplayText ? 96 : 118
+	}
+
+	private var micIconSize: CGFloat {
+		hasLongDisplayText ? 42 : 52
 	}
 
 	private var recognizedText: some View {
