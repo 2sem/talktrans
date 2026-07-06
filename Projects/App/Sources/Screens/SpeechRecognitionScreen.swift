@@ -32,15 +32,15 @@ struct SpeechRecognitionScreen: View {
 			VStack(spacing: 0) {
 				speakerPill
 					.frame(maxWidth: .infinity, alignment: .leading)
-					.padding(.horizontal, 44)
+					.padding(.horizontal, hasLongDisplayText ? 32 : 44)
 					.padding(.top, 50)
 
-				Spacer(minLength: 132)
+				Spacer(minLength: hasLongDisplayText ? 78 : 132)
 
 				microphoneButton
 
 				recognizedText
-					.padding(.top, hasLongDisplayText ? 44 : 76)
+					.padding(.top, hasLongDisplayText ? 34 : 76)
 
 				if shouldShowErrorMessage, let errorMessage = viewModel.errorMessage {
 					errorMessageView(errorMessage)
@@ -76,19 +76,42 @@ struct SpeechRecognitionScreen: View {
 
 	private var speakerPill: some View {
 		HStack(spacing: 10) {
-			Text(sourceLocale.flagEmoji)
-				.font(.system(size: 15))
+			HStack(spacing: 10) {
+				Text(sourceLocale.flagEmoji)
+					.font(.system(size: 15))
 
-			Text(verbatim: "Speaking \(sourceLocale.displayName)")
-				.font(.system(size: 17, weight: .bold))
-				.foregroundStyle(Color.duoYouAccentDeep)
+				Text(verbatim: hasLongDisplayText ? sourceLocale.displayName : "Speaking \(sourceLocale.displayName)")
+					.font(.system(size: hasLongDisplayText ? 16 : 17, weight: .bold))
+					.foregroundStyle(Color.duoYouAccentDeep)
+					.lineLimit(1)
+			}
+
+			if hasLongDisplayText {
+				Spacer(minLength: 10)
+
+				listeningStatus
+			}
 		}
-		.padding(.horizontal, 18)
+		.padding(.horizontal, hasLongDisplayText ? 16 : 18)
 		.padding(.vertical, 12)
+		.frame(maxWidth: hasLongDisplayText ? .infinity : nil)
 		.background(Color.duoYouAccent.opacity(0.13))
 		.clipShape(.capsule)
 		.accessibilityElement(children: .combine)
-		.accessibilityLabel("Speaking \(sourceLocale.displayName)")
+		.accessibilityLabel(hasLongDisplayText ? "Speaking \(sourceLocale.displayName), listening" : "Speaking \(sourceLocale.displayName)")
+	}
+
+	private var listeningStatus: some View {
+		HStack(spacing: 6) {
+			Circle()
+				.fill(Color.duoYouAccentDeep)
+				.frame(width: 7, height: 7)
+				.opacity(viewModel.isRecognizing ? 1 : 0.45)
+
+			Text(verbatim: viewModel.isRecognizing ? "Listening" : "Paused")
+				.font(.system(size: 13, weight: .bold))
+				.foregroundStyle(Color.duoYouAccentDeep.opacity(0.82))
+		}
 	}
 
 	private var microphoneButton: some View {
@@ -96,12 +119,14 @@ struct SpeechRecognitionScreen: View {
 			ZStack {
 				Circle()
 					.fill(Color.duoYouAccent.opacity(0.08))
-					.frame(width: 178, height: 178)
+					.frame(width: micOuterDiameter, height: micOuterDiameter)
 					.overlay(
 						Circle()
 							.stroke(Color.duoYouAccent.opacity(0.28), lineWidth: 1.5)
 					)
 					.scaleEffect(viewModel.isRecognizing ? 1.08 : 1)
+					.opacity(viewModel.isRecognizing ? 0.88 : 1)
+					.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isRecognizing)
 
 				Circle()
 					.fill(
@@ -111,33 +136,88 @@ struct SpeechRecognitionScreen: View {
 							endPoint: .bottom
 						)
 					)
-					.frame(width: 118, height: 118)
+					.frame(width: micCoreDiameter, height: micCoreDiameter)
 					.shadow(color: Color.duoYouAccent.opacity(0.28), radius: 20, y: 12)
 
-				Image(systemName: viewModel.isRecognizing ? "stop.fill" : "mic.fill")
-					.font(.system(size: 44, weight: .semibold))
+				Image(systemName: "mic.fill")
+					.resizable()
+					.scaledToFit()
+					.frame(width: micIconSize, height: micIconSize)
 					.foregroundStyle(.white)
 			}
-			.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isRecognizing)
+			.frame(width: micOuterDiameter, height: micOuterDiameter)
 		}
 		.buttonStyle(.plain)
 		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Start listening")
 	}
 
+	private var micOuterDiameter: CGFloat {
+		hasLongDisplayText ? 142 : 178
+	}
+
+	private var micCoreDiameter: CGFloat {
+		hasLongDisplayText ? 96 : 118
+	}
+
+	private var micIconSize: CGFloat {
+		hasLongDisplayText ? 42 : 52
+	}
+
 	private var recognizedText: some View {
-		ScrollView(.vertical) {
-			Text(displayText)
-				.font(.system(size: hasLongDisplayText ? 24 : 30, weight: .bold))
-				.foregroundStyle(text.isEmpty ? Color.duoTextMuted : Color.duoTextPrimary)
-				.multilineTextAlignment(.center)
-				.lineSpacing(hasLongDisplayText ? 6 : 8)
-				.fixedSize(horizontal: false, vertical: true)
-				.frame(maxWidth: .infinity)
-				.padding(.horizontal, 56)
+		Group {
+			if hasLongDisplayText {
+				transcriptCard
+			} else {
+				Text(displayText)
+					.font(.system(size: 30, weight: .bold))
+					.foregroundStyle(text.isEmpty ? Color.duoTextMuted : Color.duoTextPrimary)
+					.multilineTextAlignment(.center)
+					.lineSpacing(8)
+					.fixedSize(horizontal: false, vertical: true)
+					.frame(maxWidth: .infinity)
+					.padding(.horizontal, 56)
+			}
 		}
-		.frame(maxHeight: hasLongDisplayText ? 220 : 150)
-		.scrollBounceBehavior(.basedOnSize)
 		.accessibilityLabel(text.isEmpty ? "No recognized text yet" : "Recognized text: \(text)")
+	}
+
+	private var transcriptCard: some View {
+		VStack(alignment: .leading, spacing: 12) {
+			HStack(spacing: 8) {
+				Text(verbatim: "Transcript")
+					.font(.system(size: 13, weight: .bold))
+					.foregroundStyle(Color.duoTextSecondary)
+
+				Spacer()
+
+				Image(systemName: "chevron.up.chevron.down")
+					.font(.system(size: 11, weight: .bold))
+					.foregroundStyle(Color.duoTextMuted)
+			}
+
+			ScrollView(.vertical) {
+				Text(displayText)
+					.font(.system(size: 24, weight: .bold))
+					.foregroundStyle(Color.duoTextPrimary)
+					.multilineTextAlignment(.leading)
+					.lineSpacing(6)
+					.fixedSize(horizontal: false, vertical: true)
+					.frame(maxWidth: .infinity, alignment: .leading)
+					.padding(.bottom, 6)
+			}
+			.frame(maxHeight: 218)
+			.scrollBounceBehavior(.basedOnSize)
+		}
+		.padding(.horizontal, 20)
+		.padding(.vertical, 16)
+		.frame(maxWidth: .infinity)
+		.background(Color.duoControlSurface.opacity(0.72))
+		.overlay(
+			RoundedRectangle(cornerRadius: 24, style: .continuous)
+				.stroke(Color.duoYouAccent.opacity(0.18), lineWidth: 1)
+		)
+		.clipShape(.rect(cornerRadius: 24, style: .continuous))
+		.padding(.horizontal, 32)
 	}
 
 	private var actionButtons: some View {
