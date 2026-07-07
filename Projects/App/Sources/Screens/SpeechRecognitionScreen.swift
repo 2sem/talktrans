@@ -14,6 +14,9 @@ struct SpeechRecognitionScreen: View {
 	var processTitle: String?
 	var onProcess: (() -> Void)?
 	var onCancel: (() -> Void)?
+	@State private var transcriptContentHeight: CGFloat = 0
+	@State private var isListeningStatusPulsing = false
+	@State private var recognitionPrefixText = ""
 
 	var body: some View {
 		ZStack {
@@ -57,13 +60,17 @@ struct SpeechRecognitionScreen: View {
 					.padding(.bottom, 64)
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.overlay(alignment: .topLeading) {
+				transcriptOverflowMeasurement
+			}
 		}
 		.onChange(of: viewModel.recognizedText) { _, newValue in
 			if !newValue.isEmpty {
-				text = newValue
+				text = combinedRecognitionText(newSegment: newValue)
 			}
 		}
 		.onAppear {
+			isListeningStatusPulsing = true
 			viewModel.resetSessionState()
 			#if targetEnvironment(simulator)
 			applySimulatorScreenshotMock()
@@ -118,6 +125,9 @@ struct SpeechRecognitionScreen: View {
 				.font(.system(size: 13, weight: .bold))
 				.foregroundStyle(Color.duoYouAccentDeep.opacity(0.82))
 		}
+		.scaleEffect(listeningStatusScale)
+		.opacity(listeningStatusOpacity)
+		.animation(.easeInOut(duration: 0.85).repeatForever(autoreverses: true), value: isListeningStatusPulsing)
 	}
 
 	private var compactListeningControl: some View {
@@ -128,10 +138,13 @@ struct SpeechRecognitionScreen: View {
 					.frame(width: 7, height: 7)
 					.opacity(viewModel.isRecognizing ? 1 : 0.45)
 
-				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Resume")
+				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Continue")
 					.font(.system(size: 13, weight: .bold))
 					.foregroundStyle(Color.duoYouAccentDeep)
 			}
+			.scaleEffect(listeningStatusScale)
+			.opacity(listeningStatusOpacity)
+			.animation(.easeInOut(duration: 0.85).repeatForever(autoreverses: true), value: isListeningStatusPulsing)
 			.padding(.horizontal, 12)
 			.padding(.vertical, 8)
 			.background(Color.duoYouAccent.opacity(0.13))
@@ -139,7 +152,7 @@ struct SpeechRecognitionScreen: View {
 			.contentShape(.capsule)
 		}
 		.buttonStyle(.plain)
-		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Resume listening")
+		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Continue speaking")
 	}
 
 	private var microphoneButton: some View {
@@ -193,7 +206,7 @@ struct SpeechRecognitionScreen: View {
 
 	private var recognizedText: some View {
 		Group {
-			if hasLongDisplayText {
+			if hasLongDisplayText || shouldUseTranscriptFirstMode {
 				transcriptCard
 			} else {
 				Text(displayText)
@@ -210,42 +223,19 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var transcriptCard: some View {
-		VStack(alignment: .leading, spacing: 12) {
-			HStack(spacing: 8) {
-				Text(verbatim: "Transcript")
-					.font(.system(size: 13, weight: .bold))
-					.foregroundStyle(Color.duoTextSecondary)
-
-				Spacer()
-
-				Image(systemName: "chevron.up.chevron.down")
-					.font(.system(size: 11, weight: .bold))
-					.foregroundStyle(Color.duoTextMuted)
-			}
-
-			ScrollView(.vertical) {
-				Text(displayText)
-					.font(.system(size: shouldUseTranscriptFirstMode ? 23 : 24, weight: .bold))
-					.foregroundStyle(Color.duoTextPrimary)
-					.multilineTextAlignment(.leading)
-					.lineSpacing(6)
-					.fixedSize(horizontal: false, vertical: true)
-					.frame(maxWidth: .infinity, alignment: .leading)
-					.padding(.bottom, 6)
-			}
-			.frame(maxHeight: shouldUseTranscriptFirstMode ? 360 : 218)
-			.scrollBounceBehavior(.basedOnSize)
+		ScrollView(.vertical) {
+			Text(displayText)
+				.font(.system(size: shouldUseTranscriptFirstMode ? 23 : 24, weight: .bold))
+				.foregroundStyle(Color.duoTextPrimary)
+				.multilineTextAlignment(.center)
+				.lineSpacing(6)
+				.fixedSize(horizontal: false, vertical: true)
+				.frame(maxWidth: .infinity)
+				.padding(.bottom, 6)
 		}
-		.padding(.horizontal, 20)
-		.padding(.vertical, 16)
-		.frame(maxWidth: .infinity)
-		.background(Color.duoControlSurface.opacity(0.72))
-		.overlay(
-			RoundedRectangle(cornerRadius: 24, style: .continuous)
-				.stroke(Color.duoYouAccent.opacity(0.18), lineWidth: 1)
-		)
-		.clipShape(.rect(cornerRadius: 24, style: .continuous))
-		.padding(.horizontal, 32)
+		.frame(maxHeight: transcriptMaxHeight)
+		.scrollBounceBehavior(.basedOnSize)
+		.padding(.horizontal, 56)
 	}
 
 	private var actionButtons: some View {
@@ -285,6 +275,29 @@ struct SpeechRecognitionScreen: View {
 		}
 	}
 
+	private var transcriptOverflowMeasurement: some View {
+		GeometryReader { proxy in
+			Text(displayText)
+				.font(.system(size: 24, weight: .bold))
+				.lineSpacing(6)
+				.fixedSize(horizontal: false, vertical: true)
+				.frame(width: max(1, proxy.size.width - transcriptMeasurementHorizontalInset), alignment: .leading)
+				.opacity(0)
+				.accessibilityHidden(true)
+				.background(
+					GeometryReader { textProxy in
+						Color.clear.preference(key: TranscriptContentHeightKey.self, value: textProxy.size.height)
+					}
+				)
+		}
+		.allowsHitTesting(false)
+		.frame(height: 0)
+		.clipped()
+		.onPreferenceChange(TranscriptContentHeightKey.self) { height in
+			transcriptContentHeight = height
+		}
+	}
+
 	private var shouldShowErrorMessage: Bool {
 		#if targetEnvironment(simulator)
 		return false
@@ -307,17 +320,39 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var hasLongDisplayText: Bool {
-		displayText.count > 80 || estimatedDisplayLineCount > 3
+		displayText.count > 80 || displayText.components(separatedBy: .newlines).count > 3
 	}
 
 	private var shouldUseTranscriptFirstMode: Bool {
-		estimatedDisplayLineCount > 6 || displayText.count > 150
+		transcriptNeedsScrolling
 	}
 
-	private var estimatedDisplayLineCount: Int {
-		let explicitLines = displayText.components(separatedBy: .newlines).count
-		let estimatedWrappedLines = Int(ceil(Double(displayText.count) / 20.0))
-		return max(explicitLines, estimatedWrappedLines)
+	private var transcriptNeedsScrolling: Bool {
+		transcriptContentHeight > compactTranscriptMaxHeight + 1
+	}
+
+	private var transcriptMaxHeight: CGFloat {
+		shouldUseTranscriptFirstMode ? expandedTranscriptMaxHeight : compactTranscriptMaxHeight
+	}
+
+	private var compactTranscriptMaxHeight: CGFloat {
+		218
+	}
+
+	private var expandedTranscriptMaxHeight: CGFloat {
+		360
+	}
+
+	private var transcriptMeasurementHorizontalInset: CGFloat {
+		104
+	}
+
+	private var listeningStatusScale: CGFloat {
+		viewModel.isRecognizing && isListeningStatusPulsing ? 1.04 : 1
+	}
+
+	private var listeningStatusOpacity: Double {
+		viewModel.isRecognizing && isListeningStatusPulsing ? 0.72 : 1
 	}
 
 	private func errorMessageView(_ message: String) -> some View {
@@ -346,14 +381,28 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private func startRecognition() {
+		recognitionPrefixText = text.trimmingCharacters(in: .whitespacesAndNewlines)
 		viewModel.startRecognition(locale: sourceLocale.locale) { _ in
 			// Text is mirrored through recognizedText onChange.
 		}
 	}
 
+	private func combinedRecognitionText(newSegment: String) -> String {
+		let trimmedSegment = newSegment.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard !recognitionPrefixText.isEmpty else { return trimmedSegment }
+		guard !trimmedSegment.isEmpty else { return recognitionPrefixText }
+
+		if recognitionPrefixText.last?.isWhitespace == true {
+			return recognitionPrefixText + trimmedSegment
+		}
+
+		return recognitionPrefixText + " " + trimmedSegment
+	}
+
 	#if targetEnvironment(simulator)
 	private func applySimulatorScreenshotMock() {
-		let mockText = "가장 가까운 지하철역이\n어디예요?"
+		let existingText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+		let mockText = existingText.isEmpty ? "가장 가까운 지하철역이\n어디예요?" : existingText
 		viewModel.stopRecognition()
 		viewModel.errorMessage = nil
 		viewModel.recognizedText = mockText
@@ -366,5 +415,13 @@ struct SpeechRecognitionScreen: View {
 	private func cancel() {
 		viewModel.stopRecognition()
 		onCancel?()
+	}
+}
+
+private struct TranscriptContentHeightKey: PreferenceKey {
+	static var defaultValue: CGFloat = 0
+
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+		value = max(value, nextValue())
 	}
 }
