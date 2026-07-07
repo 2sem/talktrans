@@ -16,6 +16,7 @@ struct SpeechRecognitionScreen: View {
 	var onCancel: (() -> Void)?
 	@State private var transcriptContentHeight: CGFloat = 0
 	@State private var isListeningStatusPulsing = false
+	@State private var recognitionPrefixText = ""
 
 	var body: some View {
 		ZStack {
@@ -65,7 +66,7 @@ struct SpeechRecognitionScreen: View {
 		}
 		.onChange(of: viewModel.recognizedText) { _, newValue in
 			if !newValue.isEmpty {
-				text = newValue
+				text = combinedRecognitionText(newSegment: newValue)
 			}
 		}
 		.onAppear {
@@ -137,7 +138,7 @@ struct SpeechRecognitionScreen: View {
 					.frame(width: 7, height: 7)
 					.opacity(viewModel.isRecognizing ? 1 : 0.45)
 
-				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Resume")
+				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Continue")
 					.font(.system(size: 13, weight: .bold))
 					.foregroundStyle(Color.duoYouAccentDeep)
 			}
@@ -151,7 +152,7 @@ struct SpeechRecognitionScreen: View {
 			.contentShape(.capsule)
 		}
 		.buttonStyle(.plain)
-		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Resume listening")
+		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Continue speaking")
 	}
 
 	private var microphoneButton: some View {
@@ -380,9 +381,22 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private func startRecognition() {
+		recognitionPrefixText = text.trimmingCharacters(in: .whitespacesAndNewlines)
 		viewModel.startRecognition(locale: sourceLocale.locale) { _ in
 			// Text is mirrored through recognizedText onChange.
 		}
+	}
+
+	private func combinedRecognitionText(newSegment: String) -> String {
+		let trimmedSegment = newSegment.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard !recognitionPrefixText.isEmpty else { return trimmedSegment }
+		guard !trimmedSegment.isEmpty else { return recognitionPrefixText }
+
+		if recognitionPrefixText.last?.isWhitespace == true {
+			return recognitionPrefixText + trimmedSegment
+		}
+
+		return recognitionPrefixText + " " + trimmedSegment
 	}
 
 	#if targetEnvironment(simulator)
