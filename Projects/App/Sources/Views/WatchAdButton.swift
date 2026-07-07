@@ -12,6 +12,12 @@ struct WatchAdButton: View {
 	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@EnvironmentObject private var analyticsManager: AnalyticsManager
 	var onAdFreeActivated: (() -> Void)?
+	var size: CGFloat = 52
+	var cornerRadius: CGFloat = 16
+	var iconSize: CGFloat = 18
+	var backgroundColor: Color = .duoYouAccent
+	var backgroundOpacity: Double = 0.14
+	var borderOpacity: Double = 0.24
 
 	@State private var showConfirmation = false
 
@@ -22,17 +28,18 @@ struct WatchAdButton: View {
 				showConfirmation = true
 			}) {
 				Image(systemName: "gift")
-					.font(.system(size: 18, weight: .semibold))
-					.frame(width: 52, height: 52)
-					.background(Color.duoYouAccent.opacity(0.14))
+					.font(.system(size: iconSize, weight: .semibold))
+					.frame(width: size, height: size)
+					.background(backgroundColor.opacity(backgroundOpacity))
 					.foregroundStyle(Color.duoYouAccentDeep)
-					.clipShape(.rect(cornerRadius: 16, style: .continuous))
+					.clipShape(.rect(cornerRadius: cornerRadius, style: .continuous))
 					.overlay(
-						RoundedRectangle(cornerRadius: 16, style: .continuous)
-							.stroke(Color.duoYouAccent.opacity(0.24), lineWidth: 1)
+						RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+							.stroke(Color.duoYouAccent.opacity(borderOpacity), lineWidth: 1)
 					)
 			}
 			.buttonStyle(.plain)
+			.accessibilityLabel("Remove ads for 1 hour")
 			.transition(.opacity.combined(with: .scale(scale: 0.8)))
 			.onAppear {
 				analyticsManager.logWatchAdPromptShown()
