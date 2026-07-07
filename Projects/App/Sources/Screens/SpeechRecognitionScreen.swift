@@ -222,42 +222,19 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var transcriptCard: some View {
-		VStack(alignment: .leading, spacing: 12) {
-			HStack(spacing: 8) {
-				Text(verbatim: "Transcript")
-					.font(.system(size: 13, weight: .bold))
-					.foregroundStyle(Color.duoTextSecondary)
-
-				Spacer()
-
-				Image(systemName: "chevron.up.chevron.down")
-					.font(.system(size: 11, weight: .bold))
-					.foregroundStyle(Color.duoTextMuted)
-			}
-
-			ScrollView(.vertical) {
-				Text(displayText)
-					.font(.system(size: shouldUseTranscriptFirstMode ? 23 : 24, weight: .bold))
-					.foregroundStyle(Color.duoTextPrimary)
-					.multilineTextAlignment(.leading)
-					.lineSpacing(6)
-					.fixedSize(horizontal: false, vertical: true)
-					.frame(maxWidth: .infinity, alignment: .leading)
-					.padding(.bottom, 6)
-			}
-			.frame(maxHeight: transcriptMaxHeight)
-			.scrollBounceBehavior(.basedOnSize)
+		ScrollView(.vertical) {
+			Text(displayText)
+				.font(.system(size: shouldUseTranscriptFirstMode ? 23 : 24, weight: .bold))
+				.foregroundStyle(Color.duoTextPrimary)
+				.multilineTextAlignment(.center)
+				.lineSpacing(6)
+				.fixedSize(horizontal: false, vertical: true)
+				.frame(maxWidth: .infinity)
+				.padding(.bottom, 6)
 		}
-		.padding(.horizontal, 20)
-		.padding(.vertical, 16)
-		.frame(maxWidth: .infinity)
-		.background(Color.duoControlSurface.opacity(0.72))
-		.overlay(
-			RoundedRectangle(cornerRadius: 24, style: .continuous)
-				.stroke(Color.duoYouAccent.opacity(0.18), lineWidth: 1)
-		)
-		.clipShape(.rect(cornerRadius: 24, style: .continuous))
-		.padding(.horizontal, 32)
+		.frame(maxHeight: transcriptMaxHeight)
+		.scrollBounceBehavior(.basedOnSize)
+		.padding(.horizontal, 56)
 	}
 
 	private var actionButtons: some View {
