@@ -68,8 +68,7 @@ struct TranslationScreen: View {
 				// Normal Mode - Show all UI elements
 				VStack(spacing: 8) {
 					DuoHeaderView(
-						onHistoryTapped: { showHistory = true },
-						onSettingsTapped: { }
+						onHistoryTapped: { showHistory = true }
 					)
 						.padding(.horizontal, 18)
 						.padding(.top, topContentPadding)
@@ -458,7 +457,6 @@ private struct DuoTableModeLanguagePill: View {
 
 private struct DuoHeaderView: View {
 	let onHistoryTapped: () -> Void
-	let onSettingsTapped: () -> Void
 
 	var body: some View {
 		HStack(spacing: 12) {
@@ -471,29 +469,16 @@ private struct DuoHeaderView: View {
 
 			Spacer()
 
-			HStack(spacing: 8) {
-				Button(action: onHistoryTapped) {
-					Image(systemName: "clock.arrow.circlepath")
-						.font(.system(size: 14, weight: .semibold))
-						.foregroundStyle(Color.duoThemAccent)
-						.frame(width: 32, height: 32)
-						.background(Color.duoSurface, in: Circle())
-				}
-				.accessibilityLabel("Translation history")
-
-				Button(action: onSettingsTapped) {
-					Image(systemName: "gearshape")
-						.font(.system(size: 14, weight: .semibold))
-						.foregroundStyle(Color.duoYouAccent)
-						.frame(width: 32, height: 32)
-						.background(Color.duoSurface, in: Circle())
-				}
-				.accessibilityLabel("Settings")
+			Button(action: onHistoryTapped) {
+				Image(systemName: "clock.arrow.circlepath")
+					.font(.system(size: 14, weight: .semibold))
+					.foregroundStyle(Color.duoThemAccent)
+					.frame(width: 32, height: 32)
+					.background(Color.duoSurface, in: Circle())
 			}
+			.accessibilityLabel("Translation history")
 		}
 		.font(.system(size: 19, weight: .bold))
-		.accessibilityElement(children: .combine)
-		.accessibilityLabel("TalkTrans")
 	}
 }
 
