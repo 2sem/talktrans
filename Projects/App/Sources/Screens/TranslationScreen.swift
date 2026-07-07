@@ -21,6 +21,7 @@ struct TranslationScreen: View {
 	@State private var showAdFreeToast = false
 	@State private var lastHandledTranslationID: UUID?
 	@State private var isTableModePresented = false
+	@State private var lastTableModeTranslationInput = ""
 	@FocusState private var isInputFocused: Bool
 
 	private let topContentPadding: CGFloat = 12
@@ -171,6 +172,7 @@ struct TranslationScreen: View {
 
 						Button(action: {
 							isInputFocused = false
+							lastTableModeTranslationInput = viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines)
 							isTableModePresented = true
 						}) {
 							Image(systemName: "person.line.dotted.person.fill")
@@ -214,6 +216,13 @@ struct TranslationScreen: View {
 			reviewManager.show()
 			saveTranslationEntry()
 		}
+		.onChange(of: viewModel.nativeText) { _, _ in
+			translateTableModeInputIfNeeded()
+		}
+		.onChange(of: showSpeechRecognition) { _, isPresented in
+			guard !isPresented else { return }
+			translateTableModeInputIfNeeded()
+		}
 		.animation(.easeInOut, value: isTableModePresented)
 		.translationTask(viewModel.translationConfiguration) { [sessionBindingRequestID] session in
 			await viewModel.setTranslationSession(session, for: sessionBindingRequestID)
@@ -226,9 +235,7 @@ struct TranslationScreen: View {
 				targetLocale: viewModel.translatedLocale,
 				processTitle: "Use & translate",
 				onProcess: {
-					isInputFocused = false
-					showSpeechRecognition = false
-					viewModel.translate()
+					processRecognizedSpeech()
 				},
 				onCancel: {
 					showSpeechRecognition = false
@@ -263,6 +270,33 @@ struct TranslationScreen: View {
 		}
 		viewModel.nativeText = sourceText
 		viewModel.translatedText = translatedText
+	}
+
+	private func processRecognizedSpeech() {
+		isInputFocused = false
+		showSpeechRecognition = false
+
+		Task { @MainActor in
+			await Task.yield()
+			if isTableModePresented {
+				translateTableModeInputIfNeeded()
+			} else {
+				viewModel.translate()
+			}
+		}
+	}
+
+	private func translateTableModeInputIfNeeded() {
+		guard isTableModePresented else { return }
+		guard !showSpeechRecognition else { return }
+
+		let currentInput = viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard !currentInput.isEmpty else { return }
+		guard currentInput != lastTableModeTranslationInput else { return }
+		guard !viewModel.isTranslating else { return }
+
+		lastTableModeTranslationInput = currentInput
+		viewModel.translate()
 	}
 }
 

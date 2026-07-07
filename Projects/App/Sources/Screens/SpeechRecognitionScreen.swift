@@ -252,6 +252,7 @@ struct SpeechRecognitionScreen: View {
 
 			if let onProcess, let processTitle {
 				Button(action: {
+					commitCurrentRecognitionText()
 					viewModel.stopRecognition()
 					onProcess()
 				}) {
@@ -397,6 +398,13 @@ struct SpeechRecognitionScreen: View {
 		}
 
 		return recognitionPrefixText + " " + trimmedSegment
+	}
+
+	private func commitCurrentRecognitionText() {
+		let currentSegment = viewModel.recognizedText.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard !currentSegment.isEmpty else { return }
+
+		text = combinedRecognitionText(newSegment: currentSegment)
 	}
 
 	#if targetEnvironment(simulator)
