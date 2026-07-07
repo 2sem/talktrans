@@ -145,10 +145,6 @@ class TranslationViewModel: ObservableObject {
 		activeTranslationRequestID = requestID
 		sessionBindingRequestID = requestID
 		
-		// Recreate TranslationSession configuration when translate button is pressed.
-		// Resetting to nil forces .translationTask to attach a fresh session,
-		// even when source/target language pair has not changed.
-		translationConfiguration = nil
 		createTranslationConfiguration(source: sourceLocale, target: targetLocale)
 	}
 	
@@ -241,12 +237,14 @@ class TranslationViewModel: ObservableObject {
 	}
 	
 	private func createTranslationConfiguration(source: Locale, target: Locale) {
-		// Create TranslationSession.Configuration for use with translationTask
-		var configuration = TranslationSession.Configuration()
+		// Reuse and invalidate the TranslationSession configuration so repeated
+		// translations with the same language pair trigger .translationTask again.
+		var configuration = translationConfiguration ?? TranslationSession.Configuration()
 		configuration.source = source.language
 		configuration.target = target.language
 
 		translationConfiguration = configuration
+		translationConfiguration?.invalidate()
 	}
 }
 
