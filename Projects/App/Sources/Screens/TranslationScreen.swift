@@ -398,53 +398,58 @@ private struct DuoTableModePanel: View {
 
 			GeometryReader { proxy in
 				let hasLongText = displayText.count > 80
-				let textMaxHeight = max(150, proxy.size.height * (onSpeakToReply == nil ? 0.48 : 0.44))
+				let isInputPanel = onSpeakToReply != nil
+				let usesGlassInputLayout = isInputPanel && supportsLiquidGlass
+				let textHeightRatio = usesGlassInputLayout ? 0.76 : (onSpeakToReply == nil ? 0.48 : 0.44)
+				let textMaxHeight = max(150, proxy.size.height * textHeightRatio)
 				let textFontSize: CGFloat = hasLongText ? (isUpsideDown ? 34 : 28) : (isUpsideDown ? 42 : 34)
-				let topSpacerHeight: CGFloat = hasLongText ? 24 : 42
-				let bottomSpacerHeight: CGFloat = hasLongText ? 28 : (isUpsideDown ? 82 : 62)
+				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 54 : (hasLongText ? 24 : 42)
+				let bottomSpacerHeight: CGFloat = usesGlassInputLayout ? 0 : (hasLongText ? 28 : (isUpsideDown ? 82 : 62))
+				let inputBottomFadeLength: CGFloat = usesGlassInputLayout ? 60 : 44
 
-				VStack(spacing: 22) {
-					Spacer(minLength: topSpacerHeight)
+				ZStack(alignment: .bottom) {
+					VStack(spacing: usesGlassInputLayout ? 12 : 22) {
+						Spacer(minLength: topSpacerHeight)
 
-					DuoTableModeLanguagePill(
-						roleTitle: roleTitle,
-						locale: locale,
-						accent: accent
-					)
+						DuoTableModeLanguagePill(
+							roleTitle: roleTitle,
+							locale: locale,
+							accent: accent
+						)
 
-					ScrollView(.vertical) {
-						Text(displayText)
-							.font(.system(size: textFontSize, weight: .bold, design: .rounded))
-							.foregroundStyle(textColor)
-							.multilineTextAlignment(.center)
-							.lineSpacing(4)
-							.minimumScaleFactor(0.45)
-							.fixedSize(horizontal: false, vertical: true)
-							.padding(.horizontal, 30)
-							.frame(maxWidth: .infinity)
-					}
-					.frame(maxHeight: textMaxHeight)
-					.scrollBounceBehavior(.basedOnSize)
-					.accessibilityLabel(displayText)
-
-					if let onSpeakToReply {
-						Button(action: onSpeakToReply) {
-							Text("🎤 \("Speak to reply".localized())")
-								.font(.system(size: 18, weight: .bold, design: .rounded))
-								.foregroundStyle(accent)
-								.padding(.horizontal, 20)
-								.frame(minHeight: 42)
-								.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-								.shadow(color: .black.opacity(0.07), radius: 12, x: 0, y: 6)
+						ScrollView(.vertical) {
+							Text(displayText)
+								.font(.system(size: textFontSize, weight: .bold, design: .rounded))
+								.foregroundStyle(textColor)
+								.multilineTextAlignment(.center)
+								.lineSpacing(4)
+								.minimumScaleFactor(0.45)
+								.fixedSize(horizontal: false, vertical: true)
+								.padding(.horizontal, 30)
+								.frame(maxWidth: .infinity)
 						}
-						.buttonStyle(.plain)
-						.padding(.vertical, 12)
-						.padding(.horizontal, 10)
-						.contentShape(Rectangle())
-						.accessibilityLabel("Speak to reply".localized())
+						.frame(maxHeight: textMaxHeight)
+						.contentMargins(.bottom, isInputPanel ? (usesGlassInputLayout ? 96 : 72) : 0, for: .scrollContent)
+						.bottomScrollEdgeFade(isEnabled: isInputPanel, length: inputBottomFadeLength)
+						.scrollBounceBehavior(.basedOnSize)
+						.accessibilityLabel(displayText)
+
+						if let onSpeakToReply, !usesGlassInputLayout {
+							speakToReplyButton(action: onSpeakToReply)
+								.padding(.vertical, 12)
+								.padding(.horizontal, 10)
+								.contentShape(Rectangle())
+								.accessibilityLabel("Speak to reply".localized())
+						}
+
+						Spacer(minLength: bottomSpacerHeight)
 					}
 
-					Spacer(minLength: bottomSpacerHeight)
+					if let onSpeakToReply, usesGlassInputLayout {
+						speakToReplyButton(action: onSpeakToReply)
+							.padding(.bottom, 34)
+							.accessibilityLabel("Speak to reply".localized())
+					}
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			}
@@ -464,11 +469,70 @@ private struct DuoTableModePanel: View {
 				.padding(.horizontal, 8)
 				.contentShape(Rectangle())
 				.accessibilityLabel("Exit".localized())
-				.padding(.top, 32)
-				.padding(.trailing, 34)
+				.padding(.top, 14)
+				.padding(.trailing, 16)
 			}
 		}
 		.rotationEffect(.degrees(isUpsideDown ? 180 : 0))
+	}
+
+	private var supportsLiquidGlass: Bool {
+		if #available(iOS 26, *) {
+			return true
+		}
+
+		return false
+	}
+
+	@ViewBuilder
+	private func speakToReplyButton(action: @escaping () -> Void) -> some View {
+		Button(action: action) {
+			Text("🎤 \("Speak to reply".localized())")
+				.font(.system(size: 18, weight: .bold, design: .rounded))
+				.foregroundStyle(accent)
+				.padding(.horizontal, 20)
+				.frame(minHeight: 42)
+		}
+		.buttonStyle(.plain)
+		.ifLiquidGlassButton(accent: accent)
+	}
+}
+
+private extension View {
+	@ViewBuilder
+	func ifLiquidGlassButton(accent: Color) -> some View {
+		if #available(iOS 26, *) {
+			self
+				.glassEffect(.regular.interactive(), in: .capsule)
+		} else {
+			self
+				.background(Color.duoSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+				.shadow(color: .black.opacity(0.07), radius: 12, x: 0, y: 6)
+		}
+	}
+
+	@ViewBuilder
+	func bottomScrollEdgeFade(isEnabled: Bool, length: CGFloat) -> some View {
+		if isEnabled {
+			mask {
+				GeometryReader { proxy in
+					let height = max(proxy.size.height, 1)
+					let fadeStart = max(0, min(1, 1 - (length / height)))
+
+					LinearGradient(
+						stops: [
+							.init(color: .black, location: 0),
+							.init(color: .black, location: fadeStart),
+							.init(color: .clear, location: 1)
+						],
+						startPoint: .top,
+						endPoint: .bottom
+					)
+				}
+			}
+		} else {
+			self
+		}
 	}
 }
 
