@@ -22,6 +22,7 @@ struct TranslationScreen: View {
 	@State private var lastHandledTranslationID: UUID?
 	@State private var isTableModePresented = false
 	@State private var lastTableModeTranslationInput = ""
+	@State private var speechDraftText = ""
 	@FocusState private var isInputFocused: Bool
 
 	private let topContentPadding: CGFloat = 12
@@ -58,7 +59,7 @@ struct TranslationScreen: View {
 						isTableModePresented = false
 					},
 					onSpeakToReply: {
-						showSpeechRecognition = true
+						presentSpeechRecognition()
 					},
 					onSwap: {
 						viewModel.swapLanguages()
@@ -77,7 +78,7 @@ struct TranslationScreen: View {
 					DuoModeSelectorView(
 						isSpeechSelected: showSpeechRecognition,
 						onTypeTapped: { showSpeechRecognition = false },
-						onSpeakTapped: { showSpeechRecognition = true }
+						onSpeakTapped: { presentSpeechRecognition() }
 					)
 						.padding(.horizontal, 16)
 
@@ -230,7 +231,7 @@ struct TranslationScreen: View {
 		.fullScreenCover(isPresented: $showSpeechRecognition) {
 			SpeechRecognitionScreen(
 				viewModel: speechViewModel,
-				text: $viewModel.nativeText,
+				text: $speechDraftText,
 				sourceLocale: viewModel.nativeLocale,
 				targetLocale: viewModel.translatedLocale,
 				processTitle: "Use & translate",
@@ -272,8 +273,15 @@ struct TranslationScreen: View {
 		viewModel.translatedText = translatedText
 	}
 
+	private func presentSpeechRecognition() {
+		isInputFocused = false
+		speechDraftText = ""
+		showSpeechRecognition = true
+	}
+
 	private func processRecognizedSpeech() {
 		isInputFocused = false
+		viewModel.nativeText = speechDraftText
 		showSpeechRecognition = false
 
 		Task { @MainActor in
