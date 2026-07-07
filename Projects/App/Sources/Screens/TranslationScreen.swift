@@ -469,14 +469,25 @@ private struct DuoHeaderView: View {
 
 			Spacer()
 
-			Button(action: onHistoryTapped) {
-				Image(systemName: "clock.arrow.circlepath")
-					.font(.system(size: 14, weight: .semibold))
-					.foregroundStyle(Color.duoThemAccent)
-					.frame(width: 32, height: 32)
-					.background(Color.duoSurface, in: Circle())
+			HStack(spacing: 8) {
+				Button(action: onHistoryTapped) {
+					Image(systemName: "clock.arrow.circlepath")
+						.font(.system(size: 14, weight: .semibold))
+						.foregroundStyle(Color.duoThemAccent)
+						.frame(width: 32, height: 32)
+						.background(Color.duoSurface, in: Circle())
+				}
+				.accessibilityLabel("Translation history")
+
+				WatchAdButton(
+					size: 32,
+					cornerRadius: 16,
+					iconSize: 14,
+					backgroundColor: .duoSurface,
+					backgroundOpacity: 1,
+					borderOpacity: 0
+				)
 			}
-			.accessibilityLabel("Translation history")
 		}
 		.font(.system(size: 19, weight: .bold))
 	}
