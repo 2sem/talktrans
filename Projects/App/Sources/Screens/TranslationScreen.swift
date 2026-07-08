@@ -16,6 +16,7 @@ struct TranslationScreen: View {
 	@EnvironmentObject private var reviewManager: ReviewManager
 	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@Environment(\.modelContext) private var modelContext
+	@Environment(\.verticalSizeClass) private var verticalSizeClass
 	@State private var showSpeechRecognition = false
 	@State private var showHistory = false
 	@State private var showAdFreeToast = false
@@ -67,144 +68,12 @@ struct TranslationScreen: View {
 				)
 				.transition(.scale)
 			} else {
-				// Normal Mode - Show all UI elements
-				VStack(spacing: 8) {
-					DuoHeaderView(
-						onHistoryTapped: { showHistory = true }
-					)
-						.padding(.horizontal, 18)
-						.padding(.top, topContentPadding)
-
-					DuoModeSelectorView(
-						isSpeechSelected: showSpeechRecognition,
-						onTypeTapped: { showSpeechRecognition = false },
-						onSpeakTapped: { presentSpeechRecognition() }
-					)
-						.padding(.horizontal, 16)
-
-					// Translated Output Section
-					if !isInputFocused {
-						TranslationOutputView(
-							text: viewModel.translatedText,
-							locale: viewModel.translatedLocale,
-							sourceLocale: viewModel.nativeLocale,
-							availableLocales: viewModel.supportedTargetLocales,
-							placeholder: "Translated message will appear here".localized(),
-							onLocaleChange: { locale in
-								viewModel.updateTranslatedLocale(locale)
-							},
-							onSwap: {
-								viewModel.swapLanguages()
-							},
-							isFullScreen: false,
-							onToggleFullScreen: { },
-							deviceOrientation: viewModel.deviceOrientation
-						)
-						.frame(maxHeight: .infinity)
-						.layoutPriority(1)
-						.padding(.horizontal, 16)
+				Group {
+					if usesCompactHeightLayout && !isInputFocused {
+						normalLandscapeContent
+					} else {
+						normalPortraitContent
 					}
-
-					if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
-						GeometryReader { proxy in
-							BannerAdSwiftUIView(adWidth: proxy.size.width)
-								.frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-						}
-						.frame(height: 50)
-						.padding(.horizontal, 16)
-					}
-
-					// Native Input Section
-					TranslationInputView(
-						text: $viewModel.nativeText,
-						isFocused: $isInputFocused,
-						locale: viewModel.nativeLocale,
-						targetLocale: viewModel.translatedLocale,
-						availableLocales: TranslationLocale.allCases,
-						placeholder: "".appendingFormat("Please input your message to be translated as %@".localized(), viewModel.translatedLocale.displayName.localized()),
-						onLocaleChange: { locale in
-							viewModel.updateNativeLocale(locale)
-						},
-						onSwap: {
-							viewModel.swapLanguages()
-						},
-						onHistoryTapped: {
-							showHistory = true
-						},
-						maxLength: 500
-					)
-					.frame(maxHeight: .infinity)
-					.layoutPriority(1)
-					.padding(.horizontal, 16)
-
-					// Action Buttons
-					HStack(spacing: 12) {
-						// Translate Button
-						Button(action: {
-							isInputFocused = false
-							viewModel.translate()
-						}) {
-							HStack {
-								if viewModel.isTranslating {
-									ProgressView()
-										.progressViewStyle(CircularProgressViewStyle(tint: .white))
-										.scaleEffect(0.8)
-								} else {
-									Text("Translate")
-										.font(.system(size: 17, weight: .semibold))
-								}
-							}
-							.frame(maxWidth: .infinity)
-							.frame(height: 52)
-							.background(
-								LinearGradient(
-									colors: [
-										.duoThemAccent,
-										.duoThemAccentDeep
-									],
-									startPoint: .leading,
-									endPoint: .trailing
-								)
-							)
-							.foregroundStyle(.white)
-							.clipShape(.rect(cornerRadius: 16, style: .continuous))
-						}
-						.disabled(!viewModel.canTranslate)
-
-						Button(action: {
-							isInputFocused = false
-							lastTableModeTranslationInput = viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines)
-							isTableModePresented = true
-						}) {
-							Image(systemName: "person.line.dotted.person.fill")
-								.font(.system(size: 18, weight: .semibold))
-								.frame(width: 52, height: 52)
-								.background(Color.duoThemAccent.opacity(0.14))
-								.foregroundStyle(Color.duoThemAccentDeep)
-								.clipShape(.rect(cornerRadius: 16, style: .continuous))
-								.overlay(
-									RoundedRectangle(cornerRadius: 16, style: .continuous)
-										.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
-								)
-						}
-						.buttonStyle(.plain)
-						.accessibilityLabel("Table Mode")
-					}
-					.padding(.horizontal, 16)
-					.padding(.bottom, 8)
-
-					// Error Message (moved here, before Spacer)
-					if let errorMessage = viewModel.errorMessage {
-						Text(errorMessage)
-							.font(.system(size: 14))
-							.foregroundColor(.red)
-							.padding(.horizontal, 16)
-					}
-
-				}
-				.safeAreaPadding(.bottom, 12)
-				.onTapGesture {
-					isInputFocused = false
 				}
 				.transition(.scale)
 			}
@@ -247,6 +116,245 @@ struct TranslationScreen: View {
 			HistoryScreen { sourceText, translatedText, sourceLang, targetLang in
 				applyRetranslate(sourceText: sourceText, translatedText: translatedText, sourceLang: sourceLang, targetLang: targetLang)
 			}
+		}
+	}
+
+	// MARK: - Normal Mode Layout
+
+	private var usesCompactHeightLayout: Bool {
+		verticalSizeClass == .compact
+	}
+
+	private var normalPortraitContent: some View {
+		VStack(spacing: 8) {
+			normalHeader
+				.padding(.horizontal, 18)
+				.padding(.top, topContentPadding)
+
+			normalModeSelector
+				.padding(.horizontal, 16)
+
+			if !isInputFocused {
+				translatedOutputCard
+					.frame(maxHeight: .infinity)
+					.layoutPriority(1)
+					.padding(.horizontal, 16)
+			}
+
+			bannerAd
+
+			nativeInputCard
+				.frame(maxHeight: .infinity)
+				.layoutPriority(1)
+				.padding(.horizontal, 16)
+
+			actionButtons
+				.padding(.horizontal, 16)
+				.padding(.bottom, 8)
+
+			errorMessageView
+				.padding(.horizontal, 16)
+		}
+		.safeAreaPadding(.bottom, 12)
+		.onTapGesture {
+			isInputFocused = false
+		}
+	}
+
+	private var normalLandscapeContent: some View {
+		GeometryReader { proxy in
+			let horizontalPadding: CGFloat = 16
+			let contentSpacing: CGFloat = 14
+			let sideWidth = min(max(proxy.size.width * 0.34, 320), 430)
+			let actionHeight: CGFloat = 56
+
+			VStack(spacing: 8) {
+				HStack(alignment: .top, spacing: contentSpacing) {
+					translatedOutputCard
+						.frame(maxWidth: .infinity, maxHeight: .infinity)
+						.layoutPriority(2)
+
+					VStack(spacing: 14) {
+						nativeInputCard
+							.frame(maxHeight: .infinity)
+							.layoutPriority(1)
+
+						landscapeActionButtons
+							.frame(height: actionHeight)
+
+						errorMessageView
+					}
+					.frame(width: sideWidth)
+					.frame(maxHeight: .infinity)
+				}
+				.padding(.horizontal, horizontalPadding)
+				.layoutPriority(1)
+
+				bannerAd
+			}
+			.safeAreaPadding(.top, 12)
+			.safeAreaPadding(.bottom, 8)
+			.onTapGesture {
+				isInputFocused = false
+			}
+		}
+	}
+
+	private var normalHeader: some View {
+		DuoHeaderView(
+			onHistoryTapped: { showHistory = true }
+		)
+	}
+
+	private var normalModeSelector: some View {
+		DuoModeSelectorView(
+			isSpeechSelected: showSpeechRecognition,
+			onTypeTapped: { showSpeechRecognition = false },
+			onSpeakTapped: { presentSpeechRecognition() }
+		)
+	}
+
+	private var translatedOutputCard: some View {
+		TranslationOutputView(
+			text: viewModel.translatedText,
+			locale: viewModel.translatedLocale,
+			sourceLocale: viewModel.nativeLocale,
+			availableLocales: viewModel.supportedTargetLocales,
+			placeholder: "Translated message will appear here".localized(),
+			onLocaleChange: { locale in
+				viewModel.updateTranslatedLocale(locale)
+			},
+			onSwap: {
+				viewModel.swapLanguages()
+			},
+			isFullScreen: false,
+			onToggleFullScreen: { },
+			deviceOrientation: viewModel.deviceOrientation
+		)
+	}
+
+	private var nativeInputCard: some View {
+		TranslationInputView(
+			text: $viewModel.nativeText,
+			isFocused: $isInputFocused,
+			locale: viewModel.nativeLocale,
+			targetLocale: viewModel.translatedLocale,
+			availableLocales: TranslationLocale.allCases,
+			placeholder: "".appendingFormat("Please input your message to be translated as %@".localized(), viewModel.translatedLocale.displayName.localized()),
+			onLocaleChange: { locale in
+				viewModel.updateNativeLocale(locale)
+			},
+			onSwap: {
+				viewModel.swapLanguages()
+			},
+			onHistoryTapped: {
+				showHistory = true
+			},
+			maxLength: 500
+		)
+	}
+
+	@ViewBuilder
+	private var bannerAd: some View {
+		if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
+			GeometryReader { proxy in
+				BannerAdSwiftUIView(adWidth: proxy.size.width)
+					.frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+			}
+			.frame(height: 50)
+			.padding(.horizontal, 16)
+		}
+	}
+
+	private var actionButtons: some View {
+		HStack(spacing: 12) {
+			translateButton
+			tableModeButton
+		}
+	}
+
+	private var landscapeActionButtons: some View {
+		HStack(spacing: 12) {
+			translateButton
+
+			Button(action: {
+				presentSpeechRecognition()
+			}) {
+				Image(systemName: "mic.fill")
+					.font(.system(size: 22, weight: .semibold))
+					.frame(width: 56, height: 56)
+					.background(Color.duoSurface)
+					.foregroundStyle(Color.duoThemAccentDeep)
+					.clipShape(.rect(cornerRadius: 16, style: .continuous))
+			}
+			.buttonStyle(.plain)
+			.accessibilityLabel("Speak".localized())
+
+			tableModeButton
+		}
+	}
+
+	private var translateButton: some View {
+		Button(action: {
+			isInputFocused = false
+			viewModel.translate()
+		}) {
+			HStack {
+				if viewModel.isTranslating {
+					ProgressView()
+						.progressViewStyle(CircularProgressViewStyle(tint: .white))
+						.scaleEffect(0.8)
+				} else {
+					Text("Translate")
+						.font(.system(size: 17, weight: .semibold))
+				}
+			}
+			.frame(maxWidth: .infinity)
+			.frame(height: 52)
+			.background(
+				LinearGradient(
+					colors: [
+						.duoThemAccent,
+						.duoThemAccentDeep
+					],
+					startPoint: .leading,
+					endPoint: .trailing
+				)
+			)
+			.foregroundStyle(.white)
+			.clipShape(.rect(cornerRadius: 16, style: .continuous))
+		}
+		.disabled(!viewModel.canTranslate)
+	}
+
+	private var tableModeButton: some View {
+		Button(action: {
+			isInputFocused = false
+			lastTableModeTranslationInput = viewModel.nativeText.trimmingCharacters(in: .whitespacesAndNewlines)
+			isTableModePresented = true
+		}) {
+			Image(systemName: "person.line.dotted.person.fill")
+				.font(.system(size: 18, weight: .semibold))
+				.frame(width: 52, height: 52)
+				.background(Color.duoThemAccent.opacity(0.14))
+				.foregroundStyle(Color.duoThemAccentDeep)
+				.clipShape(.rect(cornerRadius: 16, style: .continuous))
+				.overlay(
+					RoundedRectangle(cornerRadius: 16, style: .continuous)
+						.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
+				)
+		}
+		.buttonStyle(.plain)
+		.accessibilityLabel("Table Mode")
+	}
+
+	@ViewBuilder
+	private var errorMessageView: some View {
+		if let errorMessage = viewModel.errorMessage {
+			Text(errorMessage)
+				.font(.system(size: 14))
+				.foregroundColor(.red)
+				.frame(maxWidth: .infinity, alignment: .leading)
 		}
 	}
 
