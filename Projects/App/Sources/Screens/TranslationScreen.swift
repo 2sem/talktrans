@@ -398,16 +398,16 @@ private struct DuoTableModePanel: View {
 			GeometryReader { proxy in
 				let hasLongText = displayText.count > 80
 				let isInputPanel = onSpeakToReply != nil
-				let usesGlassInputLayout = isInputPanel && supportsLiquidGlass
+				let usesCenterFadeLayout = supportsLiquidGlass && (isInputPanel || isUpsideDown)
 				let textHeightRatio = onSpeakToReply == nil ? 0.48 : 0.44
 				let textMaxHeight = max(150, proxy.size.height * textHeightRatio)
 				let textFontSize: CGFloat = hasLongText ? (isUpsideDown ? 34 : 28) : (isUpsideDown ? 42 : 34)
-				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 42 : (hasLongText ? 24 : 42)
-				let bottomSpacerHeight: CGFloat = usesGlassInputLayout ? 0 : (hasLongText ? 28 : (isUpsideDown ? 82 : 62))
-				let inputBottomFadeLength: CGFloat = usesGlassInputLayout ? 60 : 44
+				let topSpacerHeight: CGFloat = usesCenterFadeLayout ? 42 : (hasLongText ? 24 : 42)
+				let bottomSpacerHeight: CGFloat = usesCenterFadeLayout ? 0 : (hasLongText ? 28 : (isUpsideDown ? 82 : 62))
+				let bottomFadeLength: CGFloat = usesCenterFadeLayout && isInputPanel ? 60 : 44
 
 				ZStack(alignment: .bottom) {
-					if usesGlassInputLayout {
+					if usesCenterFadeLayout {
 						ScrollView(.vertical) {
 							Text(displayText)
 								.font(.system(size: textFontSize, weight: .bold, design: .rounded))
@@ -421,8 +421,8 @@ private struct DuoTableModePanel: View {
 						}
 						.frame(maxHeight: .infinity)
 						.contentMargins(.top, 112, for: .scrollContent)
-						.contentMargins(.bottom, 96, for: .scrollContent)
-						.scrollEdgeFade(isEnabled: true, topLength: 116, bottomLength: inputBottomFadeLength)
+						.contentMargins(.bottom, isInputPanel ? 96 : 44, for: .scrollContent)
+						.scrollEdgeFade(isEnabled: true, topLength: 116, bottomLength: bottomFadeLength)
 						.scrollBounceBehavior(.basedOnSize)
 						.accessibilityLabel(displayText)
 
@@ -465,7 +465,7 @@ private struct DuoTableModePanel: View {
 							}
 							.frame(maxHeight: textMaxHeight)
 							.contentMargins(.bottom, isInputPanel ? 72 : 0, for: .scrollContent)
-							.scrollEdgeFade(isEnabled: isInputPanel, topLength: 0, bottomLength: inputBottomFadeLength)
+							.scrollEdgeFade(isEnabled: isInputPanel, topLength: 0, bottomLength: bottomFadeLength)
 							.scrollBounceBehavior(.basedOnSize)
 							.accessibilityLabel(displayText)
 
