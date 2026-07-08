@@ -402,7 +402,7 @@ private struct DuoTableModePanel: View {
 				let textHeightRatio = onSpeakToReply == nil ? 0.48 : 0.44
 				let textMaxHeight = max(150, proxy.size.height * textHeightRatio)
 				let textFontSize: CGFloat = hasLongText ? (isUpsideDown ? 34 : 28) : (isUpsideDown ? 42 : 34)
-				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 16 : (hasLongText ? 24 : 42)
+				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 42 : (hasLongText ? 24 : 42)
 				let bottomSpacerHeight: CGFloat = usesGlassInputLayout ? 0 : (hasLongText ? 28 : (isUpsideDown ? 82 : 62))
 				let inputBottomFadeLength: CGFloat = usesGlassInputLayout ? 60 : 44
 
