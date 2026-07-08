@@ -419,6 +419,8 @@ struct TranslationScreen: View {
 // MARK: - DuoTableModeView
 
 private struct DuoTableModeView: View {
+	@Environment(\.verticalSizeClass) private var verticalSizeClass
+
 	let sourceText: String
 	let translatedText: String
 	let sourceLocale: TranslationLocale
@@ -429,53 +431,143 @@ private struct DuoTableModeView: View {
 
 	var body: some View {
 		GeometryReader { proxy in
-			VStack(spacing: 0) {
-				DuoTableModePanel(
-					roleTitle: "THEM".localized(),
-					locale: targetLocale,
-					text: translatedText,
-					placeholder: "Translated message will appear here".localized(),
-					accent: .duoThemAccentDeep,
-					textColor: .duoTableThemText,
-					backgroundColors: [.duoTableThemBackground, .duoTableThemBackgroundDeep],
-					isUpsideDown: true
-				)
-				.frame(height: proxy.size.height / 2)
-
-				DuoTableModePanel(
-					roleTitle: "YOU".localized(),
-					locale: sourceLocale,
-					text: sourceText,
-					placeholder: "Please input your message".localized(),
-					accent: .duoYouAccentDeep,
-					textColor: .duoTableYouText,
-					backgroundColors: [.duoTableYouBackground, .duoTableYouBackgroundDeep],
-					isUpsideDown: false,
-					onExit: onExit,
-					onSpeakToReply: onSpeakToReply
-				)
-				.frame(height: proxy.size.height / 2)
-			}
-			.overlay(alignment: .center) {
-				Button(action: onSwap) {
-					HStack(spacing: -3) {
-						Text("↑")
-						Text("↓")
-					}
-						.font(.system(size: 22, weight: .medium, design: .rounded))
-						.foregroundStyle(Color.duoTextMuted)
-						.frame(width: 64, height: 64)
-				}
-				.buttonStyle(.plain)
-				.ifLiquidGlassControl(fallbackShape: .circle)
-				.contentShape(Circle())
-				.accessibilityLabel("Swap languages".localized())
+			if verticalSizeClass == .compact {
+				landscapeOutputOnlyContent(proxy: proxy)
+			} else {
+				portraitTableModeContent(proxy: proxy)
 			}
 		}
 		.ignoresSafeArea()
 		.background(Color.duoBackground)
 		.statusBarHidden(true)
 		.accessibilityElement(children: .contain)
+	}
+
+	@ViewBuilder
+	private func portraitTableModeContent(proxy: GeometryProxy) -> some View {
+		VStack(spacing: 0) {
+			DuoTableModePanel(
+				roleTitle: "THEM".localized(),
+				locale: targetLocale,
+				text: translatedText,
+				placeholder: "Translated message will appear here".localized(),
+				accent: .duoThemAccentDeep,
+				textColor: .duoTableThemText,
+				backgroundColors: [.duoTableThemBackground, .duoTableThemBackgroundDeep],
+				isUpsideDown: true
+			)
+			.frame(height: proxy.size.height / 2)
+
+			DuoTableModePanel(
+				roleTitle: "YOU".localized(),
+				locale: sourceLocale,
+				text: sourceText,
+				placeholder: "Please input your message".localized(),
+				accent: .duoYouAccentDeep,
+				textColor: .duoTableYouText,
+				backgroundColors: [.duoTableYouBackground, .duoTableYouBackgroundDeep],
+				isUpsideDown: false,
+				onExit: onExit,
+				onSpeakToReply: onSpeakToReply
+			)
+			.frame(height: proxy.size.height / 2)
+		}
+		.overlay(alignment: .center) {
+			Button(action: onSwap) {
+				HStack(spacing: -3) {
+					Text("↑")
+					Text("↓")
+				}
+					.font(.system(size: 22, weight: .medium, design: .rounded))
+					.foregroundStyle(Color.duoTextMuted)
+					.frame(width: 64, height: 64)
+			}
+			.buttonStyle(.plain)
+			.ifLiquidGlassControl(fallbackShape: .circle)
+			.contentShape(Circle())
+			.accessibilityLabel("Swap languages".localized())
+		}
+	}
+
+	@ViewBuilder
+	private func landscapeOutputOnlyContent(proxy: GeometryProxy) -> some View {
+		let displayText = translatedText.isEmpty ? "Translated message will appear here".localized() : translatedText
+		let hasLongText = displayText.count > 80
+		let horizontalPadding = max(64, min(proxy.size.width * 0.12, 150))
+		let fontSize = hasLongText ? max(32, min(proxy.size.height * 0.16, 58)) : max(42, min(proxy.size.height * 0.21, 78))
+
+		ZStack {
+			LinearGradient(
+				colors: [.duoTableThemBackground, .duoTableThemBackgroundDeep],
+				startPoint: .topLeading,
+				endPoint: .bottomTrailing
+			)
+
+			Capsule()
+				.fill(Color.black.opacity(0.94))
+				.frame(width: 28, height: 96)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+				.padding(.leading, 14)
+
+			VStack(spacing: 0) {
+				HStack(alignment: .top) {
+					HStack(spacing: 10) {
+						Circle()
+							.fill(Color.duoThemAccent)
+							.frame(width: 8, height: 8)
+
+						Text("TABLE MODE · OUTPUT ONLY")
+							.font(.system(size: 14, weight: .bold, design: .rounded))
+							.tracking(4)
+							.foregroundStyle(Color.duoThemAccentDeep)
+					}
+					.padding(.horizontal, 18)
+					.frame(height: 42)
+					.background(Color.duoSurface, in: Capsule())
+					.shadow(color: Color.duoThemAccent.opacity(0.16), radius: 18, x: 0, y: 8)
+
+					Spacer()
+
+					Button(action: onExit) {
+						Image(systemName: "xmark")
+							.font(.system(size: 22, weight: .medium, design: .rounded))
+							.foregroundStyle(Color.duoThemAccentDeep)
+							.frame(width: 54, height: 54)
+							.background(Color.duoSurface, in: Circle())
+							.shadow(color: Color.duoThemAccent.opacity(0.16), radius: 18, x: 0, y: 8)
+					}
+					.buttonStyle(.plain)
+					.contentShape(Circle())
+					.accessibilityLabel("Exit Table Mode".localized())
+				}
+				.padding(.top, 22)
+				.padding(.horizontal, 52)
+
+				Spacer(minLength: 20)
+
+				ScrollView(.vertical) {
+					Text(displayText)
+						.font(.system(size: fontSize, weight: .bold, design: .rounded))
+						.foregroundStyle(Color.duoTableThemText)
+						.multilineTextAlignment(.center)
+						.lineSpacing(6)
+						.minimumScaleFactor(0.55)
+						.fixedSize(horizontal: false, vertical: true)
+						.padding(.horizontal, horizontalPadding)
+						.frame(maxWidth: .infinity)
+				}
+				.frame(maxHeight: proxy.size.height * 0.48)
+				.scrollBounceBehavior(.basedOnSize)
+				.accessibilityLabel(displayText)
+
+				Spacer(minLength: 18)
+
+				Capsule()
+					.fill(Color.duoTableThemText.opacity(0.28))
+					.frame(width: 210, height: 8)
+					.padding(.bottom, 16)
+			}
+		}
 	}
 }
 
