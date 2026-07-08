@@ -357,10 +357,9 @@ private struct DuoTableModeView: View {
 						.font(.system(size: 22, weight: .medium, design: .rounded))
 						.foregroundStyle(Color.duoTextMuted)
 						.frame(width: 64, height: 64)
-						.background(Color.duoSurface, in: Circle())
-						.shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
 				}
 				.buttonStyle(.plain)
+				.ifLiquidGlassControl(fallbackShape: .circle)
 				.contentShape(Circle())
 				.accessibilityLabel("Swap languages".localized())
 			}
@@ -400,23 +399,15 @@ private struct DuoTableModePanel: View {
 				let hasLongText = displayText.count > 80
 				let isInputPanel = onSpeakToReply != nil
 				let usesGlassInputLayout = isInputPanel && supportsLiquidGlass
-				let textHeightRatio = usesGlassInputLayout ? 0.76 : (onSpeakToReply == nil ? 0.48 : 0.44)
+				let textHeightRatio = onSpeakToReply == nil ? 0.48 : 0.44
 				let textMaxHeight = max(150, proxy.size.height * textHeightRatio)
 				let textFontSize: CGFloat = hasLongText ? (isUpsideDown ? 34 : 28) : (isUpsideDown ? 42 : 34)
-				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 54 : (hasLongText ? 24 : 42)
+				let topSpacerHeight: CGFloat = usesGlassInputLayout ? 16 : (hasLongText ? 24 : 42)
 				let bottomSpacerHeight: CGFloat = usesGlassInputLayout ? 0 : (hasLongText ? 28 : (isUpsideDown ? 82 : 62))
 				let inputBottomFadeLength: CGFloat = usesGlassInputLayout ? 60 : 44
 
 				ZStack(alignment: .bottom) {
-					VStack(spacing: usesGlassInputLayout ? 12 : 22) {
-						Spacer(minLength: topSpacerHeight)
-
-						DuoTableModeLanguagePill(
-							roleTitle: roleTitle,
-							locale: locale,
-							accent: accent
-						)
-
+					if usesGlassInputLayout {
 						ScrollView(.vertical) {
 							Text(displayText)
 								.font(.system(size: textFontSize, weight: .bold, design: .rounded))
@@ -428,27 +419,66 @@ private struct DuoTableModePanel: View {
 								.padding(.horizontal, 30)
 								.frame(maxWidth: .infinity)
 						}
-						.frame(maxHeight: textMaxHeight)
-						.contentMargins(.bottom, isInputPanel ? (usesGlassInputLayout ? 96 : 72) : 0, for: .scrollContent)
-						.bottomScrollEdgeFade(isEnabled: isInputPanel, length: inputBottomFadeLength)
+						.frame(maxHeight: .infinity)
+						.contentMargins(.top, 112, for: .scrollContent)
+						.contentMargins(.bottom, 96, for: .scrollContent)
+						.scrollEdgeFade(isEnabled: true, topLength: 116, bottomLength: inputBottomFadeLength)
 						.scrollBounceBehavior(.basedOnSize)
 						.accessibilityLabel(displayText)
 
-						if let onSpeakToReply, !usesGlassInputLayout {
-							speakToReplyButton(action: onSpeakToReply)
-								.padding(.vertical, 12)
-								.padding(.horizontal, 10)
-								.contentShape(Rectangle())
-								.accessibilityLabel("Speak to reply".localized())
+						VStack {
+							DuoTableModeLanguagePill(
+								roleTitle: roleTitle,
+								locale: locale,
+								accent: accent
+							)
+							.padding(.top, topSpacerHeight)
+
+							Spacer()
 						}
 
-						Spacer(minLength: bottomSpacerHeight)
-					}
+						if let onSpeakToReply {
+							speakToReplyButton(action: onSpeakToReply)
+								.padding(.bottom, 34)
+								.accessibilityLabel("Speak to reply".localized())
+						}
+					} else {
+						VStack(spacing: 22) {
+							Spacer(minLength: topSpacerHeight)
 
-					if let onSpeakToReply, usesGlassInputLayout {
-						speakToReplyButton(action: onSpeakToReply)
-							.padding(.bottom, 34)
-							.accessibilityLabel("Speak to reply".localized())
+							DuoTableModeLanguagePill(
+								roleTitle: roleTitle,
+								locale: locale,
+								accent: accent
+							)
+
+							ScrollView(.vertical) {
+								Text(displayText)
+									.font(.system(size: textFontSize, weight: .bold, design: .rounded))
+									.foregroundStyle(textColor)
+									.multilineTextAlignment(.center)
+									.lineSpacing(4)
+									.minimumScaleFactor(0.45)
+									.fixedSize(horizontal: false, vertical: true)
+									.padding(.horizontal, 30)
+									.frame(maxWidth: .infinity)
+							}
+							.frame(maxHeight: textMaxHeight)
+							.contentMargins(.bottom, isInputPanel ? 72 : 0, for: .scrollContent)
+							.scrollEdgeFade(isEnabled: isInputPanel, topLength: 0, bottomLength: inputBottomFadeLength)
+							.scrollBounceBehavior(.basedOnSize)
+							.accessibilityLabel(displayText)
+
+							if let onSpeakToReply {
+								speakToReplyButton(action: onSpeakToReply)
+									.padding(.vertical, 12)
+									.padding(.horizontal, 10)
+									.contentShape(Rectangle())
+									.accessibilityLabel("Speak to reply".localized())
+							}
+
+							Spacer(minLength: bottomSpacerHeight)
+						}
 					}
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -456,21 +486,17 @@ private struct DuoTableModePanel: View {
 
 			if let onExit {
 				Button(action: onExit) {
-					Text("× \("Exit".localized())")
-						.font(.system(size: 14, weight: .bold, design: .rounded))
+					Image(systemName: "xmark")
+						.font(.system(size: 15, weight: .bold, design: .rounded))
 						.foregroundStyle(textColor)
-						.padding(.horizontal, 13)
-						.frame(minHeight: 34)
-						.background(Color.duoSurface, in: Capsule())
-						.shadow(color: .black.opacity(0.07), radius: 10, x: 0, y: 5)
+						.frame(width: 44, height: 44)
 				}
 				.buttonStyle(.plain)
-				.padding(.vertical, 10)
-				.padding(.horizontal, 8)
-				.contentShape(Rectangle())
-				.accessibilityLabel("Exit".localized())
-				.padding(.top, 14)
-				.padding(.trailing, 16)
+				.ifLiquidGlassControl(fallbackShape: .circle)
+				.contentShape(Circle())
+				.accessibilityLabel("Exit Table Mode".localized())
+				.padding(.top, 18)
+				.padding(.trailing, 18)
 			}
 		}
 		.rotationEffect(.degrees(isUpsideDown ? 180 : 0))
@@ -512,17 +538,44 @@ private extension View {
 	}
 
 	@ViewBuilder
-	func bottomScrollEdgeFade(isEnabled: Bool, length: CGFloat) -> some View {
+	func ifLiquidGlassControl(fallbackShape: ButtonFallbackShape) -> some View {
+		if #available(iOS 26, *) {
+			switch fallbackShape {
+			case .circle:
+				self
+					.glassEffect(.regular.interactive(), in: .circle)
+			case .capsule:
+				self
+					.glassEffect(.regular, in: .capsule)
+			}
+		} else {
+			switch fallbackShape {
+			case .circle:
+				self
+					.background(Color.duoSurface, in: Circle())
+					.shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
+			case .capsule:
+				self
+					.background(Color.duoSurface, in: Capsule())
+					.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+			}
+		}
+	}
+
+	@ViewBuilder
+	func scrollEdgeFade(isEnabled: Bool, topLength: CGFloat, bottomLength: CGFloat) -> some View {
 		if isEnabled {
 			mask {
 				GeometryReader { proxy in
 					let height = max(proxy.size.height, 1)
-					let fadeStart = max(0, min(1, 1 - (length / height)))
+					let topFadeEnd = min(max(topLength / height, 0), 0.35)
+					let bottomFadeStart = max(min(1 - (bottomLength / height), 1), 0.65)
 
 					LinearGradient(
 						stops: [
-							.init(color: .black, location: 0),
-							.init(color: .black, location: fadeStart),
+							.init(color: topLength > 0 ? .clear : .black, location: 0),
+							.init(color: .black, location: topFadeEnd),
+							.init(color: .black, location: bottomFadeStart),
 							.init(color: .clear, location: 1)
 						],
 						startPoint: .top,
@@ -534,6 +587,11 @@ private extension View {
 			self
 		}
 	}
+}
+
+private enum ButtonFallbackShape {
+	case circle
+	case capsule
 }
 
 private struct DuoTableModeLanguagePill: View {
@@ -553,8 +611,7 @@ private struct DuoTableModeLanguagePill: View {
 		}
 		.padding(.horizontal, 24)
 		.frame(minHeight: 54)
-		.background(Color.duoSurface, in: Capsule())
-		.shadow(color: .black.opacity(0.08), radius: 14, x: 0, y: 8)
+		.ifLiquidGlassControl(fallbackShape: .capsule)
 		.accessibilityElement(children: .combine)
 	}
 }
