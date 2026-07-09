@@ -69,7 +69,7 @@ struct TranslationScreen: View {
 				.transition(.scale)
 			} else {
 				Group {
-					if usesCompactHeightLayout && !isInputFocused {
+					if usesCompactHeightLayout {
 						normalLandscapeContent
 					} else {
 						normalPortraitContent
@@ -256,7 +256,7 @@ struct TranslationScreen: View {
 
 	@ViewBuilder
 	private var bannerAd: some View {
-		if !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
+		if !isInputFocused, !SwiftUIAdManager.isDisabled, !adManager.isAdFree {
 			GeometryReader { proxy in
 				BannerAdSwiftUIView(adWidth: proxy.size.width)
 					.frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
