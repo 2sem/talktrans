@@ -177,10 +177,18 @@ struct TranslationScreen: View {
 			VStack(spacing: 8) {
 				// Single layout in both states — focus only changes the split so
 				// SwiftUI animates a resize, not an insert/remove.
+				//
+				// Widths are driven by plain `.frame` values (`nil` is a valid
+				// no-op width) rather than a `@ViewBuilder` conditional. An
+				// `if let width { frame(width:) } else { self }` helper produces
+				// `_ConditionalContent`, whose branch identity differs; under
+				// this GeometryReader + chained `safeAreaPadding` that wedged the
+				// layout engine into an unbounded size re-proposal loop on
+				// rotation, hanging the main thread (PR #147 regression).
 				HStack(alignment: .top, spacing: contentSpacing) {
 					translatedOutputCard(lineLimit: isInputFocused ? 3 : nil)
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
-						.exactWidth(isInputFocused ? focusedOutputWidth : nil)
+						.frame(width: isInputFocused ? focusedOutputWidth : nil)
 						.layoutPriority(isInputFocused ? 0 : 2)
 						.overlay(alignment: .bottom) {
 							if isInputFocused {
@@ -199,8 +207,8 @@ struct TranslationScreen: View {
 
 						errorMessageView
 					}
+					.frame(width: isInputFocused ? nil : sideWidth)
 					.frame(maxWidth: isInputFocused ? .infinity : nil, maxHeight: .infinity)
-					.exactWidth(isInputFocused ? nil : sideWidth)
 					.layoutPriority(isInputFocused ? 1 : 0)
 				}
 				.padding(.horizontal, horizontalPadding)
@@ -776,17 +784,6 @@ private struct DuoTableModePanel: View {
 }
 
 private extension View {
-	/// Pins the view to a fixed width when `width` is non-nil, otherwise leaves
-	/// sizing untouched. Avoids calling `.frame(width:)` with a nil literal.
-	@ViewBuilder
-	func exactWidth(_ width: CGFloat?) -> some View {
-		if let width {
-			frame(width: width)
-		} else {
-			self
-		}
-	}
-
 	@ViewBuilder
 	func ifLiquidGlassButton(accent: Color) -> some View {
 		if #available(iOS 26, *) {
