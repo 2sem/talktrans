@@ -44,6 +44,11 @@ Translate="Dịch";
 "Please rate '%@' or recommend it to your friends."="Hãy đánh giá '%@' hoặc giới thiệu nó cho bạn bè của bạn.";
 "Translated Language:"="Ngôn ngữ dịch:";
 "Font Size"="Cỡ chữ";
+
+// MARK: - Mode selector & accessibility labels
+"Speak"="Nói";
+"Type"="Nhập";
+"Swap languages"="Hoán đổi ngôn ngữ";
 "Remove ads for 1 hour?"="Xóa quảng cáo trong 1 giờ?";
 "Watch Ad"="Xem quảng cáo";
 "Watch a short ad to enjoy 1 hour ad-free."="Xem một quảng cáo ngắn để trải nghiệm 1 giờ không có quảng cáo.";
