@@ -1,5 +1,9 @@
-Cada traducción que realizas se guarda ahora automáticamente. Consulta tu historial por fecha, marca tus favoritos y pulsa cualquier entrada para ver el texto original y la traducción completa. ¿Necesitas usar una traducción de nuevo? Con un solo toque lo recuperas todo al instante, sin volver a escribir ni a traducir.
+Hemos rediseñado toda la aplicación. La pantalla de traducción, la entrada de voz, el historial y el selector de idioma ahora se ven mejor y son más fáciles de usar.
 
-Ahora puedes traducir hasta 500 caracteres a la vez, frente a los 100 anteriores.
+El modo mesa tiene un nuevo diseño. Al mostrar una traducción a la persona que tienes enfrente, el texto se ve más grande y nítido, y las frases largas ahora se pueden desplazar.
 
-Además, varias correcciones menores para mejorar el uso diario.
+La entrada de voz ha mejorado. Los mensajes largos ya no se cortan y, si sigues hablando, el texto nuevo se añade de forma natural a lo anterior.
+
+Ya es compatible con el modo horizontal. Gira el dispositivo y tanto la pantalla de traducción como el modo mesa aprovecharán todo el ancho.
+
+Además, hemos corregido errores en las traducciones repetidas, el botón de intercambio de idiomas y las etiquetas sin traducir en algunas pantallas.

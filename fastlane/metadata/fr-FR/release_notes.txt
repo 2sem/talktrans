@@ -1,5 +1,9 @@
-Chaque traduction que vous effectuez est désormais sauvegardée automatiquement. Parcourez votre historique par jour, ajoutez des favoris et appuyez sur une entrée pour afficher le texte source et la traduction complète. Besoin de réutiliser une traduction ? Un simple appui restaure tout instantanément, sans ressaisir ni retraduire.
+Nous avons entièrement repensé l'application. L'écran de traduction, la saisie vocale, l'historique et le sélecteur de langue sont plus agréables et plus simples à utiliser.
 
-Vous pouvez maintenant traduire jusqu'à 500 caractères à la fois, contre 100 auparavant.
+Le mode face à face a été redessiné. Lorsque vous montrez une traduction à votre interlocuteur, le texte est plus grand et plus net, et les phrases longues peuvent désormais défiler.
 
-Et plusieurs petites corrections pour améliorer l'usage au quotidien.
+La saisie vocale a été améliorée. Les longs énoncés ne sont plus tronqués et, si vous continuez à parler, le nouveau texte s'ajoute naturellement au précédent.
+
+Le mode paysage est désormais pris en charge. Faites pivoter votre appareil : l'écran de traduction et le mode face à face occupent toute la largeur.
+
+Nous avons également corrigé des problèmes liés aux traductions répétées, au bouton d'inversion des langues et à des libellés non traduits sur certains écrans.

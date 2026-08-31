@@ -1,5 +1,9 @@
-Setiap terjemahan yang Anda buat kini tersimpan secara otomatis. Telusuri riwayat berdasarkan hari, tandai favorit, dan ketuk entri mana pun untuk melihat teks sumber dan terjemahan lengkapnya. Perlu menggunakan terjemahan lagi? Satu ketukan memulihkan semuanya seketika, tanpa perlu mengetik ulang atau menerjemahkan ulang.
+Kami mendesain ulang seluruh aplikasi. Layar terjemahan, input suara, riwayat, dan pemilih bahasa kini tampil lebih baik dan lebih mudah digunakan.
 
-Kini Anda dapat menerjemahkan hingga 500 karakter sekaligus, meningkat dari sebelumnya 100 karakter.
+Mode meja punya desain baru. Saat menunjukkan terjemahan kepada lawan bicara, teks tampil lebih besar dan jelas, dan kalimat panjang kini bisa digulir.
 
-Ditambah beberapa perbaikan kecil untuk meningkatkan kenyamanan penggunaan sehari-hari.
+Input suara menjadi lebih baik. Ucapan panjang tidak lagi terpotong, dan jika Anda terus berbicara, teks baru akan menyambung secara alami.
+
+Mode lanskap kini didukung. Putar perangkat Anda, dan layar terjemahan serta mode meja akan memanfaatkan seluruh lebar layar.
+
+Kami juga memperbaiki masalah pada terjemahan berulang, tombol tukar bahasa, dan label yang belum diterjemahkan di beberapa layar.
