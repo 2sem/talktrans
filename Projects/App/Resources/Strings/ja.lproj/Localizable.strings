@@ -44,6 +44,11 @@ Translate="翻訳";
 "Please rate '%@' or recommend it to your friends."="'％@'を評価するか、お友達に推薦してください.";
 "Translated Language:"="翻訳された言語：";
 "Font Size"="フォントサイズ";
+
+// MARK: - Landscape compose focus
+"Speak"="話す";
+"Type"="入力";
+"Swap languages"="言語を入れ替える";
 "Remove ads for 1 hour?"="1時間広告を削除しますか？";
 "Watch Ad"="広告を見る";
 "Watch a short ad to enjoy 1 hour ad-free."="短い広告を見て、1時間広告なしでお楽しみください。";

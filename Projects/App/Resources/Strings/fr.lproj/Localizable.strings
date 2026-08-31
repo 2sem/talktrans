@@ -44,6 +44,11 @@ Translate="Traduire";
 "Please rate '%@' or recommend it to your friends."="S'il vous plaît noter '%@' ou le recommander à vos amis.";
 "Translated Language:"="Langue de traduction:";
 "Font Size"="Taille de police";
+
+// MARK: - Landscape compose focus
+"Speak"="Parler";
+"Type"="Saisir";
+"Swap languages"="Inverser les langues";
 "Remove ads for 1 hour?"="Supprimer les publicités pendant 1 heure ?";
 "Watch Ad"="Voir la pub";
 "Watch a short ad to enjoy 1 hour ad-free."="Regardez une courte publicité pour profiter d'1 heure sans pub.";

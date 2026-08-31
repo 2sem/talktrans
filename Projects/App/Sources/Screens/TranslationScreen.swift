@@ -17,6 +17,7 @@ struct TranslationScreen: View {
 	@EnvironmentObject private var adManager: SwiftUIAdManager
 	@Environment(\.modelContext) private var modelContext
 	@Environment(\.verticalSizeClass) private var verticalSizeClass
+	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	@State private var showSpeechRecognition = false
 	@State private var showHistory = false
 	@State private var showAdFreeToast = false
@@ -135,7 +136,7 @@ struct TranslationScreen: View {
 				.padding(.horizontal, 16)
 
 			if !isInputFocused {
-				translatedOutputCard
+				translatedOutputCard(lineLimit: nil)
 					.frame(maxHeight: .infinity)
 					.layoutPriority(1)
 					.padding(.horizontal, 16)
@@ -161,6 +162,11 @@ struct TranslationScreen: View {
 		}
 	}
 
+	// Collapsed width of the translated-output card while the user is composing.
+	// iPhone SE landscape math (see PR notes): ~180pt leaves the input column
+	// enough room to fill the rest of the row above the software keyboard.
+	private let focusedOutputWidth: CGFloat = 180
+
 	private var normalLandscapeContent: some View {
 		GeometryReader { proxy in
 			let horizontalPadding: CGFloat = 16
@@ -169,10 +175,19 @@ struct TranslationScreen: View {
 			let actionHeight: CGFloat = 56
 
 			VStack(spacing: 8) {
+				// Single layout in both states — focus only changes the split so
+				// SwiftUI animates a resize, not an insert/remove.
 				HStack(alignment: .top, spacing: contentSpacing) {
-					translatedOutputCard
+					translatedOutputCard(lineLimit: isInputFocused ? 3 : nil)
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
-						.layoutPriority(2)
+						.exactWidth(isInputFocused ? focusedOutputWidth : nil)
+						.layoutPriority(isInputFocused ? 0 : 2)
+						.overlay(alignment: .bottom) {
+							if isInputFocused {
+								compactSwapButton
+									.padding(.bottom, 12)
+							}
+						}
 
 					VStack(spacing: 14) {
 						nativeInputCard
@@ -184,11 +199,13 @@ struct TranslationScreen: View {
 
 						errorMessageView
 					}
-					.frame(width: sideWidth)
-					.frame(maxHeight: .infinity)
+					.frame(maxWidth: isInputFocused ? .infinity : nil, maxHeight: .infinity)
+					.exactWidth(isInputFocused ? nil : sideWidth)
+					.layoutPriority(isInputFocused ? 1 : 0)
 				}
 				.padding(.horizontal, horizontalPadding)
 				.layoutPriority(1)
+				.animation(reduceMotion ? nil : .easeOut(duration: 0.25), value: isInputFocused)
 
 				bannerAd
 			}
@@ -214,7 +231,7 @@ struct TranslationScreen: View {
 		)
 	}
 
-	private var translatedOutputCard: some View {
+	private func translatedOutputCard(lineLimit: Int?) -> some View {
 		TranslationOutputView(
 			text: viewModel.translatedText,
 			locale: viewModel.translatedLocale,
@@ -229,7 +246,8 @@ struct TranslationScreen: View {
 			},
 			isFullScreen: false,
 			onToggleFullScreen: { },
-			deviceOrientation: viewModel.deviceOrientation
+			deviceOrientation: viewModel.deviceOrientation,
+			lineLimit: lineLimit
 		)
 	}
 
@@ -268,33 +286,62 @@ struct TranslationScreen: View {
 
 	private var actionButtons: some View {
 		HStack(spacing: 12) {
-			translateButton
+			translateButton(compact: false)
 			tableModeButton
 		}
 	}
 
 	private var landscapeActionButtons: some View {
 		HStack(spacing: 12) {
-			translateButton
+			translateButton(compact: isInputFocused)
 
-			Button(action: {
-				presentSpeechRecognition()
-			}) {
-				Image(systemName: "mic.fill")
-					.font(.system(size: 22, weight: .semibold))
-					.frame(width: 56, height: 56)
-					.background(Color.duoSurface)
-					.foregroundStyle(Color.duoThemAccentDeep)
-					.clipShape(.rect(cornerRadius: 16, style: .continuous))
+			micButton
+
+			// Table Mode is a "show the other person" action — wrong to trigger
+			// mid-compose with the keyboard up, so it drops out while focused.
+			if !isInputFocused {
+				tableModeButton
 			}
-			.buttonStyle(.plain)
-			.accessibilityLabel("Speak".localized())
-
-			tableModeButton
 		}
 	}
 
-	private var translateButton: some View {
+	private var micButton: some View {
+		Button(action: {
+			presentSpeechRecognition()
+		}) {
+			Image(systemName: "mic.fill")
+				.font(.system(size: 22, weight: .semibold))
+				.frame(width: 56, height: 56)
+				.background(Color.duoSurface)
+				.foregroundStyle(Color.duoThemAccentDeep)
+				.clipShape(.rect(cornerRadius: 16, style: .continuous))
+		}
+		.buttonStyle(.plain)
+		.accessibilityLabel("Speak".localized())
+	}
+
+	// Compact swap control for the collapsed landscape output card: at ~180pt
+	// the card header can't show the full language picker, but reversing the
+	// translation direction stays a one-tap primary action while composing.
+	private var compactSwapButton: some View {
+		Button(action: {
+			viewModel.swapLanguages()
+		}) {
+			Image(systemName: "arrow.left.arrow.right")
+				.font(.system(size: 16, weight: .bold))
+				.frame(width: 44, height: 44)
+				.background(Color.duoSurface, in: Circle())
+				.foregroundStyle(Color.duoThemAccentDeep)
+				.overlay(
+					Circle()
+						.stroke(Color.duoThemAccent.opacity(0.24), lineWidth: 1)
+				)
+		}
+		.buttonStyle(.plain)
+		.accessibilityLabel(Text("Swap languages"))
+	}
+
+	private func translateButton(compact: Bool) -> some View {
 		Button(action: {
 			isInputFocused = false
 			viewModel.translate()
@@ -304,6 +351,9 @@ struct TranslationScreen: View {
 					ProgressView()
 						.progressViewStyle(CircularProgressViewStyle(tint: .white))
 						.scaleEffect(0.8)
+				} else if compact {
+					Image(systemName: "translate")
+						.font(.system(size: 20, weight: .bold))
 				} else {
 					Text("Translate")
 						.font(.system(size: 17, weight: .semibold))
@@ -325,6 +375,7 @@ struct TranslationScreen: View {
 			.clipShape(.rect(cornerRadius: 16, style: .continuous))
 		}
 		.disabled(!viewModel.canTranslate)
+		.accessibilityLabel(Text("Translate"))
 	}
 
 	private var tableModeButton: some View {
@@ -725,6 +776,17 @@ private struct DuoTableModePanel: View {
 }
 
 private extension View {
+	/// Pins the view to a fixed width when `width` is non-nil, otherwise leaves
+	/// sizing untouched. Avoids calling `.frame(width:)` with a nil literal.
+	@ViewBuilder
+	func exactWidth(_ width: CGFloat?) -> some View {
+		if let width {
+			frame(width: width)
+		} else {
+			self
+		}
+	}
+
 	@ViewBuilder
 	func ifLiquidGlassButton(accent: Color) -> some View {
 		if #available(iOS 26, *) {

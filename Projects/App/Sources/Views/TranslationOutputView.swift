@@ -19,6 +19,9 @@ struct TranslationOutputView: View {
 	let isFullScreen: Bool
 	let onToggleFullScreen: () -> Void
 	let deviceOrientation: UIDeviceOrientation
+	// When set, the translated text is capped to this many lines (used by the
+	// collapsed landscape compose-focus layout). `nil` keeps the text uncapped.
+	var lineLimit: Int? = nil
 	@State private var fontSize: CGFloat = LSDefaults.translationOutputFontSize
 	@State private var magnification: CGFloat = 1.0
 	@State private var isFontSizeSheetPresented: Bool = false
@@ -114,11 +117,13 @@ struct TranslationOutputView: View {
 						Text(text)
 							.font(.system(size: effectiveFontSize))
 							.foregroundStyle(Color.duoTextPrimary)
+							.lineLimit(lineLimit)
+							.truncationMode(.tail)
 							.frame(maxWidth: .infinity, alignment: .leading)
 							.padding(.horizontal, 16)
 							.padding(.vertical, 12)
 					}
-					.frame(minHeight: 100)
+					.frame(minHeight: lineLimit == nil ? 100 : 0)
 				}
 				.simultaneousGesture(
 					MagnifyGesture()
