@@ -1,5 +1,9 @@
-Ogni traduzione che esegui viene ora salvata automaticamente. Sfoglia la cronologia per giorno, aggiungi i preferiti e tocca qualsiasi voce per vedere il testo originale e la traduzione completa. Hai bisogno di riutilizzare una traduzione? Un solo tocco ripristina tutto istantaneamente, senza dover riscrivere o ritradurre.
+Abbiamo ridisegnato l'intera app. La schermata di traduzione, l'input vocale, la cronologia e il selettore della lingua sono più belli e più semplici da usare.
 
-Ora puoi tradurre fino a 500 caratteri alla volta, rispetto ai 100 precedenti.
+La modalità tavolo ha un nuovo design. Quando mostri una traduzione alla persona di fronte a te, il testo è più grande e nitido e le frasi lunghe ora si possono scorrere.
 
-Inoltre alcune piccole correzioni per migliorare l'uso quotidiano.
+L'input vocale è migliorato. I discorsi lunghi non vengono più troncati e, se continui a parlare, il nuovo testo si aggiunge in modo naturale a quello precedente.
+
+Ora è supportata la modalità orizzontale. Ruota il dispositivo e sia la schermata di traduzione sia la modalità tavolo sfrutteranno tutta la larghezza.
+
+Abbiamo inoltre corretto problemi con le traduzioni ripetute, il pulsante di scambio delle lingue ed etichette non tradotte in alcune schermate.

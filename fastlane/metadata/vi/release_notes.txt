@@ -1,5 +1,9 @@
-Mọi bản dịch bạn thực hiện đều được lưu tự động. Duyệt lịch sử theo ngày, đánh dấu yêu thích và nhấn vào bất kỳ mục nào để xem đầy đủ văn bản gốc và bản dịch. Cần dùng lại một bản dịch? Chỉ một chạm là khôi phục ngay lập tức, không cần nhập lại hay dịch lại.
+Chúng tôi đã thiết kế lại toàn bộ ứng dụng. Từ màn hình dịch, nhập bằng giọng nói, lịch sử cho đến bộ chọn ngôn ngữ, tất cả đều đẹp hơn và dễ dùng hơn.
 
-Bạn có thể dịch tới 500 ký tự mỗi lần, tăng so với mức 100 ký tự trước đây.
+Chế độ đối diện có thiết kế mới. Khi bạn cho người đối diện xem bản dịch, chữ hiển thị to và rõ hơn, câu dài cũng có thể cuộn để xem hết.
 
-Ngoài ra còn có một số sửa lỗi nhỏ giúp cải thiện trải nghiệm sử dụng hàng ngày.
+Nhập bằng giọng nói tốt hơn. Nói dài không còn bị cắt, và khi bạn nói tiếp, nội dung mới sẽ nối tiếp tự nhiên vào phần trước đó.
+
+Ứng dụng đã hỗ trợ chế độ ngang. Xoay thiết bị và màn hình dịch cùng chế độ đối diện sẽ hiển thị rộng hết chiều ngang.
+
+Ngoài ra, chúng tôi đã sửa các lỗi về dịch lặp lại, nút hoán đổi ngôn ngữ và các nhãn chưa được dịch trên một số màn hình.

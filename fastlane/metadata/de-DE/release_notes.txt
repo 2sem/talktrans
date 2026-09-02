@@ -1,5 +1,9 @@
-Jede Übersetzung wird jetzt automatisch gespeichert. Durchsuchen Sie Ihren Verlauf nach Datum, markieren Sie Favoriten und tippen Sie auf einen Eintrag, um den vollständigen Quell- und Zieltext zu sehen. Möchten Sie eine Übersetzung erneut verwenden? Ein Tipp stellt alles sofort wieder her – kein erneutes Eintippen, kein erneutes Übersetzen.
+Wir haben die gesamte App neu gestaltet. Vom Übersetzungsbildschirm über die Spracheingabe bis hin zum Verlauf und der Sprachauswahl – alles sieht besser aus und lässt sich leichter bedienen.
 
-Sie können jetzt bis zu 500 Zeichen auf einmal übersetzen, zuvor waren es 100.
+Der Tischmodus hat ein neues Design. Wenn Sie Ihrem Gegenüber eine Übersetzung zeigen, erscheint der Text größer und klarer, und lange Sätze lassen sich jetzt scrollen.
 
-Außerdem wurden einige kleine Korrekturen vorgenommen, die die tägliche Nutzung verbessern.
+Die Spracheingabe wurde verbessert. Längere Aufnahmen werden nicht mehr abgeschnitten, und wenn Sie weitersprechen, wird der neue Text nahtlos angefügt.
+
+Das Querformat wird jetzt unterstützt. Drehen Sie Ihr Gerät, und sowohl der Übersetzungsbildschirm als auch der Tischmodus nutzen die volle Breite.
+
+Außerdem haben wir Fehler bei wiederholten Übersetzungen, beim Sprachtausch-Button und bei nicht übersetzten Beschriftungen auf einigen Bildschirmen behoben.

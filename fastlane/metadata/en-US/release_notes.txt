@@ -1,5 +1,9 @@
-Every translation you make is now automatically saved. Browse your history by day, mark favorites, and tap any entry to see the full source and translated text. Need to use a translation again? One tap restores everything instantly — no retyping, no re-translating.
+We've redesigned the whole app. The translation screen, voice input, history, and language picker have all been refreshed to look better and feel easier to use.
 
-You can now translate up to 500 characters at a time, up from 100.
+Table Mode has a new design. When you show a translation to the person across from you, the text is larger and clearer, and long sentences now scroll so nothing gets cut off.
 
-Plus several small fixes to improve everyday use.
+Voice input works better. Long speech is no longer cut short, and when you keep talking, the new words flow naturally onto what you already said.
+
+Landscape is now supported. Rotate your device and both the translation screen and Table Mode expand to fill the wider layout.
+
+Plus fixes for repeated translations, the language swap button, labels that appeared untranslated on some screens, and more.
