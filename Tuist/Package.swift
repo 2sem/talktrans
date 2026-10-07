@@ -15,6 +15,7 @@ import PackageDescription
 let package = Package(
     name: "talktrans",
     dependencies: [
+        .package(url: "https://github.com/ReactiveX/RxSwift", from: "5.1.3"),
         // Add your own dependencies here:
         // .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0"),
         // You can read more about dependencies here: https://docs.tuist.io/documentation/tuist/dependencies
