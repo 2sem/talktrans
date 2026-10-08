@@ -21,10 +21,6 @@ let project = Project(
     name: "App",
     options: .options(defaultKnownRegions: ["en"],
                      developmentRegion: "en"),
-    packages: [
-        .remote(url: "https://github.com/2sem/GADManager",
-                requirement: .upToNextMajor(from: "1.4.0")),
-    ],
     settings: .settings(configurations: [
         .debug(
             name: "Debug",
@@ -78,7 +74,7 @@ let project = Project(
             dependencies: [
                 .Projects.ThirdParty,
                 .Projects.DynamicThirdParty,
-                .package(product: "GADManager", type: .runtime)
+                .external(name: "GADManager")
             ],
             settings: .settings(configurations: [
                 .debug(
