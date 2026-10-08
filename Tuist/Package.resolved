@@ -1,6 +1,33 @@
 {
-  "originHash" : "17a1a50309e2525abf9b2b8b532892263852974b76197aa322b4e0d55c383626",
+  "originHash" : "6b2fb8150b53cbd3764ca19ff6dbac226908d82bd855082b4c57ac84bc112401",
   "pins" : [
+    {
+      "identity" : "lsextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/2sem/LSExtensions",
+      "state" : {
+        "revision" : "2f10a84f1a1fbcf23a4e23f112ea80a3738feb65",
+        "version" : "0.1.24"
+      }
+    },
+    {
+      "identity" : "material",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CosmicMind/Material",
+      "state" : {
+        "revision" : "059ed9c336d24b5f6383bec0346ae7c314724120",
+        "version" : "3.1.8"
+      }
+    },
+    {
+      "identity" : "motion",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CosmicMind/Motion.git",
+      "state" : {
+        "revision" : "808ac0cf1b67c5e4163ee867dd6c056836fcbc58",
+        "version" : "3.1.3"
+      }
+    },
     {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
