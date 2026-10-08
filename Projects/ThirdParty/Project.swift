@@ -3,13 +3,6 @@ import ProjectDescriptionHelpers
 
 let project = Project(
     name: "ThirdParty",
-    packages: [
-        .remote(url: "https://github.com/2sem/LSExtensions",
-                requirement: .exact("0.1.24")),
-        .remote(url: "https://github.com/CosmicMind/Material",
-                requirement: .upToNextMajor(from: "3.1.8")),
-//        .local(path: "../../../../../spms/DownPicker")
-    ],
     targets: [
         .target(
             name: "ThirdParty",
@@ -17,8 +10,8 @@ let project = Project(
             product: .staticFramework,
             bundleId: .appBundleId.appending(".thirdparty"),
             deploymentTargets: .iOS("18.0"),
-            dependencies: [.package(product: "LSExtensions", type: .runtime),
-                           .package(product: "Material", type: .runtime),
+            dependencies: [.external(name: "LSExtensions"),
+                           .external(name: "Material"),
                            .external(name: "RxSwift"),
                            .external(name: "RxCocoa")
             ]
