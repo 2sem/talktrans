@@ -8,7 +8,6 @@ let project = Project(
                 requirement: .exact("0.1.24")),
         .remote(url: "https://github.com/CosmicMind/Material",
                 requirement: .upToNextMajor(from: "3.1.8")),
-        .package(id: "reactivex.RxSwift", from: "5.1.3"),
 //        .local(path: "../../../../../spms/DownPicker")
     ],
     targets: [
@@ -20,8 +19,8 @@ let project = Project(
             deploymentTargets: .iOS("18.0"),
             dependencies: [.package(product: "LSExtensions", type: .runtime),
                            .package(product: "Material", type: .runtime),
-                           .package(product: "RxSwift", type: .runtime),
-                           .package(product: "RxCocoa", type: .runtime)
+                           .external(name: "RxSwift"),
+                           .external(name: "RxCocoa")
             ]
         ),
     ]
