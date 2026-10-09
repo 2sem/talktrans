@@ -187,7 +187,7 @@ Organize code sections with MARK comments:
 The main app target is defined in `Projects/App/Project.swift`:
 - Bundle ID: Defined via `.appBundleId` extension
 - Deployment target: iOS 18.0+
-- Dependencies: external SPM packages declared in `Tuist/Package.swift` (LSExtensions, Material, RxSwift, RxCocoa, GADManager, Firebase)
+- Dependencies: external SPM packages declared in `Tuist/Package.swift` (LSExtensions, GADManager, Firebase)
 - Firebase Crashlytics script runs post-build
 
 ### Google Ads Integration
