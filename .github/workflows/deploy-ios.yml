@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: macos-26
+    runs-on: xcode-27
     env:
         PRODUCT_NAME: ${{ vars.PRODUCT_NAME }}
         PACKAGE_NAME: ${{ secrets.PACKAGE_NAME }}
@@ -32,10 +32,6 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
-
-      - name: Select Xcode
-        run: |
-          sudo xcode-select -s /Applications/Xcode_26.5.app
 
       - name: Import Secret Key
         run: |
