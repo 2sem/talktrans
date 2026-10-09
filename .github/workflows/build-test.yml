@@ -58,8 +58,10 @@ jobs:
     - name: Cache Tuist dependencies
       uses: actions/cache@v6
       with:
-        path: Tuist/.build
-        key: tuist-build-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('Tuist/Package.resolved') }}
+        path: |
+          Tuist/.build
+          ~/.cache/swifterpm
+        key: tuist-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('Tuist/Package.resolved') }}
 
     - name: Install Dependencies
       run: |
