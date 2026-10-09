@@ -72,7 +72,10 @@ let project = Project(
                                          "$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)"],
                             runForInstallBuildsOnly: true)],
             dependencies: [
-                .Projects.ThirdParty,
+                .external(name: "LSExtensions"),
+                .external(name: "Material"),
+                .external(name: "RxSwift"),
+                .external(name: "RxCocoa"),
                 .Projects.DynamicThirdParty,
                 .external(name: "GADManager")
             ],
