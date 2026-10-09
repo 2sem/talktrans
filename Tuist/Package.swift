@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/2sem/LSExtensions", exact: "0.1.24"),
         .package(url: "https://github.com/CosmicMind/Material", from: "3.1.8"),
         .package(url: "https://github.com/2sem/GADManager", from: "1.5.0"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "11.8.1"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", .upToNextMinor(from: "12.18.0")),
         // Add your own dependencies here:
         // .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0"),
         // You can read more about dependencies here: https://docs.tuist.io/documentation/tuist/dependencies
