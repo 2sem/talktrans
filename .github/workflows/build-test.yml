@@ -46,17 +46,17 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Install Mise
-      uses: jdx/mise-action@v2
+      uses: jdx/mise-action@v5
 
     - name: Log in Tuist
       run: |
         tuist auth login
 
     - name: Cache Tuist dependencies
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: Tuist/.build
         key: tuist-build-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('Tuist/Package.resolved') }}
