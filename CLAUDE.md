@@ -87,7 +87,6 @@ Projects/
 │   │   ├── app.debug.xcconfig
 │   │   └── app.release.xcconfig
 │   └── Project.swift             # Tuist project definition
-├── ThirdParty/                   # Static framework dependencies
 └── DynamicThirdParty/            # Dynamic framework dependencies
 
 Tuist/
@@ -189,7 +188,7 @@ Organize code sections with MARK comments:
 The main app target is defined in `Projects/App/Project.swift`:
 - Bundle ID: Defined via `.appBundleId` extension
 - Deployment target: iOS 18.0+
-- Dependencies: ThirdParty, DynamicThirdParty, and GADManager (Google Ads)
+- Dependencies: DynamicThirdParty, plus external SPM packages (LSExtensions, Material, RxSwift, RxCocoa, GADManager)
 - Firebase Crashlytics script runs post-build
 
 ### Google Ads Integration
