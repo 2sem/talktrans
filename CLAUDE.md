@@ -87,7 +87,6 @@ Projects/
 │   │   ├── app.debug.xcconfig
 │   │   └── app.release.xcconfig
 │   └── Project.swift             # Tuist project definition
-└── DynamicThirdParty/            # Dynamic framework dependencies
 
 Tuist/
 ├── Package.swift                 # SPM dependencies
