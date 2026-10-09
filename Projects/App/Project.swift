@@ -73,13 +73,8 @@ let project = Project(
                             runForInstallBuildsOnly: true)],
             dependencies: [
                 .external(name: "LSExtensions"),
-                .external(name: "Material"),
-                .external(name: "RxSwift"),
-                .external(name: "RxCocoa"),
                 .external(name: "FirebaseCrashlytics"),
                 .external(name: "FirebaseAnalytics"),
-                .external(name: "FirebaseMessaging"),
-                .external(name: "FirebaseRemoteConfig"),
                 .external(name: "GADManager")
             ],
             settings: .settings(configurations: [
