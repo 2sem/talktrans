@@ -1,9 +1,1 @@
-Chúng tôi đã thiết kế lại toàn bộ ứng dụng. Từ màn hình dịch, nhập bằng giọng nói, lịch sử cho đến bộ chọn ngôn ngữ, tất cả đều đẹp hơn và dễ dùng hơn.
-
-Chế độ đối diện có thiết kế mới. Khi bạn cho người đối diện xem bản dịch, chữ hiển thị to và rõ hơn, câu dài cũng có thể cuộn để xem hết.
-
-Nhập bằng giọng nói tốt hơn. Nói dài không còn bị cắt, và khi bạn nói tiếp, nội dung mới sẽ nối tiếp tự nhiên vào phần trước đó.
-
-Ứng dụng đã hỗ trợ chế độ ngang. Xoay thiết bị và màn hình dịch cùng chế độ đối diện sẽ hiển thị rộng hết chiều ngang.
-
-Ngoài ra, chúng tôi đã sửa các lỗi về dịch lặp lại, nút hoán đổi ngôn ngữ và các nhãn chưa được dịch trên một số màn hình.
+Chúng tôi đã sắp xếp lại cấu trúc bên trong ứng dụng để việc dịch ổn định và đáng tin cậy hơn.

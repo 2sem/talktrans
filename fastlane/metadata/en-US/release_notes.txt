@@ -1,9 +1,1 @@
-We've redesigned the whole app. The translation screen, voice input, history, and language picker have all been refreshed to look better and feel easier to use.
-
-Table Mode has a new design. When you show a translation to the person across from you, the text is larger and clearer, and long sentences now scroll so nothing gets cut off.
-
-Voice input works better. Long speech is no longer cut short, and when you keep talking, the new words flow naturally onto what you already said.
-
-Landscape is now supported. Rotate your device and both the translation screen and Table Mode expand to fill the wider layout.
-
-Plus fixes for repeated translations, the language swap button, labels that appeared untranslated on some screens, and more.
+We've tidied up the app's internals so translation is more stable and reliable.
