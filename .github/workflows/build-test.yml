@@ -12,16 +12,19 @@
 name: "Build & Test"
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:
       - '**/*.swift'
       - 'mise.toml'
+      - '.github/workflows/build-test.yml'
   pull_request:
     branches: [ "main" ]
     paths:
       - '**/*.swift'
       - 'mise.toml'
+      - '.github/workflows/build-test.yml'
 
 jobs:
   build-test:
