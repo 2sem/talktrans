@@ -1,9 +1,1 @@
-Wir haben die gesamte App neu gestaltet. Vom Übersetzungsbildschirm über die Spracheingabe bis hin zum Verlauf und der Sprachauswahl – alles sieht besser aus und lässt sich leichter bedienen.
-
-Der Tischmodus hat ein neues Design. Wenn Sie Ihrem Gegenüber eine Übersetzung zeigen, erscheint der Text größer und klarer, und lange Sätze lassen sich jetzt scrollen.
-
-Die Spracheingabe wurde verbessert. Längere Aufnahmen werden nicht mehr abgeschnitten, und wenn Sie weitersprechen, wird der neue Text nahtlos angefügt.
-
-Das Querformat wird jetzt unterstützt. Drehen Sie Ihr Gerät, und sowohl der Übersetzungsbildschirm als auch der Tischmodus nutzen die volle Breite.
-
-Außerdem haben wir Fehler bei wiederholten Übersetzungen, beim Sprachtausch-Button und bei nicht übersetzten Beschriftungen auf einigen Bildschirmen behoben.
+Wir haben die interne Struktur der App aufgeräumt, damit die Übersetzung stabiler und zuverlässiger funktioniert.

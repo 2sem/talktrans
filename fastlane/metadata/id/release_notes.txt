@@ -1,9 +1,1 @@
-Kami mendesain ulang seluruh aplikasi. Layar terjemahan, input suara, riwayat, dan pemilih bahasa kini tampil lebih baik dan lebih mudah digunakan.
-
-Mode meja punya desain baru. Saat menunjukkan terjemahan kepada lawan bicara, teks tampil lebih besar dan jelas, dan kalimat panjang kini bisa digulir.
-
-Input suara menjadi lebih baik. Ucapan panjang tidak lagi terpotong, dan jika Anda terus berbicara, teks baru akan menyambung secara alami.
-
-Mode lanskap kini didukung. Putar perangkat Anda, dan layar terjemahan serta mode meja akan memanfaatkan seluruh lebar layar.
-
-Kami juga memperbaiki masalah pada terjemahan berulang, tombol tukar bahasa, dan label yang belum diterjemahkan di beberapa layar.
+Kami merapikan struktur internal aplikasi agar terjemahan lebih stabil dan andal.

@@ -1,9 +1,1 @@
-Abbiamo ridisegnato l'intera app. La schermata di traduzione, l'input vocale, la cronologia e il selettore della lingua sono più belli e più semplici da usare.
-
-La modalità tavolo ha un nuovo design. Quando mostri una traduzione alla persona di fronte a te, il testo è più grande e nitido e le frasi lunghe ora si possono scorrere.
-
-L'input vocale è migliorato. I discorsi lunghi non vengono più troncati e, se continui a parlare, il nuovo testo si aggiunge in modo naturale a quello precedente.
-
-Ora è supportata la modalità orizzontale. Ruota il dispositivo e sia la schermata di traduzione sia la modalità tavolo sfrutteranno tutta la larghezza.
-
-Abbiamo inoltre corretto problemi con le traduzioni ripetute, il pulsante di scambio delle lingue ed etichette non tradotte in alcune schermate.
+Abbiamo riordinato il funzionamento interno dell'app per rendere la traduzione più stabile e affidabile.

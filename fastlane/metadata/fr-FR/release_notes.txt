@@ -1,9 +1,1 @@
-Nous avons entièrement repensé l'application. L'écran de traduction, la saisie vocale, l'historique et le sélecteur de langue sont plus agréables et plus simples à utiliser.
-
-Le mode face à face a été redessiné. Lorsque vous montrez une traduction à votre interlocuteur, le texte est plus grand et plus net, et les phrases longues peuvent désormais défiler.
-
-La saisie vocale a été améliorée. Les longs énoncés ne sont plus tronqués et, si vous continuez à parler, le nouveau texte s'ajoute naturellement au précédent.
-
-Le mode paysage est désormais pris en charge. Faites pivoter votre appareil : l'écran de traduction et le mode face à face occupent toute la largeur.
-
-Nous avons également corrigé des problèmes liés aux traductions répétées, au bouton d'inversion des langues et à des libellés non traduits sur certains écrans.
+Nous avons réorganisé le fonctionnement interne de l'app pour rendre la traduction plus stable et plus fiable.
