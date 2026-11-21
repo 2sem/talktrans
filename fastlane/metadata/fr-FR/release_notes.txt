@@ -1,1 +1,4 @@
-Nous avons réorganisé le fonctionnement interne de l'app pour rendre la traduction plus stable et plus fiable.
+• Appuyez sur le micro pour effacer le texte et reprendre la parole
+• Un bouton de redémarrage apparaît lorsque le texte devient long
+• Lorsque le micro est prêt, l’écran et une légère vibration vous en informent, pour que vos premiers mots ne soient pas coupés
+• Reconnaissance vocale plus stable et composants internes mis à jour

@@ -1,1 +1,4 @@
-Hemos ordenado el funcionamiento interno de la app para que la traducción sea más estable y fiable.
+• Toca el micrófono para borrar el texto y volver a hablar
+• Aparece un botón de reinicio cuando el texto es largo
+• Cuando el micrófono está listo, la pantalla y una ligera vibración te avisan, para que no se corten tus primeras palabras
+• Reconocimiento de voz más estable y componentes internos actualizados

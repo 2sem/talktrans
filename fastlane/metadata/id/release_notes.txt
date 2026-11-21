@@ -1,1 +1,4 @@
-Kami merapikan struktur internal aplikasi agar terjemahan lebih stabil dan andal.
+• Ketuk mikrofon untuk menghapus teks dan mulai berbicara lagi
+• Tombol mulai ulang muncul saat teks menjadi panjang
+• Saat mikrofon siap, layar dan getaran ringan memberi tahu Anda, agar kata pertama tidak terpotong
+• Stabilitas pengenalan suara ditingkatkan dan komponen internal diperbarui
