@@ -1,0 +1,7 @@
+1 clip01.mov 10.0 13.5 0 bottom
+2 clip02.mp4 0.2 4.8 1 top
+3 clip02.mp4 5.0 10.6 1 top
+4 clip02.mp4 11.3 15.9 1 top
+5 clip03.mp4 0.2 4.9 0 bottom
+6 clip04.mov 3.3 12.6 1 bottom
+7 clip05.mp4 1.6 5.3 1 bottom
