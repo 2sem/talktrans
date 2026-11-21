@@ -1,1 +1,4 @@
-Chúng tôi đã sắp xếp lại cấu trúc bên trong ứng dụng để việc dịch ổn định và đáng tin cậy hơn.
+• Chạm vào micro để xóa nội dung và nói lại
+• Nút khởi động lại sẽ xuất hiện khi nội dung dài
+• Khi micro sẵn sàng, màn hình và rung nhẹ sẽ báo cho bạn biết, giúp không bị mất những từ đầu tiên
+• Cải thiện độ ổn định của nhận dạng giọng nói và cập nhật các thành phần bên trong

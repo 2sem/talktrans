@@ -1,1 +1,4 @@
-Wir haben die interne Struktur der App aufgeräumt, damit die Übersetzung stabiler und zuverlässiger funktioniert.
+• Tippe auf das Mikrofon, um den Text zu löschen und erneut zu sprechen
+• Wenn der Text lang wird, erscheint eine Schaltfläche zum Neustarten
+• Sobald das Mikrofon bereit ist, zeigt die Anzeige es mit einer leichten Vibration an, damit dein erstes Wort nicht abgeschnitten wird
+• Stabilere Spracherkennung und aktualisierte interne Komponenten

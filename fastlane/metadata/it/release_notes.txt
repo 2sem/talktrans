@@ -1,1 +1,4 @@
-Abbiamo riordinato il funzionamento interno dell'app per rendere la traduzione più stabile e affidabile.
+• Tocca il microfono per cancellare il testo e ricominciare a parlare
+• Quando il testo diventa lungo compare un pulsante per ricominciare
+• Quando il microfono è pronto, lo schermo e una leggera vibrazione te lo segnalano, così le prime parole non vengono tagliate
+• Riconoscimento vocale più stabile e componenti interne aggiornate

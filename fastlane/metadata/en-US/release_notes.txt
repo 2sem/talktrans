@@ -1,1 +1,4 @@
-We've tidied up the app's internals so translation is more stable and reliable.
+• Tap the mic to clear and start speaking again
+• A restart button appears when the text gets long
+• The screen and a light haptic let you know when the mic is ready, so your first words aren't cut off
+• Improved speech recognition stability and updated internal components
