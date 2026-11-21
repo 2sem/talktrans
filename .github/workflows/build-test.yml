@@ -75,4 +75,4 @@ jobs:
       env:
         SCHEME: App
       run: |
-        tuist test
+        tuist test --device "iPhone 18 Pro"
