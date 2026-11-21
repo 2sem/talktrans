@@ -371,11 +371,9 @@ struct SpeechRecognitionScreen: View {
 		applySimulatorScreenshotMock()
 		return
 		#else
-		viewModel.stopRecognition()
 		text = ""
 		recognitionPrefixText = ""
-		viewModel.resetSessionState()
-		startRecognition()
+		viewModel.restartRecognition(locale: sourceLocale.locale) { _ in }
 		#endif
 	}
 

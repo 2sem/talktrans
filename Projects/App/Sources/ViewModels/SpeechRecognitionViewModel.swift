@@ -18,7 +18,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 	@Published var errorMessage: String?
 	
 	private var audioEngine = AVAudioEngine()
-	private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+	private let requestBox = RecognitionRequestBox()
 	private var recognitionTask: SFSpeechRecognitionTask?
 	private var sessionID = UUID()
 
@@ -72,19 +72,16 @@ class SpeechRecognitionViewModel: ObservableObject {
 			try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
 			try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 			
-			recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-			guard let recognitionRequest = recognitionRequest else {
-				errorMessage = "Unable to create recognition request"
-				return
-			}
-			
+			let recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
 			recognitionRequest.shouldReportPartialResults = true
+			requestBox.request = recognitionRequest
 			
 			let inputNode = audioEngine.inputNode
 			let recordingFormat = inputNode.outputFormat(forBus: 0)
+			let box = requestBox
 			
 			inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-				recognitionRequest.append(buffer)
+				box.append(buffer)
 			}
 			
 			audioEngine.prepare()
@@ -94,32 +91,10 @@ class SpeechRecognitionViewModel: ObservableObject {
 			isRecognizing = true
 			errorMessage = nil
 			
-			guard let recognizer = SFSpeechRecognizer(locale: locale) else {
+			guard startRecognitionTask(locale: locale, request: recognitionRequest, onResult: onResult) else {
 				errorMessage = "Speech recognizer is not available"
 				stopRecognition()
 				return
-			}
-			
-			let currentSession = sessionID
-			recognitionTask = recognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
-				Task { @MainActor in
-					guard let self, self.sessionID == currentSession else { return }
-					if let error = error {
-						self.errorMessage = error.localizedDescription
-						self.stopRecognition()
-						return
-					}
-					
-					if let result = result {
-						let text = result.bestTranscription.formattedString
-						self.recognizedText = text
-						onResult(text)
-						
-						if result.isFinal {
-							self.stopRecognition()
-						}
-					}
-				}
 			}
 		} catch {
 			errorMessage = error.localizedDescription
@@ -127,13 +102,75 @@ class SpeechRecognitionViewModel: ObservableObject {
 		}
 	}
 	
+	/// Restarts transcription from scratch. While the engine is running, the audio engine,
+	/// input tap and audio session stay alive so no speech is lost to hardware warm-up;
+	/// only the recognition request/task are swapped.
+	func restartRecognition(locale: Locale, onResult: @escaping (String) -> Void) {
+		guard isRecognizing, audioEngine.isRunning else {
+			stopRecognition()
+			resetSessionState()
+			startRecognition(locale: locale, onResult: onResult)
+			return
+		}
+		
+		// Invalidate callbacks from the previous task
+		sessionID = UUID()
+		recognitionTask?.cancel()
+		recognitionTask = nil
+		requestBox.request?.endAudio()
+		
+		let newRequest = SFSpeechAudioBufferRecognitionRequest()
+		newRequest.shouldReportPartialResults = true
+		requestBox.request = newRequest
+		resetSessionState()
+		
+		guard startRecognitionTask(locale: locale, request: newRequest, onResult: onResult) else {
+			errorMessage = "Speech recognizer is not available"
+			stopRecognition()
+			return
+		}
+	}
+	
+	/// Creates the recognition task for `request` under the current `sessionID`.
+	/// Returns false when no recognizer is available for `locale`.
+	private func startRecognitionTask(
+		locale: Locale,
+		request: SFSpeechAudioBufferRecognitionRequest,
+		onResult: @escaping (String) -> Void
+	) -> Bool {
+		guard let recognizer = SFSpeechRecognizer(locale: locale) else { return false }
+		
+		let currentSession = sessionID
+		recognitionTask = recognizer.recognitionTask(with: request) { [weak self] result, error in
+			Task { @MainActor in
+				guard let self, self.sessionID == currentSession else { return }
+				if let error = error {
+					self.errorMessage = error.localizedDescription
+					self.stopRecognition()
+					return
+				}
+				
+				if let result = result {
+					let text = result.bestTranscription.formattedString
+					self.recognizedText = text
+					onResult(text)
+					
+					if result.isFinal {
+						self.stopRecognition()
+					}
+				}
+			}
+		}
+		return true
+	}
+	
 	func stopRecognition() {
 		sessionID = UUID()
 		recognitionTask?.cancel()
 		recognitionTask = nil
 		
-		recognitionRequest?.endAudio()
-		recognitionRequest = nil
+		requestBox.request?.endAudio()
+		requestBox.request = nil
 		
 		audioEngine.stop()
 		audioEngine.inputNode.removeTap(onBus: 0)
@@ -145,5 +182,20 @@ class SpeechRecognitionViewModel: ObservableObject {
 		}
 		
 		isRecognizing = false
+	}
+}
+
+/// Thread-safe holder so the audio-thread tap can feed whichever request is current.
+private final class RecognitionRequestBox: @unchecked Sendable {
+	private let lock = NSLock()
+	private var _request: SFSpeechAudioBufferRecognitionRequest?
+	
+	var request: SFSpeechAudioBufferRecognitionRequest? {
+		get { lock.lock(); defer { lock.unlock() }; return _request }
+		set { lock.lock(); defer { lock.unlock() }; _request = newValue }
+	}
+	
+	func append(_ buffer: AVAudioPCMBuffer) {
+		request?.append(buffer)
 	}
 }
