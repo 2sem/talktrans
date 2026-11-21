@@ -81,6 +81,12 @@ struct SpeechRecognitionScreen: View {
 		.onDisappear {
 			viewModel.stopRecognition()
 		}
+		.onChange(of: viewModel.isListeningReady) { _, ready in
+			if ready {
+				AccessibilityNotification.Announcement("Speak now").post()
+			}
+		}
+		.sensoryFeedback(.start, trigger: viewModel.isListeningReady) { _, new in new }
 	}
 
 	private var speakerPill: some View {
@@ -119,9 +125,9 @@ struct SpeechRecognitionScreen: View {
 			Circle()
 				.fill(Color.duoYouAccentDeep)
 				.frame(width: 7, height: 7)
-				.opacity(viewModel.isRecognizing ? 1 : 0.45)
+				.opacity(viewModel.isListeningReady ? 1 : 0.45)
 
-			Text(verbatim: viewModel.isRecognizing ? "Listening" : "Paused")
+			Text(verbatim: listeningStatusTitle)
 				.font(.system(size: 13, weight: .bold))
 				.foregroundStyle(Color.duoYouAccentDeep.opacity(0.82))
 		}
@@ -164,9 +170,9 @@ struct SpeechRecognitionScreen: View {
 						Circle()
 							.stroke(Color.duoYouAccent.opacity(0.28), lineWidth: 1.5)
 					)
-					.scaleEffect(viewModel.isRecognizing ? 1.08 : 1)
-					.opacity(viewModel.isRecognizing ? 0.88 : 1)
-					.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isRecognizing)
+					.scaleEffect(viewModel.isListeningReady ? 1.08 : 1)
+					.opacity(viewModel.isListeningReady ? 0.88 : 1)
+					.animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: viewModel.isListeningReady)
 
 				Circle()
 					.fill(
@@ -178,17 +184,38 @@ struct SpeechRecognitionScreen: View {
 					)
 					.frame(width: micCoreDiameter, height: micCoreDiameter)
 					.shadow(color: Color.duoYouAccent.opacity(0.28), radius: 20, y: 12)
+					.opacity(micCoreOpacity)
+					.animation(.easeOut(duration: 0.25), value: viewModel.isListeningReady)
 
 				Image(systemName: "mic.fill")
 					.resizable()
 					.scaledToFit()
 					.frame(width: micIconSize, height: micIconSize)
 					.foregroundStyle(.white)
+					.opacity(micCoreOpacity)
+					.animation(.easeOut(duration: 0.25), value: viewModel.isListeningReady)
 			}
 			.frame(width: micOuterDiameter, height: micOuterDiameter)
 		}
 		.buttonStyle(.plain)
-		.accessibilityLabel(viewModel.isRecognizing || !text.isEmpty ? "Restart recording" : "Start listening")
+		.accessibilityLabel(micAccessibilityLabel)
+	}
+
+	private var micCoreOpacity: Double {
+		viewModel.isListeningReady || viewModel.errorMessage != nil ? 1 : 0.6
+	}
+
+	private var micAccessibilityLabel: String {
+		if !viewModel.isListeningReady, text.isEmpty, viewModel.errorMessage == nil {
+			return "Getting ready"
+		}
+		return viewModel.isRecognizing || !text.isEmpty ? "Restart recording" : "Start listening"
+	}
+
+	private var listeningStatusTitle: String {
+		if viewModel.isListeningReady { return "Listening" }
+		let isStarting = viewModel.isRecognizing || (viewModel.errorMessage == nil && text.isEmpty)
+		return isStarting ? "Starting" : "Paused"
 	}
 
 	private var micOuterDiameter: CGFloat {
@@ -316,7 +343,7 @@ struct SpeechRecognitionScreen: View {
 			return "Tap mic to try again"
 		}
 
-		return "Listening…"
+		return viewModel.isListeningReady ? "Speak now" : "Getting ready…"
 	}
 
 	private var hasLongDisplayText: Bool {
@@ -348,11 +375,11 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var listeningStatusScale: CGFloat {
-		viewModel.isRecognizing && isListeningStatusPulsing ? 1.04 : 1
+		viewModel.isListeningReady && isListeningStatusPulsing ? 1.04 : 1
 	}
 
 	private var listeningStatusOpacity: Double {
-		viewModel.isRecognizing && isListeningStatusPulsing ? 0.72 : 1
+		viewModel.isListeningReady && isListeningStatusPulsing ? 0.72 : 1
 	}
 
 	private func errorMessageView(_ message: String) -> some View {

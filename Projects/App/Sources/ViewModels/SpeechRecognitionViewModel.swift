@@ -16,11 +16,15 @@ class SpeechRecognitionViewModel: ObservableObject {
 	@Published var isRecognizing: Bool = false
 	@Published var recognizedText: String = ""
 	@Published var errorMessage: String?
+	/// True once the first real audio buffer of the current engine session arrived (mic is live).
+	@Published private(set) var isListeningReady = false
 	
 	private var audioEngine = AVAudioEngine()
 	private let requestBox = RecognitionRequestBox()
 	private var recognitionTask: SFSpeechRecognitionTask?
 	private var sessionID = UUID()
+	/// Identifies the current audio-engine run; unlike `sessionID` it survives in-place restarts.
+	private var engineSessionID = UUID()
 
 	func resetSessionState() {
 		recognizedText = ""
@@ -80,8 +84,22 @@ class SpeechRecognitionViewModel: ObservableObject {
 			let recordingFormat = inputNode.outputFormat(forBus: 0)
 			let box = requestBox
 			
+			let engineSession = UUID()
+			engineSessionID = engineSession
+			isListeningReady = false
+			box.resetFirstBuffer()
+			let onFirstBuffer: @Sendable () -> Void = { [weak self] in
+				Task { @MainActor in
+					guard let self, self.engineSessionID == engineSession, self.audioEngine.isRunning else { return }
+					self.isListeningReady = true
+				}
+			}
+
 			inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
 				box.append(buffer)
+				if box.markFirstBuffer() {
+					onFirstBuffer()
+				}
 			}
 			
 			audioEngine.prepare()
@@ -166,6 +184,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 	
 	func stopRecognition() {
 		sessionID = UUID()
+		engineSessionID = UUID()
 		recognitionTask?.cancel()
 		recognitionTask = nil
 		
@@ -182,6 +201,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 		}
 		
 		isRecognizing = false
+		isListeningReady = false
 	}
 }
 
@@ -193,6 +213,21 @@ private final class RecognitionRequestBox: @unchecked Sendable {
 	var request: SFSpeechAudioBufferRecognitionRequest? {
 		get { lock.lock(); defer { lock.unlock() }; return _request }
 		set { lock.lock(); defer { lock.unlock() }; _request = newValue }
+	}
+	
+	private var firstBufferDelivered = false
+	
+	/// Returns true exactly once per reset, on the first call.
+	func markFirstBuffer() -> Bool {
+		lock.lock(); defer { lock.unlock() }
+		guard !firstBufferDelivered else { return false }
+		firstBufferDelivered = true
+		return true
+	}
+	
+	func resetFirstBuffer() {
+		lock.lock(); defer { lock.unlock() }
+		firstBufferDelivered = false
 	}
 	
 	func append(_ buffer: AVAudioPCMBuffer) {
