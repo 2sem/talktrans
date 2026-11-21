@@ -131,14 +131,13 @@ struct SpeechRecognitionScreen: View {
 	}
 
 	private var compactListeningControl: some View {
-		Button(action: toggleRecognition) {
+		Button(action: restartRecognition) {
 			HStack(spacing: 8) {
-				Circle()
-					.fill(Color.duoYouAccentDeep)
-					.frame(width: 7, height: 7)
-					.opacity(viewModel.isRecognizing ? 1 : 0.45)
+				Image(systemName: "arrow.counterclockwise")
+					.font(.system(size: 11, weight: .bold))
+					.foregroundStyle(Color.duoYouAccentDeep)
 
-				Text(verbatim: viewModel.isRecognizing ? "Stop" : "Continue")
+				Text(verbatim: "Restart")
 					.font(.system(size: 13, weight: .bold))
 					.foregroundStyle(Color.duoYouAccentDeep)
 			}
@@ -152,11 +151,11 @@ struct SpeechRecognitionScreen: View {
 			.contentShape(.capsule)
 		}
 		.buttonStyle(.plain)
-		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Continue speaking")
+		.accessibilityLabel("Restart recording")
 	}
 
 	private var microphoneButton: some View {
-		Button(action: toggleRecognition) {
+		Button(action: restartRecognition) {
 			ZStack {
 				Circle()
 					.fill(Color.duoYouAccent.opacity(0.08))
@@ -189,7 +188,7 @@ struct SpeechRecognitionScreen: View {
 			.frame(width: micOuterDiameter, height: micOuterDiameter)
 		}
 		.buttonStyle(.plain)
-		.accessibilityLabel(viewModel.isRecognizing ? "Stop listening" : "Start listening")
+		.accessibilityLabel(viewModel.isRecognizing || !text.isEmpty ? "Restart recording" : "Start listening")
 	}
 
 	private var micOuterDiameter: CGFloat {
@@ -367,16 +366,15 @@ struct SpeechRecognitionScreen: View {
 			.clipShape(.rect(cornerRadius: 16, style: .continuous))
 	}
 
-	private func toggleRecognition() {
+	private func restartRecognition() {
 		#if targetEnvironment(simulator)
 		applySimulatorScreenshotMock()
 		return
 		#else
-		if viewModel.isRecognizing {
-			viewModel.stopRecognition()
-			return
-		}
-
+		viewModel.stopRecognition()
+		text = ""
+		recognitionPrefixText = ""
+		viewModel.resetSessionState()
 		startRecognition()
 		#endif
 	}

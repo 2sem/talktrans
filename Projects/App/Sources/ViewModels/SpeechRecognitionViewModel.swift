@@ -20,6 +20,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 	private var audioEngine = AVAudioEngine()
 	private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
 	private var recognitionTask: SFSpeechRecognitionTask?
+	private var sessionID = UUID()
 
 	func resetSessionState() {
 		recognizedText = ""
@@ -39,9 +40,14 @@ class SpeechRecognitionViewModel: ObservableObject {
 			return
 		}
 		
+		// Token invalidated by stopRecognition() so a pending permission request won't start a session
+		let pendingSession = UUID()
+		sessionID = pendingSession
+		
 		// Request authorization
 		SFSpeechRecognizer.requestAuthorization { [weak self] status in
 			Task { @MainActor in
+				guard self?.sessionID == pendingSession else { return }
 				guard status == .authorized else {
 					self?.errorMessage = "Speech recognition permission denied"
 					return
@@ -49,6 +55,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 				
 				// Request microphone permission
 				let granted = await AVAudioApplication.requestRecordPermission()
+				guard self?.sessionID == pendingSession else { return }
 				guard granted else {
 					self?.errorMessage = "Microphone permission denied"
 					return
@@ -93,21 +100,23 @@ class SpeechRecognitionViewModel: ObservableObject {
 				return
 			}
 			
+			let currentSession = sessionID
 			recognitionTask = recognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
 				Task { @MainActor in
+					guard let self, self.sessionID == currentSession else { return }
 					if let error = error {
-						self?.errorMessage = error.localizedDescription
-						self?.stopRecognition()
+						self.errorMessage = error.localizedDescription
+						self.stopRecognition()
 						return
 					}
 					
 					if let result = result {
 						let text = result.bestTranscription.formattedString
-						self?.recognizedText = text
+						self.recognizedText = text
 						onResult(text)
 						
 						if result.isFinal {
-							self?.stopRecognition()
+							self.stopRecognition()
 						}
 					}
 				}
@@ -119,6 +128,7 @@ class SpeechRecognitionViewModel: ObservableObject {
 	}
 	
 	func stopRecognition() {
+		sessionID = UUID()
 		recognitionTask?.cancel()
 		recognitionTask = nil
 		
